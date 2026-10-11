@@ -1,0 +1,456 @@
+=====================================================================
+  MAC PRO GUIDE - Step by Step
+  (PhotoCraft, ArtCraft apps, GitHub tools, yt-dlp, Mac security,
+   Cyber security lab, TTS/Voice, Software development)
+  Banaya: 2026-10-11
+=====================================================================
+
+NOTE
+- Commands macOS Terminal (zsh) ke liye hain, jab tak "Kali VM me" na likha ho.
+- Kuch bhi install karne se pehle uska GitHub page aur latest Release ek baar dekh lo.
+- Download sirf official source se karo: GitHub Releases, Homebrew, ya
+  developer ki apni website.
+- Star counts aur "abhi kya status hai" wali baatein badalti rehti hain,
+  isliye install ke time dobara check karna.
+
+---------------------------------------------------------------------
+INDEX
+---------------------------------------------------------------------
+  0. Pehle ek baar: Homebrew setup
+  1. PhotoCraft: safe hai ya nahi + install
+  2. PhotoCraft vs Apple Creator Studio
+  3. ArtCraft ke baaki apps: kaunsa kaam ka hai
+  4. GitHub users check: grqz, WitherOrNot, YuriyL
+  5. yt-dlp: video downloader setup (plugins + GUI)
+  6. Mac security hardening (Patrick Wardle / objective-see)
+  7. Cyber security: lab se pro level tak
+  8. TTS / Voice: zero se pro level tak
+  9. Software development: world-class roadmap
+ 10. Action plan: aaj, is hafte, is mahine
+ 11. App hatane / cleanup ke commands
+ 12. Sources
+
+=====================================================================
+0. PEHLE EK BAAR: HOMEBREW SETUP
+=====================================================================
+Homebrew Mac ka package manager hai. Baaki saare steps isi se honge.
+
+Step 0.1  Terminal kholo (Cmd + Space -> "Terminal").
+Step 0.2  Homebrew install karo (official command, brew.sh se):
+            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+Step 0.3  Install ke end me jo 2 "Next steps" commands dikhayega,
+          unhe copy-paste karke chalao (PATH set karne ke liye).
+Step 0.4  Check karo:
+            brew --version
+Step 0.5  pipx install karo (Python tools alag-alag safe install karne ke liye):
+            brew install pipx
+            pipx ensurepath
+          Terminal band karke dobara kholo.
+
+=====================================================================
+1. PHOTOCRAFT: SAFE HAI YA NAHI + INSTALL
+=====================================================================
+Kya hai:
+- ArtCraft suite ka Photoshop jaisa image editor. Rust me likha hai.
+- Open source (MIT / Apache-2.0). GitHub: github.com/storytold/photocraft
+- Lagbhag 42.7k stars.
+- Mac ke liye universal DMG (Apple Silicon + Intel). Metal par chalta hai.
+- DMG signed + Apple notarized hai.
+- GitHub page ke hisaab se offline chalta hai, account ya cloud nahi chahiye.
+  Telemetry ke baare me page kuch nahi kehta.
+
+Dhyan do:
+- Early ALPHA hai. 15 tools abhi bane nahi, bugs aa sakte hain.
+- Developers khud kehte hain: daily professional kaam ke liye abhi
+  Photoshop ki jagah nahi le sakta.
+- Phoronix ke mutabik zyada tar code AI se likha gaya hai, isliye kuch
+  legal sawal uthe hain. Normal user ke liye ye security risk nahi hai.
+
+INSTALL STEPS
+Step 1.1  DMG sirf yahan se download karo:
+            github.com/storytold/photocraft/releases   (ya getartcraft.com)
+          Same release se SHA256SUMS.txt bhi download karo.
+Step 1.2  Checksum match karo:
+            cd ~/Downloads
+            shasum -a 256 photocraft-*-macos-universal.dmg
+            grep macos-universal SHA256SUMS.txt
+          Dono hash bilkul same hone chahiye.
+Step 1.3  Signature + notarization check karo:
+            spctl -a -vvv -t open --context context:primary-signature photocraft-*-macos-universal.dmg
+          Output me "accepted" aur "source=Notarized Developer ID" aana chahiye.
+Step 1.4  DMG kholo, app ko Applications folder me drag karo.
+Step 1.5  Installed app check karo:
+            codesign -dv --verbose=4 /Applications/PhotoCraft.app 2>&1 | grep -E "Authority|TeamIdentifier"
+            spctl -a -vvv /Applications/PhotoCraft.app
+Step 1.6  Agar "unidentified developer" warning aaye to RUK JAO.
+          Notarized app par ye nahi aani chahiye. File me gadbad ho sakti hai.
+Step 1.7  Kisi bhi PSD ki COPY par kaam karo, original par nahi.
+
+KYA YE MAC KO "CAPTURE" KAREGA? - Khud check karo
+Step 1.8  Permissions: System Settings -> Privacy & Security.
+          Photo editor ko ye NAHI chahiye: Screen Recording, Accessibility,
+          Full Disk Access, Camera, Microphone. Maange to DENY karo.
+Step 1.9  Network: LuLu firewall lagao (Section 6). Bina wajah internet
+          connection try kare to block karo.
+Step 1.10 App band karne ke baad background process check:
+            pgrep -fl -i photocraft
+            (kuch nahi aana chahiye)
+            ls ~/Library/LaunchAgents /Library/LaunchAgents /Library/LaunchDaemons | grep -i craft
+            (kuch nahi aana chahiye)
+Step 1.11 MCP / control channel feature (photocraft-cli mcp) ko tab tak
+          chalu mat karo jab tak zarurat na ho.
+
+=====================================================================
+2. PHOTOCRAFT vs APPLE CREATOR STUDIO
+=====================================================================
+Aapke paas Creator Studio hai, to usme Pixelmator Pro milta hai.
+
+  Point          | Pixelmator Pro (Creator Studio) | PhotoCraft
+  ---------------+---------------------------------+---------------------------
+  Stability      | Polished, Apple ka app          | Early alpha, bugs possible
+  Mac fit        | Mac ke liye bana, optimized     | Cross-platform
+  AI tools       | Hain (super resolution, bg      | Generative AI nahi
+                 | removal, smart selection)       |
+  PSD            | Layers ke saath import/export   | Khulta hai, output same nahi
+  Security       | Apple ka, sabse safe            | Notarized, third-party
+  Kharcha        | Subscription me shamil          | Free
+
+FAISLA:
+- Normal photo editing / design -> Pixelmator Pro use karo.
+- PhotoCraft sirf tab: CLI/script se batch automation, AI agent (MCP) se
+  editing, Linux/Windows par bhi same tool, ya code seekhna ho.
+
+=====================================================================
+3. ARTCRAFT KE BAAKI APPS: KAUNSA KAAM KA HAI
+=====================================================================
+GitHub org: github.com/storytold  (56 repos)
+
+  App          | Kis jaisa      | Aapke paas      | Kaam ka?
+  -------------+----------------+-----------------+--------------------------
+  photocraft   | Photoshop      | Pixelmator Pro  | NAHI
+  filmcraft    | Premiere Pro   | Final Cut Pro   | NAHI
+  soundcraft   | Pro Tools      | Logic Pro       | NAHI
+  effectcraft  | (description   | Motion          | Shayad NAHI
+               |  nahi hai)     |                 |
+  deckcraft    | PowerPoint     | Keynote         | NAHI
+  vectorcraft  | Illustrator    | Kuch nahi       | HAAN - logo/icon/vector
+  pdfcraft     | Acrobat        | Preview (basic) | HAAN - PDF edit/form/sign
+  lightcraft   | Lightroom      | Photos/Pixelm.  | Sirf bahut RAW photos ho to
+  cadcraft     | AutoCAD        | Kuch nahi       | Sirf engineering drawing
+  designcraft  | (description   | ?               | Pata nahi
+               |  nahi hai)     |                 |
+
+Steps:
+Step 3.1  Pehle check karo app ka Release bana hai ya nahi:
+            github.com/storytold/<app-name>/releases
+          Launch par sirf PhotoCraft aur PrintCraft alpha tak pahunche the,
+          baaki under development the.
+Step 3.2  Release ho to Section 1 ke Steps 1.1 - 1.11 same tarah follow karo.
+Step 3.3  Try karne layak: vectorcraft, pdfcraft. Baaki chhod do.
+
+=====================================================================
+4. GITHUB USERS CHECK: grqz, WitherOrNot, YuriyL
+=====================================================================
+Ye teeno apps nahi, GitHub par logon ke account hain.
+
+(a) grqz  -> KAAM KA (agar video download karte ho)
+    - yt-dlp project me kaam karta hai.
+    - Repo: github.com/grqz/yt-dlp-apple-webkit-jsi
+      yt-dlp ka plugin. YouTube ke protection checks ko Mac ke built-in
+      WebKit (Safari engine) se solve karta hai. Node.js/Deno nahi chahiye.
+    - 144 stars, Apache-2.0. macOS 11+, Apple Silicon + Intel.
+    - Python 3.10+ aur yt-dlp 2025.11.12 ya naya chahiye.
+    - Install: Section 5 dekho.
+
+(b) WitherOrNot -> Mac par KAAM KA NAHI
+    - massgravel group ka member. Repos Windows/Office licensing se jude hain.
+    - Sab Windows-only hai, Mac par kuch nahi chalta.
+    - Bina license activate karna Microsoft ki terms ke khilaf hai. Chhod do.
+
+(c) YuriyL -> KAAM KA NAHI
+    - Sirf 4 purane Grails/Groovy web-dev forks. Chhod do.
+
+=====================================================================
+5. yt-dlp: VIDEO DOWNLOADER SETUP
+=====================================================================
+Step 5.1  yt-dlp + ffmpeg install:
+            pipx install yt-dlp
+            brew install ffmpeg
+Step 5.2  grqz ka WebKit plugin:
+            pipx inject yt-dlp yt-dlp-apple-webkit-jsi
+Step 5.3  Check karo plugin chal raha hai:
+            yt-dlp -v "https://www.youtube.com/watch?v=VIDEO_ID"
+          Output me "apple-webkit-jsi" dikhna chahiye.
+Step 5.4  Roz ke kaam ke commands:
+            # Best quality video
+            yt-dlp -f "bv*+ba/b" "URL"
+            # Sirf audio MP3
+            yt-dlp -x --audio-format mp3 "URL"
+            # Sponsor wale hisse kaat do
+            yt-dlp --sponsorblock-remove sponsor "URL"
+            # Poori playlist, numbered
+            yt-dlp -o "%(playlist_index)s - %(title)s.%(ext)s" "PLAYLIST_URL"
+Step 5.5  Update karte raho (YouTube badalta rehta hai):
+            pipx upgrade yt-dlp
+            pipx upgrade-all
+
+AGAR "Sign in to confirm you're not a bot" ERROR AAYE
+Step 5.6  PO token plugin:
+            pipx inject yt-dlp bgutil-ytdlp-pot-provider
+Step 5.7  Iska provider server bhi chahiye (Docker ya Node.js). Setup
+          README me hai: github.com/Brainicism/bgutil-ytdlp-pot-provider
+
+GUI CHAHIYE (command line pasand nahi)
+  App                    | Free?            | Note
+  -----------------------+------------------+------------------------------
+  MacYTDL                | Free, open source| Mac ka simple yt-dlp GUI
+  Open Video Downloader  | Free, open source| jely2002/youtube-dl-gui
+  Stacher                | Free             | yt-dlp GUI
+  Downie                 | Paid             | Sabse polished, Safari ext.
+  Pulltube               | Paid             | Downie wale dev ka, trim bhi
+
+AUR KAAM KE TOOLS
+Step 5.8  Install:
+            brew install gallery-dl     # Instagram/X/Reddit/Pinterest images
+            pipx install spotdl          # Spotify playlist -> MP3 (YouTube se)
+Step 5.9  ffmpeg ke kaam:
+            ffmpeg -i in.mov -c:v libx264 -crf 23 out.mp4      # compress
+            ffmpeg -i in.mp4 -ss 00:01:00 -to 00:02:00 -c copy cut.mp4   # cut
+            ffmpeg -i in.mp4 -vn -c:a libmp3lame out.mp3       # audio nikalo
+- Bina install: cobalt.tools (browser se).
+- Sirf woh content download karo jiski aapko permission hai.
+
+=====================================================================
+6. MAC SECURITY HARDENING (objective-see, Patrick Wardle)
+=====================================================================
+Patrick Wardle macOS security ke top experts me hain. Tools free hain.
+
+Step 6.1  Install:
+            brew install --cask lulu knockknock blockblock oversight
+Step 6.2  LuLu: har app ka outbound connection allow/block karo.
+          Pehle 2-3 din "Allow" soch-samajh ke do, baseline ban jayegi.
+Step 6.3  KnockKnock: ek baar scan karo -> kaun si cheez startup par chalti
+          hai. Unknown/unsigned item ka naam Google karo.
+Step 6.4  BlockBlock: background me chalne do. Naya persistence item aaye
+          to alert dega.
+Step 6.5  OverSight: camera/mic koi bhi app khole to alert.
+Step 6.6  macOS settings:
+          - System Settings -> Privacy & Security -> FileVault: ON
+          - Network -> Firewall: ON
+          - General -> Software Update: Automatic ON
+          - Privacy & Security -> har permission list (Screen Recording,
+            Accessibility, Full Disk Access) me unknown app ho to hatao.
+Step 6.7  Command se check:
+            fdesetup status                          # FileVault
+            /usr/libexec/ApplicationFirewall/socketfilterfw --getglobalstate
+            spctl --status                           # Gatekeeper ON hona chahiye
+            csrutil status                           # SIP enabled hona chahiye
+
+=====================================================================
+7. CYBER SECURITY: LAB SE PRO LEVEL TAK
+=====================================================================
+RULE: Sirf apne lab VMs ya un systems par test karo jinki likhit
+permission ho (bug bounty scope, CTF). Baaki sab illegal hai.
+
+PHASE 1 - LAB BANAO (Week 1)
+Step 7.1  UTM install (free, Apple Silicon par VM chalata hai):
+            brew install --cask utm
+Step 7.2  Kali Linux ARM64 image download karo (kali.org/get-kali -> Virtual
+          Machines -> UTM) aur UTM me import karo.
+Step 7.3  Target VMs: DVWA, Metasploitable, VulnHub boxes.
+          (Note: kai VulnHub boxes x86 hain, Apple Silicon par emulation
+           me slow chalenge. ARM-compatible ya Docker targets pehle lo.)
+Step 7.4  Networking: lab VMs ko isolated / host-only network par rakho.
+Step 7.5  Kali update:  (Kali VM me)
+            sudo apt update && sudo apt full-upgrade -y
+
+PHASE 2 - BASICS (Week 2-4)
+Step 7.6  Linux + networking basics: TryHackMe "Pre Security" path.
+Step 7.7  Reference repos padhte raho:
+            - trimstray/the-book-of-secret-knowledge (cheatsheets)
+            - enaqx/awesome-pentest, Hack-with-Github/Awesome-Hacking
+
+PHASE 3 - RECON / SCANNING (Month 2)
+Step 7.8  Tools (Kali VM me):
+            sudo apt install -y nmap nuclei subfinder httpx-toolkit
+Step 7.9  Apne lab target par practice:
+            nmap -sV -sC <lab-vm-ip>
+            nuclei -u http://<lab-vm-ip>
+Step 7.10 OSINT tools (sirf public info, apne ya permission wale targets):
+            - sherlock-project/sherlock (usernames)
+            - smicallef/spiderfoot (domain/OSINT automation)
+
+PHASE 4 - WEB SECURITY (Month 2-4)
+Step 7.11 PortSwigger Web Security Academy (free) - sabse best web course.
+Step 7.12 Burp Suite Community install, DVWA par labs.
+Step 7.13 Reference: carlospolop/HackTricks, swisskyrepo/PayloadsAllTheThings,
+          danielmiessler/SecLists (wordlists).
+
+PHASE 5 - PRACTICE PLATFORMS (Month 3 se lagatar)
+Step 7.14 TryHackMe (beginner) -> HackTheBox (advanced) -> CTFs.
+Step 7.15 Har box ka writeup apni notes file me likho (Obsidian / Markdown).
+
+PHASE 6 - ADVANCED (Month 6+)
+Step 7.16 Privilege escalation: HackTricks + PEASS-ng (sirf lab me).
+Step 7.17 Active Directory lab: SpecterOps/BloodHound (sirf apne AD lab me).
+Step 7.18 macOS security deep-dive: Patrick Wardle ki book
+          "The Art of Mac Malware" (free online, objective-see.org).
+
+PHASE 7 - CERTIFICATIONS (pro level)
+Step 7.19 eJPT -> PNPT -> OSCP
+          OSCP industry me sabse respected hands-on cert hai.
+Step 7.20 Bug bounty: HackerOne / Bugcrowd par sirf "in scope" targets.
+
+=====================================================================
+8. TTS / VOICE: ZERO SE PRO LEVEL TAK
+=====================================================================
+RULE: Voice cloning sirf apni awaaz ya permission wali awaaz ki.
+Bina permission kisi ki awaaz clone karna galat aur kai jagah illegal hai.
+
+SETUP (ek baar)
+Step 8.1  Python virtual environment:
+            brew install python@3.12 ffmpeg
+            python3.12 -m venv ~/voice
+            source ~/voice/bin/activate
+            pip install -U pip
+
+LEVEL 1 - BASIC TTS
+Step 8.2  mlx-audio (Apple Silicon ke liye optimized):
+            pip install mlx-audio
+          Usage aur model names README me: github.com/Blaizzy/mlx-audio
+          (Kokoro model se shuru karo - halka, fast, achhi quality.)
+Step 8.3  Alternatives: hexgrad/kokoro, rhasspy/piper (bahut halka).
+
+LEVEL 2 - SPEECH TO TEXT (STT)
+Step 8.4  whisper.cpp (Metal se fast):
+            brew install whisper-cpp
+            mkdir -p ~/whisper-models && cd ~/whisper-models
+            curl -L -o ggml-base.bin https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-base.bin
+            whisper-cli -m ~/whisper-models/ggml-base.bin -f audio.wav
+          Better accuracy ke liye large-v3 model (bada, slow).
+          Audio ko pehle 16kHz WAV me badlo:
+            ffmpeg -i input.mp3 -ar 16000 -ac 1 audio.wav
+
+LEVEL 3 - VOICE CLONING (apni awaaz)
+Step 8.5  Apni 10-30 second ki saaf recording banao (shor nahi, ek hi tone).
+Step 8.6  Tools (har ek ka README follow karo):
+            - SWivid/F5-TTS     (kuch seconds se clone, Mac par slow)
+            - myshell-ai/OpenVoice (tone/style clone)
+            - fishaudio/fish-speech (multi-language)
+
+LEVEL 4 - HINDI / MULTI-LANGUAGE
+Step 8.7  coqui-ai/TTS ka XTTS-v2 - Hindi support. Company band ho chuki,
+          par code chalta hai. Python version README ke hisaab se rakho.
+
+LEVEL 5 - VOICE CONVERSION
+Step 8.8  RVC-Project (ek awaaz ko doosri me badalna). Mac par setup
+          mushkil hai - Level 1-4 ke baad hi try karo.
+
+LEVEL 6 - PRO PROJECT: OFFLINE VOICE ASSISTANT
+Step 8.9  Pipeline: Mic -> whisper.cpp (STT) -> ollama LLM -> mlx-audio (TTS)
+          -> speaker. Python me jod do. Sab offline, sab aapke Mac par.
+
+=====================================================================
+9. SOFTWARE DEVELOPMENT: WORLD-CLASS ROADMAP
+=====================================================================
+STEP 9.1  Roadmap dekho: kamranahmedse/developer-roadmap (roadmap.sh)
+          Ek track chuno (Backend / AI / Security engineering).
+STEP 9.2  Dev setup:
+            brew install git gh python@3.12 node go rust
+            brew install --cask visual-studio-code ghostty
+STEP 9.3  Git seekho: roz commit karo, apna GitHub profile bharo.
+STEP 9.4  "Build your own X" (sabse powerful tareeka):
+            codecrafters-io/build-your-own-x
+          Pehle: apna shell, phir Git, phir Redis, phir chhota Docker.
+STEP 9.5  System design: donnemartin/system-design-primer
+STEP 9.6  Local AI (Mac par):
+            brew install ollama
+            ollama serve        # ek terminal me
+            ollama run llama3.2 # doosre terminal me
+          Phir: ggerganov/llama.cpp aur ml-explore/mlx ke examples.
+STEP 9.7  AI ko andar se samjho: karpathy ke nanoGPT aur llm.c, saath me
+          unki "Neural Networks: Zero to Hero" video series.
+STEP 9.8  Masters ko follow karo, unka code padho:
+            torvalds (Linux/Git), antirez (Redis), ggerganov (llama.cpp),
+            karpathy (AI), sindresorhus (JS + Mac tools),
+            mitchellh (Ghostty, HashiCorp)
+STEP 9.9  Open source contribute: kisi repo me "good first issue" dhoondo,
+          chhota fix bhejo. Yahi asli pro level banata hai.
+
+=====================================================================
+10. ACTION PLAN
+=====================================================================
+AAJ
+  [ ] Homebrew + pipx install (Section 0)
+  [ ] LuLu, KnockKnock, BlockBlock, OverSight install (Section 6)
+  [ ] FileVault + Firewall ON check (Step 6.6, 6.7)
+
+IS HAFTE
+  [ ] yt-dlp + grqz plugin setup (Section 5), agar video download karte ho
+  [ ] UTM + Kali VM (Phase 1, Section 7)
+  [ ] TryHackMe par pehla free room
+  [ ] mlx-audio se pehli TTS awaaz (Step 8.2)
+  [ ] ollama se pehla local LLM (Step 9.6)
+
+IS MAHINE
+  [ ] TryHackMe "Pre Security" path complete
+  [ ] PortSwigger Academy ke pehle 10 labs
+  [ ] whisper.cpp se apni recording ka transcript
+  [ ] build-your-own-x se ek project (shell)
+
+3-6 MAHINE
+  [ ] HackTheBox par 10 boxes + writeups
+  [ ] Offline voice assistant project (Step 8.9)
+  [ ] eJPT exam
+  [ ] Pehla open-source contribution
+
+6-12 MAHINE
+  [ ] PNPT -> OSCP prep
+  [ ] Bug bounty (sirf in-scope)
+  [ ] Apna ek open-source tool GitHub par publish
+
+=====================================================================
+11. APP HATANE / CLEANUP KE COMMANDS
+=====================================================================
+PhotoCraft hatana:
+  rm -rf /Applications/PhotoCraft.app
+  rm -rf ~/Library/Application\ Support/*[Pp]hoto[Cc]raft*
+  rm -rf ~/Library/Preferences/*photocraft*
+  rm -rf ~/Library/Caches/*photocraft*
+
+Homebrew app hatana:
+  brew uninstall <naam>              # CLI tool
+  brew uninstall --cask <naam>       # GUI app
+
+pipx tool hatana:
+  pipx uninstall <naam>
+
+Python voice env hatana:
+  rm -rf ~/voice
+
+=====================================================================
+12. SOURCES
+=====================================================================
+- PhotoCraft:            https://github.com/storytold/photocraft
+- ArtCraft org:          https://github.com/storytold
+- Phoronix:              https://www.phoronix.com/news/Photocraft-Filmcraft-AI
+- OMG! Ubuntu:           https://www.omgubuntu.co.uk/2026/10/artcraft-free-photoshop-ai-clone
+- PhotoCraft guide:      https://pasqualepillitteri.it/en/news/21633/photocraft-guide-free-photoshop-alternative-rust
+- grqz:                  https://github.com/grqz
+- WebKit plugin:         https://github.com/grqz/yt-dlp-apple-webkit-jsi
+- PO token plugin:       https://github.com/Brainicism/bgutil-ytdlp-pot-provider
+- yt-dlp:                https://github.com/yt-dlp/yt-dlp
+- objective-see tools:   https://objective-see.org
+- Homebrew:              https://brew.sh
+- UTM:                   https://mac.getutm.app
+- Kali Linux:            https://www.kali.org/get-kali/
+- PortSwigger Academy:   https://portswigger.net/web-security
+- mlx-audio:             https://github.com/Blaizzy/mlx-audio
+- whisper.cpp:           https://github.com/ggerganov/whisper.cpp
+- ollama:                https://ollama.com
+- developer-roadmap:     https://roadmap.sh
+- build-your-own-x:      https://github.com/codecrafters-io/build-your-own-x
+
+Section 7-9 ke tools aur repos ki list knowledge se banayi gayi hai, us
+waqt live check nahi hui thi. Install se pehle har link khol ke dekh lena.
+=====================================================================
