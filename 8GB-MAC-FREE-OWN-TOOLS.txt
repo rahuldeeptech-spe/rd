@@ -1,7 +1,7 @@
 =====================================================================
   8GB MAC: FREE + APNE TOOLS (Offline + Online) - Step by Step
-  AI chat/coding, Image, Video, Voice (TTS/STT), Cyber Lab
-  Banaya: 2026-10-11
+  AI chat/coding (Claude jaisa), Image, Video, Voice (TTS/STT), Cyber Lab
+  Version 2 - 2026-10-11 (web research se verify kiya gaya)
 =====================================================================
 
 SEEDHI BAAT (pehle ye samjho)
@@ -9,10 +9,12 @@ SEEDHI BAAT (pehle ye samjho)
   Claude ke BARABAR quality.
 - SOFTWARE ki koi problem nahi: sab open-source, free, hamesha aapka.
 - Rukawat sirf HARDWARE hai. 8GB Mac par ye charon ek saath nahi ho sakte.
-- 8GB par: AI chat (chhota), TTS, STT, chhoti images, cyber lab -> HAAN.
+- 8GB par: AI chat (chhota model), TTS, STT, chhoti images, cyber lab -> HAAN.
   AI video offline -> NAHI (video models ko 24GB+ memory chahiye).
-- Free limits aur model versions badalte rehte hain. Install se pehle har
-  tool ki official site dekh lo.
+- "Billions of tokens free": koi bhi legit online service Claude-quality
+  ke billions tokens free nahi deti. Unlimited sirf LOCAL model se milta hai
+  (aapke Mac par), aur 8GB par local model chhota hi chalega.
+- Free limits jaldi badalti hain. Install se pehle official page dekh lo.
 
 ---------------------------------------------------------------------
 INDEX
@@ -20,30 +22,36 @@ INDEX
   0. Pehle setup: Homebrew + storage
   1. Open-source tools ki list (hamesha aapke)
   2. Hardware: barabar quality ke liye kitna chahiye
-  3. OFFLINE setup - 8GB Mac par (step by step)
-       3A. AI chat + coding (Ollama)
+  3. OFFLINE setup - 8GB Mac par
+       3A. AI chat + coding agent (Ollama + OpenCode)
        3B. Image banana (Draw Things)
-       3C. Voice: TTS (Kokoro) + STT (whisper.cpp)
-       3D. Video + image editing (Final Cut / Pixelmator)
-       3E. Cyber lab (UTM + Kali + Docker targets)
-  4. FREE CLOUD GPU - "apna" AI video/image (Kaggle / Colab)
-  5. ONLINE FREE - sabse aasaan, sabse achhi quality
-  6. Action plan
-  7. Cleanup / RAM bachane ke tips
+       3C. Voice: TTS + STT
+       3D. Video + image editing
+       3E. Cyber lab
+  4. FREE ONLINE AI (Claude jaisa) - 8GB ke liye sabse kaam ka
+  5. FREE CLOUD GPU - "apna" AI video/image (Kaggle / Colab)
+  6. ONLINE FREE image + video (ChatGPT / Kling jaisa)
+  7. Kya BAND ho gaya / scam se bacho
+  8. Action plan
+  9. Cleanup / RAM bachane ke tips
+ 10. Sources
 
 =====================================================================
 0. PEHLE SETUP: HOMEBREW + STORAGE
 =====================================================================
-Step 0.1  Homebrew install (agar nahi hai):
+Step 0.1  macOS version check (Ollama / LM Studio ko macOS 14 Sonoma+ chahiye):
+            sw_vers
+Step 0.2  Homebrew install (agar nahi hai):
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
           End me jo "Next steps" ke 2 commands aaye, unhe chalao.
-Step 0.2  pipx:
-            brew install pipx && pipx ensurepath
-Step 0.3  STORAGE: slow HDD par VM, Docker, AI models ya video project
+Step 0.3  pipx + Python 3.12 (kai voice tools 3.13 par nahi chalte):
+            brew install pipx python@3.12 ffmpeg
+            pipx ensurepath
+Step 0.4  STORAGE: slow HDD par VM, Docker, AI models ya video project
           rakhoge to sab bahut dheere chalega.
           -> Ek sasti external SSD (USB-C, 256-512GB) le lo.
           -> Kali VM, Docker data, AI models, video projects usi par rakho.
-Step 0.4  Free space check:
+Step 0.5  Free space check:
             df -h ~
 
 =====================================================================
@@ -51,37 +59,41 @@ Step 0.4  Free space check:
 =====================================================================
   Kaam              | Tool                                   | Kiske barabar
   ------------------+----------------------------------------+------------------------
-  AI chat + coding  | Ollama / LM Studio + Qwen3(-Coder),    | Bade models Claude /
-                    | DeepSeek, GLM, gpt-oss                 | ChatGPT ke kaafi kareeb
-  Coding agent      | OpenCode / Aider + local model         | Claude Code jaisa
+  AI chat + coding  | Ollama / LM Studio + Qwen3.x, Gemma 4, | Bade models Claude ke
+                    | gpt-oss, Devstral                      | kareeb (bade hardware par)
+  Coding agent      | OpenCode (MIT), Kilo Code, Cline,      | Claude Code jaisa
+                    | Aider, goose                           |
   Image             | ComfyUI + Flux / Qwen-Image / HiDream  | ChatGPT image ke kareeb
   Video             | ComfyUI + Wan 2.x / HunyuanVideo /     | Kling ke kareeb
                     | LTX-Video                              | (thoda neeche)
-  Voice (TTS)       | Kokoro, F5-TTS, XTTS-v2 (Hindi)        | ElevenLabs ke kareeb
-  Speech -> text    | whisper.cpp                            | Paid STT jaisa
-  Cyber lab         | Kali + Docker targets + Ghidra +       | Professional lab
-                    | Burp Community                         |
+  Voice (TTS)       | mlx-audio + Kokoro / Chatterbox /      | ElevenLabs ke kareeb
+                    | VoxCPM2                                |
+  Speech -> text    | whisper.cpp, mlx-whisper               | Paid STT jaisa
+  Cyber lab         | Kali + Juice Shop + Burp/Caido/ZAP +   | Professional lab
+                    | Ghidra + Wireshark                     |
 
-  Note: "Kareeb" ka matlab bade models (bade hardware par). 8GB par sirf
-  chhote versions chalenge - Section 2 dekho.
+  Benchmark (vendor-reported, Qwen tech report): Qwen3-Coder-Next SWE-bench
+  Verified 70.6 vs Claude Opus 4.5 78.2 -> kareeb, par barabar nahi.
+  Aur ye 64GB+ Mac par chalta hai, 8GB par nahi.
 
 =====================================================================
 2. HARDWARE: BARABAR QUALITY KE LIYE KITNA CHAHIYE
 =====================================================================
   System                     | Kya chalega
   ---------------------------+-------------------------------------------
-  8GB Mac (ABHI)             | Chhota AI chat (3-4B model), TTS, STT,
-                             | chhoti images, cyber lab.
-                             | VIDEO NAHI. Quality ChatGPT/Claude se neeche.
-  32GB Mac                   | Achha chat/coding (~30B model), achhi images.
-                             | Video bahut slow.
-  64GB+ Mac (jaise Mac mini  | Claude ke kareeb coding, top images,
-  M4 Pro 64GB)               | chhote video clips (slow).
+  8GB Mac (ABHI)             | 2-4B AI model, Kokoro TTS, whisper STT,
+                             | chhoti images, cyber lab. VIDEO NAHI.
+  16GB Mac                   | Qwen3.5 9B, gpt-oss-20b (tight), Chatterbox
+                             | Hindi voice cloning.
+  32GB Mac                   | Qwen3.8 27B / Qwen3.6 35B-A3B (achha coder),
+                             | Devstral Small 2. Video bahut slow.
+  64GB+ Mac                  | Qwen3-Coder-Next (Claude ke kareeb coding),
+                             | chhote video clips (slow).
   PC + NVIDIA RTX 3090/4090  | VIDEO ke liye BEST (Wan, HunyuanVideo).
   (24GB VRAM)                | Images bahut fast.
 
   Ek baar hardware liya -> uske baad sab FREE, OFFLINE, APNA.
-  Na subscription, na token limit, na kisi par depend.
+  Note: Mac GPU sirf RAM ka ~2/3 se 3/4 hissa use karta hai.
 
 =====================================================================
 3. OFFLINE SETUP - 8GB MAC PAR
@@ -90,197 +102,335 @@ RULE (8GB ke liye): ek time par EK hi bhaari cheez chalao.
 AI model chal raha hai to VM band. VM chal raha hai to AI model band.
 
 ---------------------------------------------------------------------
-3A. AI CHAT + CODING (Ollama)
+3A. AI CHAT + CODING AGENT (Ollama + OpenCode)
 ---------------------------------------------------------------------
-Step 3A.1  Install aur start:
+Step 3A.1  Ollama install (Apple Silicon par MLX/Metal se fast chalta hai):
              brew install ollama
              brew services start ollama
-Step 3A.2  8GB ke liye sahi models (ek hi rakho, sab nahi):
-             ollama run qwen3:4b        # sabse balanced (chat + code)
-             ollama run gemma3:4b       # achha general chat
-             ollama run llama3.2:3b     # sabse halka / fast
-Step 3A.3  Chat band: /bye likho.
-Step 3A.4  GUI chahiye to: LM Studio (free)
+           (Ya ollama.com/download se DMG app.)
+Step 3A.2  8GB ke liye model (EK hi rakho):
+             ollama run qwen3.5:4b      # ~3GB, sabse balanced
+             ollama run qwen3.5:2b      # aur halka/fast
+           Purane tags bhi chalte hain: qwen3:4b, llama3.2:3b
+           Exact tags yahan dekho: https://ollama.com/library
+           9B model (~6GB) 8GB par mat chalao - Mac atak jayega.
+Step 3A.3  Chat band: /bye
+Step 3A.4  GUI chahiye to LM Studio (Apple Silicon + macOS 14+, 8GB par
+           chhote model chalte hain):
              brew install --cask lm-studio
-           8GB par 3-4B size ke "Q4" quantized model hi download karo.
-Step 3A.5  Coding agent (Claude Code jaisa, local model ke saath):
-             pipx install aider-chat
-             aider --model ollama_chat/qwen3:4b
-           Note: 4B model ke saath agent chhote kaam hi theek karega.
-Step 3A.6  Model hatana (space bachane):
+           Sirf 2-4B size ke 4-bit (Q4 / MLX 4bit) model lo.
+Step 3A.5  Coding agent (Claude Code jaisa, open-source, MIT):
+             brew install anomalyco/tap/opencode
+             ollama launch opencode        # Ollama ke saath auto-setup
+           Ya: opencode chalao -> /connect -> free cloud model chuno
+           (Section 4 dekho - 8GB par cloud model zyada smart hai).
+Step 3A.6  Claude Code ka interface local model par (free, par Claude jaisi
+           quality NAHI - sirf tool/interface):
+             ollama launch claude
+Step 3A.7  Private data ke liye Ollama cloud band rakho:
+           ~/.ollama/server.json me:  { "disable_ollama_cloud": true }
+Step 3A.8  Model hatana:
              ollama list
              ollama rm <model-name>
 
 ---------------------------------------------------------------------
 3B. IMAGE BANANA (Draw Things)
 ---------------------------------------------------------------------
-Step 3B.1  Mac App Store kholo -> "Draw Things" search -> Get (free).
-Step 3B.2  App me model download karo. 8GB ke liye:
-             - SDXL Turbo / SDXL Lightning (fast, achhi quality)
-             - SD 1.5 based models (sabse halke)
-           Flux 8GB par chalega to sahi, par bahut slow.
-Step 3B.3  Settings: resolution 768x768 ya 1024x1024 se zyada mat rakho.
-Step 3B.4  Models external SSD par rakhne ka option settings me hai.
+Step 3B.1  Mac App Store -> "Draw Things" -> Get (free).
+Step 3B.2  App me 8GB ke liye model: SDXL Turbo / SDXL Lightning (fast),
+           ya SD 1.5 based (sabse halke). Flux 8GB par bahut slow.
+Step 3B.3  Resolution 768x768 ya 1024x1024 tak rakho.
+Step 3B.4  Models external SSD par rakho (settings me option hai).
+(Note: ye section research workflow me verify nahi hua - App Store par
+ current version/requirements dekh lo.)
 
 ---------------------------------------------------------------------
-3C. VOICE: TTS (Kokoro) + STT (whisper.cpp)
+3C. VOICE: TTS + STT
 ---------------------------------------------------------------------
-TTS (text -> awaaz)
-Step 3C.1  Python environment:
-             brew install python@3.12 ffmpeg
+ZERO INSTALL (abhi try karo): macOS ka built-in "say"
+Step 3C.1  System Settings -> Accessibility -> Spoken Content -> System
+           Voice -> Manage Voices -> Hindi voice download karo.
+             say -v '?' | grep -i hi
+             say -v <voice-name> "नमस्ते, ye mera Mac bol raha hai"
+
+TTS - mlx-audio + Kokoro (Apple Silicon, free, commercial use OK)
+Step 3C.2  Environment:
              python3.12 -m venv ~/voice
              source ~/voice/bin/activate
-             pip install -U pip mlx-audio
-Step 3C.2  Kokoro model se awaaz banao. Exact command aur voice names
-           yahan dekho: https://github.com/Blaizzy/mlx-audio
-           (Kokoro sirf 82M size ka hai - 8GB par bahut fast chalta hai.)
-Step 3C.3  Voice cloning sirf apni ya permission wali awaaz ki.
+             pip install -U pip "mlx-audio[all]" misaki
+Step 3C.3  Awaaz banao:
+             mlx_audio.tts.generate --model mlx-community/Kokoro-82M-bf16 --text "Namaste" --play
+           Kokoro sirf 82M hai - 8GB par bahut fast. Hindi basic quality.
+Step 3C.4  Hindi ke liye halka offline option: Piper (hi_IN voice):
+             pip install piper-tts
+             python3 -m piper.download_voices        # list; hi_IN wali chuno
+             python3 -m piper -m <voice> -f out.wav -- 'नमस्ते'
+           (Thoda robotic, par 8GB par bhi aaram se.)
+Step 3C.5  Hindi VOICE CLONING (Chatterbox Multilingual V3, MIT) - 16GB
+           ke liye recommended; 8GB par slow / atak sakta hai.
+           Sirf apni ya permission wali awaaz clone karo.
 
-STT (awaaz -> text)
-Step 3C.4  whisper.cpp:
-             brew install whisper-cpp
+STT - whisper.cpp (Hindi + English)
+Step 3C.6  Install (Homebrew formula ka naam ab "whisper.cpp" hai):
+             brew install whisper.cpp
+           Model khud download karna padta hai:
              mkdir -p ~/whisper-models
              curl -L -o ~/whisper-models/ggml-small.bin https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-small.bin
-Step 3C.5  Audio ko 16kHz WAV me badlo aur transcript banao:
+Step 3C.7  Transcript:
              ffmpeg -i input.mp3 -ar 16000 -ac 1 audio.wav
              whisper-cli -m ~/whisper-models/ggml-small.bin -f audio.wav -l hi
-           (-l hi = Hindi, -l en = English. 8GB par "small" model sahi hai.)
+           (-l hi = Hindi, -l en = English. 8GB par small/medium sahi.)
+Step 3C.8  Alternative (MLX, fast):
+             pip install mlx-whisper
+             mlx_whisper audio.mp3 --model mlx-community/whisper-large-v3-turbo --language hi
 
 ---------------------------------------------------------------------
 3D. VIDEO + IMAGE EDITING (offline)
 ---------------------------------------------------------------------
 - Final Cut Pro      -> aapke Creator Studio me hai. 8GB par 1080p tak achha.
 - Pixelmator Pro     -> aapke Creator Studio me hai. Image editing perfect.
-- iMovie             -> free, simple editing.
+- iMovie             -> free, simple.
 - DaVinci Resolve    -> free, pro-level. 8GB par sirf 1080p.
-- AI VIDEO GENERATION offline 8GB par NAHI chalega -> Section 4 ya 5.
+- AI VIDEO GENERATION offline 8GB par NAHI -> Section 5 ya 6.
 
 ---------------------------------------------------------------------
 3E. CYBER LAB (8GB ke hisaab se)
 ---------------------------------------------------------------------
 RULE: Sirf apne lab ya likhit permission wale targets par test karo.
 
-OPTION 1 - Browser labs (RAM bachta hai, sabse best 8GB ke liye)
-Step 3E.1  TryHackMe (AttackBox) aur HackTheBox (Pwnbox): Kali unke server
-           par chalta hai, aapke browser me khulta hai.
-Step 3E.2  Free practice: PortSwigger Web Security Academy, picoCTF,
-           OverTheWire. Sab browser me, kuch install nahi.
+OPTION 1 - Hosted labs (RAM nahi lagta) - sab free
+Step 3E.1  OverTheWire Bandit (sirf Terminal, account nahi chahiye):
+             ssh -p 2220 bandit0@bandit.labs.overthewire.org   # password: bandit0
+Step 3E.2  picoCTF picoGym (browser webshell) - picoctf.org
+Step 3E.3  pwn.college - poora free, browser me terminal + VS Code.
+Step 3E.4  PortSwigger Web Security Academy - saare labs free (account).
+Step 3E.5  TryHackMe free rooms. AttackBox free me 1 ghanta/din. Unlimited
+           ke liye OpenVPN se apne Mac/Kali se connect karo:
+             brew install openvpn
+             sudo openvpn ~/Downloads/<aapka-naam>.ovpn
+Step 3E.6  Hack The Box: free 20 active machines + Starting Point.
+           Pwnbox free me sirf ek 2-ghante ka session (poori life me) ->
+           OpenVPN use karo. HTB Academy Tier 0 modules free.
+Step 3E.7  Blue team (defense): LetsDefend, Blue Team Labs Online,
+           CyberDefenders - free tiers chhote hain, teeno rotate karo.
 
 OPTION 2 - Local lab (offline)
-Step 3E.3  UTM install:
+Step 3E.8  UTM (stable 4.7.x):
              brew install --cask utm
-Step 3E.4  Kali Linux ARM64 image: kali.org/get-kali -> Virtual Machines
-           -> UTM. UTM me import karo.
-           Settings: RAM 3GB (3072 MB), CPU 2-4 cores. Disk external SSD par.
-Step 3E.5  Docker ka halka engine (Docker Desktop se kam RAM leta hai):
+Step 3E.9  Kali Linux ARM64 installer (2026.2 ya naya): kali.org/get-kali
+           Official guide follow karo:
+             https://www.kali.org/docs/virtualization/install-utm-guest-vm/
+           (UTM -> Virtualize -> Other -> ARM64 ISO; guide ke hisaab se
+            console/serial install, phir display set karo.)
+           8GB ke liye: VM RAM 3GB (3072 MB), CPU 2-4, disk external SSD par.
+Step 3E.10 Halka Docker engine (Docker Desktop se kam RAM):
              brew install colima docker
              colima start --cpu 2 --memory 2
-Step 3E.6  Target app (ARM par chalta hai):
-             docker run -d --name juice -p 3000:3000 bkimminich/juice-shop
-           Browser me kholo: http://localhost:3000
-           (Kai purane targets jaise DVWA ki images x86 hain; ARM Mac par
-            dikkat ho to Juice Shop se shuru karo.)
-Step 3E.7  Kaam khatam hone par RAM free karo:
-             docker stop juice
-             colima stop
-Step 3E.8  Ek time par: YA Kali VM, YA Docker lab. Dono ek saath nahi.
-Step 3E.9  Free tools (Mac par): Burp Suite Community, Wireshark, Ghidra
-             brew install --cask burp-suite wireshark
-             brew install ghidra
-           (Ghidra ko Java chahiye: brew install openjdk@21)
+Step 3E.11 Target: OWASP Juice Shop (ARM64 image available):
+             docker run --rm -p 127.0.0.1:3000:3000 bkimminich/juice-shop
+           Browser: http://localhost:3000   (127.0.0.1 = sirf aapka Mac)
+Step 3E.12 Kaam khatam:  Ctrl+C,  phir  colima stop
+Step 3E.13 Ek time par: YA Kali VM, YA Docker lab. Dono ek saath nahi.
+
+FREE TOOLS (Mac native, Apple Silicon)
+Step 3E.14
+             brew install --cask burp-suite caido zap wireshark-app
+             brew install ghidra nuclei
+           (Ghidra ko JDK 21 chahiye - brew dependency se aa jata hai.)
+           "Cracked Burp Pro" kabhi mat lo - malware ka common tareeka hai.
+Step 3E.15 Mac protection (Objective-See, free):
+             brew install --cask lulu blockblock knockknock oversight
+           System Settings me extensions approve karo.
+Step 3E.16 Cert note: ISC2 CC ka free enrollment band (20 May 2026).
+           Sasta pro cert: PortSwigger BSCP (~$99). Pehle official site
+           par current price dekho.
 
 =====================================================================
-4. FREE CLOUD GPU - "APNA" AI VIDEO / IMAGE
+4. FREE ONLINE AI (CLAUDE JAISA) - 8GB KE LIYE SABSE KAAM KA
 =====================================================================
-Model aur settings aapke, GPU free cloud ka. Kling/ChatGPT ke kareeb
-quality ka sabse aasaan FREE tareeka. (Ye Google/Kaggle par depend karta
-hai, par software poora open-source aur aapke control me.)
+8GB par local model chhota hai, isliye smart kaam ke liye ye free cloud
+options best hain. RAM nahi lagta. (Limits: Oct 2026, badal sakti hain.)
+
+  Service                  | Free limit (approx.)          | Note
+  -------------------------+-------------------------------+------------------------
+  claude.ai Free           | Sonnet + Haiku, daily limit   | Asli Claude. Settings ->
+                           |                               | Privacy -> training off
+  Gemini CLI               | Docs: 1,000 req/din (Google   | Kuch reports kehti hain
+  (terminal coding agent)  | login). Status DISPUTED       | free tier badla - khud check
+  Google Antigravity (IDE) | Free, weekly limit (unpublished)| Claude 4.6 free me sirf
+                           |                               | 2026-11-02 tak (reports)
+  OpenCode Zen free models | Free "limited time"           | Kuch models data train
+                           |                               | karte hain - private code mat do
+  Kilo Code free models    | 200 req/ghanta per IP         | VS Code extension + CLI
+  Groq                     | ~200k tokens/din per model    | "We do not train on your data"
+  OpenRouter :free models  | 50 req/din (1,000/din ek baar | Kuch free providers train
+                           | $10 credit kharidne ke baad)  | karte hain
+  Mistral (Studio Free)    | Help page: 1B tokens/mahina   | Newer page me number nahi;
+                           | (unconfirmed)                 | training opt-out karo
+  Cloudflare Workers AI    | 10,000 neurons/din (~1M tok)  | Training nahi karta
+  GitHub Copilot Free      | 2,000 completions/mahina +    | Students ko zyada free
+                           | thode AI credits              |
+
+SETUP (best free combo)
+Step 4.1  claude.ai par free account -> Settings -> Privacy -> "Help
+          improve Claude" OFF.
+Step 4.2  OpenCode install (Step 3A.5), phir:
+            opencode
+            /connect  -> OpenCode Zen (free models) ya Groq/OpenRouter key
+Step 4.3  Groq key: console.groq.com/keys (email signup, card nahi).
+          OpenRouter key: openrouter.ai/keys
+Step 4.4  Gemini CLI try karo (agar free login kaam kare):
+            brew install gemini-cli
+            gemini           # "Login with Google" -> phir /privacy se opt-out
+          Google ke rules: Gemini CLI login ko doosre tools/proxies me
+          mat lagao - account ban ho sakta hai.
+Step 4.5  Private / client / pentest data -> sirf LOCAL model (Section 3A).
+
+=====================================================================
+5. FREE CLOUD GPU - "APNA" AI VIDEO / IMAGE
+=====================================================================
+Model aur settings aapke, GPU free cloud ka. (Ye section research workflow
+me verify nahi hua - limits khud check karo.)
 
   Platform            | Free GPU
   --------------------+-----------------------------------------------
   Kaggle Notebooks    | Har hafte kuch ghante free GPU (lagbhag 30 ghante;
-                      | limit badal sakti hai). Phone verify zaruri.
+                      | badal sakta hai). Phone verify zaruri.
   Google Colab (free) | Thoda free GPU, jitna available ho.
   Hugging Face Spaces | Doosron ke demo apps browser me (limited).
 
-Step 4.1  kaggle.com par account banao -> Settings -> phone verify.
-Step 4.2  New Notebook -> Settings -> Accelerator: GPU T4 x2 (ya P100).
-          Internet: ON.
-Step 4.3  ComfyUI install (notebook cell me):
+Step 5.1  kaggle.com account -> Settings -> phone verify.
+Step 5.2  New Notebook -> Settings -> Accelerator: GPU. Internet: ON.
+Step 5.3  ComfyUI (notebook cell me):
             !git clone https://github.com/comfyanonymous/ComfyUI
             %cd ComfyUI
             !pip install -r requirements.txt
-Step 4.4  Model download: Hugging Face se open model (image ke liye
-          Flux schnell / SDXL; video ke liye Wan 2.x ka chhota version ya
-          LTX-Video). Model files ComfyUI/models/ ke sahi folder me rakho.
-          (Har model ka README dekho - folder aur file names wahan hain.)
-Step 4.5  ComfyUI ko browser me kholne ke liye tunnel chahiye. Kaggle/Colab
-          ComfyUI ke liye community notebooks hain - Kaggle par
-          "ComfyUI" search karo, kisi popular notebook ko "Copy & Edit" karo.
-Step 4.6  Ek baar me chhote clips (5-10 second) banao. Session khatam hone
-          se pehle output download kar lo (session band = files gayab).
-Step 4.7  Platform ke rules follow karo (Kaggle/Colab ki usage policy).
+Step 5.4  Open model download (Hugging Face): image -> Flux schnell / SDXL;
+          video -> Wan 2.x ka chhota version ya LTX-Video. Files
+          ComfyUI/models/ ke sahi folder me (model README dekho).
+Step 5.5  Browser me UI kholne ke liye: Kaggle par "ComfyUI" notebook
+          search karo, popular wali "Copy & Edit" karo.
+Step 5.6  Chhote clips (5-10 sec). Session band hone se pehle output
+          download karo.
+Step 5.7  Platform ki usage policy follow karo.
 
 =====================================================================
-5. ONLINE FREE - SABSE AASAAN, SABSE ACHHI QUALITY
+6. ONLINE FREE IMAGE + VIDEO (ChatGPT / Kling jaisa)
 =====================================================================
-(Ye kisi company par depend karte hain. Rozana free credits/limit hoti hai.)
+(Company par depend; rozana free credits. Limits verify nahi hui -
+ har site par current limit dekho.)
 
-IMAGE
-  - ChatGPT (free plan)       -> rozana thodi images
-  - Google Gemini / AI Studio -> image banana + edit, top quality
-  - Microsoft Copilot/Designer-> free, Microsoft account se
-  - Meta AI                   -> free, WhatsApp + web
-  - Ideogram, Leonardo, Krea  -> rozana free credits (Ideogram text/poster me achha)
-  - Canva (free)              -> design + AI image
-
-VIDEO
-  - Kling AI                  -> rozana free credits, top quality
-  - Google Veo (Gemini/Flow)  -> free/trial limits, top quality
-  - Hailuo (MiniMax)          -> free credits, realistic motion
-  - Pika, Luma, Vidu          -> free tier, watermark + limit
-  - CapCut (free)             -> editing, auto captions, AI effects
-
+IMAGE: ChatGPT free, Google Gemini / AI Studio, Microsoft Copilot/Designer,
+       Meta AI, Ideogram, Leonardo, Krea, Canva free
+VIDEO: Kling AI, Google Veo (Gemini app / Flow), Hailuo (MiniMax),
+       Pika, Luma, Vidu, CapCut (editing)
 Tip: ek project ke liye 2-3 tools ke free credits mila ke use karo.
 
 =====================================================================
-6. ACTION PLAN
+7. KYA BAND HO GAYA / SCAM SE BACHO
 =====================================================================
-AAJ (8GB Mac par, offline)
-  [ ] Homebrew + pipx (Section 0)
-  [ ] Ollama + qwen3:4b (3A)
-  [ ] Draw Things (3B)
-  [ ] Kokoro TTS + whisper.cpp (3C)
+BAND / BADLA (2026) - purane blog posts par bharosa mat karo:
+  - GitHub Models (free API)        -> 2026-07-30 ko band
+  - Qwen Code free tier             -> 2026-04-15 ko band (tool abhi bhi
+                                       local model ke saath chalta hai)
+  - Roo Code extension              -> 2026-05-15 ko band (Cline / Kilo lo)
+  - Continue                        -> read-only, maintain nahi hota
+  - Cerebras no-card free tier      -> khatam
+  - Groq Llama 3.1 8B / 3.3 70B     -> free tier se hata diye
+  - Gemini Pro free API             -> khatam (sirf Flash, kam limit)
+  - ISC2 CC free cert enrollment    -> 2026-05-20 ko band
+
+SCAM / RISK - kabhi mat lo:
+  - "Free unlimited Claude / GPT API" reseller ya proxy
+  - Leaked / shared API keys (Telegram / Discord par bikti hain)
+  - Kai free accounts bana ke limit badhane wale scripts
+  - "Claude download karo / Claude GGUF" -> Claude ke weights public nahi
+    hain, ye FAKE ya malware hai
+  - Cracked Burp Pro / ElevenLabs / MacWhisper
+  Ye sab terms ke khilaf hain, account ban hota hai, aur aapka code,
+  password aur data chori ho sakta hai.
+
+PRIVACY - inme free tier par aapka data training me ja sakta hai
+(opt-out karo): Gemini CLI personal login, Gemini API free, Mistral free,
+NVIDIA trial, kuch OpenCode Zen / OpenRouter free models, GitHub Copilot
+Free, claude.ai (default ON - Settings me OFF karo).
+
+=====================================================================
+8. ACTION PLAN
+=====================================================================
+AAJ
+  [ ] Homebrew + pipx + python@3.12 + ffmpeg (Section 0)
+  [ ] claude.ai free + training OFF (4.1)
+  [ ] Ollama + qwen3.5:4b (3A)
+  [ ] macOS "say" Hindi voice try (3C.1)
+  [ ] LuLu, BlockBlock, KnockKnock, OverSight (3E.15)
 
 IS HAFTE
-  [ ] Cyber lab: TryHackMe AttackBox account + UTM Kali (3E)
-  [ ] Juice Shop Docker target (3E.6)
-  [ ] External SSD le lo (0.3)
+  [ ] OpenCode + free cloud model (Section 4)
+  [ ] Kokoro TTS + whisper.cpp Hindi STT (3C)
+  [ ] OverTheWire Bandit level 0-5 (3E.1)
+  [ ] PortSwigger Academy account + Burp Suite (3E.4, 3E.14)
+  [ ] Draw Things (3B)
+  [ ] External SSD (0.4)
 
 IS MAHINE
-  [ ] Kaggle par ComfyUI chalao, pehli image + pehla video clip (Section 4)
-  [ ] Online free tools se compare karo (Section 5)
+  [ ] UTM + Kali + Juice Shop lab (3E.8 - 3E.11)
+  [ ] TryHackMe / HTB OpenVPN se connect (3E.5, 3E.6)
+  [ ] Kaggle par ComfyUI - pehli image + pehla video (Section 5)
 
 JAB BUDGET HO (poori independence)
-  [ ] 24GB GPU wala PC (video ke liye best) YA 64GB Mac
-  [ ] Phir: Ollama bade models + ComfyUI (Wan/Flux) + OpenCode/Aider
-      -> sab free, offline, apna. Kaggle me seekhi skill seedha kaam aayegi.
+  [ ] 32GB Mac (achha local coder) / 64GB Mac (Claude ke kareeb)
+      YA 24GB GPU wala PC (video ke liye best)
+  [ ] Phir: Ollama bade models + OpenCode + ComfyUI -> sab free, offline, apna
 
 =====================================================================
-7. CLEANUP / RAM BACHANE KE TIPS
+9. CLEANUP / RAM BACHANE KE TIPS
 =====================================================================
-- RAM check:            Activity Monitor -> Memory tab ("Memory Pressure"
-                        green rehna chahiye; yellow/red = kuch band karo)
-- Ollama band:          brew services stop ollama
-- Docker band:          colima stop
-- Browser tabs kam rakho (Chrome bahut RAM leta hai; Safari halka hai).
-- Model / app hatana:
+- RAM check: Activity Monitor -> Memory -> "Memory Pressure" green rahe.
+- Ollama band:   brew services stop ollama
+- Docker band:   colima stop
+- Chrome bahut RAM leta hai; Safari halka hai. Tabs kam rakho.
+- Hatana:
     ollama rm <model>
     brew uninstall <naam>
     brew uninstall --cask <naam>
-    rm -rf ~/voice          # Python voice environment
+    rm -rf ~/voice
 
 =====================================================================
-NOTE: Free AI APIs, coding agents aur local models par detailed research
-alag se chal rahi hai. Uske results is file ke next version me add honge.
+10. SOURCES (research 2026-10-11)
+=====================================================================
+- Gemini CLI quota:   https://geminicli.com/docs/resources/quota-and-pricing/
+- Antigravity:        https://antigravity.google/pricing/
+- OpenCode / Zen:     https://opencode.ai/docs/zen/  |  https://github.com/anomalyco/opencode
+- Kilo Code:          https://github.com/Kilo-Org/kilocode
+- Cline:              https://github.com/cline/cline
+- Claude pricing:     https://claude.com/pricing
+- OpenRouter free:    https://openrouter.ai/collections/free-models
+- Groq limits:        https://console.groq.com/docs/rate-limits
+- Mistral free tier:  https://help.mistral.ai/en/articles/225174-what-are-the-limits-of-the-free-tier
+- Cloudflare AI:      https://developers.cloudflare.com/workers-ai/platform/pricing/
+- Copilot plans:      https://docs.github.com/en/copilot/get-started/plans
+- Ollama:             https://github.com/ollama/ollama
+- Ollama + Claude Code: https://docs.ollama.com/integrations/claude-code
+- LM Studio:          https://lmstudio.ai
+- Qwen3-Coder:        https://github.com/QwenLM/Qwen3-Coder
+- mlx-audio:          https://github.com/Blaizzy/mlx-audio
+- Kokoro:             https://github.com/hexgrad/kokoro
+- Chatterbox:         https://github.com/resemble-ai/chatterbox
+- Piper:              https://github.com/OHF-Voice/piper1-gpl
+- whisper.cpp:        https://github.com/ggml-org/whisper.cpp
+- PortSwigger:        https://portswigger.net/web-security
+- TryHackMe:          https://tryhackme.com/free-rooms
+- HTB subscriptions:  https://help.hackthebox.com/en/articles/7257535-htb-labs-subscriptions
+- pwn.college:        https://pwn.college/
+- OverTheWire:        https://overthewire.org/wargames/
+- Kali on UTM:        https://www.kali.org/docs/virtualization/install-utm-guest-vm/
+- Objective-See:      https://objective-see.org/tools.html
+- Juice Shop:         https://github.com/juice-shop/juice-shop
+- ISC2 update:        https://www.isc2.org/insights/2026/04/one-million-certified-cyber-conclusion
+
+Research note: kai official sites research environment se khul nahi
+payi; un facts ko GitHub README / official docs se check kiya gaya.
+Jahan "disputed" / "unconfirmed" likha hai, wahan khud official page
+dekh lo. Section 3B, 5, 6 (image/video) verify nahi hue.
 =====================================================================
