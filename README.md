@@ -1,5 +1,10 @@
 # patchcheck
 
+[![CI](https://github.com/rahuldeeptech-spe/rd/actions/workflows/ci.yml/badge.svg)](https://github.com/rahuldeeptech-spe/rd/actions/workflows/ci.yml)
+[![Daily security report](https://github.com/rahuldeeptech-spe/rd/actions/workflows/daily-report.yml/badge.svg)](https://github.com/rahuldeeptech-spe/rd/actions/workflows/daily-report.yml)
+
+**[Today's security report](https://github.com/rahuldeeptech-spe/rd/blob/reports/README.md)** (refreshed daily at 05:17 UTC) · [Latest release](https://github.com/rahuldeeptech-spe/rd/releases/latest) · [Open alerts](https://github.com/rahuldeeptech-spe/rd/issues?q=is%3Aissue+is%3Aopen+%5Balert%5D)
+
 Read-only checker for the October 2026 **PHP2Shell** (CVE-2026-109618 / CVE-2026-109619), **Node.js**
 (Oct 21 release) and **Go** (CVE-2026-111943) advisories. It tells you whether the PHP, Node.js and Go
 on a machine are at a patched version, and on Linux whether a running service still holds old code.
@@ -70,7 +75,7 @@ A scheduled GitHub Action (05:17 UTC) reads public feeds and publishes a report 
 | nodejs.org, go.dev, php.net | newest releases, compared against `advisories.tsv` |
 
 - **Alerts** are raised when a CVE is *about* a watched product (watchlist in [`monitor/watchlist.tsv`](monitor/watchlist.tsv): PHP, Node.js, Go,
-  Python, OpenSSL, nginx, Apache), meaning the product is the subject of the description ("PHP uses longjmp()...", "A flaw in Node.js TLS..."). An app that
+  Python, OpenSSL, nginx, Apache, Java, Docker, Kubernetes, WordPress core), meaning the product is the subject of the description ("PHP uses longjmp()...", "A flaw in Node.js TLS..."). An app that
   merely mentions it ("PhpSpreadsheet is a PHP library", "follow-redirects is a Node.js client", "Traefik ... Ingress NGINX provider") is counted in the
   report note but does not alert. Alerts are also raised when upstream ships a version that `advisories.tsv` does not know (or one older than the
   file claims). An alert opens an `[alert]` issue.
@@ -86,6 +91,20 @@ whole days, so an entry can appear in two consecutive reports. GitHub can pause 
 activity; the daily commit normally counts, but check the Actions tab if reports stop.
 
 Run it yourself: `python3 monitor/monitor.py --out out` (Python 3.9+, standard library only; `--sources node` runs a single feed).
+
+## Weekly data review
+
+`advisories.tsv` is only as good as the person who last read the release notes. Every Monday (06:43 UTC) the
+[`data-review`](.github/workflows/data-review.yml) workflow compares the newest PHP, Node.js and Go releases with what the file has been reviewed up to:
+
+- **A draft pull request** advances the `#@ reviewed` lines for releases that look routine. **Merging it is your statement that you read the notes.**
+  It never changes a fixed version and never invents an advisory.
+- **An issue** lists what needs a person: a Node.js release that nodejs.org flags as a *security* release (it is never marked reviewed by the bot;
+  the daily report keeps raising a REVIEW alert until someone adds the rows), and new upstream branches with no rule.
+- If GitHub refuses to let Actions open pull requests (Settings > Actions > General > "Allow GitHub Actions to create and approve pull requests"),
+  the workflow opens an issue with a ready-made compare link instead.
+
+php.net and go.dev publish no security flag, so for those the pull request says so and links the release notes.
 
 ## What it checks
 

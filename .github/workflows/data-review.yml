@@ -1,0 +1,71 @@
+name: Weekly data review
+
+# Compares the newest PHP, Node.js and Go releases with what advisories.tsv has been reviewed up to and opens a DRAFT
+# pull request (or an issue). It never merges anything: a person reads the release notes and merges, or closes it.
+
+on:
+  schedule:
+    - cron: '43 6 * * 1'   # Mondays 06:43 UTC
+  workflow_dispatch:
+    inputs:
+      data_file:
+        description: 'Advisories file to review (default advisories.tsv; monitor/testdata/demo-advisories.tsv is a safe dry run)'
+        default: advisories.tsv
+
+permissions:
+  contents: write        # push the bot branch
+  pull-requests: write   # open the draft pull request
+  issues: write          # fall back to an issue
+  actions: write         # start CI on the bot branch
+
+concurrency:
+  group: data-review
+  cancel-in-progress: false
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      DATA_FILE: ${{ github.event.inputs.data_file || 'advisories.tsv' }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: data_file must be a plain path inside the repository
+        run: |
+          set -euo pipefail
+          printf '%s' "$DATA_FILE" | grep -Eq '^[A-Za-z0-9_][A-Za-z0-9_./-]*$'
+          case "$DATA_FILE" in *..*) echo "no .. allowed"; exit 1 ;; esac
+          test -f "$DATA_FILE"
+
+      - name: Unit tests
+        run: |
+          python3 -m unittest discover -s monitor
+          ./monitor/test_open_review.sh
+
+      - name: Propose
+        id: propose
+        run: |
+          set +e
+          python3 monitor/propose.py --advisories "$DATA_FILE" --out out --write
+          echo "rc=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Open a draft pull request or an issue
+        if: steps.propose.outputs.rc == '0' || steps.propose.outputs.rc == '3'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          REVIEW_OUT: out
+          REVIEW_FILE: ${{ env.DATA_FILE }}
+        run: |
+          set -euo pipefail
+          if [ "$DATA_FILE" != advisories.tsv ]; then export TITLE_PREFIX='[DEMO] '; fi
+          bash monitor/open_review.sh
+
+      - name: Fail the run if a source failed
+        if: steps.propose.outputs.rc != '0'
+        env:
+          RC: ${{ steps.propose.outputs.rc }}
+        run: |
+          echo "propose.py exited with $RC: a source failed or the script crashed (see the Propose step)."
+          exit 1

@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+- Weekly advisory data review: `monitor/propose.py` + `monitor/open_review.sh` + `data-review.yml` open a draft pull request that advances `#@ reviewed` lines (or an issue for Node.js security releases and new branches). The daily REVIEW alert now compares against the reviewed version, so a routine release no longer re-alerts every day once a person has read it.
+- README: CI and daily-report badges and a link to today's report.
+- Monitor: watchlist now also covers Java (Oracle Java SE, OpenJDK, GraalVM), Docker (Docker, Moby, containerd, runc), Kubernetes and WordPress core, with a per-product `deny` pattern. These products alert on new CVEs only; `patchcheck` does not check installed versions of them.
+
 ## 1.0.0 - 2026-10-24
 First release.
 - Rules moved to `advisories.tsv`, shared by `patchcheck.sh` and `patchcheck.ps1`.

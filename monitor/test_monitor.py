@@ -36,6 +36,12 @@ class FakeNet:
         raise m.SourceError("no route for " + url)
 
 
+def node_routes_for(path):
+    """A nodejs.org index whose newest releases equal the fixed versions in the given advisories file."""
+    rules = m.load_rules(path)
+    return {"nodejs.org": [{"version": "v%s" % v, "date": "2026-10-20", "security": True} for (rt, _b), v in rules.items() if rt == "node"]}
+
+
 def kev(*vulns):
     return {"catalogVersion": "2026.10.24", "vulnerabilities": list(vulns)}
 
@@ -271,6 +277,90 @@ class Classification(unittest.TestCase):
             m.load_watchlist(path)
 
 
+class ClassificationNewProducts(unittest.TestCase):
+    """Java, Docker, Kubernetes and WordPress core.
+
+    REAL = description copied from the live NVD run of 2026-10-24.
+    REPRESENTATIVE = standard vendor phrasing written from memory (none of these products had such a CVE in that run);
+    the first live reports are the real check for them.
+    """
+
+    ABOUT = [
+        ("REAL", "java", "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: JSSE)."),
+        ("REPRESENTATIVE", "java", "In OpenJDK before 21.0.6, a flaw in the HotSpot compiler allows a heap overflow"),
+        ("REPRESENTATIVE", "docker", "Docker Desktop before 4.34.3 allows a local user to escalate privileges"),
+        ("REPRESENTATIVE", "docker", "Moby is an open-source project created by Docker to enable software containerization. Prior to 27.1.1 a flaw allows"),
+        ("REPRESENTATIVE", "docker", "runc is a CLI tool for spawning and running containers according to the OCI specification. In runc 1.1.11 and earlier"),
+        ("REPRESENTATIVE", "docker", "containerd is an open-source container runtime. Prior to 1.7.13 a flaw allows"),
+        ("REPRESENTATIVE", "kubernetes", "A security issue was discovered in Kubernetes where a user that can create pods on Windows nodes may escalate to admin"),
+        ("REPRESENTATIVE", "kubernetes", "A security issue was discovered in kube-apiserver that could allow a user to bypass admission"),
+        ("REPRESENTATIVE", "kubernetes", "Kubernetes before 1.30.2 allows an attacker to read secrets"),
+        ("REPRESENTATIVE", "wordpress-core", "WordPress before 6.8.3 allows a remote attacker to run arbitrary script via the block editor"),
+        ("REPRESENTATIVE", "wordpress-core", "WordPress Core is vulnerable to Stored Cross-Site Scripting in versions up to, and including, 6.8.2"),
+    ]
+    NOT_ABOUT = [
+        ("REAL", "kubernetes", "A Kubernetes tenant with create permission on Console custom resources can set spec.containers.api.spec.image to an arbitrary container image. The operator deploys"),
+        ("REAL", "kubernetes", "Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. From 2.7.0 until 2.13.1 a flaw allows"),
+        ("REAL", "kubernetes", "Traefik v3.7.13 before v3.7.14 contains an access-control bypass in the Kubernetes Ingress NGINX provider"),
+        ("REAL", "kubernetes", "Lagoon is an application delivery platform for Kubernetes. Versions prior to 2.33.1 have a"),
+        ("REAL", "kubernetes", "Missing authentication for critical function in Azure Kubernetes Configuration Service allows an attacker"),
+        ("REAL", "wordpress-core", "Issuu Panel plugin for WordPress before 1.6.6 contains a PHP file inclusion vulnerability that allows"),
+        ("REAL", "docker", "Part-DB is an open source inventory management system for electronic components. Prior to version 2.12.1, the upload handler in the Docker image"),
+        ("REAL", "docker", "Trigger.dev before 4.5.6 self-hosted Docker Compose deployments using the default secrets allow"),
+        ("REAL", "java", "CGM CLININET is vulnerable to Remote Code Execution caused by deserialization of untrusted data in Java"),
+        ("REPRESENTATIVE", "docker", "A Docker image of Acme Server before 3.1 ships with a default admin password"),
+        ("REPRESENTATIVE", "java", "Acme Library is a Java library for parsing XML. Prior to 2.3.1 an XXE flaw allows"),
+        ("REPRESENTATIVE", "wordpress-core", "The Foo Gallery plugin for WordPress is vulnerable to Stored Cross-Site Scripting in all versions up to 1.2.3"),
+        ("REPRESENTATIVE", "wordpress-core", "WordPress Popular Posts plugin before 7.0 allows SQL injection"),
+        ("REPRESENTATIVE", "kubernetes", "A Kubernetes operator for Foo Database before 1.2 grants excessive RBAC"),
+    ]
+
+    def test_products_are_loaded(self):
+        names = [r[0] for r in WATCH.rows]
+        for product in ("java", "docker", "kubernetes", "wordpress-core"):
+            self.assertIn(product, names)
+
+    def test_about(self):
+        for kind, product, text in self.ABOUT:
+            self.assertIn(product, WATCH.about(text), "%s: should be about %s: %s" % (kind, product, text[:70]))
+
+    def test_not_about(self):
+        for kind, product, text in self.NOT_ABOUT:
+            self.assertNotIn(product, WATCH.about(text), "%s: must not be about %s: %s" % (kind, product, text[:70]))
+
+    def test_mentions_are_still_counted_as_mentions(self):
+        self.assertIn("kubernetes", WATCH.match("Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes."))
+        self.assertIn("docker", WATCH.match("self-hosted Docker Compose deployments"))
+
+    def test_deny_vetoes_the_vendor_field_too(self):
+        self.assertEqual(WATCH.match_field("Docker Docker Engine"), ["docker"])
+        self.assertEqual(WATCH.match_field("Acme Docker image"), [])
+
+    def test_kev_java_and_docker_by_vendor_product(self):
+        net = FakeNet({"known_exploited": kev(
+            kev_entry("CVE-2026-6001", "2026-10-24", "Oracle", "Java SE", "Java SE Unspecified Vulnerability", "x"),
+            kev_entry("CVE-2026-6002", "2026-10-24", "Docker", "Docker Engine", "Docker Engine Authz Bypass", "x"),
+            kev_entry("CVE-2026-6003", "2026-10-24", "Acme", "Shop", "Shop RCE", "Runs inside a Docker image"))})
+        by = {i["id"]: i for i in m.src_kev(net, NOW, 24, WATCH)["items"]}
+        self.assertEqual(by["CVE-2026-6001"]["watch"], ["java"])
+        self.assertEqual(by["CVE-2026-6002"]["watch"], ["docker"])
+        self.assertFalse(by["CVE-2026-6003"]["alert"])
+
+    def test_old_four_column_watchlist_still_loads(self):
+        path = os.path.join(tempfile.mkdtemp(), "w.tsv")
+        with open(path, "w") as fh:
+            fh.write("foo\tfoo\t-\t-\n")
+        self.addCleanup(os.remove, path)
+        self.assertEqual(m.load_watchlist(path).about("A flaw in foo allows"), ["foo"])
+
+    def test_bad_deny_pattern_fails_loudly(self):
+        path = os.path.join(tempfile.mkdtemp(), "w.tsv")
+        with open(path, "w") as fh:
+            fh.write("x\tfoo\t-\t-\t(unclosed\n")
+        with self.assertRaises(Exception):
+            m.load_watchlist(path)
+
+
 class Consistency(unittest.TestCase):
     def test_newer_equal_and_ahead(self):
         up = {("php", "8.4"): "8.4.28", ("php", "8.3"): "8.3.36", ("node", "26"): "26.12.1", ("node", "24"): "24.22.0"}
@@ -294,7 +384,68 @@ class Consistency(unittest.TestCase):
         self.assertIn("new go branch 1.28", titles)
 
 
-class EndToEnd(unittest.TestCase):
+class ConsistencyReviewed(unittest.TestCase):
+    """'#@ reviewed' lines: a person's statement that newer upstream releases were read."""
+
+    F = {("php", "8.4"): "8.4.27", ("node", "24"): "24.22.1"}
+    OK = {"php": True, "node": True}
+
+    def titles(self, upstream, reviewed=None, flags=None):
+        return [a["title"] for a in m.consistency(self.F, upstream, flags or {}, self.OK, reviewed)]
+
+    def test_equal_to_fixed_is_quiet(self):
+        self.assertEqual(self.titles({("php", "8.4"): "8.4.27", ("node", "24"): "24.22.1"}), [])
+
+    def test_newer_upstream_alerts_until_it_is_reviewed(self):
+        up = {("php", "8.4"): "8.4.28", ("node", "24"): "24.22.1"}
+        self.assertIn("REVIEW: upstream php 8.4 is 8.4.28, advisories.tsv is reviewed up to 8.4.27", self.titles(up)[0])
+        self.assertEqual(self.titles(up, {("php", "8.4"): "8.4.28"}), [])
+
+    def test_the_next_release_alerts_again_after_a_review(self):
+        up = {("php", "8.4"): "8.4.29", ("node", "24"): "24.22.1"}
+        self.assertIn("reviewed up to 8.4.28", self.titles(up, {("php", "8.4"): "8.4.28"})[0])
+
+    def test_a_reviewed_line_never_hides_a_node_security_flag_on_a_newer_release(self):
+        up = {("php", "8.4"): "8.4.27", ("node", "24"): "24.23.0"}
+        out = self.titles(up, {("node", "24"): "24.22.5"}, {("node", "24"): True})
+        self.assertIn("upstream marks it a security release", out[0])
+
+    def test_reviewed_line_ahead_of_upstream_is_a_typo_alert(self):
+        up = {("php", "8.4"): "8.4.28", ("node", "24"): "24.22.1"}
+        self.assertIn("CHECK DATA: the '#@ reviewed' line for php 8.4 says 8.4.99", self.titles(up, {("php", "8.4"): "8.4.99"})[0])
+
+    def test_upstream_older_than_the_fixed_version_is_still_check_data(self):
+        up = {("php", "8.4"): "8.4.20", ("node", "24"): "24.22.1"}
+        self.assertIn("CHECK DATA: advisories.tsv says php 8.4 is fixed at 8.4.27", self.titles(up, {("php", "8.4"): "8.4.28"})[0])
+
+    def test_a_reviewed_line_below_the_fixed_version_is_ignored(self):
+        up = {("php", "8.4"): "8.4.28", ("node", "24"): "24.22.1"}
+        self.assertIn("reviewed up to 8.4.27", self.titles(up, {("php", "8.4"): "8.4.10"})[0])
+
+    def test_load_reviewed_reads_only_well_formed_lines(self):
+        path = os.path.join(tempfile.mkdtemp(), "a.tsv")
+        with open(path, "w") as fh:
+            fh.write("#@ updated 2026-10-24\n#@ reviewed php 8.4 8.4.28 2026-11-07\n#@ reviewed node 24 24.22.2 2026-11-07\n"
+                     "# a comment mentioning #@ reviewed php 8.4 9.9.9 2026-11-07 in the middle\n"
+                     "#@ reviewed ruby 3.3 3.3.1 2026-11-07\n#@ reviewed php 8.4 8.4.29 yesterday\n")
+        self.addCleanup(shutil.rmtree, os.path.dirname(path), True)
+        self.assertEqual(m.load_reviewed(path), {("php", "8.4"): "8.4.28", ("node", "24"): "24.22.2"})
+
+    def test_the_report_table_shows_the_reviewed_column(self):
+        path = os.path.join(tempfile.mkdtemp(), "a.tsv")
+        with open(path, "w") as fh:
+            fh.write("#@ reviewed node 22 22.23.5 2026-11-07\n")
+            with open(os.path.join(HERE, "..", "advisories.tsv")) as src:
+                fh.write(src.read())
+        self.addCleanup(shutil.rmtree, os.path.dirname(path), True)
+        out = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, out, True)
+        r = node_routes_for(path)
+        m.main(["--out", out, "--now", "2026-10-24T05:17:00Z", "--sources", "node", "--advisories", path], net=FakeNet(r))
+        with open(os.path.join(out, "report.md"), encoding="utf-8") as fh:
+            md = fh.read()
+        self.assertIn("Reviewed up to", md)
+
     def run_main(self, routes, extra=()):
         d = tempfile.mkdtemp()
         self.addCleanup(shutil.rmtree, d, True)
