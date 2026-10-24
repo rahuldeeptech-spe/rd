@@ -1,0 +1,55 @@
+name: 'patchcheck'
+description: 'Fail the build when the PHP, Node.js, Go or Python Brotli on the runner is below the patched version (PHP2Shell, Node2Shell, Go CVE-2026-111943).'
+author: 'rahuldeeptech-spe'
+branding:
+  icon: shield
+  color: green
+
+inputs:
+  fail-on:
+    description: 'vulnerable (default): fail on exit 1. manual: also fail on exit 2 (needs a manual check). never: report only.'
+    required: false
+    default: 'vulnerable'
+  args:
+    description: 'Extra patchcheck options separated by spaces, for example "--managers --python /opt/venv/bin/python". Defaults to --no-processes.'
+    required: false
+    default: '--no-processes'
+
+outputs:
+  exit-code:
+    description: 'patchcheck exit code: 0 patched, 1 vulnerable, 2 needs a manual check.'
+    value: ${{ steps.run.outputs.exit-code }}
+
+runs:
+  using: composite
+  steps:
+    - id: run
+      shell: bash
+      env:
+        PC_FAIL_ON: ${{ inputs.fail-on }}
+        PC_ARGS: ${{ inputs.args }}
+        PC_DIR: ${{ github.action_path }}
+      run: |
+        set -uo pipefail
+        case "$PC_FAIL_ON" in vulnerable|manual|never) ;; *) echo "::error::fail-on must be vulnerable, manual or never (got: $PC_FAIL_ON)"; exit 64 ;; esac
+        set -f   # no glob expansion of the args
+        # shellcheck disable=SC2206  # intentional word splitting
+        args=($PC_ARGS)
+        set +f
+        out="$(bash "$PC_DIR/patchcheck.sh" "${args[@]}" 2>&1)"; rc=$?
+        printf '%s\n' "$out"
+        echo "exit-code=$rc" >> "$GITHUB_OUTPUT"
+        {
+          echo '### patchcheck'
+          echo '```'
+          printf '%s\n' "$out"
+          echo '```'
+        } >> "$GITHUB_STEP_SUMMARY"
+        case "$rc" in
+          0) exit 0 ;;
+          1) if [ "$PC_FAIL_ON" = never ]; then echo "::warning::patchcheck found a vulnerable version (fail-on: never)"; exit 0; fi
+             echo "::error::patchcheck found a vulnerable version"; exit 1 ;;
+          2) if [ "$PC_FAIL_ON" = manual ]; then echo "::error::patchcheck needs a manual check"; exit 1; fi
+             echo "::warning::patchcheck needs a manual check"; exit 0 ;;
+          *) echo "::error::patchcheck failed to run (exit $rc)"; exit "$rc" ;;
+        esac

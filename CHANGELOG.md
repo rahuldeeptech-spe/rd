@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- GitHub Action (`action.yml`): `uses: rahuldeeptech-spe/rd@<tag>` runs patchcheck on the runner; `fail-on` and `args` inputs, `exit-code` output, job summary. Tested in CI on Linux and macOS.
+
 ## 1.2.0 - 2026-10-24
 - **Node2Shell (CVE-2026-111497)**: the Node.js rules now carry the CVE id and the Node2Shell name and cite the official nodejs.org advisory. New checks for the Python packages `brotli` (< 1.2.1) and `brotlicffi` (< 1.2.1.0), from the GitHub reviewed advisory GHSA-9v8h-qqgm-4m35: the Python on `PATH`, each `--python PATH` (repeatable; virtualenvs), and containers with `--docker`. Python is run from `/` with `-E`, so a hostile directory or `PYTHONPATH` cannot get code executed (tested against the real interpreter). Bun is reported affected by security press but is not judged, because no primary source could be reached.
 - The daily monitor now watches Brotli and Bun. `CVE-2026-111497` itself did not alert before: its description is about Google Brotli, not Node.js.

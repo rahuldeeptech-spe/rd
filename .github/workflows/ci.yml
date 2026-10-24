@@ -85,3 +85,28 @@ jobs:
       - name: every rule has 7 fields, a valid status and an https source
         run: |
           awk -F'\t' '!/^#/ && NF { if (NF != 7 || $3 !~ /^(fixed|eol|unconfirmed)$/ || $6 !~ /^https:\/\//) { print "bad rule: " $0; bad = 1 } } END { exit bad }' advisories.tsv
+
+  action:
+    name: action (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v7
+      - name: runs and reports (fail-on never, the runner's own tools are not under our control)
+        id: pc
+        uses: ./
+        with:
+          fail-on: never
+      - name: exit code output is set
+        run: test -n "${{ steps.pc.outputs.exit-code }}"
+      - name: a bad fail-on value is rejected
+        id: bad
+        uses: ./
+        continue-on-error: true
+        with:
+          fail-on: bogus
+      - name: the rejection happened
+        run: test "${{ steps.bad.outcome }}" = failure

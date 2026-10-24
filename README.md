@@ -94,6 +94,19 @@ patchcheck 1.1.0 (advisory data: 2026-10-24)
 
 Use `--json` and the exit code for monitoring or CI gates.
 
+## Use it in GitHub Actions
+
+Fail a workflow when the runner's PHP, Node.js, Go or Python Brotli is below the patched version:
+
+```yaml
+- uses: rahuldeeptech-spe/rd@v1.3.0
+  with:
+    fail-on: vulnerable            # vulnerable (default) | manual | never
+    args: --no-processes --managers
+```
+
+Pin a release tag (or a commit SHA) and let Dependabot update it. The output `exit-code` is `0` patched, `1` vulnerable, `2` needs a manual check. The report is also written to the job summary.
+
 ## Daily security report
 
 A scheduled GitHub Action (05:17 UTC) reads public feeds and publishes a report for the last 24 hours to the
