@@ -21,7 +21,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: shellcheck
         if: runner.os == 'Linux'
         run: shellcheck -x patchcheck.sh tests/run.sh
@@ -38,7 +38,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: tests (PowerShell 7)
         shell: pwsh
         run: ./tests/run.ps1
@@ -66,7 +66,7 @@ jobs:
       matrix:
         python: ['3.9', '3.12']
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
@@ -76,7 +76,7 @@ jobs:
     name: advisories.tsv sanity
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: every rule has 7 fields, a valid status and an https source
         run: |
           awk -F'\t' '!/^#/ && NF { if (NF != 7 || $3 !~ /^(fixed|eol|unconfirmed)$/ || $6 !~ /^https:\/\//) { print "bad rule: " $0; bad = 1 } } END { exit bad }' advisories.tsv
