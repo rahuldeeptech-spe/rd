@@ -75,7 +75,7 @@ fi
 
 TMP="$(mktemp -d)"
 CREATED=""
-# shellcheck disable=SC2329  # runs from the EXIT trap
+# shellcheck disable=SC2317,SC2329  # runs from the EXIT trap
 cleanup() {
   local status=$?
   rm -rf "$TMP"
@@ -136,7 +136,7 @@ fi
 tar -xzf "$TARBALL" -C "$DEST" --no-same-owner
 
 # 4. the version inside must be the version asked for
-[ -f "$DEST/patchcheck.sh" ] && [ -f "$DEST/advisories.tsv" ] || die "the archive does not contain patchcheck.sh and advisories.tsv"
+if [ ! -f "$DEST/patchcheck.sh" ] || [ ! -f "$DEST/advisories.tsv" ]; then die "the archive does not contain patchcheck.sh and advisories.tsv"; fi
 inside="$(bash "$DEST/patchcheck.sh" --version 2>/dev/null || true)"
 [ "$inside" = "patchcheck ${TAG#v}" ] || die "version mismatch: the archive says '$inside' but the release is $TAG"
 
