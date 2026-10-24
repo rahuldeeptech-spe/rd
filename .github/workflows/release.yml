@@ -6,11 +6,14 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Release tag to create from the current main, e.g. v1.0.0 (must equal VERSION in patchcheck.sh)'
+        description: 'Release tag to create from the current main, e.g. v1.1.0 (must equal VERSION in patchcheck.sh)'
         required: true
 
 permissions:
-  contents: write
+  contents: write           # create the release
+  id-token: write           # sign the build provenance attestation
+  attestations: write       # store it
+  artifact-metadata: write  # required by actions/attest for its storage record
 
 jobs:
   release:
@@ -31,12 +34,34 @@ jobs:
         run: |
           if gh release view "$TAG" >/dev/null 2>&1; then echo "release $TAG already exists"; exit 1; fi
       - name: tests
-        run: ./tests/run.sh
+        run: |
+          ./tests/run.sh
+          ./tests/test_install.sh
+          python3 -m unittest discover -s monitor
+          ./monitor/test_open_review.sh
       - name: package
         run: |
           mkdir dist
-          tar czf "dist/patchcheck-${TAG}.tar.gz" patchcheck.sh patchcheck.ps1 advisories.tsv monitor/monitor.py monitor/watchlist.tsv README.md LICENSE CHANGELOG.md
+          tar czf "dist/patchcheck-${TAG}.tar.gz" patchcheck.sh patchcheck.ps1 advisories.tsv monitor/monitor.py monitor/propose.py monitor/watchlist.tsv README.md LICENSE CHANGELOG.md
+          cp install.sh dist/install.sh
           (cd dist && sha256sum ./* > SHA256SUMS && cat SHA256SUMS)
+      - name: attest build provenance
+        uses: actions/attest@v4
+        with:
+          subject-path: 'dist/*'
+      - name: verify the attestation we just made (a release without a verifiable attestation is not published)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          for f in "dist/patchcheck-${TAG}.tar.gz" dist/install.sh; do
+            ok=0
+            for attempt in 1 2 3; do
+              if gh attestation verify "$f" --repo "$GITHUB_REPOSITORY"; then ok=1; break; fi
+              sleep 5
+            done
+            [ "$ok" = 1 ] || { echo "could not verify the attestation of $f"; exit 1; }
+          done
       - name: publish
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

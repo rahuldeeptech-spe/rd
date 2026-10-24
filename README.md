@@ -17,20 +17,46 @@ This project is **not** a patch. The fixes come from the PHP, Node.js and Go pro
 
 ## Get it
 
+**Recommended (Linux/macOS): the installer.** It downloads a release, verifies it, runs `patchcheck` and cleans up:
+
+```bash
+curl -fsSLO https://github.com/rahuldeeptech-spe/rd/releases/latest/download/install.sh
+less install.sh                      # read it first
+bash install.sh                      # latest release: download, verify, run
+bash install.sh -- --docker --json   # everything after -- goes to patchcheck
+bash install.sh --version v1.1.0     # a specific release
+bash install.sh --install-dir ~/tools   # keep it instead of running it
+```
+
+Before anything from the download is executed, `install.sh` checks (1) the tarball's SHA-256 against the release's `SHA256SUMS`,
+(2) if the [GitHub CLI](https://cli.github.com/) is installed and logged in (`gh auth login`), the **build provenance attestation**, which proves
+the tarball was produced by this repository's release workflow, (3) that the archive has no absolute paths, `..` paths or links, and (4) that
+the version inside matches the tag. **Without `gh` only the checksum protects you, and it comes from the same place as the file**, so
+it catches corruption but not a replaced release. `--require-attestation` makes a missing `gh` an error; `--no-attestation` skips step 2.
+
+**Verify a release by hand** (any OS):
+
+```bash
+gh attestation verify patchcheck-v1.1.0.tar.gz --repo rahuldeeptech-spe/rd
+sha256sum -c SHA256SUMS
+```
+
+Windows (PowerShell): download `patchcheck-v1.1.0.tar.gz` and `SHA256SUMS` from the [release](https://github.com/rahuldeeptech-spe/rd/releases/latest), then
+
+```powershell
+(Get-FileHash .\patchcheck-v1.1.0.tar.gz -Algorithm SHA256).Hash.ToLower()   # must equal the line for the tarball in SHA256SUMS
+tar -xzf .\patchcheck-v1.1.0.tar.gz -C patchcheck
+powershell -ExecutionPolicy Bypass -File .\patchcheck\patchcheck.ps1
+```
+
+There is no PowerShell installer yet. Or clone the repository:
+
 ```bash
 git clone https://github.com/rahuldeeptech-spe/rd.git patchcheck && cd patchcheck
-less patchcheck.sh            # read it first
 ./patchcheck.sh
 ```
 
-Windows (PowerShell):
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\patchcheck.ps1
-```
-
-Tagged releases ship a tarball plus `SHA256SUMS` (`sha256sum -c SHA256SUMS`).
-The scripts need `advisories.tsv` next to them, so download the whole tarball or clone the repo.
+The scripts need `advisories.tsv` next to them, so use the whole tarball or clone the repo.
 
 ## Usage
 
@@ -54,7 +80,7 @@ The scripts need `advisories.tsv` next to them, so download the whole tarball or
 Example output:
 
 ```
-patchcheck 1.0.0 (advisory data: 2026-10-24)
+patchcheck 1.1.0 (advisory data: 2026-10-24)
 [VULNERABLE]  host php 8.3.6 - update to >= 8.3.36 [CVE-2026-109618,CVE-2026-109619]
 [OK]          host node 24.22.1 - >= 24.22.1 [NODEJS-2026-10-21]
 [CHECK]       host go 1.25.13 - fix not confirmed. ... [CVE-2026-111943]

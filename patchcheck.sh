@@ -8,7 +8,7 @@
 set -u
 set -o pipefail
 
-VERSION="1.0.0"
+VERSION="1.1.0"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DATA="${PATCHCHECK_DATA:-$SCRIPT_DIR/advisories.tsv}"
 PROC_DIR="${PATCHCHECK_PROC_DIR:-/proc}"

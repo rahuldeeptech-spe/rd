@@ -18,3 +18,8 @@ Please do not open a public issue for a false negative that affects a currently 
 ## Trust the data, but verify it
 Advisory data is compiled from public vendor and security-press sources and may contain errors.
 Always confirm against the official PHP, Node.js and Go advisories before declaring a system safe.
+
+## Verifying a release
+Each release ships `SHA256SUMS` and a build provenance attestation. `gh attestation verify patchcheck-<tag>.tar.gz --repo rahuldeeptech-spe/rd`
+proves the file was built by this repository's release workflow. The checksum alone does not: it is published next to the file.
+`install.sh` does both when `gh` is installed.
