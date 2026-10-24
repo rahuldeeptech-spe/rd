@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  bash:
+    name: bash (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - name: shellcheck
+        if: runner.os == 'Linux'
+        run: shellcheck -x patchcheck.sh tests/run.sh
+      - name: tests
+        run: ./tests/run.sh
+      - name: smoke run (real tools on the runner, report only)
+        run: ./patchcheck.sh --no-processes || true
+
+  powershell:
+    name: powershell (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - name: tests (PowerShell 7)
+        shell: pwsh
+        run: ./tests/run.ps1
+      - name: tests (Windows PowerShell 5.1)
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: ./tests/run.ps1
+      - name: PSScriptAnalyzer (errors fail, warnings are printed)
+        if: runner.os == 'Linux'
+        shell: pwsh
+        run: |
+          Install-Module PSScriptAnalyzer -Force -Scope CurrentUser
+          # Write-Host is deliberate: this is an interactive CLI report, not pipeline output.
+          $r = foreach ($f in './patchcheck.ps1', './tests/run.ps1') {
+            Invoke-ScriptAnalyzer -Path $f -ExcludeRule PSAvoidUsingWriteHost
+          }
+          $r | Format-Table RuleName, Severity, ScriptName, Line, Message -AutoSize -Wrap
+          if (@($r | Where-Object Severity -eq 'Error').Count -gt 0) { exit 1 }
+
+  data:
+    name: advisories.tsv sanity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: every rule has 7 fields, a valid status and an https source
+        run: |
+          awk -F'\t' '!/^#/ && NF { if (NF != 7 || $3 !~ /^(fixed|eol|unconfirmed)$/ || $6 !~ /^https:\/\//) { print "bad rule: " $0; bad = 1 } } END { exit bad }' advisories.tsv

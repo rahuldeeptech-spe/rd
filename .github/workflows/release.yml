@@ -1,0 +1,27 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: tag must match the version in the script
+        run: grep -q "^VERSION=\"${GITHUB_REF_NAME#v}\"" patchcheck.sh
+      - name: tests
+        run: ./tests/run.sh
+      - name: package
+        run: |
+          mkdir dist
+          tar czf "dist/patchcheck-${GITHUB_REF_NAME}.tar.gz" patchcheck.sh patchcheck.ps1 advisories.tsv README.md LICENSE CHANGELOG.md
+          (cd dist && sha256sum ./* > SHA256SUMS && cat SHA256SUMS)
+      - name: publish
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "$GITHUB_REF_NAME" dist/* --generate-notes --title "patchcheck $GITHUB_REF_NAME"
