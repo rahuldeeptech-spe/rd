@@ -16,6 +16,10 @@ and on Linux whether a running service still holds old code.
 
 This project is **not** a patch. The fixes come from the PHP, Node.js and Go projects.
 
+Looking for: *is my server vulnerable to PHP2Shell / Node2Shell?*, *CVE-2026-109618 checker*, *CVE-2026-111497 Brotli scanner*,
+*Node.js October 2026 security release check*, *free daily vulnerability report for PHP, Node.js, Go and Python*. This is that tool.
+Maintained by [@rahuldeeptech-spe](https://github.com/rahuldeeptech-spe). Free, MIT licensed, no tracking.
+
 ## Get it
 
 **Recommended (Linux/macOS): the installer.** It downloads a release, verifies it, runs `patchcheck` and cleans up:
