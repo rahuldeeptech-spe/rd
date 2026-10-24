@@ -73,8 +73,8 @@ newbin fpm;       stub "$BIN" php "PHP 8.3.36 (cli)"; stub "$BIN" php-fpm "PHP 8
 run "php-fpm checked separately"  1 'VULNERABLE.*php-fpm 8.3.20'
 newbin dedupe;    stub "$BIN" php "PHP 8.3.36 (cli)"; ln -s php "$BIN/php8.3"
 run "symlink not reported twice"  0 'everything found is patched'
-n="$(PATH="$BIN:$TOOLS" PATCHCHECK_SEARCH_DIRS="$BIN" "$BASH" "$ROOT/patchcheck.sh" --no-processes --json | grep -o '"label"' | wc -l | tr -d ' ')"
-check "dedupe: php counted once (+node, go = 3 rows)" [ "$n" = 3 ]
+n="$(PATH="$BIN:$TOOLS" PATCHCHECK_SEARCH_DIRS="$BIN" "$BASH" "$ROOT/patchcheck.sh" --no-processes --json | grep -o '"label":"host php[^"]*"' | wc -l | tr -d ' ')"
+check "dedupe: php (and its php8.3 symlink) counted once" [ "$n" = 1 ]
 
 newbin quiet;     stub "$BIN" php "PHP 8.3.36 (cli)"; stub "$BIN" node v20.1.0
 run "--quiet hides OK lines"      1 'node 20.1.0'                         -q
@@ -133,6 +133,72 @@ run "mod_php loaded -> manual check"      2 'CHECK.*apache mod_php'
 newbin mp2; stub "$BIN" php "PHP 8.3.36 (cli)"; printf '#!/bin/sh\necho " core_module (static)"\n' > "$BIN/apachectl"; chmod +x "$BIN/apachectl"
 run "apache without php stays quiet"      0 'everything found is patched'
 
+# --- Python Brotli packages (Node2Shell, CVE-2026-111497)
+pystub() { # pystub DIR NAME: answers like importlib.metadata.version() from STUB_BROTLI / STUB_BROTLICFFI
+  cat > "$1/$2" <<'PYSTUB'
+#!/bin/sh
+for last; do :; done
+case "$last" in
+  brotli) if [ -n "${STUB_BROTLI:-}" ]; then echo "$STUB_BROTLI"; exit 0; fi ;;
+  brotlicffi) if [ -n "${STUB_BROTLICFFI:-}" ]; then echo "$STUB_BROTLICFFI"; exit 0; fi ;;
+esac
+exit 1
+PYSTUB
+  chmod +x "$1/$2"
+}
+newbin py1; pystub "$BIN" python3
+STUB_BROTLI=1.2.1 run "pip brotli 1.2.1 (patched)"          0 'OK.*package brotli 1\.2\.1'
+STUB_BROTLI=1.2.0 run "pip brotli 1.2.0 (one behind)"       1 'VULNERABLE.*package brotli 1\.2\.0.*>= 1\.2\.1'
+STUB_BROTLI=1.1.0 run "pip brotli 1.1.0 (no 1.1.x fix)"     1 'VULNERABLE.*package brotli 1\.1\.0.*no upstream fix'
+STUB_BROTLI=1.0.9 run "pip brotli 1.0.9"                    1 'VULNERABLE.*package brotli 1\.0\.9'
+STUB_BROTLI=1.3.0 run "pip brotli newer than the data"      2 'CHECK.*package brotli 1\.3\.0'
+STUB_BROTLICFFI=1.2.0.0 run "pip brotlicffi 1.2.0.0 (four-part version)" 1 'VULNERABLE.*package brotlicffi 1\.2\.0\.0.*>= 1\.2\.1\.0'
+STUB_BROTLICFFI=1.2.1.0 run "pip brotlicffi 1.2.1.0 (patched)"           0 'OK.*package brotlicffi 1\.2\.1\.0'
+STUB_BROTLI=1.2.1 STUB_BROTLICFFI=1.1.0.0 run "both packages are reported independently" 1 'VULNERABLE.*brotlicffi 1\.1\.0\.0'
+run "python without the packages: silent and fine"          0 'everything found is patched'
+newbin py0
+run "no python at all: a NONE row, not a failure"           0 'no python found'
+newbin py2; pystub "$BIN" python3; mkdir -p "$WORK/venv/bin"; pystub "$WORK/venv/bin" python
+STUB_BROTLI=1.2.1 run "--python adds a virtualenv's python"  0 'package brotli 1\.2\.1' --python "$WORK/venv/bin/python"
+n="$(STUB_BROTLI=1.2.0 PATH="$BIN:$TOOLS" PATCHCHECK_SEARCH_DIRS="$BIN" "$BASH" "$ROOT/patchcheck.sh" --no-processes --json --python "$WORK/venv/bin/python" --python "$WORK/venv/bin/python" | grep -o '"label":"python [^"]*package brotli"' | wc -l | tr -d ' ')"
+check "--python given twice (and the PATH python): each interpreter counted once" [ "$n" = 2 ]
+run "--python nonexistent: reported, no crash"               0 'not an executable file' --python "$WORK/nope/python"
+run "--python without a value: usage error"                  64 'needs the path' --python
+( cd "$WORK/venv" && STUB_BROTLI=1.2.0 PATH="$BIN:$TOOLS" PATCHCHECK_SEARCH_DIRS="$BIN" "$BASH" "$ROOT/patchcheck.sh" --no-processes --python bin/python > "$WORK/rel.out" 2>&1 )
+check "--python with a relative path is resolved" grep -q 'package brotli 1.2.0' "$WORK/rel.out"
+
+# a hostile directory must never get code executed: run the REAL python from a folder containing a fake importlib
+if command -v python3 >/dev/null 2>&1; then
+  newbin py3; ln -s "$(command -v python3)" "$BIN/python3"
+  mkdir -p "$WORK/evil/importlib"; printf 'import os\nopen(os.environ["EVIL_MARKER"], "w").close()\n' > "$WORK/evil/importlib/__init__.py"
+  rm -f "$WORK/evil.marker"
+  ( cd "$WORK/evil" && EVIL_MARKER="$WORK/evil.marker" PATH="$BIN:$TOOLS" PATCHCHECK_SEARCH_DIRS="$BIN" "$BASH" "$ROOT/patchcheck.sh" --no-processes > "$WORK/evil.out" 2>&1 )
+  check "hostile cwd: a fake importlib in the current directory is never imported" test ! -e "$WORK/evil.marker"
+  ( cd "$WORK/evil" && PYTHONPATH="$WORK/evil" EVIL_MARKER="$WORK/evil.marker" PATH="$BIN:$TOOLS" PATCHCHECK_SEARCH_DIRS="$BIN" "$BASH" "$ROOT/patchcheck.sh" --no-processes > "$WORK/evil.out" 2>&1 )
+  check "hostile PYTHONPATH is ignored" test ! -e "$WORK/evil.marker"
+fi
+
+# a REAL virtualenv (no stub, no network): its bin/python is a symlink to the base interpreter and must still be checked
+if command -v python3 >/dev/null 2>&1 && python3 -m venv --without-pip "$WORK/realvenv" >/dev/null 2>&1; then
+  site="$("$WORK/realvenv/bin/python" -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])')"
+  fakepkg() { mkdir -p "$site/$1.dist-info"; printf 'Metadata-Version: 2.1\nName: %s\nVersion: %s\n' "$1" "$2" > "$site/$1.dist-info/METADATA"; }
+  newbin rv; ln -s "$(command -v python3)" "$BIN/python3"
+  fakepkg Brotli 1.2.0
+  run "real venv with Brotli 1.2.0: vulnerable"             1 'VULNERABLE.*realvenv/bin/python package brotli 1\.2\.0' --python "$WORK/realvenv/bin/python"
+  rm -rf "$site/Brotli.dist-info"; fakepkg Brotli 1.2.1
+  run "real venv with Brotli 1.2.1: ok (not mistaken for the system python)" 0 'OK.*realvenv/bin/python package brotli 1\.2\.1' --python "$WORK/realvenv/bin/python"
+  rm -rf "$site/Brotli.dist-info"; fakepkg brotlicffi 1.2.0.0
+  run "real venv with brotlicffi 1.2.0.0: vulnerable"       1 'VULNERABLE.*package brotlicffi 1\.2\.0\.0' --python "$WORK/realvenv/bin/python"
+  rm -rf "$site/brotlicffi.dist-info"
+  run "real venv without the packages: nothing reported"    0 'everything found is patched' --python "$WORK/realvenv/bin/python"
+fi
+
+# python packages inside running containers
+newbin dk
+# shellcheck disable=SC2016  # the generated stub must keep its own $1 and $@
+printf '#!/bin/sh\ncase "$1" in\n  ps) echo web ;;\n  exec) for last; do :; done; if [ "$3 $last" = "python3 brotli" ]; then echo 1.2.0; exit 0; fi; exit 1 ;;\nesac\n' > "$BIN/docker"; chmod +x "$BIN/docker"
+run "--docker: python packages inside a container"          1 'VULNERABLE.*container web python3 package brotli 1\.2\.0' --docker
+
 # usage errors
 BIN="$WORK/bin.empty"
 run "unknown flag"                64 'unknown option'                      --bogus
@@ -144,7 +210,7 @@ run "--go-binaries without value" 64 'needs a directory'                    --go
 # advisories.tsv sanity: 7 fields per rule, valid statuses, every runtime has older+newer fallbacks
 bad="$(awk -F'\t' '!/^#/ && NF && (NF!=7 || $3 !~ /^(fixed|eol|unconfirmed)$/ || ($3=="fixed" && $4=="-"))' "$ROOT/advisories.tsv")"
 check "advisories.tsv well-formed${bad:+: $bad}" [ -z "$bad" ]
-for rt in php node go; do
+for rt in php node go brotli brotlicffi; do
   for fb in older newer; do
     # shellcheck disable=SC2016  # awk program is intentionally single-quoted
     check "$rt has '$fb' fallback" awk -F'\t' -v r="$rt" -v f="$fb" '$1==r && $2==f {found=1} END {exit !found}' "$ROOT/advisories.tsv"

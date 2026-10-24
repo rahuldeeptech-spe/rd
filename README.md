@@ -5,9 +5,10 @@
 
 **[Today's security report](https://github.com/rahuldeeptech-spe/rd/blob/reports/README.md)** (refreshed daily at 05:17 UTC) · [Latest release](https://github.com/rahuldeeptech-spe/rd/releases/latest) · [Open alerts](https://github.com/rahuldeeptech-spe/rd/issues?q=is%3Aissue+is%3Aopen+%5Balert%5D)
 
-Read-only checker for the October 2026 **PHP2Shell** (CVE-2026-109618 / CVE-2026-109619), **Node.js**
-(Oct 21 release) and **Go** (CVE-2026-111943) advisories. It tells you whether the PHP, Node.js and Go
-on a machine are at a patched version, and on Linux whether a running service still holds old code.
+Read-only checker for the October 2026 **PHP2Shell** (CVE-2026-109618 / CVE-2026-109619), **Node2Shell**
+(CVE-2026-111497, in the Node.js Oct 21 release and in the Python `brotli` packages) and **Go** (CVE-2026-111943)
+advisories. It tells you whether the PHP, Node.js, Go and Python Brotli packages on a machine are at a patched version,
+and on Linux whether a running service still holds old code.
 
 - No install, no dependencies beyond bash (3.2+) or PowerShell (5.1+) and standard Unix tools.
 - The checker never changes the system and makes no network calls. (The separate daily monitor, below, only reads public feeds.)
@@ -68,6 +69,7 @@ The scripts need `advisories.tsv` next to them, so use the whole tarball or clon
 | `--no-processes` | skip the stale-process check (bash only; Linux `/proc`) |
 | `--managers` | also check runtimes from nvm, fnm, volta, asdf, phpbrew and `~/sdk/go*` (bash only) |
 | `--go-binaries DIR` | scan Go binaries under `DIR` for the toolchain they were built with; needs `go` (bash only) |
+| `--python PATH` / `-Python PATH` | also check the Brotli packages of this Python, for example a virtualenv's `bin/python` (repeatable) |
 | `--data FILE` / `-DataPath FILE` | use another advisories file |
 
 | Exit code | Meaning |
@@ -132,6 +134,27 @@ Run it yourself: `python3 monitor/monitor.py --out out` (Python 3.9+, standard l
 
 php.net and go.dev publish no security flag, so for those the pull request says so and links the release notes.
 
+## Node2Shell (CVE-2026-111497)
+
+The name comes from security press (one outlet credits Imperva); the Node.js advisory does not use it. The bug is an out-of-bounds write in the
+Brotli decoder. [Node.js' advisory](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases) rates it High and says an attacker who can
+supply Brotli data that an application decompresses with `node:zlib` can corrupt process memory, which can lead to a crash, disclosure of process
+memory or remote code execution. The [GitHub reviewed advisory](https://github.com/advisories/GHSA-9v8h-qqgm-4m35) scores it 9.2 (CVSS v4, Critical).
+
+| What | Affected | Fixed |
+|---|---|---|
+| Node.js | 22.x, 24.x, 26.x | 22.23.4, 24.22.1, 26.12.1. End-of-life lines are always affected and get no fix |
+| Python `brotli` | 1.0.3 to 1.2.0 | 1.2.1 |
+| Python `brotlicffi` | 1.0.3 to 1.2.0.x | 1.2.1.0 |
+| Google Brotli library | 1.0.3 to 1.2.0 | 1.0.10, 1.1.1, 1.2.1 |
+
+- Node.js lists **no workaround**: upgrade the runtime. The Brotli decoder is compiled into the Node.js binary, so updating an npm package does not help.
+- Rejecting `Content-Encoding: br` requests at a proxy is mentioned by security press as reducing inbound exposure only; it does nothing for Brotli
+  responses your own code fetches. Treat that as unverified.
+- A third-party write-up says Debian builds Node.js against the system `libbrotli`, so a Debian fix would arrive through the `brotli` package, not through the Node.js
+  version number. Unverified: check your distribution's security tracker before trusting a `VULNERABLE` or `OK` for a distro `node`.
+- Check your servers: `bash install.sh -- --python /path/to/venv/bin/python` (or `--docker`).
+
 ## What it checks
 
 | | PHP | Node.js | Go |
@@ -140,6 +163,7 @@ php.net and go.dev publish no security flag, so for those the pull request says 
 | Running processes (Linux) | php-fpm, php-cgi, apache2/httpd, node whose binary was replaced after start | | |
 | Containers | `--docker` | `--docker` | `--docker` |
 | Version managers | `--managers` | `--managers` | `--managers` |
+| Python packages `brotli`, `brotlicffi` (Node2Shell) | `python3` / `python` on `PATH`, plus each `--python`, plus containers with `--docker` | | |
 | Built binaries | | | `--go-binaries DIR` |
 | Apache `mod_php` | flagged `[CHECK]` when loaded (its version cannot be read from outside) | | |
 
@@ -150,6 +174,7 @@ Patched versions at the time of writing (see `advisories.tsv` for sources):
 | PHP | 8.5.12, 8.4.27, 8.3.36, 8.2.35 (8.1 and older: source backports only) |
 | Node.js | 26.12.1, 24.22.1, 22.23.4 (18, 20, 21, 23, 25 are end-of-life) |
 | Go | 1.26.10, 1.27.3 (1.25 and older: not confirmed) |
+| Python `brotli` / `brotlicffi` | 1.2.1 / 1.2.1.0 (Node2Shell; every older release is affected from 1.0.3) |
 
 ## Limits
 
@@ -161,6 +186,11 @@ Patched versions at the time of writing (see `advisories.tsv` for sources):
 - Windows: stale processes are not detected; restart IIS app pools, services and Node processes after upgrading.
 - Go binaries embed the toolchain they were built with; upgrading Go does not fix a built binary, rebuild it.
 - Version managers are only checked with `--managers`, and only in their default locations.
+- Python packages are read from the interpreter you point at. Most real installs live in virtualenvs and containers, so pass each one with
+  `--python /path/to/venv/bin/python` (or use `--docker`). The check needs Python 3.8+ and is run from `/` with `-E`, so a hostile
+  file in the current directory or in `PYTHONPATH` is never imported.
+- Bun is also reported to be affected by Node2Shell (fixed in 1.4.4, per security press). I could not confirm that from Bun's own release
+  notes, so `patchcheck` does not judge Bun versions; the daily report watches Bun and Brotli for new CVEs.
 - Patching does not remove an existing compromise. Review logs from 17 Oct 2026 onward.
 - The Go advisory has the weakest sourcing. Advisory data comes from public vendor and press reports;
   confirm against the official PHP, Node.js and Go advisories.

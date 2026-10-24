@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0 - 2026-10-24
+- **Node2Shell (CVE-2026-111497)**: the Node.js rules now carry the CVE id and the Node2Shell name and cite the official nodejs.org advisory. New checks for the Python packages `brotli` (< 1.2.1) and `brotlicffi` (< 1.2.1.0), from the GitHub reviewed advisory GHSA-9v8h-qqgm-4m35: the Python on `PATH`, each `--python PATH` (repeatable; virtualenvs), and containers with `--docker`. Python is run from `/` with `-E`, so a hostile directory or `PYTHONPATH` cannot get code executed (tested against the real interpreter). Bun is reported affected by security press but is not judged, because no primary source could be reached.
+- The daily monitor now watches Brotli and Bun. `CVE-2026-111497` itself did not alert before: its description is about Google Brotli, not Node.js.
+- Fixed in `patchcheck.ps1`: the same `php` or `node` reachable through a symlinked directory (`/bin` -> `/usr/bin`) was reported twice. The bash version was not affected.
+- Version strings may have four parts (`brotlicffi` 1.2.1.0).
+
 ## 1.1.0 - 2026-10-24
 - `install.sh`: download a release, verify its SHA-256, verify the build attestation when `gh` is available, refuse archives with absolute paths, `..` paths or links, check the version inside, then run `patchcheck` (or `--install-dir`). 82 tests, including tampered tarballs, hostile archives and every attestation mode.
 - Releases are now attested (`actions/attest`) and the workflow verifies the attestation before publishing. Assets: the tarball, `SHA256SUMS` and `install.sh`.

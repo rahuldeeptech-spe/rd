@@ -65,6 +65,71 @@ Test-Case 'nothing installed'        @{} 0 'no PHP binary found'
 Test-Case 'quiet hides OK'           @{ php = 'PHP 8.3.36 (cli)'; node = 'v20.1.0' } 1 'node 20\.1\.0' @('-Quiet')
 Test-Case '--version'                @{} 0 '^patchcheck \d' @('-Version')
 
+# ---- non-Windows only: needs sh stubs and symlinks (the Windows job covers everything above) ----
+if (-not $IsWin) {
+    function New-PyStub([string]$dir, [string]$name) {
+        $p = Join-Path $dir $name
+        Set-Content -LiteralPath $p -Value "#!/bin/sh`nfor last; do :; done`ncase `"`$last`" in`n  brotli) if [ -n `"`${STUB_BROTLI:-}`" ]; then echo `"`$STUB_BROTLI`"; exit 0; fi ;;`n  brotlicffi) if [ -n `"`${STUB_BROTLICFFI:-}`" ]; then echo `"`$STUB_BROTLICFFI`"; exit 0; fi ;;`nesac`nexit 1`n" -NoNewline
+        chmod +x $p
+    }
+    function Test-Py([string]$name, [hashtable]$envVars, [int]$wantExit, [string]$pattern, [string[]]$extra = @(), [string]$bin = '') {
+        if (-not $bin) { $bin = New-Bin @{}; New-PyStub $bin 'python3' }
+        foreach ($k in $envVars.Keys) { Set-Item -Path "Env:$k" -Value $envVars[$k] }
+        try { $r = Invoke-Patchcheck $bin $extra } finally { foreach ($k in $envVars.Keys) { Remove-Item "Env:$k" -ErrorAction SilentlyContinue } }
+        if ($r.Code -eq $wantExit -and $r.Out -match $pattern) { $script:Pass++; Write-Host "ok   $name" }
+        else { $script:Fail++; Write-Host "FAIL $name (exit $($r.Code), wanted $wantExit, pattern '$pattern')"; Write-Host $r.Out }
+    }
+    Test-Py 'pip brotli 1.2.1 (patched)'      @{ STUB_BROTLI = '1.2.1' }   0 'OK\].*package brotli 1\.2\.1'
+    Test-Py 'pip brotli 1.2.0 (one behind)'   @{ STUB_BROTLI = '1.2.0' }   1 'VULNERABLE\].*package brotli 1\.2\.0.*>= 1\.2\.1'
+    Test-Py 'pip brotli 1.1.0 (no 1.1.x fix)' @{ STUB_BROTLI = '1.1.0' }   1 'VULNERABLE\].*package brotli 1\.1\.0.*no upstream fix'
+    Test-Py 'pip brotli newer than the data'  @{ STUB_BROTLI = '1.3.0' }   2 'CHECK\].*package brotli 1\.3\.0'
+    Test-Py 'brotlicffi 1.2.0.0 (four parts)' @{ STUB_BROTLICFFI = '1.2.0.0' } 1 'VULNERABLE\].*package brotlicffi 1\.2\.0\.0.*>= 1\.2\.1\.0'
+    Test-Py 'brotlicffi 1.2.1.0 (patched)'    @{ STUB_BROTLICFFI = '1.2.1.0' } 0 'OK\].*package brotlicffi 1\.2\.1\.0'
+    Test-Py 'python without the packages'     @{}                          0 'everything found is patched'
+    $none = New-Bin @{}
+    Test-Py 'no python at all'                @{}                          0 'no python found' @() $none
+    $venv = New-Bin @{}; New-PyStub $venv 'python'
+    Test-Py '-Python adds a virtualenv python' @{ STUB_BROTLI = '1.2.1' }   0 'package brotli 1\.2\.1' @('-Python', (Join-Path $venv 'python'))
+    Test-Py '-Python nonexistent is reported' @{}                          0 'not an executable file' @('-Python', '/nope/python')
+
+    # the same php reachable through a symlinked directory must be reported once (the /bin -> /usr/bin case)
+    $real = New-Bin @{ php = 'PHP 8.3.36 (cli)' }
+    New-Item -ItemType SymbolicLink -Path (Join-Path $real 'readlink') -Target (Get-Command readlink -CommandType Application | Select-Object -First 1).Source | Out-Null   # real systems have it on PATH
+    $link = Join-Path $Work 'linkdir'; New-Item -ItemType SymbolicLink -Path $link -Target $real | Out-Null
+    $oldPath = $env:PATH; $env:PATH = "$real" + [IO.Path]::PathSeparator + "$link"; $env:PATCHCHECK_SEARCH_DIRS = $real
+    try { $dup = & $Pwsh -NoProfile -NonInteractive -File $Script -Json 2>&1 | Out-String } finally { $env:PATH = $oldPath; Remove-Item Env:\PATCHCHECK_SEARCH_DIRS -ErrorAction SilentlyContinue }
+    $count = ([regex]::Matches($dup, '"label":"host php[^"]*"')).Count
+    if ($count -eq 1) { $script:Pass++; Write-Host 'ok   a symlinked directory does not report php twice' } else { $script:Fail++; Write-Host "FAIL a symlinked directory reported php $count times"; Write-Host $dup }
+
+    # a REAL virtualenv (no stub, no network): its python is a link to the base interpreter and must still be checked
+    $basePy = Get-Command python3 -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($basePy) {
+        $rv = Join-Path $Work 'realvenv'
+        & $basePy.Source -m venv --without-pip $rv 2>$null
+        if ($LASTEXITCODE -eq 0) {
+            $site = & (Join-Path $rv 'bin/python') -c 'import sysconfig; print(sysconfig.get_paths()["purelib"])'
+            $dist = Join-Path $site 'Brotli.dist-info'; New-Item -ItemType Directory -Path $dist -Force | Out-Null
+            Set-Content -LiteralPath (Join-Path $dist 'METADATA') -Value "Metadata-Version: 2.1`nName: Brotli`nVersion: 1.2.0`n" -NoNewline
+            $pybin2 = New-Bin @{}; New-Item -ItemType SymbolicLink -Path (Join-Path $pybin2 'python3') -Target $basePy.Source | Out-Null
+            New-Item -ItemType SymbolicLink -Path (Join-Path $pybin2 'readlink') -Target (Get-Command readlink -CommandType Application | Select-Object -First 1).Source | Out-Null   # real systems have it on PATH
+            Test-Py 'real venv with Brotli 1.2.0 is checked and flagged' @{} 1 'VULNERABLE\].*realvenv/bin/python package brotli 1\.2\.0' @('-Python', (Join-Path $rv 'bin/python')) $pybin2
+        }
+    }
+
+    # a hostile directory must never get code executed: the REAL python, run from a folder holding a fake importlib
+    $realPy = Get-Command python3 -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
+    if ($realPy) {
+        $evil = Join-Path $Work 'evil'; New-Item -ItemType Directory -Path (Join-Path $evil 'importlib') -Force | Out-Null
+        Set-Content -LiteralPath (Join-Path $evil 'importlib/__init__.py') -Value "import os`nopen(os.environ['EVIL_MARKER'], 'w').close()`n"
+        $marker = Join-Path $Work 'evil.marker'; Remove-Item $marker -ErrorAction SilentlyContinue
+        $pybin = New-Bin @{}; New-Item -ItemType SymbolicLink -Path (Join-Path $pybin 'python3') -Target $realPy.Source | Out-Null
+        $env:EVIL_MARKER = $marker; Push-Location $evil
+        try { [void](Invoke-Patchcheck $pybin @()) } finally { Pop-Location; Remove-Item Env:\EVIL_MARKER -ErrorAction SilentlyContinue }
+        if (-not (Test-Path $marker)) { $script:Pass++; Write-Host 'ok   hostile cwd: a fake importlib in the current directory is never imported' }
+        else { $script:Fail++; Write-Host 'FAIL hostile cwd: the fake importlib was executed' }
+    }
+}
+
 # JSON must parse and carry the right numbers
 $bin = New-Bin @{ php = 'PHP 8.3.1 (cli)'; node = 'v22.23.4' }
 $r = Invoke-Patchcheck $bin @('-Json')
