@@ -1,6 +1,9 @@
 # Changelog
 
-## 1.3.0 - unreleased
+## Unreleased
+- `monitor/exposed.py`: check your own site for publicly readable `.env`, `.git`, `phpinfo`, config backups and similar. Content-signature based, never prints content, 6 tests against a local server.
+
+## 1.3.0 - 2026-10-24
 - **.NET**: patchcheck lists every shared runtime from `dotnet --list-runtimes` (NETCore.App and AspNetCore.App) and judges them against the October 13 2026 servicing release (10.0.13, 9.0.21, 8.0.32; 7 and 6 out of support). Source: the official `dotnet/core` release metadata. Preview builds are reported as `[CHECK]`.
 - `monitor/lockscan.py`: scan `package-lock.json` (v1-v3), `composer.lock`, `go.mod` and pinned `requirements.txt` against OSV.dev. Skipped non-exact versions are listed, a failed lookup exits 3, never clean. 13 tests; a CI job runs it against the real API on a known-vulnerable fixture (informational).
 - `Dockerfile` and a container image published to GHCR with each release (attested). CI builds it and checks it runs as non-root.
