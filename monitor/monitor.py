@@ -239,6 +239,23 @@ def load_rules(path):
     return fixed
 
 
+REVIEWED_RE = re.compile(r"^#@ reviewed (php|node|go) (\d+(?:\.\d+)?) (\d+\.\d+(?:\.\d+)?) (\d{4}-\d{2}-\d{2})\s*$")
+
+
+def load_reviewed(path):
+    """advisories.tsv '#@ reviewed <runtime> <branch> <version> <date>' lines -> {(runtime, branch): version}.
+
+    A reviewed line records that a person read the release notes up to <version> and found no new security fix that
+    needs a rule. It silences the REVIEW alert up to that version and never changes what patchcheck reports."""
+    out = {}
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            hit = REVIEWED_RE.match(line.rstrip("\r\n"))
+            if hit:
+                out[(hit.group(1), hit.group(2))] = hit.group(3)
+    return out
+
+
 # ---------------------------------------------------------------- sources ----
 
 def src_kev(net, now, hours, watch, **_):
@@ -372,7 +389,11 @@ def src_node(net, now, hours, **_):
                            "url": "https://nodejs.org/en/blog/vulnerability", "watch": ["node.js"], "alert": False})
     upstream = {("node", m): v["version"] for m, v in latest.items()}
     flags = {("node", m): v["security"] for m, v in latest.items()}
-    return {"items": recent, "upstream": upstream, "security_flags": flags, "note": "%d versions in index" % len(data)}
+    releases = {}
+    for e in data:
+        ver = str(e["version"]).lstrip("v")
+        releases.setdefault(ver.split(".")[0], []).append({"version": ver, "date": e["date"], "security": bool(e.get("security"))})
+    return {"items": recent, "upstream": upstream, "security_flags": flags, "releases": releases, "note": "%d versions in index" % len(data)}
 
 
 def src_go(net, now, hours, **_):
@@ -415,24 +436,33 @@ SOURCE_LABELS = {"kev": "CISA Known Exploited Vulnerabilities", "nvd": "NVD (new
 
 # ------------------------------------------------------------ consistency ----
 
-def consistency(fixed, upstream, security_flags, source_ok):
-    """Compare advisories.tsv fixed versions with upstream's latest. Returns alert dicts."""
+def consistency(fixed, upstream, security_flags, source_ok, reviewed=None):
+    """Compare advisories.tsv fixed versions with upstream's latest. Returns alert dicts.
+
+    A person can mark newer upstream releases as read with a '#@ reviewed' line; that silences the REVIEW alert up to
+    that version (a later release alerts again). CHECK DATA still compares against the real fixed version."""
     alerts = []
-    for (rt, br), data_ver in sorted(fixed.items()):
+    reviewed = reviewed or {}
+
+    def alert(rt, br, title):
+        alerts.append({"source": "rules", "id": "%s %s" % (rt, br), "date": "", "alert": True, "watch": [rt], "url": "", "title": title})
+
+    for (rt, br), fixed_ver in sorted(fixed.items()):
         if not source_ok.get(rt):
             continue
         up = upstream.get((rt, br))
         if up is None:
             continue
-        c = vcmp(up, data_ver)
-        flag = security_flags.get((rt, br))
+        if vcmp(up, fixed_ver) < 0:
+            alert(rt, br, "CHECK DATA: advisories.tsv says %s %s is fixed at %s but upstream's latest is only %s. The rule may be wrong." % (rt, br, fixed_ver, up))
+            continue
+        covered = reviewed[(rt, br)] if vcmp(reviewed.get((rt, br), fixed_ver), fixed_ver) > 0 else fixed_ver
+        c = vcmp(up, covered)
         if c > 0:
-            sec = " and upstream marks it a security release" if flag else ""
-            alerts.append({"source": "rules", "id": "%s %s" % (rt, br), "date": "", "alert": True, "watch": [rt], "url": "",
-                           "title": "REVIEW: upstream %s %s is %s, advisories.tsv expects %s%s. Read the release notes for new security fixes and update the rules." % (rt, br, up, data_ver, sec)})
+            sec = " and upstream marks it a security release" if security_flags.get((rt, br)) else ""
+            alert(rt, br, "REVIEW: upstream %s %s is %s, advisories.tsv is reviewed up to %s%s. Read the release notes for new security fixes and update the rules." % (rt, br, up, covered, sec))
         elif c < 0:
-            alerts.append({"source": "rules", "id": "%s %s" % (rt, br), "date": "", "alert": True, "watch": [rt], "url": "",
-                           "title": "CHECK DATA: advisories.tsv says %s %s is fixed at %s but upstream's latest is only %s. The rule may be wrong." % (rt, br, data_ver, up)})
+            alert(rt, br, "CHECK DATA: the '#@ reviewed' line for %s %s says %s but upstream's latest is only %s. The line may be a typo." % (rt, br, covered, up))
     for rt, parse in (("node", lambda b: int(b)), ("go", lambda b: vtuple(b))):
         if not source_ok.get(rt):
             continue
@@ -447,7 +477,7 @@ def consistency(fixed, upstream, security_flags, source_ok):
 
 # ----------------------------------------------------------------- report ----
 
-def run_all(net, now, hours, watch, fixed, sources):
+def run_all(net, now, hours, watch, fixed, sources, reviewed=None):
     results, statuses = {}, []
     branches = sorted({br for (rt, br) in fixed if rt == "php"}, key=vtuple)
     for name in sources:
@@ -465,7 +495,7 @@ def run_all(net, now, hours, watch, fixed, sources):
         upstream.update(r.get("upstream", {}))
         flags.update(r.get("security_flags", {}))
     ok = {s["name"]: s["ok"] for s in statuses}
-    cons = consistency(fixed, upstream, flags, ok)
+    cons = consistency(fixed, upstream, flags, ok, reviewed)
     return {"results": results, "statuses": statuses, "consistency": cons, "upstream": upstream}
 
 
@@ -539,9 +569,10 @@ def render(run, now, hours):
         if (rt, br) in fx or (known and vtuple(br) > max(known)):
             ups[(rt, br)] = v
     if ups:
-        L += ["| Runtime | Branch | Upstream latest | advisories.tsv fixed |", "|---|---|---|---|"]
+        L += ["| Runtime | Branch | Upstream latest | advisories.tsv fixed | Reviewed up to |", "|---|---|---|---|---|"]
         for (rt, br), v in sorted(ups.items(), key=lambda kv: (kv[0][0], vtuple(kv[0][1]))):
-            L.append("| %s | %s | %s | %s |" % (rt, br, clean(v, 20), clean(run.get("fixed", {}).get((rt, br), "-"), 20)))
+            L.append("| %s | %s | %s | %s | %s |" % (rt, br, clean(v, 20), clean(run.get("fixed", {}).get((rt, br), "-"), 20),
+                                                    clean(run.get("reviewed", {}).get((rt, br), "-"), 20)))
         L.append("")
     else:
         L += ["No upstream version data could be read.", ""]
@@ -584,11 +615,13 @@ def main(argv=None, net=None):
     try:
         watch = load_watchlist(a.watchlist)
         fixed = load_rules(a.advisories)
+        reviewed = load_reviewed(a.advisories)
     except (OSError, re.error) as e:
         print("monitor: cannot load configuration: %s" % e, file=sys.stderr)
         return 2
-    run = run_all(net or Net(), now, a.hours, watch, fixed, sources)
+    run = run_all(net or Net(), now, a.hours, watch, fixed, sources, reviewed)
     run["fixed"] = fixed
+    run["reviewed"] = reviewed
     md, alerts = render(run, now, a.hours)
     os.makedirs(a.out, exist_ok=True)
     with open(os.path.join(a.out, "report.md"), "w", encoding="utf-8") as fh:

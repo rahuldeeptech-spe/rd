@@ -1,0 +1,30 @@
+#@ updated 2026-01-01
+# DEMO FIXTURE - not real data. Fixed versions are lowered on purpose so a dry run of monitor/propose.py against the live feeds has something to propose.
+# patchcheck advisory data. Single source of truth for patchcheck.sh and patchcheck.ps1.
+# Tab-separated, one rule per line. Use '-' for an empty field.
+# runtime  branch  status  fixed  id  source  note
+#   branch : PHP/Go = major.minor, Node = major; 'older' / 'newer' are fallbacks for
+#            branches below / above every branch listed for that runtime.
+#   status : fixed       - patched at >= 'fixed' on this branch
+#            eol         - no upstream fix for this branch (vulnerable)
+#            unconfirmed - no fix confirmed; needs a manual look (exit code 2)
+# See CONTRIBUTING.md before editing: every row needs a source.
+php	8.5	fixed	8.5.12	CVE-2026-109618,CVE-2026-109619	https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote	PHP2Shell
+php	8.4	fixed	8.4.1	CVE-2026-109618,CVE-2026-109619	https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote	PHP2Shell
+php	8.3	fixed	8.3.1	CVE-2026-109618,CVE-2026-109619	https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote	PHP2Shell
+php	8.2	fixed	8.2.35	CVE-2026-109618,CVE-2026-109619	https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote	PHP2Shell
+php	8.1	eol	-	CVE-2026-109618,CVE-2026-109619	https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote	No new upstream release; source-level backport only. Distro packages may carry a backport without changing the version number.
+php	8.0	eol	-	CVE-2026-109618,CVE-2026-109619	https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote	No new upstream release; source-level backport only. Distro packages may carry a backport without changing the version number.
+php	7.4	eol	-	CVE-2026-109618,CVE-2026-109619	https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote	No new upstream release; source-level backport only. Distro packages may carry a backport without changing the version number.
+php	older	eol	-	CVE-2026-109618,CVE-2026-109619	https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote	Unsupported branch; upgrade to a supported PHP branch.
+php	newer	unconfirmed	-	CVE-2026-109618,CVE-2026-109619	https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote	Newer than this data file knows; verify against the PHP advisory.
+node	26	fixed	26.12.1	NODEJS-2026-10-21	https://cybersecuritynews.com/october-21-cybersecurity-nightmare/	Oct 21 2026 release, includes CVE-2026-111497 (Brotli decoder)
+node	24	fixed	24.1.0	NODEJS-2026-10-21	https://cybersecuritynews.com/october-21-cybersecurity-nightmare/	Oct 21 2026 release, includes CVE-2026-111497 (Brotli decoder)
+node	22	fixed	22.23.4	NODEJS-2026-10-21	https://cybersecuritynews.com/october-21-cybersecurity-nightmare/	Oct 21 2026 release, includes CVE-2026-111497 (Brotli decoder)
+node	older	eol	-	NODEJS-2026-10-21	https://cybersecuritynews.com/october-21-cybersecurity-nightmare/	End-of-life branch, no fix; move to 22, 24 or 26.
+node	newer	unconfirmed	-	NODEJS-2026-10-21	https://cybersecuritynews.com/october-21-cybersecurity-nightmare/	Newer than this data file knows; verify against the Node.js advisory.
+go	1.27	fixed	1.27.3	CVE-2026-111943	https://go.dev/doc/devel/release	crypto/x509 certificate trust; lower confidence, sources disagree on details
+go	1.26	fixed	1.26.1	CVE-2026-111943	https://go.dev/doc/devel/release	crypto/x509 certificate trust; lower confidence, sources disagree on details
+go	1.25	unconfirmed	-	CVE-2026-111943	https://go.dev/doc/devel/release	No fix confirmed for this branch; move to Go 1.26.10+ or 1.27.3+. Binaries built with an old Go must be rebuilt.
+go	older	unconfirmed	-	CVE-2026-111943	https://go.dev/doc/devel/release	No fix confirmed for this branch; move to Go 1.26.10+ or 1.27.3+. Binaries built with an old Go must be rebuilt.
+go	newer	unconfirmed	-	CVE-2026-111943	https://go.dev/doc/devel/release	Newer than this data file knows; verify against the Go release notes.

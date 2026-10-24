@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:   # the weekly data-review workflow starts CI on its bot branch, because pushes made with GITHUB_TOKEN do not
 
 permissions:
   contents: read
@@ -24,7 +25,7 @@ jobs:
       - uses: actions/checkout@v7
       - name: shellcheck
         if: runner.os == 'Linux'
-        run: shellcheck -x patchcheck.sh tests/run.sh
+        run: shellcheck -x patchcheck.sh tests/run.sh monitor/open_review.sh monitor/test_open_review.sh
       - name: tests
         run: ./tests/run.sh
       - name: smoke run (real tools on the runner, report only)
@@ -71,6 +72,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: python3 -m unittest discover -s monitor -v
+      - run: ./monitor/test_open_review.sh
 
   data:
     name: advisories.tsv sanity
