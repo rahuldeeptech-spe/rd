@@ -22,7 +22,7 @@ param(
 Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
-$ToolVersion = '1.3.0'
+$ToolVersion = '1.4.0'
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 if ($Version) { Write-Output "patchcheck $ToolVersion"; exit 0 }

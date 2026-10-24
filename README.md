@@ -109,7 +109,7 @@ Use `--json` and the exit code for monitoring or CI gates.
 Fail a workflow when the runner's PHP, Node.js, Go or Python Brotli is below the patched version:
 
 ```yaml
-- uses: rahuldeeptech-spe/rd@v1.3.0
+- uses: rahuldeeptech-spe/rd@v1.4.0
   with:
     fail-on: vulnerable            # vulnerable (default) | manual | never
     args: --no-processes --managers
