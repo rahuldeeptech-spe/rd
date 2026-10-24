@@ -12,6 +12,8 @@ set -u
 # Minimum patched versions per branch (from the PHP and Node.js advisories).
 PHP_FIXED="8.5:8.5.12 8.4:8.4.27 8.3:8.3.36 8.2:8.2.35"
 NODE_FIXED="26:26.12.1 24:24.22.1 22:22.23.4"
+# Go: CVE-2026-111943 (crypto/x509). No fix confirmed for 1.25 and older.
+GO_FIXED="1.26:1.26.10 1.27:1.27.3"
 
 RC=0
 
@@ -65,6 +67,20 @@ check_node() { # check_node <label> <version>
   fi
 }
 
+check_go() { # check_go <label> <version>
+  local label="$1" v="$2" branch fixed=""
+  branch="${v%.*}"
+  if fixed="$(lookup "$GO_FIXED" "$branch")"; then
+    report "$label Go" "$v" "$fixed" ""
+  elif ver_ge "$branch" "1.28"; then
+    echo "[CHECK]          $label Go $v - newer than the branches in this script; confirm against the Go release notes."
+    RC=1
+  else
+    echo "[CHECK]          $label Go $v - no fix confirmed for CVE-2026-111943 on this branch; move to Go 1.26.10+ or 1.27.3+. Binaries built with an old Go must be rebuilt."
+    RC=1
+  fi
+}
+
 echo "== Host =="
 if command -v php >/dev/null 2>&1; then
   check_php "host" "$(php -r 'echo PHP_VERSION;' | sed 's/[^0-9.].*//')"
@@ -76,6 +92,9 @@ if command -v node >/dev/null 2>&1; then
   check_node "host" "$(node -v | sed 's/^v//')"
 else
   echo "[--]             node not found"
+fi
+if command -v go >/dev/null 2>&1; then
+  check_go "host" "$(go version | sed -E 's/.* go([0-9]+\.[0-9]+(\.[0-9]+)?).*/\1/')"
 fi
 
 if [ "${1:-}" = "--docker" ]; then
