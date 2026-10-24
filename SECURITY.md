@@ -6,7 +6,7 @@
 
 `patchcheck.sh` / `patchcheck.ps1` are read-only and make no network calls. They only run `php -v`, `node -v`,
 `go version` (`go version DIR` with `--go-binaries`), `apachectl -M`, and `docker exec ... -v` with `--docker`,
-on binaries already on the host.
+on binaries already on the host. For the Python Brotli packages it also runs `python -E -c "from importlib.metadata import version..."` from `/`, never from the current directory.
 
 The daily monitor (`monitor/monitor.py`) only reads public feeds over HTTPS and writes files. Feed text is
 untrusted: it is sanitised before it reaches markdown (no mentions, issue references or live links).

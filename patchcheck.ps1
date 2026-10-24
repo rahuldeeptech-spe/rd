@@ -4,6 +4,7 @@
 .DESCRIPTION
   Never modifies the system and makes no network calls. Rules come from advisories.tsv next to this script.
   Exit codes: 0 all patched | 1 vulnerable | 2 manual check needed | 64 usage error.
+  -Python PATH [PATH...] also checks the Brotli packages (Node2Shell, CVE-2026-111497) of those interpreters, e.g. a virtualenv's python.
   Not detected on Windows: running processes that still hold old code. Restart IIS app pools,
   services and Node processes after upgrading.
 .EXAMPLE
@@ -14,13 +15,14 @@ param(
     [switch]$Json,
     [switch]$Quiet,
     [string]$DataPath,
-    [switch]$Version
+    [switch]$Version,
+    [string[]]$Python = @()
 )
 
 Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
-$ToolVersion = '1.1.0'
+$ToolVersion = '1.2.0'
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 if ($Version) { Write-Output "patchcheck $ToolVersion"; exit 0 }
@@ -59,7 +61,7 @@ function Get-Branch([string]$runtime, [string]$v) {
     return ($parts[0] + '.' + $parts[1])
 }
 
-function Test-ValidVersion([string]$v) { return ($v -match '^\d+(\.\d+){1,2}$') }
+function Test-ValidVersion([string]$v) { return ($v -match '^\d+(\.\d+){1,3}$') }
 
 function Get-Rule([string]$runtime, [string]$branch) {
     $rs = @($Rules | Where-Object { $_.Runtime -eq $runtime })
@@ -96,6 +98,27 @@ function Test-Version([string]$label, [string]$runtime, [string]$v) {
         'eol' { Add-Result $label $runtime $v 'VULNERABLE' "no upstream fix for this branch. $($rule.Note)" $rule.Id }
         default { Add-Result $label $runtime $v 'CHECK' "fix not confirmed. $($rule.Note)" $rule.Id }
     }
+}
+
+# The same file is often reachable under several names (/bin is a link to /usr/bin on most Linux systems), and
+# Resolve-Path does not follow links. readlink -f does, so use it where it exists.
+function Get-RealPath([string]$p) {
+    if ($env:OS -ne 'Windows_NT') {
+        $rl = Get-Command readlink -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
+        if ($rl) {
+            $r = & $rl.Source -f $p 2>$null
+            if ($LASTEXITCODE -eq 0 -and $r) { return "$r" }
+        }
+    }
+    try { return (Resolve-Path -LiteralPath $p).ProviderPath } catch { return $p }
+}
+
+# Like Get-RealPath, but a link AS the file is kept: a virtualenv's python is a link to the base interpreter and must not be
+# mistaken for it (they see different packages). Links in the directory part are still resolved.
+function Get-CanonPath([string]$p) {
+    $dir = Split-Path -Parent $p
+    if (-not $dir) { return $p }
+    return (Join-Path (Get-RealPath $dir) (Split-Path -Leaf $p))
 }
 
 function Test-FirstSeen([string]$key) {
@@ -138,7 +161,7 @@ foreach ($p in (Get-PhpCandidates)) {
     if ($out -and ($out -match '^PHP (\d+\.\d+\.\d+)')) {
         $v = $Matches[1]
         $real = $p
-        try { $real = (Resolve-Path -LiteralPath $p).ProviderPath } catch { $real = $p }
+        $real = Get-RealPath $p
         if (Test-FirstSeen "php:${real}:$v") {
             $foundPhp = $true
             # strip only Windows executable extensions: "php8.3" must stay "php8.3"
@@ -156,7 +179,7 @@ foreach ($n in 'node', 'nodejs') {
         $out = Get-ToolOutput $c.Source @('-v')
         if ($out -and ($out -match '^v?(\d+\.\d+\.\d+)')) {
             $v = $Matches[1]
-            if (Test-FirstSeen "node:$($c.Source):$v") { $foundNode = $true; Test-Version "host $n" 'node' $v }
+            if (Test-FirstSeen "node:$(Get-RealPath $c.Source):$v") { $foundNode = $true; Test-Version "host $n" 'node' $v }
         }
     }
 }
@@ -172,6 +195,39 @@ if ($goCmd) {
         Test-Version 'host go' 'go' $v
     } else { Add-Result 'host go' 'go' '-' 'NONE' 'could not read Go version' '' }
 } else { Add-Result 'host go' 'go' '-' 'NONE' 'go not found' '' }
+
+# ---- Python Brotli packages (Node2Shell, CVE-2026-111497) -------------------------------------
+# Python is run from the filesystem root with -E so that a hostile file in the current directory (an "importlib" folder)
+# or in PYTHONPATH can never be imported.
+function Get-PythonPackageVersion([string]$python, [string]$package) {
+    $root = '/'
+    if ($env:OS -eq 'Windows_NT') { $root = $env:SystemRoot }
+    Push-Location -LiteralPath $root
+    try {
+        $out = & $python -E -c 'import sys; from importlib.metadata import version; print(version(sys.argv[1]))' $package 2>$null | Select-Object -First 1
+    } catch { return $null } finally { Pop-Location }
+    if ($out -and ("$out" -match '^\d+(\.\d+){1,3}$')) { return "$out" }
+    return $null
+}
+
+$pyCandidates = New-Object System.Collections.ArrayList
+foreach ($n in 'python3', 'python') {
+    foreach ($c in @(Get-Command $n -All -CommandType Application -ErrorAction SilentlyContinue)) { [void]$pyCandidates.Add($c.Source) }
+}
+foreach ($extra in $Python) {
+    if (Test-Path -LiteralPath $extra -PathType Leaf) { [void]$pyCandidates.Add((Get-CanonPath (Resolve-Path -LiteralPath $extra).ProviderPath)) }
+    else { Add-Result "python $extra" 'python' '-' 'NONE' 'not an executable file' '' }
+}
+$foundPython = $false
+foreach ($py in $pyCandidates) {
+    if (-not (Test-FirstSeen "python:$(Get-CanonPath $py)")) { continue }
+    $foundPython = $true
+    foreach ($pkg in 'brotli', 'brotlicffi') {
+        $v = Get-PythonPackageVersion $py $pkg
+        if ($v) { Test-Version "python $py package $pkg" $pkg $v }
+    }
+}
+if (-not $foundPython) { Add-Result 'host python' 'python' '-' 'NONE' 'no python found (Python Brotli packages not checked)' '' }
 
 # ---- summary ----------------------------------------------------------------------------------
 $nOk = @($Results | Where-Object { $_.state -eq 'OK' }).Count

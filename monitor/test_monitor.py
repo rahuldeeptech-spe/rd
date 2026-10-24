@@ -288,6 +288,10 @@ class ClassificationNewProducts(unittest.TestCase):
     ABOUT = [
         ("REAL", "java", "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: JSSE)."),
         ("REPRESENTATIVE", "java", "In OpenJDK before 21.0.6, a flaw in the HotSpot compiler allows a heap overflow"),
+        ("REAL", "brotli", "A buffer overflow vulnerability in the Brotli decoder (c/dec/decode.c) in Google Brotli versions 1.0.3 through 1.2.0 on all platforms allows a remote unauthenticated attacker to corrupt adjacent decoder state memory"),
+        ("REPRESENTATIVE", "brotli", "brotlicffi before 1.2.1.0 mishandles a crafted stream"),
+        ("REPRESENTATIVE", "bun", "Bun before 1.4.4 mishandles a crafted Brotli stream"),
+        ("REPRESENTATIVE", "bun", "Bun is a JavaScript runtime and toolkit. Prior to 1.4.4 a flaw allows"),
         ("REPRESENTATIVE", "docker", "Docker Desktop before 4.34.3 allows a local user to escalate privileges"),
         ("REPRESENTATIVE", "docker", "Moby is an open-source project created by Docker to enable software containerization. Prior to 27.1.1 a flaw allows"),
         ("REPRESENTATIVE", "docker", "runc is a CLI tool for spawning and running containers according to the OCI specification. In runc 1.1.11 and earlier"),
@@ -309,6 +313,9 @@ class ClassificationNewProducts(unittest.TestCase):
         ("REAL", "docker", "Trigger.dev before 4.5.6 self-hosted Docker Compose deployments using the default secrets allow"),
         ("REAL", "java", "CGM CLININET is vulnerable to Remote Code Execution caused by deserialization of untrusted data in Java"),
         ("REPRESENTATIVE", "docker", "A Docker image of Acme Server before 3.1 ships with a default admin password"),
+        ("REPRESENTATIVE", "brotli", "Acme Proxy before 2.0 does not limit the size of a response it decompresses from a Brotli stream"),
+        ("REPRESENTATIVE", "bun", "The bun-types package before 1.1.0 ships a malformed declaration file"),
+        ("REPRESENTATIVE", "bun", "A GitHub Action that installs Bun from bun.sh does not verify the download"),
         ("REPRESENTATIVE", "java", "Acme Library is a Java library for parsing XML. Prior to 2.3.1 an XXE flaw allows"),
         ("REPRESENTATIVE", "wordpress-core", "The Foo Gallery plugin for WordPress is vulnerable to Stored Cross-Site Scripting in all versions up to 1.2.3"),
         ("REPRESENTATIVE", "wordpress-core", "WordPress Popular Posts plugin before 7.0 allows SQL injection"),
@@ -317,7 +324,7 @@ class ClassificationNewProducts(unittest.TestCase):
 
     def test_products_are_loaded(self):
         names = [r[0] for r in WATCH.rows]
-        for product in ("java", "docker", "kubernetes", "wordpress-core"):
+        for product in ("java", "docker", "kubernetes", "wordpress-core", "brotli", "bun"):
             self.assertIn(product, names)
 
     def test_about(self):

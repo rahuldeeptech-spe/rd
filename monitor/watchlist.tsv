@@ -16,3 +16,5 @@ java	java,openjdk,graalvm	-	^Vulnerability in the Oracle (?:Java SE|GraalVM)	-
 docker	docker,moby,containerd,runc	-	-	\bDocker (?:images?|containers?|files?|hub)\b
 kubernetes	kubernetes,kubectl,kubelet,kube-apiserver,kube-proxy,kubeadm,k8s	-	-	^(?:An?|The|In a) Kubernetes (?:tenant|cluster|operator|namespace|user|admin|administrator|workload|pod|controller)s?\b
 wordpress-core	wordpress core	-	^(?:In )?WordPress (?:before|prior to|through|up to|versions?)\s+\d	-
+brotli	brotli,brotlicffi	-	-	-
+bun	bun	-	-	(?<![\w.])bun-[a-z]|@types/bun\b

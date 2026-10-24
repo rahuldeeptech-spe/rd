@@ -8,7 +8,7 @@
 set -u
 set -o pipefail
 
-VERSION="1.1.0"
+VERSION="1.2.0"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DATA="${PATCHCHECK_DATA:-$SCRIPT_DIR/advisories.tsv}"
 PROC_DIR="${PATCHCHECK_PROC_DIR:-/proc}"
@@ -21,6 +21,7 @@ OPT_JSON=0
 OPT_QUIET=0
 OPT_PROCS=1
 OPT_MANAGERS=0
+PY_EXTRA=""
 GO_BIN_DIR=""
 RESULTS=""
 SEEN=""
@@ -37,6 +38,7 @@ Usage: patchcheck.sh [options]
   --no-processes  skip the stale-process check (Linux /proc)
   --managers      also check runtimes from nvm, fnm, volta, asdf, phpbrew, ~/sdk/go*
   --go-binaries DIR  scan Go binaries under DIR for the toolchain they were built with (needs go)
+  --python PATH   also check the Brotli packages (Node2Shell) of this Python, e.g. a virtualenv's bin/python (repeatable)
   --data FILE     use a different advisories file (default: advisories.tsv next to the script)
   -V, --version   print version
   -h, --help      this help
@@ -55,6 +57,7 @@ while [ $# -gt 0 ]; do
     --no-processes) OPT_PROCS=0 ;;
     --managers) OPT_MANAGERS=1 ;;
     --go-binaries) [ $# -ge 2 ] || die "--go-binaries needs a directory"; GO_BIN_DIR="$2"; shift ;;
+    --python) [ $# -ge 2 ] || die "--python needs the path of a python interpreter"; PY_EXTRA="$PY_EXTRA$2"$'\n'; shift ;;
     --data) [ $# -ge 2 ] || die "--data needs a file"; DATA="$2"; shift ;;
     -V|--version) echo "patchcheck $VERSION"; exit 0 ;;
     -h|--help) usage; exit 0 ;;
@@ -88,7 +91,7 @@ branch_of() {
   esac
 }
 
-valid_version() { echo "$1" | grep -Eq '^[0-9]+(\.[0-9]+){1,2}$'; }
+valid_version() { echo "$1" | grep -Eq '^[0-9]+(\.[0-9]+){1,3}$'; }
 
 # find_rule RUNTIME BRANCH -> sets R_STATUS R_FIXED R_ID R_NOTE ("" if no rule)
 find_rule() {
@@ -152,6 +155,14 @@ seen_before() {
 }
 
 real_path() { readlink -f "$1" 2>/dev/null || echo "$1"; }
+
+# Like real_path, but a symlink AS the file is kept: a virtualenv's bin/python is a link to the base interpreter and must not
+# be mistaken for it (they see different packages). Links in the directory part (/bin -> /usr/bin) are still resolved.
+canon_path() {
+  local d
+  d="$(cd "$(dirname "$1")" 2>/dev/null && pwd -P)" || { echo "$1"; return 0; }
+  echo "$d/$(basename "$1")"
+}
 
 php_version_of() { # php_version_of CMD...
   local out
@@ -283,8 +294,44 @@ check_stale_processes() {
   done
 }
 
+# The Brotli packages bundle the library behind Node2Shell (CVE-2026-111497). Python is run from "/" with -E so that a
+# hostile file in the current directory (an "importlib" folder) or in PYTHON* variables can never be imported.
+python_pkg_version() { # python_pkg_version PYTHON PACKAGE -> version or nothing (Python 3.8+)
+  local out
+  out="$(cd / && "$1" -E -c 'import sys
+from importlib.metadata import version
+print(version(sys.argv[1]))' "$2" 2>/dev/null | head -n1)" || return 0
+  valid_version "$out" && echo "$out"
+  return 0
+}
+
+check_python_brotli() {
+  local cands="" extra c f v pkg found=0 key
+  for c in python3 python; do
+    f="$(command -v "$c" 2>/dev/null)" && cands="$cands$f"$'\n'
+  done
+  cands="$cands$PY_EXTRA"
+  while IFS= read -r f; do
+    [ -n "$f" ] || continue
+    case "$f" in /*) ;; *) f="$PWD/$f" ;; esac
+    if [ ! -x "$f" ]; then add_result "python $f" python "-" "NONE" "not an executable file" ""; continue; fi
+    key="python:$(canon_path "$f")"
+    seen_before "$key" && continue
+    found=1
+    for pkg in brotli brotlicffi; do
+      v="$(python_pkg_version "$f" "$pkg")"
+      [ -n "$v" ] || continue
+      evaluate "python $f package $pkg" "$pkg" "$v"
+    done
+  done <<EOF
+$cands
+EOF
+  extra="$found"
+  [ "$extra" = 1 ] || add_result "host python" python "-" "NONE" "no python found (Python Brotli packages not checked)" ""
+}
+
 check_docker() {
-  local c v f
+  local c v f py pkg
   if ! command -v docker >/dev/null 2>&1; then
     add_result "docker" docker "-" "NONE" "docker not found" ""; return
   fi
@@ -297,6 +344,14 @@ check_docker() {
     valid_version "$v" && evaluate "container $c node" node "$v"
     v="$(docker exec "$c" go version 2>/dev/null | sed -nE 's/.* go([0-9]+\.[0-9]+(\.[0-9]+)?).*/\1/p' | head -n1)"
     valid_version "$v" && evaluate "container $c go" go "$v"
+    for py in python3 python; do
+      for pkg in brotli brotlicffi; do
+        v="$(docker exec "$c" "$py" -E -c 'import sys
+from importlib.metadata import version
+print(version(sys.argv[1]))' "$pkg" 2>/dev/null | head -n1)"
+        valid_version "$v" && evaluate "container $c $py package $pkg" "$pkg" "$v"
+      done
+    done
   done
 }
 
@@ -308,6 +363,7 @@ check_php_binaries
 check_apache_modphp
 check_node
 check_go
+check_python_brotli
 [ "$OPT_MANAGERS" = 1 ] && check_managers
 [ -n "$GO_BIN_DIR" ] && check_go_binaries "$GO_BIN_DIR"
 [ "$OPT_PROCS" = 1 ] && check_stale_processes
