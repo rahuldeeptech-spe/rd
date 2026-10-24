@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- `Dockerfile` and a container image published to GHCR with each release (attested). CI builds it and checks it runs as non-root.
 - Chat alerts (`monitor/notify.py`): Telegram, Discord and Slack, once a day when the alert issue is opened. Feed text is sanitised, secrets never printed, one failing channel does not stop the others.
 - Web page and Atom feed (`monitor/pages.py`) published on the `reports` branch for GitHub Pages. All feed text is escaped, only https links are used.
 - GitHub Action (`action.yml`): `uses: rahuldeeptech-spe/rd@<tag>` runs patchcheck on the runner; `fail-on` and `args` inputs, `exit-code` output, job summary. Tested in CI on Linux and macOS.

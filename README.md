@@ -137,6 +137,18 @@ activity; the daily commit normally counts, but check the Actions tab if reports
 
 Run it yourself: `python3 monitor/monitor.py --out out` (Python 3.9+, standard library only; `--sources node` runs a single feed).
 
+## Container image
+
+Each release also publishes `ghcr.io/rahuldeeptech-spe/rd` (tags `latest` and `vX.Y.Z`, with a build attestation). It scans what you mount into it,
+not the host, because the PHP/Node/Go on `PATH` are the image's own:
+
+```bash
+docker run --rm -v "$PWD":/scan:ro ghcr.io/rahuldeeptech-spe/rd --go-binaries /scan --no-processes
+docker run --rm -v /opt/venv:/venv:ro ghcr.io/rahuldeeptech-spe/rd --python /venv/bin/python --no-processes
+```
+
+It runs as a non-root user. For the host's own PHP/Node/Go use the installer above.
+
 ## Chat alerts, web page and feed
 
 Once a day, when the alert issue is opened, the workflow can also post a short digest to chat. Add any of these as
