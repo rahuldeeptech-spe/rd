@@ -1,5 +1,8 @@
 # Changelog
 
+## Unreleased
+- Monitor: watchlist now also covers Java (Oracle Java SE, OpenJDK, GraalVM), Docker (Docker, Moby, containerd, runc), Kubernetes and WordPress core, with a per-product `deny` pattern. These products alert on new CVEs only; `patchcheck` does not check installed versions of them.
+
 ## 1.0.0 - 2026-10-24
 First release.
 - Rules moved to `advisories.tsv`, shared by `patchcheck.sh` and `patchcheck.ps1`.

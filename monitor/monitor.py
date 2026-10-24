@@ -153,28 +153,42 @@ class Watch:
     about(text): products the text is *about* - the product is the subject of the description (see _LEAD_OK),
     or an optional per-product extra pattern matches. Only "about" hits raise alerts, so a WordPress plugin
     or a library that says "PHP" or "Python" does not look like a PHP or Python vulnerability.
+    A per-product deny pattern vetoes both about() and match_field() for phrasings that look like the product
+    but are not ("A Docker image of X ...").
     """
 
     def __init__(self, rows):
-        self.rows = [tuple(r) + (None,) * (4 - len(r)) for r in rows]  # (name, keywords, ecosystems, extra)
-        self._kw, self._extra = {}, {}
-        for name, kws, _eco, extra in self.rows:
+        self.rows = [tuple(r) + (None,) * (5 - len(r)) for r in rows]  # (name, keywords, ecosystems, extra, deny)
+        self._kw, self._extra, self._deny = {}, {}, {}
+        for name, kws, _eco, extra, deny in self.rows:
             if kws:
                 self._kw[name] = re.compile(r"(?<![\w.])(?:%s)(?!\w)" % "|".join(re.escape(k) for k in kws), re.I)
             if extra:
                 self._extra[name] = re.compile(extra, re.I)
+            if deny:
+                self._deny[name] = re.compile(deny, re.I)
 
     @property
     def ecosystems(self):
-        return sorted({e for _n, _k, es, _x in self.rows for e in es})
+        return sorted({e for _n, _k, es, _x, _d in self.rows for e in es})
+
+    def _denied(self, name, text):
+        return name in self._deny and bool(self._deny[name].search(text))
 
     def match(self, text):
         return [n for n, rx in self._kw.items() if rx.search(text or "")]
 
+    def match_field(self, text):
+        """Products named in a structured field (CISA vendor/product): a keyword hit counts, minus denials."""
+        text = text or ""
+        return [n for n in self.match(text) if not self._denied(n, text)]
+
     def about(self, text):
         text = text or ""
         out = []
-        for name, _kws, _eco, _x in self.rows:
+        for name, _kws, _eco, _x, _d in self.rows:
+            if self._denied(name, text):
+                continue
             rx = self._kw.get(name)
             m = rx.search(text) if rx else None
             subject = bool(m) and m.start() <= 60 and all(w in _LEAD_OK for w in re.findall(r"[a-z]+", text[: m.start()].lower()))
@@ -184,6 +198,15 @@ class Watch:
         return out
 
 
+def _dash(value):
+    value = (value or "").strip()
+    return None if value in ("", "-") else value
+
+
+def _split(value):
+    return [v.strip() for v in (value or "").split(",") if v.strip() and v.strip() != "-"]
+
+
 def load_watchlist(path):
     rows = []
     with open(path, encoding="utf-8") as fh:
@@ -191,14 +214,14 @@ def load_watchlist(path):
             line = line.rstrip("\r\n")
             if not line or line.startswith("#"):
                 continue
-            f = line.split("\t")
-            if len(f) < 3:
+            f = line.split("\t") + [""] * 5
+            if len(line.split("\t")) < 3:
                 continue
-            extra = f[3].strip() if len(f) > 3 and f[3].strip() not in ("", "-") else None
-            if extra:
-                re.compile(extra)  # a bad pattern should fail loudly at start-up, not hide alerts
-            rows.append((f[0], [k.strip() for k in f[1].split(",") if k.strip()],
-                         [e.strip() for e in f[2].split(",") if e.strip() and e.strip() != "-"], extra))
+            extra, deny = _dash(f[3]), _dash(f[4])
+            for pattern in (extra, deny):
+                if pattern:
+                    re.compile(pattern)  # a bad pattern should fail loudly at start-up, not hide alerts
+            rows.append((f[0], _split(f[1]), _split(f[2]), extra, deny))
     return Watch(rows)
 
 
@@ -229,7 +252,7 @@ def src_kev(net, now, hours, watch, **_):
         if added < since or not CVE_RE.match(cve):
             continue
         text = " ".join(str(v.get(k, "")) for k in ("vendorProject", "product", "vulnerabilityName", "shortDescription"))
-        hit = sorted(set(watch.match("%s %s" % (v.get("vendorProject", ""), v.get("product", "")))) | set(watch.about(text)))
+        hit = sorted(set(watch.match_field("%s %s" % (v.get("vendorProject", ""), v.get("product", "")))) | set(watch.about(text)))
         items.append({
             "source": "kev", "id": cve, "date": v["dateAdded"],
             "title": "%s %s - %s" % (v.get("vendorProject", ""), v.get("product", ""), v.get("vulnerabilityName", "")),

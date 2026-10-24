@@ -75,7 +75,7 @@ A scheduled GitHub Action (05:17 UTC) reads public feeds and publishes a report 
 | nodejs.org, go.dev, php.net | newest releases, compared against `advisories.tsv` |
 
 - **Alerts** are raised when a CVE is *about* a watched product (watchlist in [`monitor/watchlist.tsv`](monitor/watchlist.tsv): PHP, Node.js, Go,
-  Python, OpenSSL, nginx, Apache), meaning the product is the subject of the description ("PHP uses longjmp()...", "A flaw in Node.js TLS..."). An app that
+  Python, OpenSSL, nginx, Apache, Java, Docker, Kubernetes, WordPress core), meaning the product is the subject of the description ("PHP uses longjmp()...", "A flaw in Node.js TLS..."). An app that
   merely mentions it ("PhpSpreadsheet is a PHP library", "follow-redirects is a Node.js client", "Traefik ... Ingress NGINX provider") is counted in the
   report note but does not alert. Alerts are also raised when upstream ships a version that `advisories.tsv` does not know (or one older than the
   file claims). An alert opens an `[alert]` issue.

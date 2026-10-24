@@ -1,5 +1,5 @@
 # Products the daily report watches closely.
-# name<TAB>keywords<TAB>GitHub advisory ecosystems for high-severity items ('-' for none)<TAB>extra pattern ('-' for none)
+# name<TAB>keywords<TAB>GitHub advisory ecosystems for high-severity items<TAB>extra pattern<TAB>deny pattern   ('-' for none)
 # Keywords match whole words, case-insensitive: a hit means the CVE MENTIONS the product.
 # A CVE is ABOUT the product when the product is the subject of its description (the words before it are only things like
 # 'A flaw in', 'In', 'A heap overflow in the'), or when the optional extra pattern (Python regex, case-insensitive) matches.
@@ -11,3 +11,8 @@ python	python,cpython	pip	-
 openssl	openssl	-	-
 nginx	nginx	-	-
 apache-httpd	apache http server,apache httpd	-	-
+# deny pattern: a CVE whose text matches it is never 'about' this product (Python regex, case-insensitive).
+java	java,openjdk,graalvm	-	^Vulnerability in the Oracle (?:Java SE|GraalVM)	-
+docker	docker,moby,containerd,runc	-	-	\bDocker (?:images?|containers?|files?|hub)\b
+kubernetes	kubernetes,kubectl,kubelet,kube-apiserver,kube-proxy,kubeadm,k8s	-	-	^(?:An?|The|In a) Kubernetes (?:tenant|cluster|operator|namespace|user|admin|administrator|workload|pod|controller)s?\b
+wordpress-core	wordpress core	-	^(?:In )?WordPress (?:before|prior to|through|up to|versions?)\s+\d	-
