@@ -38,6 +38,10 @@ jobs:
           echo "rc=$?" >> "$GITHUB_OUTPUT"
           echo "date=$(date -u +%F)" >> "$GITHUB_OUTPUT"
 
+      - name: Build the web page and Atom feed
+        if: hashFiles('out/report.json') != ''
+        run: python3 monitor/pages.py --report out/report.json --out out/site --repo "$GITHUB_REPOSITORY"
+
       - name: Publish to the reports branch
         if: hashFiles('out/report.md') != ''
         env:
@@ -59,6 +63,7 @@ jobs:
           cp "$GITHUB_WORKSPACE/out/report.md" "archive/$D.md"
           { cat "$GITHUB_WORKSPACE/out/report.md"; printf '\nPast reports: [archive/](archive/)\n'; } > README.md
           cp "$GITHUB_WORKSPACE/out/report.json" latest.json
+          if [ -d "$GITHUB_WORKSPACE/out/site" ]; then cp "$GITHUB_WORKSPACE/out/site/index.html" "$GITHUB_WORKSPACE/out/site/feed.xml" .; fi
           git add -A
           if git diff --cached --quiet; then
             echo "report unchanged, nothing to commit"
@@ -68,6 +73,7 @@ jobs:
           fi
 
       - name: Open an alert issue
+        id: issue
         if: hashFiles('out/alerts.md') != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -81,7 +87,17 @@ jobs:
           else
             { cat out/alerts.md; printf '\nFull report: https://github.com/%s/blob/reports/README.md\n' "$GITHUB_REPOSITORY"; } > "$RUNNER_TEMP/body.md"
             gh issue create --title "$TITLE" --body-file "$RUNNER_TEMP/body.md"
+            echo "created=true" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Send chat notifications (only when today's alert issue was just opened; needs repository secrets)
+        if: steps.issue.outputs.created == 'true'
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: python3 monitor/notify.py --report out/report.json
 
       - name: Fail the run if a source failed
         if: steps.build.outputs.rc != '0'
