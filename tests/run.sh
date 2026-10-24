@@ -64,6 +64,32 @@ run "go1.26 (no patch) = 1.26.0"  1 'VULNERABLE.*go 1.26.0'
 newbin mixed;     stub "$BIN" php "PHP 8.3.1 (cli)"; stub "$BIN" go "go version go1.25.1 linux/amd64"
 run "vulnerable beats check"      1 'VULNERABLE'
 
+# ---- .NET ----
+dn() { printf '#!/bin/sh\nprintf "%%s\\n" "$@" >/dev/null\ncat <<"EOT"\n%s\nEOT\n' "$2" > "$1/dotnet"; chmod +x "$1/dotnet"; }
+newbin dn_ok;   dn "$BIN" "Microsoft.AspNetCore.App 10.0.13 [/usr/share/dotnet/shared/Microsoft.AspNetCore.App]
+Microsoft.NETCore.App 10.0.13 [/usr/share/dotnet/shared/Microsoft.NETCore.App]"
+run "dotnet 10.0.13 patched"        0 'OK.*Microsoft.NETCore.App 10.0.13'
+newbin dn_old;  dn "$BIN" "Microsoft.NETCore.App 8.0.31 [/x]
+Microsoft.NETCore.App 9.0.21 [/y]"
+run "dotnet 8.0.31 one behind"      1 'VULNERABLE.*Microsoft.NETCore.App 8.0.31.*>= 8.0.32'
+run "dotnet 9.0.21 (boundary) ok"   1 'OK.*Microsoft.NETCore.App 9.0.21'
+newbin dn_eol;  dn "$BIN" "Microsoft.NETCore.App 6.0.36 [/x]"
+run "dotnet 6 is end of support"    1 'VULNERABLE.*6.0.36.*no upstream fix'
+newbin dn_old5; dn "$BIN" "Microsoft.NETCore.App 3.1.32 [/x]"
+run "dotnet 3.1 -> older rule"      1 'VULNERABLE.*3.1.32.*Unsupported'
+newbin dn_new;  dn "$BIN" "Microsoft.NETCore.App 11.0.0 [/x]"
+run "dotnet 11 newer -> check"      2 'CHECK.*11.0.0'
+newbin dn_pre;  dn "$BIN" "Microsoft.NETCore.App 10.0.0-rc.2.25502.107 [/x]"
+run "dotnet preview -> check"       2 'CHECK.*10.0.0-rc.2.25502.107.*preview'
+newbin dn_sdk;  dn "$BIN" "Microsoft.WindowsDesktop.App 8.0.1 [/x]"
+run "dotnet other frameworks only"  0 'no shared runtime installed'
+newbin dn_asp;  dn "$BIN" "Microsoft.AspNetCore.App 8.0.31 [/x]"
+run "dotnet ASP.NET Core runtime is checked too" 1 'VULNERABLE.*Microsoft.AspNetCore.App 8.0.31'
+newbin dn_dup;  dn "$BIN" "Microsoft.NETCore.App 8.0.32 [/a]
+Microsoft.NETCore.App 8.0.32 [/b]"
+dup_count() { PATH="$BIN:$TOOLS" PATCHCHECK_SEARCH_DIRS="$BIN" PATCHCHECK_PROC_DIR="$WORK/noproc" "$BASH" "$ROOT/patchcheck.sh" 2>&1 | grep -c "Microsoft.NETCore.App 8.0.32"; }
+check "same runtime listed twice is reported once" test "$(dup_count)" = 1
+
 newbin empty
 run "nothing installed"           0 'no PHP binary found'
 newbin junk;      stub "$BIN" php "not a version"; stub "$BIN" node "garbage"

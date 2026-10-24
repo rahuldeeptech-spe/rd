@@ -61,6 +61,11 @@ Test-Case 'node 22 one behind'       @{ node = 'v22.23.3' } 1 '>= 22\.23\.4'
 Test-Case 'go 1.25 unconfirmed'      @{ go = 'go version go1.25.13 linux/amd64' } 2 'CHECK\].*go 1\.25\.13'
 Test-Case 'go1.26 (no patch)=1.26.0' @{ go = 'go version go1.26 linux/amd64' } 1 'VULNERABLE\].*go 1\.26\.0'
 Test-Case 'vulnerable beats check'   @{ php = 'PHP 8.3.1 (cli)'; go = 'go version go1.25.1 linux/amd64' } 1 'VULNERABLE'
+Test-Case 'dotnet 8.0.31 one behind' @{ dotnet = 'Microsoft.NETCore.App 8.0.31 [C:\x]' } 1 'VULNERABLE\].*Microsoft\.NETCore\.App 8\.0\.31.*>= 8\.0\.32'
+Test-Case 'dotnet 10.0.13 patched'   @{ dotnet = 'Microsoft.NETCore.App 10.0.13 [C:\x]' } 0 'OK\].*Microsoft\.NETCore\.App 10\.0\.13'
+Test-Case 'dotnet ASP.NET is checked' @{ dotnet = 'Microsoft.AspNetCore.App 9.0.20 [C:\x]' } 1 'VULNERABLE\].*Microsoft\.AspNetCore\.App 9\.0\.20'
+Test-Case 'dotnet preview -> check'  @{ dotnet = 'Microsoft.NETCore.App 10.0.0-rc.2.25502.107 [C:\x]' } 2 'CHECK\].*preview'
+Test-Case 'dotnet 11 newer -> check' @{ dotnet = 'Microsoft.NETCore.App 11.0.0 [C:\x]' } 2 'CHECK\].*11\.0\.0'
 Test-Case 'nothing installed'        @{} 0 'no PHP binary found'
 Test-Case 'quiet hides OK'           @{ php = 'PHP 8.3.36 (cli)'; node = 'v20.1.0' } 1 'node 20\.1\.0' @('-Quiet')
 Test-Case '--version'                @{} 0 '^patchcheck \d' @('-Version')
