@@ -1,5 +1,10 @@
 # patchcheck
 
+[![CI](https://github.com/rahuldeeptech-spe/rd/actions/workflows/ci.yml/badge.svg)](https://github.com/rahuldeeptech-spe/rd/actions/workflows/ci.yml)
+[![Daily security report](https://github.com/rahuldeeptech-spe/rd/actions/workflows/daily-report.yml/badge.svg)](https://github.com/rahuldeeptech-spe/rd/actions/workflows/daily-report.yml)
+
+**[Today's security report](https://github.com/rahuldeeptech-spe/rd/blob/reports/README.md)** (refreshed daily at 05:17 UTC) · [Latest release](https://github.com/rahuldeeptech-spe/rd/releases/latest) · [Open alerts](https://github.com/rahuldeeptech-spe/rd/issues?q=is%3Aissue+is%3Aopen+%5Balert%5D)
+
 Read-only checker for the October 2026 **PHP2Shell** (CVE-2026-109618 / CVE-2026-109619), **Node.js**
 (Oct 21 release) and **Go** (CVE-2026-111943) advisories. It tells you whether the PHP, Node.js and Go
 on a machine are at a patched version, and on Linux whether a running service still holds old code.
