@@ -145,7 +145,7 @@
     }
   ],
   "complete": true,
-  "generated_at": "2026-10-24T10:25:09Z",
+  "generated_at": "2026-10-24T11:30:24Z",
   "items": {
     "ghsa": [
       {
@@ -4283,17 +4283,6 @@
       {
         "alert": false,
         "date": "2026-10-20",
-        "id": "CVE-2026-9589",
-        "score": 9.3,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "Missing authorization in the configuration cascade operations of the Collaboration Server in Unblu inc. Unblu Spark 7.0 through 8.36.1-hotfix.0, on on-premises and cloud deployments, allows an authenticated remote attacker to read and change configuration properties of entities they aren't authorized to access, including other users, other accounts and, in Unblu Cloud, other customers' accounts, via configuration read and write operations that target those entities.\n\n\n\nThe Collaboration Server doesn't check whether the user reading or changing configuration has access to the entity the configuration belongs to. With certain non-default configuration validation settings, a registered user can additionally write configuration properties they aren't allowed to edit, in any scope.\n\n\n\nExploitation requires an authenticated session but no user interaction.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-9589",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-10-20",
         "id": "CVE-2016-20101",
         "score": 9.2,
         "severity": "CRITICAL",
@@ -5805,10 +5794,10 @@
       "ok": true
     },
     {
-      "count": 344,
+      "count": 343,
       "label": "NVD (new CVEs)",
       "name": "nvd",
-      "note": "3360 CVEs published in window; showing CRITICAL (9.0+) and CVEs about a watched product itself; 206 more only mention one (apps, plugins, libraries) and are not listed",
+      "note": "3335 CVEs published in window; showing CRITICAL (9.0+) and CVEs about a watched product itself; 205 more only mention one (apps, plugins, libraries) and are not listed",
       "ok": true
     },
     {

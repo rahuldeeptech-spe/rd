@@ -1,6 +1,6 @@
 # Security report 2026-10-24
 
-Generated 2026-10-24 10:25 UTC by an automated job. Window: last 96 hours. Not a substitute for the official vendor advisories.
+Generated 2026-10-24 11:30 UTC by an automated job. Window: last 96 hours. Not a substitute for the official vendor advisories.
 
 ## Needs attention (11)
 
@@ -54,7 +54,7 @@ Generated 2026-10-24 10:25 UTC by an automated job. Window: last 96 hours. Not a
 - **CVE-2026-79849** CVSS 10.0 CRITICAL - Vulnerabilities in the affected interface of AOS-8 could allow an unauthenticated remote attacker to conduct SQL injection attacks against an affected AOS-8 instance. Successful exploitation could allow an attacker to e… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-79849)
 - **CVE-2026-79850** CVSS 10.0 CRITICAL - Vulnerabilities in the affected interface of AOS-8 could allow an unauthenticated remote attacker to bypass existing authentication controls and run arbitrary commands on the underlying host. Successful exploitation cou… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-79850)
 - **CVE-2026-79851** CVSS 10.0 CRITICAL - Buffer overflow vulnerabilities exist in the affected interface of AOS-10 that could lead to unauthenticated remote code execution. Successful exploitation could allow an attacker to execute arbitrary code as a privileg… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-79851)
-- ...and 319 more (see the source).
+- ...and 318 more (see the source).
 
 ## GitHub reviewed advisories (critical, plus high in watched ecosystems)
 
@@ -110,7 +110,7 @@ Generated 2026-10-24 10:25 UTC by an automated job. Window: last 96 hours. Not a
 | Source | Status | Items | Note |
 |---|---|---|---|
 | CISA Known Exploited Vulnerabilities | OK | 8 | catalog 2026.10.23 |
-| NVD \(new CVEs\) | OK | 344 | 3360 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 206 more only mention one \(apps, plugins, libraries\) and are no… |
+| NVD \(new CVEs\) | OK | 343 | 3335 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 205 more only mention one \(apps, plugins, libraries\) and are no… |
 | GitHub Advisory Database | OK | 112 | critical in all ecosystems; high only for composer, go, npm, pip |
 | nodejs.org release index | OK | 3 | 875 versions in index |
 | go.dev downloads | OK | 0 | branches: 1.26, 1.27 |
