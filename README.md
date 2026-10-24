@@ -158,6 +158,15 @@ python3 monitor/exposed.py https://your-site.example
 
 Fetches a fixed list of paths that should never be public (`/.env`, `/.git/HEAD`, `/phpinfo.php`, `/server-status`, config backups, `.htpasswd`, ...) and reports a path only when the response looks like the real file, so a custom 404 page is not a finding. It never prints file content (it may hold secrets), does not follow redirects and sends one GET per path. Exit codes: 0 none exposed, 1 exposed, 2 usage, 3 site unreachable (never "clean"). **Only scan sites you own or may test.**
 
+## Audit PHP security settings
+
+```bash
+python3 monitor/phpini.py                                  # the php on PATH
+python3 monitor/phpini.py --ini /etc/php/8.3/fpm/php.ini   # what your website really uses (php-fpm and the CLI read different files)
+```
+
+Flags risky settings (`allow_url_include`, `display_errors`, `expose_php`, session cookie flags, empty `disable_functions` / `open_basedir`, ...) with a severity and the value to set. Read-only. A key a file does not mention is not judged. Exit codes: 0 nothing HIGH, 1 a HIGH finding, 2 usage, 3 php could not be run.
+
 ## Container image
 
 Each release also publishes `ghcr.io/rahuldeeptech-spe/rd` (tags `latest` and `vX.Y.Z`, with a build attestation). It scans what you mount into it,
