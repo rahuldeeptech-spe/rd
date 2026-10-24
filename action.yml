@@ -30,7 +30,7 @@ runs:
         PC_ARGS: ${{ inputs.args }}
         PC_DIR: ${{ github.action_path }}
       run: |
-        set -uo pipefail
+        set +e -uo pipefail   # the runner starts bash with -e; patchcheck exits non-zero on purpose
         case "$PC_FAIL_ON" in vulnerable|manual|never) ;; *) echo "::error::fail-on must be vulnerable, manual or never (got: $PC_FAIL_ON)"; exit 64 ;; esac
         set -f   # no glob expansion of the args
         # shellcheck disable=SC2206  # intentional word splitting
