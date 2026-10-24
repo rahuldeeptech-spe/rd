@@ -127,3 +127,16 @@ jobs:
           docker run --rm patchcheck:ci --no-processes
           rc=$?
           test "$rc" -le 2
+
+  lockscan-live:
+    name: lockscan against OSV.dev (informational)
+    runs-on: ubuntu-latest
+    continue-on-error: true   # talks to a public API; a hiccup there must not block merges
+    steps:
+      - uses: actions/checkout@v7
+      - name: lodash 4.17.15 has known vulnerabilities, so the scan must exit 1
+        run: |
+          set +e
+          python3 monitor/lockscan.py monitor/testdata/lock
+          rc=$?
+          test "$rc" -eq 1

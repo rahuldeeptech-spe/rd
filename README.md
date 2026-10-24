@@ -137,6 +137,19 @@ activity; the daily commit normally counts, but check the Actions tab if reports
 
 Run it yourself: `python3 monitor/monitor.py --out out` (Python 3.9+, standard library only; `--sources node` runs a single feed).
 
+## Scan your dependencies (lock files)
+
+`patchcheck` checks the runtimes on a machine. To check the packages a project depends on, scan its lock files:
+
+```bash
+python3 monitor/lockscan.py .                    # package-lock.json, composer.lock, go.mod, requirements.txt (recursive)
+python3 monitor/lockscan.py --fail-on high .     # exit 1 only for HIGH/CRITICAL (or unknown severity)
+```
+
+It looks up each exact version in [OSV.dev](https://osv.dev) (which includes the GitHub Advisory Database), so it needs network and sends package
+names and versions, nothing else. Ranges like `^1.2` or `>=2` are not versions and are printed as skipped. If the lookup fails the exit code is 3,
+never "clean". Exit codes: 0 nothing found, 1 found, 2 usage, 3 lookup failed. It is also in the release tarball.
+
 ## Container image
 
 Each release also publishes `ghcr.io/rahuldeeptech-spe/rd` (tags `latest` and `vX.Y.Z`, with a build attestation). It scans what you mount into it,

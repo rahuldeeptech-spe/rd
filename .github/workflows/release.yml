@@ -42,7 +42,7 @@ jobs:
       - name: package
         run: |
           mkdir dist
-          tar czf "dist/patchcheck-${TAG}.tar.gz" patchcheck.sh patchcheck.ps1 advisories.tsv monitor/monitor.py monitor/propose.py monitor/notify.py monitor/pages.py monitor/watchlist.tsv README.md LICENSE CHANGELOG.md
+          tar czf "dist/patchcheck-${TAG}.tar.gz" patchcheck.sh patchcheck.ps1 advisories.tsv monitor/monitor.py monitor/propose.py monitor/notify.py monitor/pages.py monitor/lockscan.py monitor/watchlist.tsv README.md LICENSE CHANGELOG.md
           cp install.sh dist/install.sh
           (cd dist && sha256sum ./* > SHA256SUMS && cat SHA256SUMS)
       - name: attest build provenance
