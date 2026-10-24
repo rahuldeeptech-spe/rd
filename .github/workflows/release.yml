@@ -3,6 +3,11 @@ name: Release
 on:
   push:
     tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to create from the current main, e.g. v1.0.0 (must equal VERSION in patchcheck.sh)'
+        required: true
 
 permissions:
   contents: write
@@ -10,18 +15,30 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event.inputs.tag || github.ref_name }}
     steps:
       - uses: actions/checkout@v7
-      - name: tag must match the version in the script
-        run: grep -q "^VERSION=\"${GITHUB_REF_NAME#v}\"" patchcheck.sh
+      - name: tag must look like vX.Y.Z and match the version in the script
+        run: |
+          set -euo pipefail
+          printf '%s' "$TAG" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+$'
+          grep -q "^VERSION=\"${TAG#v}\"" patchcheck.sh
+      - name: tag must not be released already (manual runs)
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then echo "release $TAG already exists"; exit 1; fi
       - name: tests
         run: ./tests/run.sh
       - name: package
         run: |
           mkdir dist
-          tar czf "dist/patchcheck-${GITHUB_REF_NAME}.tar.gz" patchcheck.sh patchcheck.ps1 advisories.tsv monitor/monitor.py monitor/watchlist.tsv README.md LICENSE CHANGELOG.md
+          tar czf "dist/patchcheck-${TAG}.tar.gz" patchcheck.sh patchcheck.ps1 advisories.tsv monitor/monitor.py monitor/watchlist.tsv README.md LICENSE CHANGELOG.md
           (cd dist && sha256sum ./* > SHA256SUMS && cat SHA256SUMS)
       - name: publish
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release create "$GITHUB_REF_NAME" dist/* --generate-notes --title "patchcheck $GITHUB_REF_NAME"
+        run: |
+          gh release create "$TAG" dist/* --target "$GITHUB_SHA" --generate-notes --title "patchcheck $TAG"
