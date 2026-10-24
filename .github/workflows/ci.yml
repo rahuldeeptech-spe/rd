@@ -25,9 +25,12 @@ jobs:
       - uses: actions/checkout@v7
       - name: shellcheck
         if: runner.os == 'Linux'
-        run: shellcheck -x patchcheck.sh tests/run.sh monitor/open_review.sh monitor/test_open_review.sh
+        run: shellcheck -x patchcheck.sh tests/run.sh install.sh tests/test_install.sh monitor/open_review.sh monitor/test_open_review.sh
       - name: tests
         run: ./tests/run.sh
+      - name: installer tests (Linux only, they need sha256sum and GNU tar)
+        if: runner.os == 'Linux'
+        run: ./tests/test_install.sh
       - name: smoke run (real tools on the runner, report only)
         run: ./patchcheck.sh --no-processes || true
 
