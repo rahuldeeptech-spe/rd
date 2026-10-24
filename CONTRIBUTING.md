@@ -13,9 +13,14 @@ runtime  branch  status  fixed  id  source  note
   if you only have one, say so in `note` and use `unconfirmed` until it is confirmed.
 - Bump `#@ updated YYYY-MM-DD` and add a line to `CHANGELOG.md`.
 
+## Watching more products
+Add a line to `monitor/watchlist.tsv`: `name<TAB>keywords<TAB>ecosystems`. Keywords match whole words, case-insensitive
+(avoid short or common words such as `go`). Ecosystems (`npm`, `pip`, `composer`, `go`, `maven`, ...) decide which
+high-severity GitHub advisories are listed; critical ones are always listed.
+
 ## Before opening a PR
 ```bash
-make check                       # shellcheck + bash tests (+ PowerShell tests if pwsh is installed)
+make check                       # shellcheck + bash tests + monitor tests (+ PowerShell tests if pwsh is installed)
 ```
 Add a test case for any behaviour change in both `tests/run.sh` and `tests/run.ps1`.
 

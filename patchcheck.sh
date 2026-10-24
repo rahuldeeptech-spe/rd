@@ -12,6 +12,7 @@ VERSION="1.0.0"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DATA="${PATCHCHECK_DATA:-$SCRIPT_DIR/advisories.tsv}"
 PROC_DIR="${PATCHCHECK_PROC_DIR:-/proc}"
+MANAGER_GLOBS="${PATCHCHECK_MANAGER_GLOBS:-node:$HOME/.nvm/versions/node/*/bin/node node:$HOME/.asdf/installs/nodejs/*/bin/node node:$HOME/.local/share/fnm/node-versions/*/installation/bin/node node:$HOME/.fnm/node-versions/*/installation/bin/node node:$HOME/.volta/tools/image/node/*/bin/node php:$HOME/.phpbrew/php/*/bin/php php:$HOME/.asdf/installs/php/*/bin/php go:$HOME/sdk/go*/bin/go go:$HOME/.asdf/installs/golang/*/go/bin/go go:/usr/local/go/bin/go}"
 SEARCH_DIRS="${PATCHCHECK_SEARCH_DIRS:-/usr/sbin /usr/bin /usr/local/sbin /usr/local/bin /opt/remi/*/root/usr/bin /opt/remi/*/root/usr/sbin}"
 TAB="$(printf '\t')"
 
@@ -19,6 +20,8 @@ OPT_DOCKER=0
 OPT_JSON=0
 OPT_QUIET=0
 OPT_PROCS=1
+OPT_MANAGERS=0
+GO_BIN_DIR=""
 RESULTS=""
 SEEN=""
 DATA_UPDATED="unknown"
@@ -32,6 +35,8 @@ Usage: patchcheck.sh [options]
   --json          machine-readable output
   -q, --quiet     only print problems
   --no-processes  skip the stale-process check (Linux /proc)
+  --managers      also check runtimes from nvm, fnm, volta, asdf, phpbrew, ~/sdk/go*
+  --go-binaries DIR  scan Go binaries under DIR for the toolchain they were built with (needs go)
   --data FILE     use a different advisories file (default: advisories.tsv next to the script)
   -V, --version   print version
   -h, --help      this help
@@ -48,6 +53,8 @@ while [ $# -gt 0 ]; do
     --json) OPT_JSON=1 ;;
     -q|--quiet) OPT_QUIET=1 ;;
     --no-processes) OPT_PROCS=0 ;;
+    --managers) OPT_MANAGERS=1 ;;
+    --go-binaries) [ $# -ge 2 ] || die "--go-binaries needs a directory"; GO_BIN_DIR="$2"; shift ;;
     --data) [ $# -ge 2 ] || die "--data needs a file"; DATA="$2"; shift ;;
     -V|--version) echo "patchcheck $VERSION"; exit 0 ;;
     -h|--help) usage; exit 0 ;;
@@ -173,12 +180,26 @@ check_php_binaries() {
   [ "$found" = 1 ] || add_result "host php" php "-" "NONE" "no PHP binary found (web PHP may live elsewhere: check php-fpm / mod_php / IIS)" ""
 }
 
+node_version_of() { # node_version_of FILE -> version or nothing
+  local out
+  out="$("$1" -v 2>/dev/null | head -n1 | sed 's/^v//')"
+  valid_version "$out" && echo "$out"
+}
+
+go_version_of() { # go_version_of FILE -> version (go1.26 is reported as 1.26.0) or nothing
+  local out
+  out="$("$1" version 2>/dev/null | sed -nE 's/.* go([0-9]+\.[0-9]+(\.[0-9]+)?).*/\1/p' | head -n1)"
+  valid_version "$out" || return 0
+  [ "$(echo "$out" | tr -cd . | wc -c | tr -d ' ')" = 1 ] && out="$out.0"
+  echo "$out"
+}
+
 check_node() {
   local f v found=0 name
   for name in node nodejs; do
     f="$(command -v "$name" 2>/dev/null)" || continue
-    v="$("$f" -v 2>/dev/null | head -n1 | sed 's/^v//')"
-    valid_version "$v" || continue
+    v="$(node_version_of "$f")"
+    [ -n "$v" ] || continue
     seen_before "node:$(real_path "$f"):$v" && continue
     found=1
     evaluate "host $name" node "$v"
@@ -189,11 +210,60 @@ check_node() {
 check_go() {
   local f v
   f="$(command -v go 2>/dev/null)" || { add_result "host go" go "-" "NONE" "go not found" ""; return; }
-  v="$("$f" version 2>/dev/null | sed -nE 's/.* go([0-9]+\.[0-9]+(\.[0-9]+)?).*/\1/p' | head -n1)"
-  valid_version "$v" || { add_result "host go" go "-" "NONE" "could not read Go version" ""; return; }
-  # "go1.26" (no patch) is the .0 release
-  [ "$(echo "$v" | tr -cd . | wc -c | tr -d ' ')" = 1 ] && v="$v.0"
-  evaluate "host go" go "$v"
+  v="$(go_version_of "$f")"
+  [ -n "$v" ] || { add_result "host go" go "-" "NONE" "could not read Go version" ""; return; }
+  seen_before "go:$(real_path "$f"):$v" || evaluate "host go" go "$v"
+}
+
+# Version managers keep old runtimes in $HOME that are not on PATH but still run (opt-in: --managers).
+check_managers() {
+  local entry rt pat f v label
+  for entry in $MANAGER_GLOBS; do
+    rt="${entry%%:*}"; pat="${entry#*:}"
+    for f in $pat; do
+      [ -f "$f" ] && [ -x "$f" ] || continue
+      v=""
+      case "$rt" in
+        node) v="$(node_version_of "$f")" ;;
+        php) v="$(php_version_of "$f")" ;;
+        go) v="$(go_version_of "$f")" ;;
+      esac
+      [ -n "$v" ] || continue
+      seen_before "$rt:$(real_path "$f"):$v" && continue
+      label="$(printf '%s' "$f" | sed "s#^$HOME#~#")"
+      evaluate "manager $label" "$rt" "$v"
+    done
+  done
+}
+
+# A Go binary carries the toolchain it was built with, so upgrading Go does not fix it (opt-in: --go-binaries DIR).
+check_go_binaries() {
+  local dir="$1" gobin path ver n=0 found
+  gobin="$(command -v go 2>/dev/null)" || { add_result "go binaries" go "-" "NONE" "the go toolchain is needed to scan binaries (go version DIR)" ""; return; }
+  [ -d "$dir" ] || { add_result "go binaries" go "-" "NONE" "not a directory: $dir" ""; return; }
+  found="$("$gobin" version "$dir" 2>/dev/null | sed -nE 's/^(.+): go([0-9]+\.[0-9]+(\.[0-9]+)?)( .*)?$/\1\t\2/p' | head -n 500)"
+  while IFS="$TAB" read -r path ver; do
+    [ -n "$path" ] || continue
+    n=$((n + 1))
+    [ "$(echo "$ver" | tr -cd . | wc -c | tr -d ' ')" = 1 ] && ver="$ver.0"
+    evaluate "go-binary $path" go "$ver"
+  done <<EOF
+$found
+EOF
+  [ "$n" -gt 0 ] || add_result "go binaries" go "-" "NONE" "no Go binaries found under $dir" ""
+}
+
+# mod_php runs inside Apache, so no php binary reveals its version.
+check_apache_modphp() {
+  local c out
+  for c in apache2ctl apachectl httpd; do
+    command -v "$c" >/dev/null 2>&1 || continue
+    out="$("$c" -M 2>/dev/null)" || continue
+    if printf '%s' "$out" | grep -Eq 'php[0-9]*_module'; then
+      add_result "apache mod_php ($c)" php "-" "CHECK" "mod_php is loaded; its PHP version cannot be read from here. Check the libapache2-mod-php / php package version and restart Apache after upgrading" ""
+      return
+    fi
+  done
 }
 
 # A long-running process whose binary was replaced on disk still runs the old, vulnerable code.
@@ -235,8 +305,11 @@ json_str() { printf '%s' "$1" | sed -e 's/\\/\\\\/g' -e 's/"/\\"/g'; }
 count_state() { printf '%s' "$RESULTS" | awk -F'\t' -v s="$1" '$4 == s {n++} END {print n + 0}'; }
 
 check_php_binaries
+check_apache_modphp
 check_node
 check_go
+[ "$OPT_MANAGERS" = 1 ] && check_managers
+[ -n "$GO_BIN_DIR" ] && check_go_binaries "$GO_BIN_DIR"
 [ "$OPT_PROCS" = 1 ] && check_stale_processes
 [ "$OPT_DOCKER" = 1 ] && check_docker
 
