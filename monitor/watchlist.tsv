@@ -1,13 +1,13 @@
 # Products the daily report watches closely.
-# name<TAB>keywords<TAB>GitHub advisory ecosystems for high-severity items ('-' for none)<TAB>core pattern ('-' for none)
+# name<TAB>keywords<TAB>GitHub advisory ecosystems for high-severity items ('-' for none)<TAB>extra pattern ('-' for none)
 # Keywords match whole words, case-insensitive: a hit means the CVE MENTIONS the product.
-# The optional core pattern (a Python regex, case-insensitive) decides whether the CVE is ABOUT the product itself.
-# Only core hits raise alerts, so a WordPress plugin that says 'PHP' does not look like a PHP vulnerability.
-# Products without a core pattern treat every mention as core.
-php	php,php-fpm,frankenphp	composer	\bPHP\s+(?:before|prior to|through|up to|versions?\s+\d|\d+\.\d+)|\bphp-src\b|\bPHP[- ]?FPM\b|\bPHP (?:core|interpreter|engine|runtime|extension|stream wrapper)\b|\bext/[a-z0-9_]+\b|\bFrankenPHP\b
-node.js	node.js,nodejs	npm	\b(?:flaw|vulnerabilit\w*|issue|bug|weakness) in Node\.js\b|\bNode\.js (?:v?\d+\.\d+|before|prior to|through|\d+\.x)|\bnodejs/node\b|\bNode\.js\b(?=.{0,80}\b(?:DNS|TLS|HTTPS?|HTTP/2|crypto|zlib|Brotli|permission model|child_process|inspector|undici|OpenSSL|V8)\b)
-go	golang,go standard library	go	\bGo (?:standard library|runtime|toolchain|compiler)\b|\bcmd/go\b|\bgolang/go\b|\b(?:net/http|html/template|text/template|os/exec|crypto/\w+|archive/\w+|encoding/\w+)\b
-python	python,cpython	pip	\bCPython\b|\bPython (?:interpreter|runtime|standard library|stdlib)\b|\bin Python (?:3\.\d+\.\d+|before|prior to)\b|\b(?:urllib|http\.client|tarfile|zipfile|pickle|asyncio|ssl|email|xml\.\w+) module\b
+# A CVE is ABOUT the product when the product is the subject of its description (the words before it are only things like
+# 'A flaw in', 'In', 'A heap overflow in the'), or when the optional extra pattern (Python regex, case-insensitive) matches.
+# Only 'about' hits raise alerts: 'PhpSpreadsheet is a PHP library' or 'Traefik ... Ingress NGINX provider' do not.
+php	php,php-fpm,frankenphp	composer	\bphp-src\b|\bFrankenPHP\b|\bin PHP versions?\s+\d
+node.js	node.js,nodejs	npm	\bnodejs/node\b
+go	golang,go standard library,go toolchain	go	\bcmd/go\b|\bgolang/go\b|(?:^|\b(?:in|the)\s+)(?:net/http|html/template|text/template|os/exec|crypto/\w+|archive/\w+|encoding/\w+)\b
+python	python,cpython	pip	-
 openssl	openssl	-	-
 nginx	nginx	-	-
 apache-httpd	apache http server,apache httpd	-	-
