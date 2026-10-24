@@ -141,7 +141,9 @@ foreach ($p in (Get-PhpCandidates)) {
         try { $real = (Resolve-Path -LiteralPath $p).ProviderPath } catch { $real = $p }
         if (Test-FirstSeen "php:${real}:$v") {
             $foundPhp = $true
-            Test-Version ("host " + (Split-Path -Leaf $p)) 'php' $v
+            # strip only Windows executable extensions: "php8.3" must stay "php8.3"
+            $leaf = (Split-Path -Leaf $p) -replace '\.(exe|cmd|bat)$', ''
+            Test-Version "host $leaf" 'php' $v
         }
     }
 }

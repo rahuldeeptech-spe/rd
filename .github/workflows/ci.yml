@@ -52,7 +52,9 @@ jobs:
         run: |
           Install-Module PSScriptAnalyzer -Force -Scope CurrentUser
           # Write-Host is deliberate: this is an interactive CLI report, not pipeline output.
-          $r = Invoke-ScriptAnalyzer -Path ./patchcheck.ps1, ./tests/run.ps1 -ExcludeRule PSAvoidUsingWriteHost
+          $r = foreach ($f in './patchcheck.ps1', './tests/run.ps1') {
+            Invoke-ScriptAnalyzer -Path $f -ExcludeRule PSAvoidUsingWriteHost
+          }
           $r | Format-Table RuleName, Severity, ScriptName, Line, Message -AutoSize -Wrap
           if (@($r | Where-Object Severity -eq 'Error').Count -gt 0) { exit 1 }
 

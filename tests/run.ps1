@@ -49,6 +49,7 @@ function Test-Case([string]$name, [hashtable]$tools, [int]$wantExit, [string]$pa
 $go = 'go version go1.26.10 windows/amd64'
 Test-Case 'all patched'              @{ php = 'PHP 8.3.36 (cli)'; node = 'v24.22.1'; go = $go } 0 'everything found is patched'
 Test-Case 'php one patch behind'     @{ php = 'PHP 8.3.35 (cli)'; node = 'v24.22.1'; go = $go } 1 'VULNERABLE\].*php 8\.3\.35.*>= 8\.3\.36'
+if (-not $IsWin) { Test-Case 'label drops .exe' @{ 'php.exe' = 'PHP 8.3.35 (cli)' } 1 'host php 8\.3\.35' }
 Test-Case 'boundary: exactly fixed'  @{ php = 'PHP 8.5.12 (cli)' } 0 'OK\].*php 8\.5\.12'
 Test-Case 'php 8.1 backport only'    @{ php = 'PHP 8.1.30 (cli)' } 1 'VULNERABLE\].*php 8\.1\.30.*no upstream fix'
 Test-Case 'php newer than data'      @{ php = 'PHP 8.6.0 (cli)' } 2 'CHECK\].*php 8\.6\.0'
