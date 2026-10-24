@@ -92,6 +92,20 @@ activity; the daily commit normally counts, but check the Actions tab if reports
 
 Run it yourself: `python3 monitor/monitor.py --out out` (Python 3.9+, standard library only; `--sources node` runs a single feed).
 
+## Weekly data review
+
+`advisories.tsv` is only as good as the person who last read the release notes. Every Monday (06:43 UTC) the
+[`data-review`](.github/workflows/data-review.yml) workflow compares the newest PHP, Node.js and Go releases with what the file has been reviewed up to:
+
+- **A draft pull request** advances the `#@ reviewed` lines for releases that look routine. **Merging it is your statement that you read the notes.**
+  It never changes a fixed version and never invents an advisory.
+- **An issue** lists what needs a person: a Node.js release that nodejs.org flags as a *security* release (it is never marked reviewed by the bot;
+  the daily report keeps raising a REVIEW alert until someone adds the rows), and new upstream branches with no rule.
+- If GitHub refuses to let Actions open pull requests (Settings > Actions > General > "Allow GitHub Actions to create and approve pull requests"),
+  the workflow opens an issue with a ready-made compare link instead.
+
+php.net and go.dev publish no security flag, so for those the pull request says so and links the release notes.
+
 ## What it checks
 
 | | PHP | Node.js | Go |

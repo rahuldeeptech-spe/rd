@@ -24,6 +24,12 @@ Add a line to `monitor/watchlist.tsv`: `name<TAB>keywords<TAB>ecosystems<TAB>ext
 - `deny` is an optional Python regex that vetoes a match for phrasings that look like the product but are not ("A Docker image of ..."). Anchor it with `^` when you only mean the start of the description.
 - `ecosystems` (`npm`, `pip`, `composer`, `go`, `maven`, ...) decide which high-severity GitHub advisories are listed; critical ones are always listed.
 
+## Handling the weekly data-review pull request
+It is a draft. For each row in its table: open the notes (the link is in the row), look for security fixes.
+- No security fix: merge the pull request. That only moves the `#@ reviewed` lines and silences the daily REVIEW alert up to that version.
+- A security fix: do not merge as is. Add rows to `advisories.tsv` (new advisory id, the fixed version, an https source) and remove that line from the diff.
+  A Node.js security release is never in the diff; it is in the issue.
+
 ## Before opening a PR
 ```bash
 make check                       # shellcheck + bash tests + monitor tests (+ PowerShell tests if pwsh is installed)
