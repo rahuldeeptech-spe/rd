@@ -82,6 +82,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+      - name: Homebrew formula parses
+        run: ruby -c Formula/patchcheck.rb
       - name: every rule has 7 fields, a valid status and an https source
         run: |
           awk -F'\t' '!/^#/ && NF { if (NF != 7 || $3 !~ /^(fixed|eol|unconfirmed)$/ || $6 !~ /^https:\/\//) { print "bad rule: " $0; bad = 1 } } END { exit bad }' advisories.tsv

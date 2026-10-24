@@ -22,6 +22,16 @@ Maintained by [@rahuldeeptech-spe](https://github.com/rahuldeeptech-spe). Free, 
 
 ## Get it
 
+**Homebrew (macOS/Linux):**
+
+```bash
+brew tap rahuldeeptech-spe/rd https://github.com/rahuldeeptech-spe/rd
+brew install patchcheck
+patchcheck --no-processes
+```
+
+The formula (`Formula/patchcheck.rb`) pins a release tarball by SHA-256. It is updated by hand after each release (see CONTRIBUTING.md).
+
 **Recommended (Linux/macOS): the installer.** It downloads a release, verifies it, runs `patchcheck` and cleans up:
 
 ```bash
