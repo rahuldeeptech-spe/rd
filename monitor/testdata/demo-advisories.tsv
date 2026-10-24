@@ -1,4 +1,7 @@
-#@ updated 2026-01-01
+#@ updated 2026-10-24
+#@ reviewed php 8.4 8.4.27 2026-10-24
+#@ reviewed php 8.3 8.3.36 2026-10-24
+#@ reviewed go 1.26 1.26.10 2026-10-24
 # DEMO FIXTURE - not real data. Fixed versions are lowered on purpose so a dry run of monitor/propose.py against the live feeds has something to propose.
 # patchcheck advisory data. Single source of truth for patchcheck.sh and patchcheck.ps1.
 # Tab-separated, one rule per line. Use '-' for an empty field.
