@@ -137,6 +137,21 @@ activity; the daily commit normally counts, but check the Actions tab if reports
 
 Run it yourself: `python3 monitor/monitor.py --out out` (Python 3.9+, standard library only; `--sources node` runs a single feed).
 
+## Chat alerts, web page and feed
+
+Once a day, when the alert issue is opened, the workflow can also post a short digest to chat. Add any of these as
+repository secrets (Settings → Secrets and variables → Actions); channels without a secret are skipped:
+
+| Channel | Secrets |
+|---|---|
+| Telegram | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` |
+| Discord | `DISCORD_WEBHOOK_URL` |
+| Slack | `SLACK_WEBHOOK_URL` |
+
+The same run also writes `index.html` and an Atom `feed.xml` to the `reports` branch. To publish them as a page: Settings → Pages →
+Build and deployment → Source "Deploy from a branch" → branch `reports`, folder `/ (root)`. The page is then at
+`https://<owner>.github.io/<repo>/` and the feed at `.../feed.xml`, which any feed reader can follow.
+
 ## Weekly data review
 
 `advisories.tsv` is only as good as the person who last read the release notes. Every Monday (06:43 UTC) the
