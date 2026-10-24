@@ -19,7 +19,7 @@ jobs:
       - name: package
         run: |
           mkdir dist
-          tar czf "dist/patchcheck-${GITHUB_REF_NAME}.tar.gz" patchcheck.sh patchcheck.ps1 advisories.tsv README.md LICENSE CHANGELOG.md
+          tar czf "dist/patchcheck-${GITHUB_REF_NAME}.tar.gz" patchcheck.sh patchcheck.ps1 advisories.tsv monitor/monitor.py monitor/watchlist.tsv README.md LICENSE CHANGELOG.md
           (cd dist && sha256sum ./* > SHA256SUMS && cat SHA256SUMS)
       - name: publish
         env:
