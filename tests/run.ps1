@@ -31,9 +31,12 @@ function Invoke-Patchcheck([string]$bin, [string[]]$extra) {
     $env:PATCHCHECK_SEARCH_DIRS = $bin
     if ($IsWin) { $env:PATH = "$bin;$env:SystemRoot\System32" } else { $env:PATH = $bin }
     try {
-        $out = & $Pwsh -NoProfile -NonInteractive -File $Script @extra 2>&1 | Out-String
+        # Windows PowerShell 5.1 turns native stderr into a terminating error under 'Stop'; the exit code is what we assert on.
+        $ErrorActionPreference = 'Continue'
+        $out = & $Pwsh -NoProfile -NonInteractive -File $Script @extra 2>&1 | ForEach-Object { "$_" } | Out-String
         return [pscustomobject]@{ Code = $LASTEXITCODE; Out = $out }
     } finally {
+        $ErrorActionPreference = 'Stop'
         $env:PATH = $oldPath
         Remove-Item Env:\PATCHCHECK_SEARCH_DIRS -ErrorAction SilentlyContinue
     }
