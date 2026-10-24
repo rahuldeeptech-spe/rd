@@ -27,7 +27,10 @@ BRANCH="${BRANCH:-data-review/auto}"
 TITLE_PREFIX="${TITLE_PREFIX:-}"
 
 BODY="$REVIEW_OUT/body.md"
-[ -r "$BODY" ] && [ -r "$REVIEW_OUT/summary.json" ] || { echo "open_review: missing body.md or summary.json in $REVIEW_OUT" >&2; exit 2; }
+if [ ! -r "$BODY" ] || [ ! -r "$REVIEW_OUT/summary.json" ]; then
+  echo "open_review: missing body.md or summary.json in $REVIEW_OUT" >&2
+  exit 2
+fi
 
 field() { python3 -c 'import json,sys; v=json.load(open(sys.argv[1]))[sys.argv[2]]; print(str(v).lower() if isinstance(v,bool) else v)' "$REVIEW_OUT/summary.json" "$1"; }
 CHANGED="$(field changed)"
