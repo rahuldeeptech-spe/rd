@@ -1,0 +1,10 @@
+# Products the daily report watches closely.
+# name<TAB>keywords (comma-separated, whole-word, case-insensitive)<TAB>GitHub advisory ecosystems for high-severity items ("-" for none)
+# Anything matching a keyword in CISA KEV or a scored NVD CVE is raised as an alert.
+php	php,php-fpm,frankenphp	composer
+node.js	node.js,nodejs	npm
+go	golang,go standard library	go
+python	python,cpython	pip
+openssl	openssl	-
+nginx	nginx	-
+apache-httpd	apache http server,apache httpd	-

@@ -58,6 +58,20 @@ jobs:
           $r | Format-Table RuleName, Severity, ScriptName, Line, Message -AutoSize -Wrap
           if (@($r | Where-Object Severity -eq 'Error').Count -gt 0) { exit 1 }
 
+  monitor:
+    name: monitor (python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.9', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python3 -m unittest discover -s monitor -v
+
   data:
     name: advisories.tsv sanity
     runs-on: ubuntu-latest

@@ -1,0 +1,92 @@
+name: Daily security report
+
+on:
+  schedule:
+    - cron: '17 5 * * *'   # 05:17 UTC every day
+  workflow_dispatch:
+    inputs:
+      hours:
+        description: Look-back window in hours (1-336)
+        default: '24'
+
+permissions:
+  contents: write   # push the reports branch
+  issues: write     # open an alert issue
+
+concurrency:
+  group: daily-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Unit tests
+        run: python3 -m unittest discover -s monitor
+
+      - name: Build report
+        id: build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HOURS: ${{ github.event.inputs.hours || '24' }}
+        run: |
+          set +e
+          python3 monitor/monitor.py --out out --hours "$HOURS"
+          echo "rc=$?" >> "$GITHUB_OUTPUT"
+          echo "date=$(date -u +%F)" >> "$GITHUB_OUTPUT"
+
+      - name: Publish to the reports branch
+        if: hashFiles('out/report.md') != ''
+        env:
+          D: ${{ steps.build.outputs.date }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git worktree add --detach "$RUNNER_TEMP/pub"
+          cd "$RUNNER_TEMP/pub"
+          if git ls-remote --exit-code --heads origin reports >/dev/null 2>&1; then
+            git fetch --depth=1 origin reports
+            git checkout -B reports FETCH_HEAD
+          else
+            git checkout --orphan reports
+            git rm -rf . >/dev/null 2>&1 || true
+          fi
+          mkdir -p archive
+          cp "$GITHUB_WORKSPACE/out/report.md" "archive/$D.md"
+          { cat "$GITHUB_WORKSPACE/out/report.md"; printf '\nPast reports: [archive/](archive/)\n'; } > README.md
+          cp "$GITHUB_WORKSPACE/out/report.json" latest.json
+          git add -A
+          if git diff --cached --quiet; then
+            echo "report unchanged, nothing to commit"
+          else
+            git commit -m "Security report $D"
+            git push origin HEAD:reports
+          fi
+
+      - name: Open an alert issue
+        if: hashFiles('out/alerts.md') != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          D: ${{ steps.build.outputs.date }}
+        run: |
+          set -euo pipefail
+          TITLE="[alert] Security alerts $D"
+          EXISTING="$(gh issue list --state all --search "\"$TITLE\" in:title" --json number --jq '.[0].number // empty')"
+          if [ -n "$EXISTING" ]; then
+            echo "issue #$EXISTING already exists for $D"
+          else
+            { cat out/alerts.md; printf '\nFull report: https://github.com/%s/blob/reports/README.md\n' "$GITHUB_REPOSITORY"; } > "$RUNNER_TEMP/body.md"
+            gh issue create --title "$TITLE" --body-file "$RUNNER_TEMP/body.md"
+          fi
+
+      - name: Fail the run if a source failed
+        if: steps.build.outputs.rc != '0'
+        env:
+          RC: ${{ steps.build.outputs.rc }}
+        run: |
+          echo "monitor exited with $RC: at least one source failed or the script crashed (the report says which)."
+          exit 1

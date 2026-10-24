@@ -102,12 +102,44 @@ if [ "$rc" = 1 ] && printf '%s' "$out" | grep -q 'RESTART.*pid 4242'; then PASS=
 out="$(PATH="$BIN:$TOOLS" PATCHCHECK_SEARCH_DIRS="$BIN" PATCHCHECK_PROC_DIR="$WORK/proc" "$BASH" "$ROOT/patchcheck.sh" --no-processes 2>&1)"; rc=$?
 check "--no-processes skips it" [ "$rc" = 0 ]
 
+# --managers: runtimes that are not on PATH
+newbin mgr; stub "$BIN" php "PHP 8.3.36 (cli)"
+MG="$WORK/home/.nvm/versions/node"; mkdir -p "$MG/v20.1.0/bin" "$MG/v24.22.1/bin"
+stub "$MG/v20.1.0/bin" node v20.1.0; stub "$MG/v24.22.1/bin" node v24.22.1
+export PATCHCHECK_MANAGER_GLOBS="node:$MG/*/bin/node"
+run "managers: ignored unless asked"   0 'everything found is patched'
+run "managers: old node is reported"   1 'VULNERABLE.*manager .*v20\.1\.0/bin/node 20\.1\.0' --managers
+run "managers: patched node is OK"     1 'OK.*manager .*v24\.22\.1/bin/node 24\.22\.1' --managers
+unset PATCHCHECK_MANAGER_GLOBS
+
+# --go-binaries: the toolchain baked into a built binary
+newbin gob
+cat > "$BIN/go" <<'GOEOF'
+#!/bin/sh
+if [ "$#" -eq 1 ]; then echo "go version go1.26.10 linux/amd64"; else printf '%s\n' "$2/app: go1.24.7" "$2/tool: go1.26.10 X:boringcrypto"; fi
+GOEOF
+chmod +x "$BIN/go"; mkdir -p "$WORK/gobins"
+run "go-binaries: old toolchain flagged"  2 'CHECK.*go-binary .*/app 1\.24\.7'    --go-binaries "$WORK/gobins"
+run "go-binaries: patched one is OK"      2 'OK.*go-binary .*/tool 1\.26\.10'     --go-binaries "$WORK/gobins"
+run "go-binaries: not a directory"        0 'not a directory'                       --go-binaries "$WORK/nope"
+newbin gob2; printf '#!/bin/sh\nif [ "$#" -eq 1 ]; then echo "go version go1.26.10 linux/amd64"; fi\n' > "$BIN/go"; chmod +x "$BIN/go"
+run "go-binaries: none found"             0 'no Go binaries found'                  --go-binaries "$WORK/gobins"
+newbin gob3
+run "go-binaries: needs go itself"        0 'toolchain is needed'                   --go-binaries "$WORK/gobins"
+
+# Apache mod_php hides its version from every binary
+newbin mp;  stub "$BIN" php "PHP 8.3.36 (cli)"; printf '#!/bin/sh\necho " php_module (shared)"\n' > "$BIN/apachectl"; chmod +x "$BIN/apachectl"
+run "mod_php loaded -> manual check"      2 'CHECK.*apache mod_php'
+newbin mp2; stub "$BIN" php "PHP 8.3.36 (cli)"; printf '#!/bin/sh\necho " core_module (static)"\n' > "$BIN/apachectl"; chmod +x "$BIN/apachectl"
+run "apache without php stays quiet"      0 'everything found is patched'
+
 # usage errors
 BIN="$WORK/bin.empty"
 run "unknown flag"                64 'unknown option'                      --bogus
 run "missing data file"           64 'not readable'                        --data "$WORK/nope.tsv"
 run "--data without value"        64 'needs a file'                        --data
 run "--version"                   0  '^patchcheck [0-9]'                   --version
+run "--go-binaries without value" 64 'needs a directory'                    --go-binaries
 
 # advisories.tsv sanity: 7 fields per rule, valid statuses, every runtime has older+newer fallbacks
 bad="$(awk -F'\t' '!/^#/ && NF && (NF!=7 || $3 !~ /^(fixed|eol|unconfirmed)$/ || ($3=="fixed" && $4=="-"))' "$ROOT/advisories.tsv")"
