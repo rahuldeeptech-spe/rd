@@ -8,7 +8,7 @@
 set -u
 set -o pipefail
 
-VERSION="1.2.0"
+VERSION="1.3.0"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DATA="${PATCHCHECK_DATA:-$SCRIPT_DIR/advisories.tsv}"
 PROC_DIR="${PATCHCHECK_PROC_DIR:-/proc}"
@@ -226,6 +226,23 @@ check_go() {
   seen_before "go:$(real_path "$f"):$v" || evaluate "host go" go "$v"
 }
 
+# .NET: every installed shared runtime, from "dotnet --list-runtimes" (Microsoft.NETCore.App and Microsoft.AspNetCore.App)
+check_dotnet() {
+  local f out fw v found=0
+  f="$(command -v dotnet 2>/dev/null)" || { add_result "host dotnet" dotnet "-" "NONE" "dotnet not found" ""; return; }
+  out="$("$f" --list-runtimes 2>/dev/null)" || out=""
+  while read -r fw v _; do
+    case "$fw" in Microsoft.NETCore.App|Microsoft.AspNetCore.App) ;; *) continue ;; esac
+    if ! valid_version "$v"; then
+      found=1; add_result "host $fw" dotnet "$v" "CHECK" "version not understood (preview build?). Verify against the .NET release notes." ""; continue
+    fi
+    seen_before "dotnet:$fw:$v" && continue
+    found=1
+    evaluate "host $fw" dotnet "$v"
+  done <<<"$out"
+  [ "$found" = 1 ] || add_result "host dotnet" dotnet "-" "NONE" "dotnet found but no shared runtime installed (SDK only?)" ""
+}
+
 # Version managers keep old runtimes in $HOME that are not on PATH but still run (opt-in: --managers).
 check_managers() {
   local entry rt pat f v label
@@ -363,6 +380,7 @@ check_php_binaries
 check_apache_modphp
 check_node
 check_go
+check_dotnet
 check_python_brotli
 [ "$OPT_MANAGERS" = 1 ] && check_managers
 [ -n "$GO_BIN_DIR" ] && check_go_binaries "$GO_BIN_DIR"

@@ -217,6 +217,7 @@ memory or remote code execution. The [GitHub reviewed advisory](https://github.c
 | | PHP | Node.js | Go |
 |---|---|---|---|
 | Binaries | `php`, `php-cgi`, `php-fpm` on `PATH` and common install dirs | `node`, `nodejs` | `go` |
+| .NET runtimes | `dotnet --list-runtimes` (every installed shared runtime) | | |
 | Running processes (Linux) | php-fpm, php-cgi, apache2/httpd, node whose binary was replaced after start | | |
 | Containers | `--docker` | `--docker` | `--docker` |
 | Version managers | `--managers` | `--managers` | `--managers` |
@@ -231,6 +232,7 @@ Patched versions at the time of writing (see `advisories.tsv` for sources):
 | PHP | 8.5.12, 8.4.27, 8.3.36, 8.2.35 (8.1 and older: source backports only) |
 | Node.js | 26.12.1, 24.22.1, 22.23.4 (18, 20, 21, 23, 25 are end-of-life) |
 | Go | 1.26.10, 1.27.3 (1.25 and older: not confirmed) |
+| .NET (shared runtimes `Microsoft.NETCore.App`, `Microsoft.AspNetCore.App`) | 10.0.13, 9.0.21, 8.0.32 (Oct 13 2026 servicing release; 7 and 6 are out of support) |
 | Python `brotli` / `brotlicffi` | 1.2.1 / 1.2.1.0 (Node2Shell; every older release is affected from 1.0.3) |
 
 ## Limits

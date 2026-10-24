@@ -22,7 +22,7 @@ param(
 Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
 
-$ToolVersion = '1.2.0'
+$ToolVersion = '1.3.0'
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 if ($Version) { Write-Output "patchcheck $ToolVersion"; exit 0 }
@@ -132,6 +132,10 @@ function Get-ToolOutput([string]$path, [string[]]$toolArgs) {
     try { return (& $path @toolArgs 2>$null | Select-Object -First 1) } catch { return $null }
 }
 
+function Get-ToolLines([string]$path, [string[]]$toolArgs) {
+    try { return @(& $path @toolArgs 2>$null) } catch { return @() }
+}
+
 # ---- PHP --------------------------------------------------------------------------------------
 function Get-PhpCandidates {
     $paths = New-Object System.Collections.ArrayList
@@ -195,6 +199,23 @@ if ($goCmd) {
         Test-Version 'host go' 'go' $v
     } else { Add-Result 'host go' 'go' '-' 'NONE' 'could not read Go version' '' }
 } else { Add-Result 'host go' 'go' '-' 'NONE' 'go not found' '' }
+
+# ---- .NET -------------------------------------------------------------------------------------
+$dotnetCmd = Get-Command dotnet -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
+if ($dotnetCmd) {
+    $foundDotnet = $false
+    foreach ($line in @(Get-ToolLines $dotnetCmd.Source @('--list-runtimes'))) {
+        if ("$line" -notmatch '^(Microsoft\.NETCore\.App|Microsoft\.AspNetCore\.App)\s+(\S+)') { continue }
+        $fw = $Matches[1]; $v = $Matches[2]
+        $foundDotnet = $true
+        if (-not (Test-ValidVersion $v)) {
+            Add-Result "host $fw" 'dotnet' $v 'CHECK' 'version not understood (preview build?). Verify against the .NET release notes.' ''
+        } elseif (Test-FirstSeen "dotnet:${fw}:$v") {
+            Test-Version "host $fw" 'dotnet' $v
+        }
+    }
+    if (-not $foundDotnet) { Add-Result 'host dotnet' 'dotnet' '-' 'NONE' 'dotnet found but no shared runtime installed (SDK only?)' '' }
+} else { Add-Result 'host dotnet' 'dotnet' '-' 'NONE' 'dotnet not found' '' }
 
 # ---- Python Brotli packages (Node2Shell, CVE-2026-111497) -------------------------------------
 # Python is run from the filesystem root with -E so that a hostile file in the current directory (an "importlib" folder)
