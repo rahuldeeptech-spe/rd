@@ -1,102 +1,118 @@
 # Security report 2026-10-24
 
-Generated 2026-10-24 09:06 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
+Generated 2026-10-24 10:25 UTC by an automated job. Window: last 96 hours. Not a substitute for the official vendor advisories.
 
-## Needs attention (3)
+## Needs attention (11)
 
+- **CVE-2026-109618** CVSS 9.2 CRITICAL - PHP uses longjmp\(\) for out-of-memory \(OOM\) errors to exit the current context and abort handling of the request. Some contexts may not properly account for this scenario and leave request memory in an uninitialized stat… - **watching: php** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-109618)
+- **CVE-2026-109619** CVSS 9.2 CRITICAL - PHP has various global state that temporarily points into request memory. In some scenarios, global state may not be correctly reset, or may be repopulated after being reset. The global state may then refer to request m… - **watching: php** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-109619)
+- **CVE-2026-111497** CVSS 9.2 CRITICAL - A buffer overflow vulnerability in the Brotli decoder \(c/dec/decode.c\) in Google Brotli versions 1.0.3 through 1.2.0 on all platforms allows a remote unauthenticated attacker to corrupt adjacent decoder state memory, di… - **watching: brotli** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-111497)
+- **CVE-2026-91403** CVSS 9.1 CRITICAL - Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE \(component: JSSE\). Supported versions that are affected are Oracle Java SE: 8u511, 8u511-perf, 11.… - **watching: java** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-91403)
+- **CVE-2026-111764** CVSS 7.5 HIGH - A2A Java SDK is the official Java SDK for the Agent2Agent \(A2A\) Protocol. Prior to 1.3.0.Final, the default InMemoryTaskStore configuration performs no authorization on task reads: the no-argument constructor sets autho… - **watching: java** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-111764)
+- **CVE-2026-111765** CVSS 7.5 HIGH - A2A Java SDK is the official Java SDK for the Agent2Agent \(A2A\) Protocol. Starting in version 1.3.0.Final and prior to version 1.3.2.Final, the AndroidA2AHttpClient synchronous POST path overrides the disabled-redirect… - **watching: java** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-111765)
 - **CVE-2026-105482** CVSS 7.4 HIGH - A flaw in Node.js DNS resolution allows hostnames containing a NUL byte to be silently truncated by the dns.resolve\*\(\) functions and dns.reverse\(\). This is an incomplete fix of CVE-2026-48930, which only covered dns.loo… - **watching: node.js** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-105482)
 - **CVE-2026-105483** CVSS 7.4 HIGH - A flaw in Node.js TLS hostname verification allows a certificate without a matching IP address SAN to authenticate a connection to an IPv4 address when the host is written with non-ASCII characters, such as fullwidth di… - **watching: node.js** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-105483)
 - **CVE-2026-106069** CVSS 7.4 HIGH - A flaw in Node.js TLS hostname verification can cause a server certificate to be validated against a different IP address than the one the client connected to, when the host is a non-canonical IPv4 literal with a leadin… - **watching: node.js** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-106069)
+- **CVE-2026-91415** CVSS 7.0 HIGH - Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE \(component: 2D\). Supported versions that are affected are Oracle Java SE: 8u503, 8u503-perf, 11.0.… - **watching: java** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-91415)
+- **CVE-2026-111943** UNSCORED - On most platforms, Go uses the given system root certificates. However, in some narrower cases, the system trust stores may not be updated without further action. To defend against the narrower set of cases that may rem… - **watching: go** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-111943)
 
 ## Actively exploited (CISA KEV, added in window)
 
+- **CVE-2026-106931** - EG Secure Solutions SiteGuard Server Edition - EG Secure Solutions SiteGuard Server Edition OS Command Injection Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-106931)
 - **CVE-2026-110447** - Collabora Collabora Online – Built-in CODE Server - Collabora Online – Built-in CODE Server OS Command Injection Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-110447)
+- **CVE-2026-110936** - Siemens Software Center - Siemens Software Center Uncontrolled Search Path Element Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-110936)
 - **CVE-2026-114625** - Arista VeloCloud Orchestrator - Arista VeloCloud Orchestrator SQL Injection Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-114625)
+- **CVE-2026-96652** - Plex Media Server - Plex Media Server Server-Side Request Forgery \(SSRF\) Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-96652)
+- **CVE-2026-96654** - Plex Media Server - Plex Media Server Improper Neutralization of Encoded URI Schemes in a Web Page Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-96654)
+- **CVE-2026-96655** - Plex Media Server - Plex Media Server Server-Side Request Forgery \(SSRF\) Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-96655)
+- **CVE-2026-96656** - Plex Media Server - Plex Media Server External Control of File Name or Path Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-96656)
 
 ## Critical new CVEs and CVEs about watched products (NVD)
 
+- **CVE-2026-109618** CVSS 9.2 CRITICAL - PHP uses longjmp\(\) for out-of-memory \(OOM\) errors to exit the current context and abort handling of the request. Some contexts may not properly account for this scenario and leave request memory in an uninitialized stat… - **watching: php** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-109618)
+- **CVE-2026-109619** CVSS 9.2 CRITICAL - PHP has various global state that temporarily points into request memory. In some scenarios, global state may not be correctly reset, or may be repopulated after being reset. The global state may then refer to request m… - **watching: php** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-109619)
+- **CVE-2026-111497** CVSS 9.2 CRITICAL - A buffer overflow vulnerability in the Brotli decoder \(c/dec/decode.c\) in Google Brotli versions 1.0.3 through 1.2.0 on all platforms allows a remote unauthenticated attacker to corrupt adjacent decoder state memory, di… - **watching: brotli** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-111497)
+- **CVE-2026-91403** CVSS 9.1 CRITICAL - Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE \(component: JSSE\). Supported versions that are affected are Oracle Java SE: 8u511, 8u511-perf, 11.… - **watching: java** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-91403)
+- **CVE-2026-111764** CVSS 7.5 HIGH - A2A Java SDK is the official Java SDK for the Agent2Agent \(A2A\) Protocol. Prior to 1.3.0.Final, the default InMemoryTaskStore configuration performs no authorization on task reads: the no-argument constructor sets autho… - **watching: java** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-111764)
+- **CVE-2026-111765** CVSS 7.5 HIGH - A2A Java SDK is the official Java SDK for the Agent2Agent \(A2A\) Protocol. Starting in version 1.3.0.Final and prior to version 1.3.2.Final, the AndroidA2AHttpClient synchronous POST path overrides the disabled-redirect… - **watching: java** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-111765)
 - **CVE-2026-105482** CVSS 7.4 HIGH - A flaw in Node.js DNS resolution allows hostnames containing a NUL byte to be silently truncated by the dns.resolve\*\(\) functions and dns.reverse\(\). This is an incomplete fix of CVE-2026-48930, which only covered dns.loo… - **watching: node.js** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-105482)
 - **CVE-2026-105483** CVSS 7.4 HIGH - A flaw in Node.js TLS hostname verification allows a certificate without a matching IP address SAN to authenticate a connection to an IPv4 address when the host is written with non-ASCII characters, such as fullwidth di… - **watching: node.js** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-105483)
 - **CVE-2026-106069** CVSS 7.4 HIGH - A flaw in Node.js TLS hostname verification can cause a server certificate to be validated against a different IP address than the one the client connected to, when the host is a non-canonical IPv4 literal with a leadin… - **watching: node.js** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-106069)
-- **CVE-2026-115889** CVSS 9.9 CRITICAL - Wasmtime is a runtime for WebAssembly. Prior to 36.0.19 and 43.0.0, the Cranelift compiler backend bit-packs SSA value indices in a way that can silently overflow in release builds when compiling a sufficiently large or… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-115889)
-- **CVE-2026-115893** CVSS 9.9 CRITICAL - Wasmtime is a runtime for WebAssembly. Prior to 36.0.19, 48.0.7, and 49.0.4, the Cranelift compiler backend on aarch64 can compile a Wasm br\_table instruction with more than approximately 256,000 targets so that it has… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-115893)
-- **CVE-2026-115931** CVSS 9.9 CRITICAL - Postiz lets a signed-in user ask the backend to run a function on one of their connected channels. The backend did not restrict which functions can be requested, so a user could call internal helper functions that were… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-115931)
-- **CVE-2026-53942** CVSS 9.9 CRITICAL - Conda Organization Infrastructure is a centralized location for infrastructure codes. Prior to commit 9c0f238, a GitHub Actions Pwn Request vulnerability appears to remain present in conda/conda. The affected workflow i… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-53942)
-- **CVE-2026-112846** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in ThemeREX Group Save Life save-life allows Object Injection.This issue affects Save Life: from n/a through 1.2.14. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-112846)
-- **CVE-2026-112847** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in ThemeREX ZenSoul zensoul allows Object Injection.This issue affects ZenSoul: from n/a through 1.13. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-112847)
-- **CVE-2026-112848** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in AivahThemes Hostme v2 hostmev2 allows Object Injection.This issue affects Hostme v2: from n/a through 7.0. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-112848)
-- **CVE-2026-112851** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in ThemeREX Group HotLock hotlock allows Object Injection.This issue affects HotLock: from n/a through 1.3.9. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-112851)
-- **CVE-2026-112853** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in axiomthemes Hallelujah hallelujah allows Object Injection.This issue affects Hallelujah: from n/a through 1.1.1. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-112853)
-- **CVE-2026-112854** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in axiomthemes Holistic Center holistic-center allows Object Injection.This issue affects Holistic Center: from n/a through 1.2.6. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-112854)
-- **CVE-2026-112855** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in axiomthemes Redy redy allows Object Injection.This issue affects Redy: from n/a through 1.3.5. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-112855)
-- **CVE-2026-112856** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in ThemeREX Group Vagabonds vagabonds allows Object Injection.This issue affects Vagabonds: from n/a through 1.3.10. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-112856)
-- **CVE-2026-112857** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in axiomthemes Reprizo reprizo allows Object Injection.This issue affects Reprizo: from n/a through 1.0.8. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-112857)
-- **CVE-2026-112858** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in axiomthemes Rhodos rhodos allows Object Injection.This issue affects Rhodos: from n/a through 1.3.3. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-112858)
-- **CVE-2026-112859** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in ThemeREX Group Little Birdies little-birdies allows Object Injection.This issue affects Little Birdies: from n/a through 1.3.16. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-112859)
-- **CVE-2026-112862** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in xnau webdesign Participants Database participants-database allows Object Injection.This issue affects Participants Database: from n/a through 2.7.8.5. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-112862)
-- **CVE-2026-114196** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in paytiumsupport Paytium paytium allows Object Injection.This issue affects Paytium: from n/a through 5.0.5. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-114196)
-- **CVE-2026-115806** CVSS 9.8 CRITICAL - The Prime Mover – Backup and Migration plugin for WordPress is vulnerable to PHP Object Injection in all versions up to, and including, 2.2.1 via deserialization of untrusted input in the migration search-and-replace ro… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-115806)
-- **CVE-2026-46651** CVSS 9.8 CRITICAL - The Goobi viewer is a web application that allows digitised material to be displayed in a web browser. From version 24.03 to before version 26.05, the DownloadTaskEndpoint WebSocket endpoint \(/tasks/download/monitor.soc… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-46651)
-- **CVE-2026-46652** CVSS 9.8 CRITICAL - The Goobi viewer is a web application that allows digitised material to be displayed in a web browser. From version 24.03 to before version 26.05, ExternalFilesDownloader.getFilename\(\) extracts the destination filename… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-46652)
-- **CVE-2026-53921** CVSS 9.8 CRITICAL - odhcpd is the DHCPv6, DHCPv4, and router-advertisement server used by OpenWrt. Prior to version 25.12, odhcpd's DHCPv6 IA response handler writes past the end of a fixed 512-byte stack buffer \(pdbuf\) when a single DHCPv… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-53921)
-- **CVE-2026-57116** CVSS 9.8 CRITICAL - PraisonAI is a multi-agent teams system. From version 4.2.1 to before version 4.6.59, PraisonAI's AgentOS FastAPI deployment surface remains unauthenticated in current main and in releases after the published patched ve… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-57116)
-- ...and 20 more (see the source).
+- **CVE-2026-91415** CVSS 7.0 HIGH - Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE \(component: 2D\). Supported versions that are affected are Oracle Java SE: 8u503, 8u503-perf, 11.0.… - **watching: java** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-91415)
+- **CVE-2026-111943** UNSCORED - On most platforms, Go uses the given system root certificates. However, in some narrower cases, the system trust stores may not be updated without further action. To defend against the narrower set of cases that may rem… - **watching: go** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-111943)
+- **CVE-2026-101809** CVSS 10.0 CRITICAL - Vulnerability in the Workflow product of Oracle E-Business Suite \(component: Workflow Notification Mailer\). Supported versions that are affected are 12.2.3-12.2.15. Easily exploitable vulnerability allows unauthenticate… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-101809)
+- **CVE-2026-102785** CVSS 10.0 CRITICAL - Joomla Extension - yootheme.com - Unauthenticated remote code execution in YOOtheme Pro 5.0.0-5.0.52 - YOOtheme Pro’s publicly accessible image transformation handler incompletely binds normalized image operations and t… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-102785)
+- **CVE-2026-105944** CVSS 10.0 CRITICAL - Apache Pulsar Manager is a web console for administering Apache Pulsar clusters. It has its own user accounts and login, and it can be configured with an HTTP authentication credential, such as a token, that it uses to… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-105944)
+- **CVE-2026-110063** CVSS 10.0 CRITICAL - Improper link resolution before file access \('link following'\) in VM Inspector for Azure Virtual Machines allows an unauthorized attacker to elevate privileges over a network. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-110063)
+- **CVE-2026-110264** CVSS 10.0 CRITICAL - An issue has been discovered in GitLab CE/EE affecting all versions from 7.0 before 18.11.13, 19.0 before 19.0.10, 19.1 before 19.1.9, 19.2 before 19.2.9, 19.3 before 19.3.6, 19.4 before 19.4.3, and 19.5 before 19.5.1 t… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-110264)
+- **CVE-2026-111813** CVSS 10.0 CRITICAL - Apache Traffic Server's experimental magick plugin lets an unauthenticated client control ImageMagick convert arguments in its default \(unsigned\) configuration. This issue affects Apache Traffic Server: from 8.0.1 throu… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-111813)
+- **CVE-2026-111832** CVSS 10.0 CRITICAL - Unrestricted Upload of File with Dangerous Type vulnerability in WP Mailster WP Mailster wp-mailster allows Upload a Web Shell to a Web Server.This issue affects WP Mailster: from n/a through 1.9.1.0. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-111832)
+- **CVE-2026-79844** CVSS 10.0 CRITICAL - Authentication bypass vulnerabilities in the affected interface of AOS-10 could allow an unauthenticated remote attacker to run arbitrary commands on the underlying host if certain preconditions outside of the attacker'… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-79844)
+- **CVE-2026-79846** CVSS 10.0 CRITICAL - Command injection vulnerabilities exist in the affected interface of AOS-8 that could allow an unauthenticated remote attacker to run arbitrary commands on the underlying host if certain preconditions outside of the att… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-79846)
+- **CVE-2026-79847** CVSS 10.0 CRITICAL - Buffer overflow vulnerabilities in the affected interface of AOS-10 could lead to unauthenticated remote code execution by sending specially crafted packets to the affected interface. Successful exploitation of this vul… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-79847)
+- **CVE-2026-79848** CVSS 10.0 CRITICAL - Vulnerabilities in the affected interface of AOS-8 could allow an unauthenticated remote attacker to conduct SQL injection attacks against an affected AOS-8 instance. Successful exploitation could allow an attacker to e… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-79848)
+- **CVE-2026-79849** CVSS 10.0 CRITICAL - Vulnerabilities in the affected interface of AOS-8 could allow an unauthenticated remote attacker to conduct SQL injection attacks against an affected AOS-8 instance. Successful exploitation could allow an attacker to e… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-79849)
+- **CVE-2026-79850** CVSS 10.0 CRITICAL - Vulnerabilities in the affected interface of AOS-8 could allow an unauthenticated remote attacker to bypass existing authentication controls and run arbitrary commands on the underlying host. Successful exploitation cou… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-79850)
+- **CVE-2026-79851** CVSS 10.0 CRITICAL - Buffer overflow vulnerabilities exist in the affected interface of AOS-10 that could lead to unauthenticated remote code execution. Successful exploitation could allow an attacker to execute arbitrary code as a privileg… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-79851)
+- ...and 319 more (see the source).
 
 ## GitHub reviewed advisories (critical, plus high in watched ecosystems)
 
+- **GHSA-2464-fhr4-w9xw** CRITICAL - Next.js: Unauthenticated Remote Code Execution in Image Optimization API when SVG files are used (npm:next \(fixed 15.5.28\), npm:next \(fixed 16.4.1\)) - [source](https://github.com/advisories/GHSA-2464-fhr4-w9xw)
+- **GHSA-332p-7hrc-92wf** CRITICAL - Pillow: Heap buffer overflow in \_tiffWriteProc when saving TIFF to BytesIO (pip:Pillow \(fixed 13.0.0\)) - [source](https://github.com/advisories/GHSA-332p-7hrc-92wf)
 - **GHSA-5x8w-8jj5-q52h** CRITICAL - Pillow: Heap buffer overflow in FlashPix \(FPX\) JPEG decoding leads to code execution (pip:pillow \(fixed 13.0.0\)) - [source](https://github.com/advisories/GHSA-5x8w-8jj5-q52h)
+- **GHSA-673q-mjm6-r5xr** CRITICAL - Next.js: Unauthenticated Remote Code Execution in \`use cache\` functions returning typed arrays (npm:next \(fixed 16.4.1\)) - [source](https://github.com/advisories/GHSA-673q-mjm6-r5xr)
+- **GHSA-6q48-6c7w-9gw2** CRITICAL - certifi bundles emSign root CAs with compromised intermediate CA keys (pip:certifi \(fixed 2026.10.19\)) - [source](https://github.com/advisories/GHSA-6q48-6c7w-9gw2)
+- **GHSA-7587-9684-52r6** CRITICAL - mem0ai Databricks vector store vulnerable to SQL injection (pip:mem0ai \(fixed 1.0.8\)) - [source](https://github.com/advisories/GHSA-7587-9684-52r6)
 - **GHSA-84c9-qqpq-2pq5** CRITICAL - obsidian-tc tokens can access arbitrary configured vaults (npm:obsidian-tc \(fixed 1.3.1\)) - [source](https://github.com/advisories/GHSA-84c9-qqpq-2pq5)
 - **GHSA-897f-g5gm-fmxm** CRITICAL - Wasmtime: Bit-packing in Cranelift compiler causes silent overflow and miscompilation (rust:wasmtime \(fixed 36.0.19\), rust:wasmtime \(fixed 43.0.0\)) - [source](https://github.com/advisories/GHSA-897f-g5gm-fmxm)
+- **GHSA-8g5g-8vmr-9782** CRITICAL - Pillow: Heap buffer overflow in ImagingJpegDecode (pip:Pillow \(fixed 13.0.0\)) - [source](https://github.com/advisories/GHSA-8g5g-8vmr-9782)
+- **GHSA-9v8h-qqgm-4m35** CRITICAL - Brotli: Out-of-bounds write in the Brotli decoder \("Node2Shell"\) also affects the PyPI Brotli package (pip:brotli \(fixed 1.2.1\), pip:brotlicffi \(fixed 1.2.1.0\)) - [source](https://github.com/advisories/GHSA-9v8h-qqgm-4m35)
+- **GHSA-cg2g-xh64-v4q7** CRITICAL - DOMPurify SAFE\_FOR\_TEMPLATES bypass: split template expressions survive in attached shadow root content on DOM output modes (npm:dompurify \(fixed 3.4.17\)) - [source](https://github.com/advisories/GHSA-cg2g-xh64-v4q7)
 - **GHSA-cxf3-9h37-7rr8** CRITICAL - Echo: Rejected WebSocket upgrades can bypass Echo route-level access controls (go:github.com/labstack/echo/v4 \(fixed 4.16.1\), go:github.com/labstack/echo/v5 \(fixed 5.4.1\)) - [source](https://github.com/advisories/GHSA-cxf3-9h37-7rr8)
+- **GHSA-f2ph-cmg5-wxc8** CRITICAL - Storybook: Missing origin validation in Storybook preview allows code injection from malicious websites (npm:storybook \(fixed 8.6.19\), npm:storybook \(fixed 9.1.21\), npm:storybook \(fixed 10.6.2\), npm:storybook \(fixed 11.0.0-alpha.6\)) - [source](https://github.com/advisories/GHSA-f2ph-cmg5-wxc8)
 - **GHSA-f9x3-7vq9-cph6** CRITICAL - Laravel TokenGuard authentication bypass through non-string API credentials (composer:laravel/framework \(fixed 13.29.0\), composer:laravel/framework \(fixed 12.68.0\)) - [source](https://github.com/advisories/GHSA-f9x3-7vq9-cph6)
+- **GHSA-hq85-5cpj-mr62** CRITICAL - uv's bundled CA store trusts an emSign root whose intermediate CA keys are compromised (pip:uv \(fixed 0.13.4\)) - [source](https://github.com/advisories/GHSA-hq85-5cpj-mr62)
+- **GHSA-mchm-gjx6-7h55** CRITICAL - Sentry-Javascript: Middleware Bypass when using Tunnel route (npm:@​sentry/nextjs \(fixed 9.47.2\), npm:@​sentry/nextjs \(fixed 10.75.2\), npm:@​sentry/nextjs \(fixed 11.0.0-rc.1\)) - [source](https://github.com/advisories/GHSA-mchm-gjx6-7h55)
 - **GHSA-pqh8-4pj7-32xx** CRITICAL - obsidian-tc HTTP transport lacks Origin/DNS-rebinding protection, enabling drive-by vault access on loopback (npm:obsidian-tc \(fixed 1.3.1\)) - [source](https://github.com/advisories/GHSA-pqh8-4pj7-32xx)
+- **GHSA-v9pv-5gc8-w2m6** CRITICAL - Pillow multi-frame loaders can reuse stale native image storage after mode transitions (pip:Pillow \(fixed 13.0.0\)) - [source](https://github.com/advisories/GHSA-v9pv-5gc8-w2m6)
+- **GHSA-w889-685w-c8fh** CRITICAL - Pillow: Argument Injection in Ghostscript call, potentially leading into RCE (pip:Pillow \(fixed 13.0.0\)) - [source](https://github.com/advisories/GHSA-w889-685w-c8fh)
+- **GHSA-22hg-r758-rrw9** HIGH - Pillow: Infinite loop in MIC n\_frames when the embedded TIFF (pip:Pillow \(fixed 13.0.0\)) - [source](https://github.com/advisories/GHSA-22hg-r758-rrw9)
+- **GHSA-22jm-h49p-29qw** HIGH - MCP TypeScript SDK: Experimental tasks were not tied to the session that created them (npm:@​modelcontextprotocol/sdk \(fixed 1.32.0\)) - [source](https://github.com/advisories/GHSA-22jm-h49p-29qw)
+- **GHSA-259r-337f-4rfw** HIGH - Compress/s2: Integer Overflow or Wraparound and Out-of-bounds Write in compress (go:github.com/klauspost/compress \(fixed 1.18.7\)) - [source](https://github.com/advisories/GHSA-259r-337f-4rfw)
+- **GHSA-27h8-gf7j-v5hc** HIGH - Pillow: NULL dereference in ImagingExpand via rank filters on zero-size images (pip:Pillow \(fixed 13.0.0\)) - [source](https://github.com/advisories/GHSA-27h8-gf7j-v5hc)
 - **GHSA-27r3-jxmh-p828** HIGH - body-parser vulnerable to Denial of Service via trailing bytes after a compressed request body (npm:body-parser \(fixed 2.4.0\), npm:body-parser \(fixed 1.20.9\)) - [source](https://github.com/advisories/GHSA-27r3-jxmh-p828)
-- **GHSA-3476-c5c2-fr73** HIGH - Twisted: Unauthenticated Remote Denial of Service in the Twisted words domish XML Element Stream via an Unbounded Element Tree (pip:Twisted \(fixed 26.10.0rc1\)) - [source](https://github.com/advisories/GHSA-3476-c5c2-fr73)
-- **GHSA-394h-qwmc-48pf** HIGH - virtualenv: Xonsh activation literals depend on the script decoding codec (pip:virtualenv \(fixed 21.14.9\)) - [source](https://github.com/advisories/GHSA-394h-qwmc-48pf)
-- **GHSA-4v6f-7vjh-6x4m** HIGH - Strands Agents SDK: Exposure of data element to wrong session in the A2A Server (pip:strands-agents \(fixed 1.43.0\), npm:@​strands-agents/sdk \(fixed 1.5.0\)) - [source](https://github.com/advisories/GHSA-4v6f-7vjh-6x4m)
-- **GHSA-53xc-49m8-p798** HIGH - Twisted: Unauthenticated Remote Denial of Service in the Twisted IRC Server via an Unbounded Line Buffer (pip:Twisted \(fixed 26.10.0rc1\)) - [source](https://github.com/advisories/GHSA-53xc-49m8-p798)
-- **GHSA-6c7f-9265-g8fw** HIGH - pypdf: Possible long runtimes for repeated references to the same missing object (pip:pypdf \(fixed 6.21.2\)) - [source](https://github.com/advisories/GHSA-6c7f-9265-g8fw)
-- **GHSA-6w3r-xr62-4xcp** HIGH - virtualenv: Bash prompt values can change meaning under older compatibility modes (pip:virtualenv \(fixed 21.14.9\)) - [source](https://github.com/advisories/GHSA-6w3r-xr62-4xcp)
-- **GHSA-737x-cwfr-5vvc** HIGH - obsidian-tc: Declined human-in-the-loop confirmations can permit destructive calls over HTTP (npm:obsidian-tc \(fixed 1.31.4\)) - [source](https://github.com/advisories/GHSA-737x-cwfr-5vvc)
-- **GHSA-834v-8h66-3h79** HIGH - Happy DOM: Incomplete fix for CVE-2026-33943: unsanitized import alias leads to host code execution (npm:happy-dom \(fixed 21.0.4\)) - [source](https://github.com/advisories/GHSA-834v-8h66-3h79)
-- **GHSA-9969-6676-49h5** HIGH - Echo: WebSocket proxy can retain connections and handlers after client disconnect (go:github.com/labstack/echo/v4 \(fixed 4.16.1\), go:github.com/labstack/echo/v5 \(fixed 5.4.1\)) - [source](https://github.com/advisories/GHSA-9969-6676-49h5)
-- **GHSA-c8w8-3pqp-wr83** HIGH - SiYuan: A parser differential between the WebSocket keepalive exemption and the session quarantine allows unauthenticated access to the broadcast event stream (go:github.com/siyuan-note/siyuan/kernel \(fixed 0.0.0-20260731131820-67bc300b6ea6\)) - [source](https://github.com/advisories/GHSA-c8w8-3pqp-wr83)
-- **GHSA-cwm5-jh59-mwxr** HIGH - Twisted: Unauthenticated Remote Denial of Service in the Twisted conch Telnet Transport via an Unbounded Subnegotiation Buffer (pip:Twisted \(fixed 26.10.0rc1\)) - [source](https://github.com/advisories/GHSA-cwm5-jh59-mwxr)
-- **GHSA-cx6f-vjhg-g3cc** HIGH - virtualenv: Bash activator leaves the --prompt value unescaped in PS1 when promptvars is off, so prompt expansion later executes it \(regression in 21.14.9\) (pip:virtualenv \(fixed 21.14.13\)) - [source](https://github.com/advisories/GHSA-cx6f-vjhg-g3cc)
-- **GHSA-f2hq-32vh-53cc** HIGH - postal-mime: Quadratic CPU consumption when decoding a header of many joinable RFC 2047 base64 encoded words (npm:postal-mime \(fixed 4.0.8\)) - [source](https://github.com/advisories/GHSA-f2hq-32vh-53cc)
-- **GHSA-f48p-c9v4-h7xv** HIGH - Echo: BodyDump captures request and response bodies without size limits in v4 (go:github.com/labstack/echo/v4 \(fixed 4.16.1\)) - [source](https://github.com/advisories/GHSA-f48p-c9v4-h7xv)
-- **GHSA-gmh7-3g9r-mjh5** HIGH - pypdf: Possible long runtimes for large xref table header limits (pip:pypdf \(fixed 6.21.2\)) - [source](https://github.com/advisories/GHSA-gmh7-3g9r-mjh5)
-- **GHSA-gx7p-2j49-hfq4** HIGH - vLLM : DoS via unvalidated mm\_processor\_kwargs in multimodal image processors \(Isaac, InternVL, H2OVL, etc.\) (pip:vllm \(fixed 0.31.0\)) - [source](https://github.com/advisories/GHSA-gx7p-2j49-hfq4)
-- **GHSA-h7wr-284f-5qvc** HIGH - Echo: Decompress permits unbounded gzip expansion in v4 (go:github.com/labstack/echo/v4 \(fixed 4.16.1\)) - [source](https://github.com/advisories/GHSA-h7wr-284f-5qvc)
-- **GHSA-h7ww-273w-6cm8** HIGH - Mistune: Path Traversal and XSS in Include directive (pip:mistune \(fixed 3.3.0\)) - [source](https://github.com/advisories/GHSA-h7ww-273w-6cm8)
-- ...and 7 more (see the source).
+- **GHSA-33wh-fxxf-88vv** HIGH - Django REST framework: Accept header with many large quoted parameters burns \~19s of CPU per request in content negotiation (pip:djangorestframework \(fixed 3.18.2\)) - [source](https://github.com/advisories/GHSA-33wh-fxxf-88vv)
+- ...and 87 more (see the source).
 
 ## Node.js releases in window
 
-No Node.js release in the window.
+- **node 26.12.1** - Node.js 26.12.1 released \(security release\) - **watching: node.js** - [source](https://nodejs.org/en/blog/vulnerability)
+- **node 24.22.1** - Node.js 24.22.1 released \(security release\) - **watching: node.js** - [source](https://nodejs.org/en/blog/vulnerability)
+- **node 22.23.4** - Node.js 22.23.4 released \(security release\) - **watching: node.js** - [source](https://nodejs.org/en/blog/vulnerability)
 
 ## Tracked versions (upstream latest vs advisories.tsv)
 
-| Runtime | Branch | Upstream latest | advisories.tsv fixed |
-|---|---|---|---|
-| go | 1.26 | 1.26.10 | 1.26.10 |
-| go | 1.27 | 1.27.3 | 1.27.3 |
-| node | 22 | 22.23.4 | 22.23.4 |
-| node | 24 | 24.22.1 | 24.22.1 |
-| node | 26 | 26.12.1 | 26.12.1 |
-| php | 8.2 | 8.2.35 | 8.2.35 |
-| php | 8.3 | 8.3.36 | 8.3.36 |
-| php | 8.4 | 8.4.27 | 8.4.27 |
-| php | 8.5 | 8.5.12 | 8.5.12 |
+| Runtime | Branch | Upstream latest | advisories.tsv fixed | Reviewed up to |
+|---|---|---|---|---|
+| go | 1.26 | 1.26.10 | 1.26.10 | - |
+| go | 1.27 | 1.27.3 | 1.27.3 | - |
+| node | 22 | 22.23.4 | 22.23.4 | - |
+| node | 24 | 24.22.1 | 24.22.1 | - |
+| node | 26 | 26.12.1 | 26.12.1 | - |
+| php | 8.2 | 8.2.35 | 8.2.35 | - |
+| php | 8.3 | 8.3.36 | 8.3.36 | - |
+| php | 8.4 | 8.4.27 | 8.4.27 | - |
+| php | 8.5 | 8.5.12 | 8.5.12 | - |
 
 ## Sources
 
 | Source | Status | Items | Note |
 |---|---|---|---|
-| CISA Known Exploited Vulnerabilities | OK | 2 | catalog 2026.10.23 |
-| NVD \(new CVEs\) | OK | 45 | 478 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 23 more only mention one \(apps, plugins, libraries\) and are not… |
-| GitHub Advisory Database | OK | 32 | critical in all ecosystems; high only for composer, go, npm, pip |
-| nodejs.org release index | OK | 0 | 875 versions in index |
+| CISA Known Exploited Vulnerabilities | OK | 8 | catalog 2026.10.23 |
+| NVD \(new CVEs\) | OK | 344 | 3360 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 206 more only mention one \(apps, plugins, libraries\) and are no… |
+| GitHub Advisory Database | OK | 112 | critical in all ecosystems; high only for composer, go, npm, pip |
+| nodejs.org release index | OK | 3 | 875 versions in index |
 | go.dev downloads | OK | 0 | branches: 1.26, 1.27 |
 | php.net releases | OK | 0 | branches: 8.2, 8.3, 8.4, 8.5 |
 
