@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- `monitor/phpini.py`: read-only audit of risky PHP settings, from `php -r ini_get_all` or `--ini FILE`. Failure to run php is exit 3, never clean. 8 tests; two weak tests found by mutation and fixed.
 - `monitor/exposed.py`: check your own site for publicly readable `.env`, `.git`, `phpinfo`, config backups and similar. Content-signature based, never prints content, 6 tests against a local server.
 
 ## 1.3.0 - 2026-10-24
