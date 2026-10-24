@@ -110,3 +110,20 @@ jobs:
           fail-on: bogus
       - name: the rejection happened
         run: test "${{ steps.bad.outcome }}" = failure
+
+  docker:
+    name: docker image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: docker build -t patchcheck:ci .
+      - name: prints its version
+        run: docker run --rm patchcheck:ci --version | grep -Eq '^patchcheck [0-9]+\.[0-9]+\.[0-9]+$'
+      - name: runs as a non-root user and exits with 0, 1 or 2
+        run: |
+          set +e
+          id="$(docker run --rm --entrypoint id patchcheck:ci -u)"
+          test "$id" != 0
+          docker run --rm patchcheck:ci --no-processes
+          rc=$?
+          test "$rc" -le 2
