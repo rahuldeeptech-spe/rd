@@ -14,11 +14,13 @@ runtime  branch  status  fixed  id  source  note
 - Bump `#@ updated YYYY-MM-DD` and add a line to `CHANGELOG.md`.
 
 ## Watching more products
-Add a line to `monitor/watchlist.tsv`: `name<TAB>keywords<TAB>ecosystems<TAB>core`.
+Add a line to `monitor/watchlist.tsv`: `name<TAB>keywords<TAB>ecosystems<TAB>extra`.
 - `keywords` match whole words, case-insensitive (avoid short or common words such as `go`); a hit means the CVE *mentions* the product.
-- `core` is an optional Python regex (case-insensitive) that decides whether the CVE is *about* the product itself. Only core hits raise alerts.
-  Without it, every mention alerts, which is noisy for words like `php` or `python` that appear in thousands of third-party apps.
-  Add real descriptions of both kinds to `Classification` in `monitor/test_monitor.py`.
+- A CVE is *about* the product when the product is the subject of its description: the words before it are only things like
+  "A flaw in", "In", "A heap overflow in the" (see `_LEAD_OK` in `monitor/monitor.py`). Only "about" CVEs raise alerts.
+- `extra` is an optional Python regex for phrasings the subject rule cannot see. Keep it tight: an extra pattern that matches in the middle of a
+  sentence will also match apps ("routes .phar to PHP-FPM", "on PHP before 8.0"), which is how the first version of this filter produced false alerts.
+- Add real descriptions of both kinds to `Classification` in `monitor/test_monitor.py`, including the ones that must not alert.
 - `ecosystems` (`npm`, `pip`, `composer`, `go`, `maven`, ...) decide which high-severity GitHub advisories are listed; critical ones are always listed.
 
 ## Before opening a PR

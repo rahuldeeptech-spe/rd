@@ -134,32 +134,54 @@ class Net:
 
 # --------------------------------------------------------- config loading ----
 
+# Words that may precede a product name when the product is the *subject* of a CVE description:
+# "A flaw in Node.js ...", "In PHP versions ...", "A heap overflow in the PHP-FPM ...".
+# An app names itself first ("PhpSpreadsheet is a PHP library", "Traefik v3 ...", "Part-DB is ..."),
+# so its description has other words before the product name and is not about the product.
+_LEAD_OK = frozenset(
+    "a an the in of on at within affecting found discovered identified detected determined issue issues flaw flaws bug bugs "
+    "vulnerability vulnerabilities weakness weaknesses problem problems was were is are there exists existed been has have "
+    "heap stack buffer based overflow overflows underflow use after free integer memory leak out bounds read write double "
+    "null pointer dereference race condition denial service remote code execution arbitrary information disclosure "
+    "incomplete fix improper input validation security".split())
+
+
 class Watch:
-    """Products to watch. A keyword hit means "mentions the product". If the product also has a
-    core pattern, only a description matching it counts as being about the product itself (the
-    runtime, not a WordPress plugin or a library that merely says "PHP" or "Python")."""
+    """Products to watch.
+
+    match(text): products the text *mentions*.
+    about(text): products the text is *about* - the product is the subject of the description (see _LEAD_OK),
+    or an optional per-product extra pattern matches. Only "about" hits raise alerts, so a WordPress plugin
+    or a library that says "PHP" or "Python" does not look like a PHP or Python vulnerability.
+    """
 
     def __init__(self, rows):
-        self.rows = [tuple(r) + (None,) * (4 - len(r)) for r in rows]  # (name, keywords, ecosystems, core)
-        self._kw, self._core = [], {}
-        for name, kws, _eco, core in self.rows:
+        self.rows = [tuple(r) + (None,) * (4 - len(r)) for r in rows]  # (name, keywords, ecosystems, extra)
+        self._kw, self._extra = {}, {}
+        for name, kws, _eco, extra in self.rows:
             if kws:
-                self._kw.append((name, re.compile(r"(?<![\w.])(?:%s)(?!\w)" % "|".join(re.escape(k) for k in kws), re.I)))
-            if core:
-                self._core[name] = re.compile(core, re.I)
+                self._kw[name] = re.compile(r"(?<![\w.])(?:%s)(?!\w)" % "|".join(re.escape(k) for k in kws), re.I)
+            if extra:
+                self._extra[name] = re.compile(extra, re.I)
 
     @property
     def ecosystems(self):
-        return sorted({e for _n, _k, es, _c in self.rows for e in es})
+        return sorted({e for _n, _k, es, _x in self.rows for e in es})
 
     def match(self, text):
-        """Every watched product the text mentions."""
-        return [n for n, rx in self._kw if rx.search(text or "")]
+        return [n for n, rx in self._kw.items() if rx.search(text or "")]
 
-    def core(self, text, hits=None):
-        """The subset of mentioned products the text is actually about."""
-        hits = self.match(text) if hits is None else hits
-        return [n for n in hits if n not in self._core or self._core[n].search(text or "")]
+    def about(self, text):
+        text = text or ""
+        out = []
+        for name, _kws, _eco, _x in self.rows:
+            rx = self._kw.get(name)
+            m = rx.search(text) if rx else None
+            subject = bool(m) and m.start() <= 60 and all(w in _LEAD_OK for w in re.findall(r"[a-z]+", text[: m.start()].lower()))
+            extra = name in self._extra and bool(self._extra[name].search(text))
+            if subject or extra:
+                out.append(name)
+        return out
 
 
 def load_watchlist(path):
@@ -172,11 +194,11 @@ def load_watchlist(path):
             f = line.split("\t")
             if len(f) < 3:
                 continue
-            core = f[3].strip() if len(f) > 3 and f[3].strip() not in ("", "-") else None
-            if core:
-                re.compile(core)  # a bad pattern should fail loudly at start-up, not hide alerts
+            extra = f[3].strip() if len(f) > 3 and f[3].strip() not in ("", "-") else None
+            if extra:
+                re.compile(extra)  # a bad pattern should fail loudly at start-up, not hide alerts
             rows.append((f[0], [k.strip() for k in f[1].split(",") if k.strip()],
-                         [e.strip() for e in f[2].split(",") if e.strip() and e.strip() != "-"], core))
+                         [e.strip() for e in f[2].split(",") if e.strip() and e.strip() != "-"], extra))
     return Watch(rows)
 
 
@@ -207,7 +229,7 @@ def src_kev(net, now, hours, watch, **_):
         if added < since or not CVE_RE.match(cve):
             continue
         text = " ".join(str(v.get(k, "")) for k in ("vendorProject", "product", "vulnerabilityName", "shortDescription"))
-        hit = sorted(set(watch.match("%s %s" % (v.get("vendorProject", ""), v.get("product", "")))) | set(watch.core(text)))
+        hit = sorted(set(watch.match("%s %s" % (v.get("vendorProject", ""), v.get("product", "")))) | set(watch.about(text)))
         items.append({
             "source": "kev", "id": cve, "date": v["dateAdded"],
             "title": "%s %s - %s" % (v.get("vendorProject", ""), v.get("product", ""), v.get("vulnerabilityName", "")),
@@ -249,7 +271,7 @@ def src_nvd(net, now, hours, watch, **_):
             desc = next((d["value"] for d in cve.get("descriptions", []) if d.get("lang") == "en"), "")
             score, sev = _cvss(cve)
             mentions = watch.match(desc)
-            hit = watch.core(desc, mentions)
+            hit = watch.about(desc)
             if mentions and not hit and not (score is not None and score >= 9.0):
                 mention_only += 1
             if (score is not None and score >= 9.0) or hit:

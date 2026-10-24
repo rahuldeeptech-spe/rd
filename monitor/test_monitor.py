@@ -108,7 +108,7 @@ class Sources(unittest.TestCase):
         payload = {"totalResults": 5, "vulnerabilities": [
             vuln("CVE-2026-2001", "Some product RCE", 9.8),
             vuln("CVE-2026-2002", "Medium thing", 5.0, "MEDIUM"),
-            vuln("CVE-2026-2003", "Node.js Brotli flaw", 8.1, "HIGH"),
+            vuln("CVE-2026-2003", "A flaw in Node.js Brotli handling", 8.1, "HIGH"),
             vuln("CVE-2026-2004", "A flaw in the CPython parser, awaiting analysis"),
             vuln("CVE-2026-2005", "A WordPress plugin for Python snippets has an XSS", 5.0, "MEDIUM")]}
         r = m.src_nvd(FakeNet({"nvd.nist.gov": payload}), NOW, 24, WATCH)
@@ -178,43 +178,78 @@ class Sources(unittest.TestCase):
 
 
 class Classification(unittest.TestCase):
-    """Real descriptions from the first live NVD run (2026-10-24): runtime bugs vs apps that mention a runtime."""
+    """Real NVD descriptions from the live run of 2026-10-24: is the CVE about the runtime, or only an app that mentions it?"""
 
-    ABOUT = [
-        ("node.js", "A flaw in Node.js DNS resolution allows hostnames containing a NUL byte to be silently truncated by the dns.resolve*() functions"),
-        ("node.js", "A flaw in Node.js TLS hostname verification allows a certificate without a matching IP address SAN to authenticate a connection"),
-        ("node.js", "Node.js before 24.22.1 mishandles a Brotli stream"),
-        ("php", "PHP before 8.3.36 allows remote attackers to execute arbitrary code via a use-after-free in the upload progress feature"),
-        ("php", "A heap overflow in the PHP-FPM status page"),
-        ("python", "A flaw in CPython's tarfile module allows path traversal"),
-        ("go", "A flaw in the Go standard library net/http allows request smuggling"),
-        ("openssl", "OpenSSL 3.5 mishandles a malformed certificate"),
+    ABOUT = [  # (CVE, start of description, product)
+        ("CVE-2026-109618", "PHP uses longjmp() for out-of-memory (OOM) errors to exit the current context and abort handling of the request.", "php"),
+        ("CVE-2026-109619", "PHP has various global state that temporarily points into request memory. In some scenarios, global state may not be reset.", "php"),
+        ("CVE-2026-105482", "A flaw in Node.js DNS resolution allows hostnames containing a NUL byte to be silently truncated by the dns.resolve*() functions", "node.js"),
+        ("CVE-2026-105483", "A flaw in Node.js TLS hostname verification allows a certificate without a matching IP address SAN to authenticate a connection", "node.js"),
+        ("CVE-2026-105481", "A flaw in Node.js HTTP Agent connection reuse can cause a client to accept as valid a response that was sent by", "node.js"),
+        ("CVE-2026-106070", "A flaw in the Node.js `zlib.ZipFile` API can cause it to return bytes that do not belong to the requested entry", "node.js"),
+        ("CVE-2026-106074", "A flaw in Node.js `crypto` causes the internal entropy caches used by `crypto.randomUUID()`", "node.js"),
+        ("CVE-2026-106071", "A flaw in Node.js Permission Model filesystem enforcement can grant access to paths that do not match a wildcard", "node.js"),
+        ("synthetic", "In PHP versions 8.1.* before 8.1.31, when using the CGI mode", "php"),
+        ("synthetic", "A heap overflow in the PHP-FPM status page", "php"),
+        ("synthetic", "Node.js before 24.22.1 mishandles a stream", "node.js"),
+        ("synthetic", "A flaw in CPython's tarfile module allows path traversal", "python"),
+        ("synthetic", "A flaw in the Go standard library allows request smuggling", "go"),
+        ("synthetic", "In net/http, a malformed request causes a panic", "go"),
+        ("synthetic", "OpenSSL 3.5 mishandles a malformed certificate", "openssl"),
+        ("synthetic", "A vulnerability in nginx before 1.27.2 allows a worker crash", "nginx"),
     ]
-    NOT_ABOUT = [
-        ("php", "The Prime Mover - Backup and Migration plugin for WordPress is vulnerable to PHP Object Injection in all versions up to, and including, 2.2.1"),
-        ("php", "Improper Control of Filename for Include/Require Statement in PHP Program ('PHP Remote File Inclusion') vulnerability in AncoraThemes Your Dress allows PHP Local File Inclusion."),
-        ("python", "Twisted is an event-based framework for internet applications, supporting Python 3.6+. Prior to 26.10.0rc1, the parser allows a remote peer to exhaust memory"),
-        ("python", "pypdf is a free and open-source pure-python PDF library. Prior to 6.21.2, an attacker can craft a PDF"),
-        ("python", "Hugging Face Datasets through 5.1.0 contains an insecure deserialization vulnerability that allows attackers to execute arbitrary Python code"),
-        ("node.js", "Happy DOM is a JavaScript implementation of a web browser without its graphical user interface."),
+    NOT_ABOUT = [  # third-party apps and libraries that merely mention a watched product
+        ("CVE-2026-108357", "PhpSpreadsheet is a pure PHP library for reading and writing spreadsheet files. From 3.3.0 until 3.10.8", "php"),
+        ("CVE-2026-54630", "Part-DB is an open source inventory management system for electronic components. Prior to version 2.12.1, the PHP upload handler", "php"),
+        ("CVE-2026-115806", "The Prime Mover - Backup and Migration plugin for WordPress is vulnerable to PHP Object Injection in all versions up to", "php"),
+        ("CVE-2026-112832", "Improper Control of Filename for Include/Require Statement in PHP Program ('PHP Remote File Inclusion') vulnerability in AncoraThemes", "php"),
+        ("CVE-2021-48016", "DedeCMS through 5.8.1-beta contains a PHP code injection vulnerability in ShowMsg() where the HTTP Referer header", "php"),
+        ("CVE-2016-20101", "Issuu Panel plugin for WordPress before 1.6.6 contains a PHP file inclusion vulnerability that allows", "php"),
+        ("CVE-2026-54630", "Part-DB is an open source inventory management system. The Apache configuration routes .phar to PHP-FPM, so the stored file is executed as PHP", "php"),
+        ("CVE-2026-108358", "PhpSpreadsheet is a pure PHP library for reading and writing spreadsheet files. This can permit local file access or SSRF on PHP before 8.0 or when LIBXML_NOENT is enabled.", "php"),
+        ("CVE-2026-114254", "A vulnerability was identified in oretnom23 file-management-system-php up to 2e3c1ebe60f1. This affects", "php"),
+        ("CVE-2026-114259", "A flaw has been found in oretnom23 file-management-system-php up to 2e3c1ebe60f121e8df4fb3f544f0e9591d9a01e4.", "php"),
+        ("CVE-2026-114403", "PHPOffice PHPPresentation through 1.2.0 contains an insecure deserialization vulnerability", "php"),
+        ("CVE-2026-111756", "follow-redirects is a Node.js HTTP and HTTPS client wrapper that automatically follows redirects. From version 1.16.0", "node.js"),
+        ("CVE-2026-115570", "Electron is a framework for writing cross-platform desktop applications using JavaScript, HTML and CSS. Prior to 42.11.16, Node.js", "node.js"),
+        ("CVE-2026-115895", "Happy DOM is a JavaScript implementation of a web browser without its graphical user interface.", "node.js"),
+        ("CVE-2026-114636", "Traefik v3.7.13 before v3.7.14 contains an access-control bypass in the Kubernetes Ingress NGINX provider, where the HTTP router", "nginx"),
+        ("CVE-2026-114640", "Traefik from v3.7.0 before v3.7.14 contains an authentication bypass vulnerability in its Kubernetes Ingress-NGINX provider", "nginx"),
+        ("CVE-2026-113812", "Mozilla::CA versions before 20261020 for Perl provide a CA certificate bundle containing a root linked to compromised", "openssl"),
+        ("CVE-2026-96639", "Pillow is a Python imaging library. From 11.0.0 until 13.0.0, multi-frame loaders can retain an ImagingCore", "python"),
+        ("CVE-2026-115775", "Twisted is an event-based framework for internet applications, supporting Python 3.6+. Prior to 26.10.0rc1, the parser", "python"),
+        ("CVE-2026-115572", "pypdf is a free and open-source pure-python PDF library. Prior to 6.21.2, an attacker can craft a PDF", "python"),
+        ("CVE-2026-57845", "Hugging Face Datasets through 5.1.0 contains an insecure deserialization vulnerability that allows attackers to execute arbitrary Python code", "python"),
+        ("CVE-2026-115727", "AgenticSeek before commit 409840c contains a remote code execution vulnerability because llm_server/app.py hardcodes Flask debug mode", "python"),
+        ("CVE-2026-89312", "`AesGcmCryptor.Open` passed a caller-supplied nonce straight to `cipher.AEAD.Open` without checking its length in a Go library", "go"),
     ]
 
-    def test_runtime_bugs_are_core(self):
-        for product, text in self.ABOUT:
-            self.assertIn(product, WATCH.core(text), text)
+    def test_runtime_bugs_are_about_the_runtime(self):
+        for cve, text, product in self.ABOUT:
+            self.assertIn(product, WATCH.about(text), "%s should be about %s" % (cve, product))
 
-    def test_apps_that_merely_mention_a_runtime_are_not_core(self):
-        for product, text in self.NOT_ABOUT:
-            self.assertNotIn(product, WATCH.core(text), text)
+    def test_apps_that_merely_mention_a_runtime_are_not(self):
+        for cve, text, product in self.NOT_ABOUT:
+            self.assertNotIn(product, WATCH.about(text), "%s is not about %s" % (cve, product))
 
-    def test_nvd_lists_core_and_counts_mention_only(self):
+    def test_php2shell_cves_raise_alerts(self):
+        """The first version of the filter missed CVE-2026-109618 itself. This must never regress."""
+        def vuln(cid, desc):
+            return {"cve": {"id": cid, "published": "2026-10-21T10:00:00.000", "descriptions": [{"lang": "en", "value": desc}],
+                            "metrics": {"cvssMetricV40": [{"cvssData": {"baseScore": 9.2, "baseSeverity": "CRITICAL"}}]}}}
+        payload = {"totalResults": 2, "vulnerabilities": [vuln(c, t) for c, t, _p in self.ABOUT[:2]]}
+        r = m.src_nvd(FakeNet({"nvd.nist.gov": payload}), NOW, 96, WATCH)
+        self.assertEqual({i["id"]: i["alert"] for i in r["items"]}, {"CVE-2026-109618": True, "CVE-2026-109619": True})
+        self.assertEqual(r["items"][0]["watch"], ["php"])
+
+    def test_nvd_lists_about_and_counts_mention_only(self):
         def vuln(cid, desc, score):
             return {"cve": {"id": cid, "published": "2026-10-24T01:00:00.000", "descriptions": [{"lang": "en", "value": desc}],
                             "metrics": {"cvssMetricV31": [{"cvssData": {"baseScore": score, "baseSeverity": "HIGH"}}]}}}
         payload = {"totalResults": 3, "vulnerabilities": [
-            vuln("CVE-2026-4001", self.ABOUT[0][1], 7.4),
-            vuln("CVE-2026-4002", self.NOT_ABOUT[0][1], 8.1),
-            vuln("CVE-2026-4003", self.NOT_ABOUT[2][1], 8.7)]}
+            vuln("CVE-2026-4001", self.ABOUT[2][1], 7.4),
+            vuln("CVE-2026-4002", self.NOT_ABOUT[0][1], 8.8),
+            vuln("CVE-2026-4003", self.NOT_ABOUT[18][1], 8.7)]}
         r = m.src_nvd(FakeNet({"nvd.nist.gov": payload}), NOW, 24, WATCH)
         self.assertEqual([i["id"] for i in r["items"]], ["CVE-2026-4001"])
         self.assertTrue(r["items"][0]["alert"])
@@ -228,7 +263,7 @@ class Classification(unittest.TestCase):
         self.assertTrue(by["CVE-2026-5001"]["alert"])
         self.assertFalse(by["CVE-2026-5002"]["alert"])
 
-    def test_bad_core_pattern_fails_loudly(self):
+    def test_bad_extra_pattern_fails_loudly(self):
         path = os.path.join(tempfile.mkdtemp(), "w.tsv")
         with open(path, "w") as fh:
             fh.write("x\tfoo\t-\t(unclosed\n")

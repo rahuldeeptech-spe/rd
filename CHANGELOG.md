@@ -1,7 +1,7 @@
 # Changelog
 
 ## Unreleased
-- Monitor: alerts only for CVEs about a watched product itself (per-product `core` pattern); apps and libraries that merely mention it are counted, not listed. First live run showed 22 mostly-irrelevant alerts without this.
+- Monitor: alerts only for CVEs that are *about* a watched product (the product is the subject of the description); apps and libraries that merely mention it are counted, not listed. Checked against 321 real NVD descriptions: exactly the 2 PHP2Shell CVEs and the 9 Node.js CVEs of the Oct 21 release alert.
 - Daily security report: a scheduled workflow reads CISA KEV, NVD, the GitHub Advisory Database and the
   nodejs.org / go.dev / php.net release feeds, publishes a report to the `reports` branch and opens an
   `[alert]` issue for watchlist matches or stale/inconsistent rules. A failed feed marks the report INCOMPLETE.
