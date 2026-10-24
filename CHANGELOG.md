@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- `monitor/lockscan.py`: scan `package-lock.json` (v1-v3), `composer.lock`, `go.mod` and pinned `requirements.txt` against OSV.dev. Skipped non-exact versions are listed, a failed lookup exits 3, never clean. 13 tests; a CI job runs it against the real API on a known-vulnerable fixture (informational).
 - `Dockerfile` and a container image published to GHCR with each release (attested). CI builds it and checks it runs as non-root.
 - Chat alerts (`monitor/notify.py`): Telegram, Discord and Slack, once a day when the alert issue is opened. Feed text is sanitised, secrets never printed, one failing channel does not stop the others.
 - Web page and Atom feed (`monitor/pages.py`) published on the `reports` branch for GitHub Pages. All feed text is escaped, only https links are used.
