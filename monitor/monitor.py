@@ -135,19 +135,31 @@ class Net:
 # --------------------------------------------------------- config loading ----
 
 class Watch:
+    """Products to watch. A keyword hit means "mentions the product". If the product also has a
+    core pattern, only a description matching it counts as being about the product itself (the
+    runtime, not a WordPress plugin or a library that merely says "PHP" or "Python")."""
+
     def __init__(self, rows):
-        self.rows = rows  # [(name, [keywords], [ecosystems])]
-        self._res = []
-        for name, kws, _eco in rows:
+        self.rows = [tuple(r) + (None,) * (4 - len(r)) for r in rows]  # (name, keywords, ecosystems, core)
+        self._kw, self._core = [], {}
+        for name, kws, _eco, core in self.rows:
             if kws:
-                self._res.append((name, re.compile(r"(?<![\w.])(?:%s)(?!\w)" % "|".join(re.escape(k) for k in kws), re.I)))
+                self._kw.append((name, re.compile(r"(?<![\w.])(?:%s)(?!\w)" % "|".join(re.escape(k) for k in kws), re.I)))
+            if core:
+                self._core[name] = re.compile(core, re.I)
 
     @property
     def ecosystems(self):
-        return sorted({e for _n, _k, es in self.rows for e in es})
+        return sorted({e for _n, _k, es, _c in self.rows for e in es})
 
     def match(self, text):
-        return [n for n, rx in self._res if rx.search(text or "")]
+        """Every watched product the text mentions."""
+        return [n for n, rx in self._kw if rx.search(text or "")]
+
+    def core(self, text, hits=None):
+        """The subset of mentioned products the text is actually about."""
+        hits = self.match(text) if hits is None else hits
+        return [n for n in hits if n not in self._core or self._core[n].search(text or "")]
 
 
 def load_watchlist(path):
@@ -160,7 +172,11 @@ def load_watchlist(path):
             f = line.split("\t")
             if len(f) < 3:
                 continue
-            rows.append((f[0], [k.strip() for k in f[1].split(",") if k.strip()], [e.strip() for e in f[2].split(",") if e.strip() and e.strip() != "-"]))
+            core = f[3].strip() if len(f) > 3 and f[3].strip() not in ("", "-") else None
+            if core:
+                re.compile(core)  # a bad pattern should fail loudly at start-up, not hide alerts
+            rows.append((f[0], [k.strip() for k in f[1].split(",") if k.strip()],
+                         [e.strip() for e in f[2].split(",") if e.strip() and e.strip() != "-"], core))
     return Watch(rows)
 
 
@@ -191,7 +207,7 @@ def src_kev(net, now, hours, watch, **_):
         if added < since or not CVE_RE.match(cve):
             continue
         text = " ".join(str(v.get(k, "")) for k in ("vendorProject", "product", "vulnerabilityName", "shortDescription"))
-        hit = watch.match(text)
+        hit = sorted(set(watch.match("%s %s" % (v.get("vendorProject", ""), v.get("product", "")))) | set(watch.core(text)))
         items.append({
             "source": "kev", "id": cve, "date": v["dateAdded"],
             "title": "%s %s - %s" % (v.get("vendorProject", ""), v.get("product", ""), v.get("vulnerabilityName", "")),
@@ -219,7 +235,7 @@ def src_nvd(net, now, hours, watch, **_):
     start = now - dt.timedelta(hours=hours)
     fmt = lambda d: urllib.parse.quote(d.strftime("%Y-%m-%dT%H:%M:%S.000+00:00"), safe="")
     headers = {"apiKey": os.environ["NVD_API_KEY"]} if os.environ.get("NVD_API_KEY") else {}
-    items, index, total = [], 0, None
+    items, index, total, mention_only = [], 0, None, 0
     for _page in range(10):
         url = "%s?pubStartDate=%s&pubEndDate=%s&resultsPerPage=2000&startIndex=%d" % (NVD_URL, fmt(start), fmt(now), index)
         data = net.get(url, headers)
@@ -232,7 +248,10 @@ def src_nvd(net, now, hours, watch, **_):
                 continue
             desc = next((d["value"] for d in cve.get("descriptions", []) if d.get("lang") == "en"), "")
             score, sev = _cvss(cve)
-            hit = watch.match(desc)
+            mentions = watch.match(desc)
+            hit = watch.core(desc, mentions)
+            if mentions and not hit and not (score is not None and score >= 9.0):
+                mention_only += 1
             if (score is not None and score >= 9.0) or hit:
                 items.append({
                     "source": "nvd", "id": cid, "date": str(cve.get("published", ""))[:10],
@@ -246,7 +265,10 @@ def src_nvd(net, now, hours, watch, **_):
     else:
         raise SourceError("NVD returned more than 10 pages")
     items.sort(key=lambda i: (not i["alert"], -(i["score"] or 0), i["id"]))
-    return {"items": items, "note": "%d CVEs published in window; showing CRITICAL (9.0+) and watchlist matches" % (total or 0)}
+    note = "%d CVEs published in window; showing CRITICAL (9.0+) and CVEs about a watched product itself" % (total or 0)
+    if mention_only:
+        note += "; %d more only mention one (apps, plugins, libraries) and are not listed" % mention_only
+    return {"items": items, "note": note}
 
 
 def src_ghsa(net, now, hours, watch, **_):
@@ -461,7 +483,7 @@ def render(run, now, hours):
     def sec(title, name, empty):
         return _section(title, res.get(name, {}).get("items", []), empty, name in st and not st[name]["ok"], name not in st)
     L += sec("Actively exploited (CISA KEV, added in window)", "kev", "No new entries in the window.")
-    L += sec("Critical new CVEs and watchlist matches (NVD)", "nvd", "No critical or watchlist CVEs published in the window.")
+    L += sec("Critical new CVEs and CVEs about watched products (NVD)", "nvd", "No critical or watchlist CVEs published in the window.")
     L += sec("GitHub reviewed advisories (critical, plus high in watched ecosystems)", "ghsa", "No matching advisories in the window.")
     L += sec("Node.js releases in window", "node", "No Node.js release in the window.")
     L += ["## Tracked versions (upstream latest vs advisories.tsv)", ""]
@@ -514,8 +536,12 @@ def main(argv=None, net=None):
         print("monitor: bad --sources or --hours", file=sys.stderr)
         return 2
     now = parse_ts(a.now) if a.now else dt.datetime.now(dt.timezone.utc).replace(microsecond=0)
-    watch = load_watchlist(a.watchlist)
-    fixed = load_rules(a.advisories)
+    try:
+        watch = load_watchlist(a.watchlist)
+        fixed = load_rules(a.advisories)
+    except (OSError, re.error) as e:
+        print("monitor: cannot load configuration: %s" % e, file=sys.stderr)
+        return 2
     run = run_all(net or Net(), now, a.hours, watch, fixed, sources)
     run["fixed"] = fixed
     md, alerts = render(run, now, a.hours)

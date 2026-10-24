@@ -14,9 +14,12 @@ runtime  branch  status  fixed  id  source  note
 - Bump `#@ updated YYYY-MM-DD` and add a line to `CHANGELOG.md`.
 
 ## Watching more products
-Add a line to `monitor/watchlist.tsv`: `name<TAB>keywords<TAB>ecosystems`. Keywords match whole words, case-insensitive
-(avoid short or common words such as `go`). Ecosystems (`npm`, `pip`, `composer`, `go`, `maven`, ...) decide which
-high-severity GitHub advisories are listed; critical ones are always listed.
+Add a line to `monitor/watchlist.tsv`: `name<TAB>keywords<TAB>ecosystems<TAB>core`.
+- `keywords` match whole words, case-insensitive (avoid short or common words such as `go`); a hit means the CVE *mentions* the product.
+- `core` is an optional Python regex (case-insensitive) that decides whether the CVE is *about* the product itself. Only core hits raise alerts.
+  Without it, every mention alerts, which is noisy for words like `php` or `python` that appear in thousands of third-party apps.
+  Add real descriptions of both kinds to `Classification` in `monitor/test_monitor.py`.
+- `ecosystems` (`npm`, `pip`, `composer`, `go`, `maven`, ...) decide which high-severity GitHub advisories are listed; critical ones are always listed.
 
 ## Before opening a PR
 ```bash

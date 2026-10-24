@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Monitor: alerts only for CVEs about a watched product itself (per-product `core` pattern); apps and libraries that merely mention it are counted, not listed. First live run showed 22 mostly-irrelevant alerts without this.
 - Daily security report: a scheduled workflow reads CISA KEV, NVD, the GitHub Advisory Database and the
   nodejs.org / go.dev / php.net release feeds, publishes a report to the `reports` branch and opens an
   `[alert]` issue for watchlist matches or stale/inconsistent rules. A failed feed marks the report INCOMPLETE.

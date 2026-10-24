@@ -105,11 +105,12 @@ class Sources(unittest.TestCase):
         def vuln(cid, desc, score=None, sev="CRITICAL"):
             metrics = {"cvssMetricV31": [{"cvssData": {"baseScore": score, "baseSeverity": sev}}]} if score is not None else {}
             return {"cve": {"id": cid, "published": "2026-10-24T01:00:00.000", "descriptions": [{"lang": "en", "value": desc}], "metrics": metrics}}
-        payload = {"totalResults": 4, "vulnerabilities": [
+        payload = {"totalResults": 5, "vulnerabilities": [
             vuln("CVE-2026-2001", "Some product RCE", 9.8),
             vuln("CVE-2026-2002", "Medium thing", 5.0, "MEDIUM"),
             vuln("CVE-2026-2003", "Node.js Brotli flaw", 8.1, "HIGH"),
-            vuln("CVE-2026-2004", "Python parser flaw awaiting analysis")]}
+            vuln("CVE-2026-2004", "A flaw in the CPython parser, awaiting analysis"),
+            vuln("CVE-2026-2005", "A WordPress plugin for Python snippets has an XSS", 5.0, "MEDIUM")]}
         r = m.src_nvd(FakeNet({"nvd.nist.gov": payload}), NOW, 24, WATCH)
         by = {i["id"]: i for i in r["items"]}
         self.assertEqual(set(by), {"CVE-2026-2001", "CVE-2026-2003", "CVE-2026-2004"})
@@ -174,6 +175,65 @@ class Sources(unittest.TestCase):
         self.assertEqual(b["upstream"][("php", "8.4")], "8.4.27")
         with self.assertRaises(m.SourceError):
             m.src_php(FakeNet({"version=8.4": {"version": "7.0.1"}}), NOW, 24, branches=["8.4"])
+
+
+class Classification(unittest.TestCase):
+    """Real descriptions from the first live NVD run (2026-10-24): runtime bugs vs apps that mention a runtime."""
+
+    ABOUT = [
+        ("node.js", "A flaw in Node.js DNS resolution allows hostnames containing a NUL byte to be silently truncated by the dns.resolve*() functions"),
+        ("node.js", "A flaw in Node.js TLS hostname verification allows a certificate without a matching IP address SAN to authenticate a connection"),
+        ("node.js", "Node.js before 24.22.1 mishandles a Brotli stream"),
+        ("php", "PHP before 8.3.36 allows remote attackers to execute arbitrary code via a use-after-free in the upload progress feature"),
+        ("php", "A heap overflow in the PHP-FPM status page"),
+        ("python", "A flaw in CPython's tarfile module allows path traversal"),
+        ("go", "A flaw in the Go standard library net/http allows request smuggling"),
+        ("openssl", "OpenSSL 3.5 mishandles a malformed certificate"),
+    ]
+    NOT_ABOUT = [
+        ("php", "The Prime Mover - Backup and Migration plugin for WordPress is vulnerable to PHP Object Injection in all versions up to, and including, 2.2.1"),
+        ("php", "Improper Control of Filename for Include/Require Statement in PHP Program ('PHP Remote File Inclusion') vulnerability in AncoraThemes Your Dress allows PHP Local File Inclusion."),
+        ("python", "Twisted is an event-based framework for internet applications, supporting Python 3.6+. Prior to 26.10.0rc1, the parser allows a remote peer to exhaust memory"),
+        ("python", "pypdf is a free and open-source pure-python PDF library. Prior to 6.21.2, an attacker can craft a PDF"),
+        ("python", "Hugging Face Datasets through 5.1.0 contains an insecure deserialization vulnerability that allows attackers to execute arbitrary Python code"),
+        ("node.js", "Happy DOM is a JavaScript implementation of a web browser without its graphical user interface."),
+    ]
+
+    def test_runtime_bugs_are_core(self):
+        for product, text in self.ABOUT:
+            self.assertIn(product, WATCH.core(text), text)
+
+    def test_apps_that_merely_mention_a_runtime_are_not_core(self):
+        for product, text in self.NOT_ABOUT:
+            self.assertNotIn(product, WATCH.core(text), text)
+
+    def test_nvd_lists_core_and_counts_mention_only(self):
+        def vuln(cid, desc, score):
+            return {"cve": {"id": cid, "published": "2026-10-24T01:00:00.000", "descriptions": [{"lang": "en", "value": desc}],
+                            "metrics": {"cvssMetricV31": [{"cvssData": {"baseScore": score, "baseSeverity": "HIGH"}}]}}}
+        payload = {"totalResults": 3, "vulnerabilities": [
+            vuln("CVE-2026-4001", self.ABOUT[0][1], 7.4),
+            vuln("CVE-2026-4002", self.NOT_ABOUT[0][1], 8.1),
+            vuln("CVE-2026-4003", self.NOT_ABOUT[2][1], 8.7)]}
+        r = m.src_nvd(FakeNet({"nvd.nist.gov": payload}), NOW, 24, WATCH)
+        self.assertEqual([i["id"] for i in r["items"]], ["CVE-2026-4001"])
+        self.assertTrue(r["items"][0]["alert"])
+        self.assertIn("2 more only mention one", r["note"])
+
+    def test_kev_vendor_field_counts_but_description_mention_does_not(self):
+        net = FakeNet({"known_exploited": kev(
+            kev_entry("CVE-2026-5001", "2026-10-24", "PHP Group", "PHP", "PHP RCE", "desc"),
+            kev_entry("CVE-2026-5002", "2026-10-24", "Acme", "Shop", "Shop SQLi", "A WordPress plugin written in PHP allows SQL injection"))})
+        by = {i["id"]: i for i in m.src_kev(net, NOW, 24, WATCH)["items"]}
+        self.assertTrue(by["CVE-2026-5001"]["alert"])
+        self.assertFalse(by["CVE-2026-5002"]["alert"])
+
+    def test_bad_core_pattern_fails_loudly(self):
+        path = os.path.join(tempfile.mkdtemp(), "w.tsv")
+        with open(path, "w") as fh:
+            fh.write("x\tfoo\t-\t(unclosed\n")
+        with self.assertRaises(Exception):
+            m.load_watchlist(path)
 
 
 class Consistency(unittest.TestCase):
@@ -270,6 +330,7 @@ class EndToEnd(unittest.TestCase):
         self.assertEqual(m.main(["--out", tempfile.mkdtemp(), "--sources", "bogus"]), 2)
         self.assertEqual(m.main(["--out", tempfile.mkdtemp(), "--hours", "0"]), 2)
         self.assertEqual(m.main([]), 2)
+        self.assertEqual(m.main(["--out", tempfile.mkdtemp(), "--watchlist", "/nonexistent/w.tsv"]), 2)
 
     def test_sources_subset_never_claims_the_skipped_ones_are_quiet(self):
         rc, md, js, _ = self.run_main(self.good_routes(), ["--sources", "node"])

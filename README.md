@@ -69,9 +69,10 @@ A scheduled GitHub Action (05:17 UTC) reads public feeds and publishes a report 
 | [GitHub Advisory Database](https://github.com/advisories) | reviewed critical advisories, plus high ones in watched ecosystems |
 | nodejs.org, go.dev, php.net | newest releases, compared against `advisories.tsv` |
 
-- **Alerts** are raised when something matches the watchlist ([`monitor/watchlist.tsv`](monitor/watchlist.tsv): PHP, Node.js, Go, Python,
-  OpenSSL, nginx, Apache), or when upstream ships a version that `advisories.tsv` does not know (or a version older than the file claims).
-  An alert opens an `[alert]` issue.
+- **Alerts** are raised when a CVE is *about* a watched product itself (watchlist in [`monitor/watchlist.tsv`](monitor/watchlist.tsv): PHP, Node.js, Go,
+  Python, OpenSSL, nginx, Apache), not merely mentioning it: a WordPress plugin that says "PHP" or a library that says "supports Python 3.6+"
+  is counted in the report note but does not alert. Alerts are also raised when upstream ships a version that `advisories.tsv` does not know
+  (or a version older than the file claims). An alert opens an `[alert]` issue.
 - **Follow it:** Watch this repository (Custom > Issues) for alerts, or subscribe to
   `https://github.com/rahuldeeptech-spe/rd/commits/reports.atom`. The latest report is also machine-readable as
   [`latest.json`](https://github.com/rahuldeeptech-spe/rd/blob/reports/latest.json).
