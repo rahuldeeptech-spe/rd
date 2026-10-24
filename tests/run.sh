@@ -85,7 +85,8 @@ check "quiet leaked nothing" bash -c '! printf "%s" "$1" | grep -q "php 8.3.36"'
 # JSON must be valid
 if command -v python3 >/dev/null 2>&1; then
   newbin json; stub "$BIN" php "PHP 8.3.1 (cli)"; stub "$BIN" node v22.23.4
-  if PATH="$BIN:$TOOLS:$(dirname "$(command -v python3)")" PATCHCHECK_SEARCH_DIRS="$BIN" "$BASH" "$ROOT/patchcheck.sh" --json --no-processes | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["exit_code"]==1 and d["summary"]["vulnerable"]==1' 2>/dev/null; then
+  # patchcheck runs on the hermetic PATH only; python3 reads its output from the pipe with the normal PATH.
+  if PATH="$BIN:$TOOLS" PATCHCHECK_SEARCH_DIRS="$BIN" "$BASH" "$ROOT/patchcheck.sh" --json --no-processes | python3 -c 'import json,sys; d=json.load(sys.stdin); assert d["exit_code"]==1 and d["summary"]["vulnerable"]==1' 2>/dev/null; then
     PASS=$((PASS + 1)); echo "ok   json is valid and correct"
   else
     FAIL=$((FAIL + 1)); echo "FAIL json is valid and correct"
