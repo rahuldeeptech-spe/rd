@@ -150,6 +150,14 @@ It looks up each exact version in [OSV.dev](https://osv.dev) (which includes the
 names and versions, nothing else. Ranges like `^1.2` or `>=2` are not versions and are printed as skipped. If the lookup fails the exit code is 3,
 never "clean". Exit codes: 0 nothing found, 1 found, 2 usage, 3 lookup failed. It is also in the release tarball.
 
+## Check your website for exposed files
+
+```bash
+python3 monitor/exposed.py https://your-site.example
+```
+
+Fetches a fixed list of paths that should never be public (`/.env`, `/.git/HEAD`, `/phpinfo.php`, `/server-status`, config backups, `.htpasswd`, ...) and reports a path only when the response looks like the real file, so a custom 404 page is not a finding. It never prints file content (it may hold secrets), does not follow redirects and sends one GET per path. Exit codes: 0 none exposed, 1 exposed, 2 usage, 3 site unreachable (never "clean"). **Only scan sites you own or may test.**
+
 ## Container image
 
 Each release also publishes `ghcr.io/rahuldeeptech-spe/rd` (tags `latest` and `vX.Y.Z`, with a build attestation). It scans what you mount into it,
