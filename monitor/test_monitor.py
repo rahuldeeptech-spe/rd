@@ -36,6 +36,12 @@ class FakeNet:
         raise m.SourceError("no route for " + url)
 
 
+def node_routes_for(path):
+    """A nodejs.org index whose newest releases equal the fixed versions in the given advisories file."""
+    rules = m.load_rules(path)
+    return {"nodejs.org": [{"version": "v%s" % v, "date": "2026-10-20", "security": True} for (rt, _b), v in rules.items() if rt == "node"]}
+
+
 def kev(*vulns):
     return {"catalogVersion": "2026.10.24", "vulnerabilities": list(vulns)}
 
@@ -378,7 +384,68 @@ class Consistency(unittest.TestCase):
         self.assertIn("new go branch 1.28", titles)
 
 
-class EndToEnd(unittest.TestCase):
+class ConsistencyReviewed(unittest.TestCase):
+    """'#@ reviewed' lines: a person's statement that newer upstream releases were read."""
+
+    F = {("php", "8.4"): "8.4.27", ("node", "24"): "24.22.1"}
+    OK = {"php": True, "node": True}
+
+    def titles(self, upstream, reviewed=None, flags=None):
+        return [a["title"] for a in m.consistency(self.F, upstream, flags or {}, self.OK, reviewed)]
+
+    def test_equal_to_fixed_is_quiet(self):
+        self.assertEqual(self.titles({("php", "8.4"): "8.4.27", ("node", "24"): "24.22.1"}), [])
+
+    def test_newer_upstream_alerts_until_it_is_reviewed(self):
+        up = {("php", "8.4"): "8.4.28", ("node", "24"): "24.22.1"}
+        self.assertIn("REVIEW: upstream php 8.4 is 8.4.28, advisories.tsv is reviewed up to 8.4.27", self.titles(up)[0])
+        self.assertEqual(self.titles(up, {("php", "8.4"): "8.4.28"}), [])
+
+    def test_the_next_release_alerts_again_after_a_review(self):
+        up = {("php", "8.4"): "8.4.29", ("node", "24"): "24.22.1"}
+        self.assertIn("reviewed up to 8.4.28", self.titles(up, {("php", "8.4"): "8.4.28"})[0])
+
+    def test_a_reviewed_line_never_hides_a_node_security_flag_on_a_newer_release(self):
+        up = {("php", "8.4"): "8.4.27", ("node", "24"): "24.23.0"}
+        out = self.titles(up, {("node", "24"): "24.22.5"}, {("node", "24"): True})
+        self.assertIn("upstream marks it a security release", out[0])
+
+    def test_reviewed_line_ahead_of_upstream_is_a_typo_alert(self):
+        up = {("php", "8.4"): "8.4.28", ("node", "24"): "24.22.1"}
+        self.assertIn("CHECK DATA: the '#@ reviewed' line for php 8.4 says 8.4.99", self.titles(up, {("php", "8.4"): "8.4.99"})[0])
+
+    def test_upstream_older_than_the_fixed_version_is_still_check_data(self):
+        up = {("php", "8.4"): "8.4.20", ("node", "24"): "24.22.1"}
+        self.assertIn("CHECK DATA: advisories.tsv says php 8.4 is fixed at 8.4.27", self.titles(up, {("php", "8.4"): "8.4.28"})[0])
+
+    def test_a_reviewed_line_below_the_fixed_version_is_ignored(self):
+        up = {("php", "8.4"): "8.4.28", ("node", "24"): "24.22.1"}
+        self.assertIn("reviewed up to 8.4.27", self.titles(up, {("php", "8.4"): "8.4.10"})[0])
+
+    def test_load_reviewed_reads_only_well_formed_lines(self):
+        path = os.path.join(tempfile.mkdtemp(), "a.tsv")
+        with open(path, "w") as fh:
+            fh.write("#@ updated 2026-10-24\n#@ reviewed php 8.4 8.4.28 2026-11-07\n#@ reviewed node 24 24.22.2 2026-11-07\n"
+                     "# a comment mentioning #@ reviewed php 8.4 9.9.9 2026-11-07 in the middle\n"
+                     "#@ reviewed ruby 3.3 3.3.1 2026-11-07\n#@ reviewed php 8.4 8.4.29 yesterday\n")
+        self.addCleanup(shutil.rmtree, os.path.dirname(path), True)
+        self.assertEqual(m.load_reviewed(path), {("php", "8.4"): "8.4.28", ("node", "24"): "24.22.2"})
+
+    def test_the_report_table_shows_the_reviewed_column(self):
+        path = os.path.join(tempfile.mkdtemp(), "a.tsv")
+        with open(path, "w") as fh:
+            fh.write("#@ reviewed node 22 22.23.5 2026-11-07\n")
+            with open(os.path.join(HERE, "..", "advisories.tsv")) as src:
+                fh.write(src.read())
+        self.addCleanup(shutil.rmtree, os.path.dirname(path), True)
+        out = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, out, True)
+        r = node_routes_for(path)
+        m.main(["--out", out, "--now", "2026-10-24T05:17:00Z", "--sources", "node", "--advisories", path], net=FakeNet(r))
+        with open(os.path.join(out, "report.md"), encoding="utf-8") as fh:
+            md = fh.read()
+        self.assertIn("Reviewed up to", md)
+
     def run_main(self, routes, extra=()):
         d = tempfile.mkdtemp()
         self.addCleanup(shutil.rmtree, d, True)
