@@ -40,3 +40,7 @@ Add a test case for any behaviour change in both `tests/run.sh` and `tests/run.p
 - Read-only, no network, no `sudo`, no `eval`.
 - Never print or execute anything taken from the advisories file.
 - bash 3.2 compatible (macOS); PowerShell 5.1 compatible.
+
+## After each release
+
+Update `Formula/patchcheck.rb`: the `url` tag and the `sha256` (the tarball's line in the release's `SHA256SUMS`). Check the syntax with `ruby -c Formula/patchcheck.rb`.
