@@ -221,7 +221,7 @@ check_managers() {
   for entry in $MANAGER_GLOBS; do
     rt="${entry%%:*}"; pat="${entry#*:}"
     for f in $pat; do
-      [ -f "$f" ] && [ -x "$f" ] || continue
+      if [ ! -f "$f" ] || [ ! -x "$f" ]; then continue; fi
       v=""
       case "$rt" in
         node) v="$(node_version_of "$f")" ;;
