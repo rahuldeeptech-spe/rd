@@ -1,11 +1,10 @@
-# Security report 2026-10-25
+# Security report 2026-10-26
 
-Generated 2026-10-25 09:50 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
+Generated 2026-10-26 11:09 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
 
-## Needs attention (2)
+## Needs attention (0)
 
-- **CVE-2026-115557** CVSS 9.4 CRITICAL - Python has added a denylist for known compromised certificates to the "ssl" module to ensure user safety even without certificate revocation configured. Known compromised certificates will automatically be rejected rega… - **watching: python** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-115557)
-- **CVE-2026-114820** CVSS 9.1 CRITICAL - Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE \(component: JSSE\). Supported versions that are affected are Oracle Java SE: 8u511-b32, 8u511-perf-… - **watching: java** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-114820)
+Nothing flagged for the watchlist or the tracked runtimes.
 
 ## Actively exploited (CISA KEV, added in window)
 
@@ -13,12 +12,9 @@ No new entries in the window.
 
 ## Critical new CVEs and CVEs about watched products (NVD)
 
-- **CVE-2026-115557** CVSS 9.4 CRITICAL - Python has added a denylist for known compromised certificates to the "ssl" module to ensure user safety even without certificate revocation configured. Known compromised certificates will automatically be rejected rega… - **watching: python** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-115557)
-- **CVE-2026-114820** CVSS 9.1 CRITICAL - Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE \(component: JSSE\). Supported versions that are affected are Oracle Java SE: 8u511-b32, 8u511-perf-… - **watching: java** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-114820)
-- **CVE-2026-115933** CVSS 9.9 CRITICAL - Postiz signs its session, invitation and password reset tokens with one shared secret and without any marker of what a token is for. A route that refreshes the credentials of a browser-extension channel signed data take… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-115933)
-- **CVE-2026-115932** CVSS 9.6 CRITICAL - When a post is published, Postiz treats a media path that is not a web address as a file on the server's disk, but it does not check that the file lies inside the upload directory. A registered user can store a crafted… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-115932)
-- **CVE-2026-115995** CVSS 9.4 CRITICAL - A security vulnerability has been detected in Unitree Robotics Unitree Go2 up to 1.1.11.4. The impacted element is the function set\_volume of the file gpt\_thread.py of the component chat\_go. Such manipulation of the arg… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-115995)
-- **CVE-2026-116014** CVSS 9.2 CRITICAL - open62541 1.5.0 before 1.5.7 contains an integer overflow in UA\_DataType\_fromStructureDescription\(\) that wraps the 16-bit memSize field for large custom structure definitions. A malicious OPC UA server can supply DataTy… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-116014)
+- **CVE-2026-116199** CVSS 9.2 CRITICAL - Snipe-IT before 8.6.3 contains an authentication bypass in GoogleAuthController::handleGoogleCallback, which logs in the user whose username matches the Google account email without enforcing the activated flag. Deactiv… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-116199)
+- **CVE-2026-116163** CVSS 9.1 CRITICAL - Parse Server before 8.6.102 and 9.0.0 before 9.10.5-alpha.2 contains an authentication bypass because the validateSetUp, validateLogin, and validateUpdate methods of custom adapters subclassing AuthAdapter are never cal… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-116163)
+- **CVE-2026-116070** CVSS 6.9 MEDIUM - Docker-Proxy through 5.1.9 contains a missing authentication vulnerability in the hubcmdui routes/config.js that allows unauthenticated attackers to read and overwrite configuration via /api/config. Attackers can retrie… - **watching: docker** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-116070)
 
 ## GitHub reviewed advisories (critical, plus high in watched ecosystems)
 
@@ -47,7 +43,7 @@ No Node.js release in the window.
 | Source | Status | Items | Note |
 |---|---|---|---|
 | CISA Known Exploited Vulnerabilities | OK | 0 | catalog 2026.10.23 |
-| NVD \(new CVEs\) | OK | 6 | 66 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 3 more only mention one \(apps, plugins, libraries\) and are not li… |
+| NVD \(new CVEs\) | OK | 3 | 194 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 5 more only mention one \(apps, plugins, libraries\) and are not l… |
 | GitHub Advisory Database | OK | 0 | critical in all ecosystems; high only for composer, go, npm, pip |
 | nodejs.org release index | OK | 0 | 875 versions in index |
 | go.dev downloads | OK | 0 | branches: 1.26, 1.27 |

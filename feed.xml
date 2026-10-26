@@ -3,7 +3,5 @@
 <title>patchcheck security alerts</title>
 <id>https://rahuldeeptech-spe.github.io/rd/</id>
 <link href="https://rahuldeeptech-spe.github.io/rd/feed.xml" rel="self"/>
-<updated>2026-10-25T09:50:21Z</updated>
-<entry><title>CVE-2026-115557 CRITICAL</title><id>urn:patchcheck:CVE-2026-115557</id><link href="https://nvd.nist.gov/vuln/detail/CVE-2026-115557"/><updated>2026-10-25T09:50:21Z</updated><summary>Python has added a denylist for known compromised certificates to the "ssl" module to ensure user safety even without certificate revocation configured. Known compromised certificates will automatically be rejected regardless of the SSLContext policy configuration.</summary></entry>
-<entry><title>CVE-2026-114820 CRITICAL</title><id>urn:patchcheck:CVE-2026-114820</id><link href="https://nvd.nist.gov/vuln/detail/CVE-2026-114820"/><updated>2026-10-25T09:50:21Z</updated><summary>Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: JSSE).  Supported versions that are affected are Oracle Java SE: 8u511-b32, 8u511-perf-b32, 11.0.33.0.2, 17.0.21.0.2, 21.0.13.0.2, 25.0.5.0.2, 27.0.1.0.2; Oracle GraalVM for JDK: 17.0.21.0.2 and  21.0.13.0.2; Oracle GraalVM Enterprise Edition: 21.3.20.0.2. Easily ex…</summary></entry>
+<updated>2026-10-26T11:09:28Z</updated>
 </feed>

@@ -1,34 +1,7 @@
 {
-  "alerts": [
-    {
-      "alert": true,
-      "date": "2026-10-24",
-      "id": "CVE-2026-115557",
-      "score": 9.4,
-      "severity": "CRITICAL",
-      "source": "nvd",
-      "title": "Python has added a denylist for known compromised certificates to the \"ssl\" module to ensure user safety even without certificate revocation configured. Known compromised certificates will automatically be rejected regardless of the SSLContext policy configuration.",
-      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115557",
-      "watch": [
-        "python"
-      ]
-    },
-    {
-      "alert": true,
-      "date": "2026-10-24",
-      "id": "CVE-2026-114820",
-      "score": 9.1,
-      "severity": "CRITICAL",
-      "source": "nvd",
-      "title": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: JSSE).  Supported versions that are affected are Oracle Java SE: 8u511-b32, 8u511-perf-b32, 11.0.33.0.2, 17.0.21.0.2, 21.0.13.0.2, 25.0.5.0.2, 27.0.1.0.2; Oracle GraalVM for JDK: 17.0.21.0.2 and  21.0.13.0.2; Oracle GraalVM Enterprise Edition: 21.3.20.0.2. Easily exploitable vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data as well as  unauthorized access to critical data or complete access to all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data. Note: This vulnerability can be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. This vulnerability also applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. CVSS 3.1 Base Score 9.1 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N).",
-      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114820",
-      "watch": [
-        "java"
-      ]
-    }
-  ],
+  "alerts": [],
   "complete": true,
-  "generated_at": "2026-10-25T09:50:21Z",
+  "generated_at": "2026-10-26T11:09:28Z",
   "items": {
     "ghsa": [],
     "go": [],
@@ -36,74 +9,39 @@
     "node": [],
     "nvd": [
       {
-        "alert": true,
-        "date": "2026-10-24",
-        "id": "CVE-2026-115557",
-        "score": 9.4,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "Python has added a denylist for known compromised certificates to the \"ssl\" module to ensure user safety even without certificate revocation configured. Known compromised certificates will automatically be rejected regardless of the SSLContext policy configuration.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115557",
-        "watch": [
-          "python"
-        ]
-      },
-      {
-        "alert": true,
-        "date": "2026-10-24",
-        "id": "CVE-2026-114820",
-        "score": 9.1,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: JSSE).  Supported versions that are affected are Oracle Java SE: 8u511-b32, 8u511-perf-b32, 11.0.33.0.2, 17.0.21.0.2, 21.0.13.0.2, 25.0.5.0.2, 27.0.1.0.2; Oracle GraalVM for JDK: 17.0.21.0.2 and  21.0.13.0.2; Oracle GraalVM Enterprise Edition: 21.3.20.0.2. Easily exploitable vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data as well as  unauthorized access to critical data or complete access to all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data. Note: This vulnerability can be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. This vulnerability also applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. CVSS 3.1 Base Score 9.1 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N).",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114820",
-        "watch": [
-          "java"
-        ]
-      },
-      {
         "alert": false,
-        "date": "2026-10-24",
-        "id": "CVE-2026-115933",
-        "score": 9.9,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "Postiz signs its session, invitation and password reset tokens with one shared secret and without any marker of what a token is for. A route that refreshes the credentials of a browser-extension channel signed data taken from the request itself and stored the result where the requesting user can read it back. A user could therefore obtain a validly signed token containing any claims they choose, which the application accepts as a session, as an organization invitation with a chosen role, as a password reset or as an enterprise provisioning token.\n\nA second, narrower route that creates team invitations signs extra fields from the request body in the same way.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115933",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-10-24",
-        "id": "CVE-2026-115932",
-        "score": 9.6,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "When a post is published, Postiz treats a media path that is not a web address as a file on the server's disk, but it does not check that the file lies inside the upload directory. A registered user can store a crafted media path with a post, get it past the checks that normally restrict it, and have the publishing worker read an arbitrary file and send it as an attachment to a Discord server the user controls.\n\nThe same unconfined reads can be reached through two further routes. One tells the caller whether a file exists and can exhaust the backend's memory, the other delivers the file the same way as the main route. Self-registration is open by default, so the attacker needs no existing account.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115932",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-10-24",
-        "id": "CVE-2026-115995",
-        "score": 9.4,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "A security vulnerability has been detected in Unitree Robotics Unitree Go2 up to 1.1.11.4. The impacted element is the function set_volume of the file gpt_thread.py of the component chat_go. Such manipulation of the argument Value leads to os command injection. The attack can be launched remotely. Upgrading to version 1.1.11.5 is sufficient to resolve this issue. You should upgrade the affected component. The vendor confirmed early: \"Submission 990502 corresponds to our internal ticket #474 (Go2 chat_go set_volume OS command injection, CWE-78).\"",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115995",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-10-24",
-        "id": "CVE-2026-116014",
+        "date": "2026-10-25",
+        "id": "CVE-2026-116199",
         "score": 9.2,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "open62541 1.5.0 before 1.5.7 contains an integer overflow in UA_DataType_fromStructureDescription() that wraps the 16-bit memSize field for large custom structure definitions. A malicious OPC UA server can supply DataType definitions via UA_Client_getRemoteDataTypes(), causing decodeBinaryStructure() to overflow the heap, crashing clients or enabling code execution.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-116014",
+        "title": "Snipe-IT before 8.6.3 contains an authentication bypass in GoogleAuthController::handleGoogleCallback, which logs in the user whose username matches the Google account email without enforcing the activated flag. Deactivated users with email-shaped usernames and still-live Google identities can sign in via Google SSO and regain sessions at their original permission level, including admin.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-116199",
         "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-25",
+        "id": "CVE-2026-116163",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Parse Server before 8.6.102 and 9.0.0 before 9.10.5-alpha.2 contains an authentication bypass because the validateSetUp, validateLogin, and validateUpdate methods of custom adapters subclassing AuthAdapter are never called, and an inherited default that accepts any authData is used instead. Attackers can supply arbitrary authData to sign up, link identities, log in as existing users, or skip custom additional authentication factors.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-116163",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-25",
+        "id": "CVE-2026-116070",
+        "score": 6.9,
+        "severity": "MEDIUM",
+        "source": "nvd",
+        "title": "Docker-Proxy through 5.1.9 contains a missing authentication vulnerability in the hubcmdui routes/config.js that allows unauthenticated attackers to read and overwrite configuration via /api/config. Attackers can retrieve the WeChat webhook URL and Telegram bot token, and overwrite menuItems links, proxyDomain, and the monitoring webhook destination receiving alerts.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-116070",
+        "watch": [
+          "docker"
+        ]
       }
     ],
     "php": []
@@ -117,10 +55,10 @@
       "ok": true
     },
     {
-      "count": 6,
+      "count": 3,
       "label": "NVD (new CVEs)",
       "name": "nvd",
-      "note": "66 CVEs published in window; showing CRITICAL (9.0+) and CVEs about a watched product itself; 3 more only mention one (apps, plugins, libraries) and are not listed",
+      "note": "194 CVEs published in window; showing CRITICAL (9.0+) and CVEs about a watched product itself; 5 more only mention one (apps, plugins, libraries) and are not listed",
       "ok": true
     },
     {
