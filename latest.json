@@ -2,28 +2,28 @@
   "alerts": [
     {
       "alert": true,
-      "date": "2026-10-28",
-      "id": "CVE-2026-118694",
-      "score": 8.7,
+      "date": "2026-10-30",
+      "id": "CVE-2026-59387",
+      "score": 8.8,
       "severity": "HIGH",
       "source": "nvd",
-      "title": "python-markdown2 through 2.5.5 contains a denial of service vulnerability that allows remote users to exhaust CPU by submitting Markdown with unclosed inline link destinations. Attackers can submit repeated '[a](' or '![a](' sequences, causing _find_balanced to rescan the remaining document for each link and consume quadratic CPU time.",
-      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118694",
+      "title": "The Nginx routing configuration for Cloud Controller blocks unauthenticated access to /internal/v4/ and /internal/v5/ endpoints but omits an equivalent deny rule for /internal/v3/. As a result, the staging callback endpoints /internal/v3/staging/:guid/droplet_completed and /internal/v3/staging/:guid/build_completed are reachable from the public API listener without OAuth or mutual TLS.\n\n\n\n\u00a0\n\n\n\nAn attacker with a valid build or droplet GUID can submit a forged staging callback, transition a droplet to STAGED, and persist arbitrary process metadata and sidecar data with no associated package or actor. A SpaceAuditor can enumerate GUIDs without write permissions, making this an effective privilege escalation beyond the intended role boundary.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-59387",
       "watch": [
-        "python"
+        "nginx"
       ]
     },
     {
       "alert": true,
-      "date": "2026-10-28",
-      "id": "CVE-2026-116641",
-      "score": 7.6,
+      "date": "2026-10-29",
+      "id": "CVE-2019-25781",
+      "score": 8.7,
       "severity": "HIGH",
       "source": "nvd",
-      "title": "The DB Tools rely on the TLS implementation in Golang\u2019s standard library, which generally uses the system CA store. However, the crypto/x509 package also has its own internal denylist of known-bad CA certificates. Golang 1.27.3 adds the eMudhra certificates to this list.\n\n\n\n\nDB Tools version 100.19.0 was compiled with Golang 1.26.8, which does not include this check.\n\n\n\n\nThe issue is resolved by updating to Golang 1.27.3 in DB Tools 100.20.0",
-      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-116641",
+      "title": "Python-Markdown 3.0 through 3.11.2 contains an algorithmic complexity vulnerability in inline link parsing that allows remote attackers to exhaust CPU through unmatched brackets. Attackers can submit short Markdown containing repeated [ or ![ characters, forcing LinkInlineProcessor.getText() and getLink() into quadratic scans that keep workers busy for minutes.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2019-25781",
       "watch": [
-        "go"
+        "python"
       ]
     },
     {
@@ -47,479 +47,120 @@
       "watch": [
         "node"
       ]
+    },
+    {
+      "alert": true,
+      "date": "",
+      "id": "node 27",
+      "source": "rules",
+      "title": "REVIEW: new node branch 27 exists upstream but advisories.tsv has no rule for it (it falls back to the 'newer' rule).",
+      "url": "",
+      "watch": [
+        "node"
+      ]
     }
   ],
   "complete": true,
-  "generated_at": "2026-10-29T11:33:08Z",
+  "generated_at": "2026-10-30T11:25:24Z",
   "items": {
     "ghsa": [
       {
         "alert": false,
-        "cve": "CVE-2026-117601",
-        "date": "2026-10-28",
-        "id": "GHSA-6jp4-8v48-cc5v",
+        "cve": "CVE-2026-61438",
+        "date": "2026-10-29",
+        "id": "GHSA-26mh-57q7-jfvr",
         "packages": [
-          "pip:electrum (fixed 4.8.3)"
-        ],
-        "severity": "CRITICAL",
-        "source": "ghsa",
-        "title": "Electrum: Malicious server can replace a just-broadcast tx and try to trick user into RBF-ing it",
-        "url": "https://github.com/advisories/GHSA-6jp4-8v48-cc5v",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-115905",
-        "date": "2026-10-28",
-        "id": "GHSA-m665-v7pm-7grj",
-        "packages": [
-          "rust:zip (fixed 9.0.5)"
-        ],
-        "severity": "CRITICAL",
-        "source": "ghsa",
-        "title": "zip: Critical Parser Differential & Security Control Bypass via Dual-Header Inconsistencies (Zip Cloaking) Leading to Arbitrary File Overwrite & RCE",
-        "url": "https://github.com/advisories/GHSA-m665-v7pm-7grj",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-115893",
-        "date": "2026-10-28",
-        "id": "GHSA-mghf-wjfp-p5xm",
-        "packages": [
-          "rust:wasmtime (fixed 36.0.19)",
-          "rust:wasmtime (fixed 48.0.7)",
-          "rust:wasmtime (fixed 49.0.4)"
-        ],
-        "severity": "CRITICAL",
-        "source": "ghsa",
-        "title": "Wasmtime: Cranelift backend on aarch64 can jump to incorrect target on large Wasm `br_table` instruction",
-        "url": "https://github.com/advisories/GHSA-mghf-wjfp-p5xm",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-118246",
-        "date": "2026-10-28",
-        "id": "GHSA-35rr-xwfh-x789",
-        "packages": [
-          "npm:highcharts (fixed 11.4.9)",
-          "npm:highcharts (fixed 12.6.1)",
-          "npm:highcharts (fixed 13.1.0)"
+          "pip:praisonai (fixed 4.6.78)"
         ],
         "severity": "HIGH",
         "source": "ghsa",
-        "title": "Highcharts Core: `breadcrumbs.style` keys become SVG event-handler attributes",
-        "url": "https://github.com/advisories/GHSA-35rr-xwfh-x789",
+        "title": "PraisonAI vulnerable to Remote Code Execution via Broken AST Sandbox",
+        "url": "https://github.com/advisories/GHSA-26mh-57q7-jfvr",
         "watch": []
       },
       {
         "alert": false,
-        "cve": "CVE-2026-118650",
-        "date": "2026-10-28",
-        "id": "GHSA-375p-5qhx-8wq4",
+        "cve": "CVE-2026-62290",
+        "date": "2026-10-29",
+        "id": "GHSA-8rvj-mm4h-c258",
         "packages": [
-          "go:github.com/labstack/echo/v5 (fixed 5.4.0)",
-          "go:github.com/labstack/echo/v4 (fixed 4.16.0)"
+          "go:github.com/cert-manager/cert-manager (fixed 1.19.6)",
+          "go:github.com/cert-manager/cert-manager (fixed 1.20.3)"
         ],
         "severity": "HIGH",
         "source": "ghsa",
-        "title": "Echo's middleware.Static: `%2F`-encoded path bypasses route/group middleware guarding a statically-served path",
-        "url": "https://github.com/advisories/GHSA-375p-5qhx-8wq4",
+        "title": "cert-manager: Direct ACME Challenge resources can bypass Issuer DNS01 solver policy and use ClusterIssuer DNS credentials",
+        "url": "https://github.com/advisories/GHSA-8rvj-mm4h-c258",
         "watch": []
       },
       {
         "alert": false,
-        "cve": "CVE-2026-116576",
-        "date": "2026-10-28",
-        "id": "GHSA-3f7j-7jwc-fxfj",
+        "cve": "CVE-2026-62264",
+        "date": "2026-10-29",
+        "id": "GHSA-q344-5v34-gm84",
         "packages": [
-          "npm:systeminformation (fixed 5.33.16)"
+          "npm:@sylphx/pdf-reader-mcp (fixed 3.0.1)"
         ],
         "severity": "HIGH",
         "source": "ghsa",
-        "title": "systeminformation vulnerable to Windows command injection in services() through Unicode quotation marks",
-        "url": "https://github.com/advisories/GHSA-3f7j-7jwc-fxfj",
+        "title": "@sylphx/pdf-reader-mcp: HTTP transport accepts unauthenticated requests despite a configured MCP_API_KEY",
+        "url": "https://github.com/advisories/GHSA-q344-5v34-gm84",
         "watch": []
       },
       {
         "alert": false,
-        "cve": "CVE-2026-118665",
-        "date": "2026-10-28",
-        "id": "GHSA-434m-5hcj-pxf3",
+        "cve": "CVE-2026-118664",
+        "date": "2026-10-29",
+        "id": "GHSA-qr28-fpjm-wq7f",
         "packages": [
-          "npm:@graphql-tools/executor-legacy-ws (fixed 1.1.36)"
+          "npm:decode-uri-component (fixed 0.5.1)"
         ],
         "severity": "HIGH",
         "source": "ghsa",
-        "title": "GraphQL Tools: Per-request connection parameters persist into later users' WebSocket authentications",
-        "url": "https://github.com/advisories/GHSA-434m-5hcj-pxf3",
+        "title": "decode-uri-component vulnerable to denial of service via quadratic replacement of percent-encoded runs",
+        "url": "https://github.com/advisories/GHSA-qr28-fpjm-wq7f",
         "watch": []
       },
       {
         "alert": false,
-        "cve": "CVE-2026-118668",
-        "date": "2026-10-28",
-        "id": "GHSA-4hm6-w6qq-w73v",
+        "cve": "CVE-2026-62160",
+        "date": "2026-10-29",
+        "id": "GHSA-rhj7-vh3v-mcq6",
         "packages": [
-          "pip:langgraph-api (fixed 0.15.0)"
+          "go:github.com/daptin/daptin"
         ],
         "severity": "HIGH",
         "source": "ghsa",
-        "title": "LangGraph JavaScript custom authentication may permit cross-user Store access",
-        "url": "https://github.com/advisories/GHSA-4hm6-w6qq-w73v",
+        "title": "Daptin: ParseAcceptLanguage `_` separator bypass enables >250x CPU amplification via Accept-Language header in LanguageMiddleware",
+        "url": "https://github.com/advisories/GHSA-rhj7-vh3v-mcq6",
         "watch": []
       },
       {
         "alert": false,
         "cve": "",
-        "date": "2026-10-28",
-        "id": "GHSA-4mfg-r38w-w8fg",
+        "date": "2026-10-29",
+        "id": "GHSA-vpp8-g58w-m8mp",
         "packages": [
-          "npm:mcp-sanitizer (fixed 1.4.0)"
+          "pip:Twisted (fixed 26.10.0rc1)"
         ],
         "severity": "HIGH",
         "source": "ghsa",
-        "title": "mcp-sanitizer: URL sanitizer allows localhost/IPv6 loopback SSRF bypass via explicit port or bracketed IPv6",
-        "url": "https://github.com/advisories/GHSA-4mfg-r38w-w8fg",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-118251",
-        "date": "2026-10-28",
-        "id": "GHSA-5793-x2q3-c3q7",
-        "packages": [
-          "npm:highcharts (fixed 11.4.9)",
-          "npm:highcharts (fixed 12.6.1)",
-          "npm:highcharts (fixed 13.1.0)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Highcharts: `javascript:` URL in credits.href runs script on click",
-        "url": "https://github.com/advisories/GHSA-5793-x2q3-c3q7",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-118253",
-        "date": "2026-10-28",
-        "id": "GHSA-58g7-7f52-h92c",
-        "packages": [
-          "npm:@highcharts/dashboards (fixed 4.2.3)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Highcharts Dashboards parses fullscreen labels as HTML",
-        "url": "https://github.com/advisories/GHSA-58g7-7f52-h92c",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-116797",
-        "date": "2026-10-28",
-        "id": "GHSA-5ghw-9mgr-jvx2",
-        "packages": [
-          "npm:@highcharts/grid-pro (fixed 3.2.0)",
-          "npm:@highcharts/dashboards (fixed 4.0.0)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Highcharts Grid Pro: cell-renderer `attributes` map written with raw `setAttribute`",
-        "url": "https://github.com/advisories/GHSA-5ghw-9mgr-jvx2",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-58273",
-        "date": "2026-10-28",
-        "id": "GHSA-5j9r-fx4x-rpvg",
-        "packages": [
-          "pip:rucio (fixed 35.9.0)",
-          "pip:rucio (fixed 38.6.0)",
-          "pip:rucio (fixed 41.0.0rc1)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "rucio has an Authorization Bypass on REST API endpoint for signing URLs",
-        "url": "https://github.com/advisories/GHSA-5j9r-fx4x-rpvg",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-118244",
-        "date": "2026-10-28",
-        "id": "GHSA-65hg-cf3f-5m39",
-        "packages": [
-          "npm:highcharts (fixed 12.6.1)",
-          "npm:highcharts (fixed 13.1.0)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Highcharts Core: HTML text parsing falls back to unfiltered `innerHTML` during printing",
-        "url": "https://github.com/advisories/GHSA-65hg-cf3f-5m39",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-115912",
-        "date": "2026-10-28",
-        "id": "GHSA-6757-hggm-hp2w",
-        "packages": [
-          "pip:vllm (fixed 0.32.0)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "vLLM: Public multimodal SHM handle forgery reaches worker-side `pickle.loads()` with insecure serialization disabled",
-        "url": "https://github.com/advisories/GHSA-6757-hggm-hp2w",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-118242",
-        "date": "2026-10-28",
-        "id": "GHSA-6g3c-p4fg-xv47",
-        "packages": [
-          "npm:@highcharts/grid-lite (fixed 3.2.0)",
-          "npm:@highcharts/grid-pro (fixed 3.2.0)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Highcharts Grid: custom icon definition objects written with raw `setAttribute` on `<path>`",
-        "url": "https://github.com/advisories/GHSA-6g3c-p4fg-xv47",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-118255",
-        "date": "2026-10-28",
-        "id": "GHSA-6hgp-fmhr-mrg4",
-        "packages": [
-          "npm:@highcharts/dashboards (fixed 4.0.0)",
-          "npm:@highcharts/grid-pro (fixed 3.2.0)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Highcharts Grid: `javascript:` URL in credits.href runs script on click",
-        "url": "https://github.com/advisories/GHSA-6hgp-fmhr-mrg4",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-116580",
-        "date": "2026-10-28",
-        "id": "GHSA-7rv5-mrxv-xcr9",
-        "packages": [
-          "npm:seroval (fixed 1.6.8)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Seroval: Deserialization invokes attacker-chosen callables: AsyncIteratorFactoryInstance calls source.on(listener) without type check",
-        "url": "https://github.com/advisories/GHSA-7rv5-mrxv-xcr9",
+        "title": "Twisted: Unauthenticated Remote Denial of Service in the Twisted HTTP/2 Server via Rapid Stream Reset",
+        "url": "https://github.com/advisories/GHSA-vpp8-g58w-m8mp",
         "watch": []
       },
       {
         "alert": false,
         "cve": "",
-        "date": "2026-10-28",
-        "id": "GHSA-7w82-6f9j-v9jp",
+        "date": "2026-10-29",
+        "id": "GHSA-w9x9-j56r-h98r",
         "packages": [
-          "npm:mcp-sanitizer (fixed 1.4.0)"
+          "npm:@eeacms/volto-chatbot (fixed 2.0.4)"
         ],
         "severity": "HIGH",
         "source": "ghsa",
-        "title": "mcp-sanitizer: File Path Sanitizer Permits Arbitrary User-Home Absolute Paths",
-        "url": "https://github.com/advisories/GHSA-7w82-6f9j-v9jp",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-118257",
-        "date": "2026-10-28",
-        "id": "GHSA-83rm-6c8r-g728",
-        "packages": [
-          "npm:vue-i18n",
-          "npm:vue-i18n",
-          "npm:vue-i18n (fixed 11.4.14)",
-          "npm:vue-i18n (fixed 12.0.0-alpha.5)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Vue I18n: escapeParameter does not prevent XSS through srcdoc in translation messages",
-        "url": "https://github.com/advisories/GHSA-83rm-6c8r-g728",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-116581",
-        "date": "2026-10-28",
-        "id": "GHSA-97r2-qh9m-474h",
-        "packages": [
-          "npm:seroval (fixed 1.6.8)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Seroval: fromJSON deserializer trusts node-supplied array length and sequence doneAt (unauthenticated event-loop DoS)",
-        "url": "https://github.com/advisories/GHSA-97r2-qh9m-474h",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-118660",
-        "date": "2026-10-28",
-        "id": "GHSA-c8p4-j97h-3vg8",
-        "packages": [
-          "npm:happy-dom (fixed 21.0.0)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Happy DOM: SSRF via iframe and link stylesheet when parsing untrusted HTML",
-        "url": "https://github.com/advisories/GHSA-c8p4-j97h-3vg8",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-118249",
-        "date": "2026-10-28",
-        "id": "GHSA-gfvx-2c2g-38wq",
-        "packages": [
-          "npm:highcharts (fixed 13.1.0)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Highcharts: series column construction writes to Object.prototype",
-        "url": "https://github.com/advisories/GHSA-gfvx-2c2g-38wq",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-116795",
-        "date": "2026-10-28",
-        "id": "GHSA-gg6h-894w-4m9c",
-        "packages": [
-          "npm:re2js (fixed 2.8.7)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "RE2JS: Quadratic-time denial of service in re2js lookbehind matching",
-        "url": "https://github.com/advisories/GHSA-gg6h-894w-4m9c",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-118245",
-        "date": "2026-10-28",
-        "id": "GHSA-grj7-r4jv-pw9j",
-        "packages": [
-          "npm:@highcharts/dashboards (fixed 4.2.2)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Highcharts Dashboards: `chartConstructor` is an unchecked lookup into the Highcharts namespace",
-        "url": "https://github.com/advisories/GHSA-grj7-r4jv-pw9j",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-115915",
-        "date": "2026-10-28",
-        "id": "GHSA-h3rc-j82p-2c3h",
-        "packages": [
-          "pip:vllm (fixed 0.32.0)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "vLLM: Untrusted EPS inputs can trigger denial of service or Ghostscript RCE",
-        "url": "https://github.com/advisories/GHSA-h3rc-j82p-2c3h",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-116796",
-        "date": "2026-10-28",
-        "id": "GHSA-mw4f-gj5x-6xr4",
-        "packages": [
-          "npm:highcharts (fixed 11.4.9)",
-          "npm:highcharts (fixed 12.6.2)",
-          "npm:highcharts (fixed 13.1.1)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Highcharts Core: `javascript:` URL in an `xlink:href` attribute survives text filtering and reaches exported charts",
-        "url": "https://github.com/advisories/GHSA-mw4f-gj5x-6xr4",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-118254",
-        "date": "2026-10-28",
-        "id": "GHSA-r5wg-q8fc-p6w2",
-        "packages": [
-          "npm:@highcharts/grid-lite (fixed 3.2.0)",
-          "npm:@highcharts/grid-pro (fixed 3.2.0)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Highcharts Grid parses pagination language options as HTML",
-        "url": "https://github.com/advisories/GHSA-r5wg-q8fc-p6w2",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-118252",
-        "date": "2026-10-28",
-        "id": "GHSA-rcqf-f6h2-ccg9",
-        "packages": [
-          "npm:@highcharts/dashboards (fixed 4.2.3)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Highcharts Dashboards parses sidebar component labels as HTML",
-        "url": "https://github.com/advisories/GHSA-rcqf-f6h2-ccg9",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-118250",
-        "date": "2026-10-28",
-        "id": "GHSA-rmqc-xvr3-v46c",
-        "packages": [
-          "npm:highcharts (fixed 12.6.1)",
-          "npm:highcharts (fixed 13.1.0)",
-          "npm:highcharts (fixed 11.4.9)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Highcharts: dotted series.keys paths write to Object.prototype",
-        "url": "https://github.com/advisories/GHSA-rmqc-xvr3-v46c",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-116584",
-        "date": "2026-10-28",
-        "id": "GHSA-wp97-x4hv-qvhp",
-        "packages": [
-          "npm:seroval (fixed 1.6.8)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Seroval `fromJSON`/`fromCrossJSON` denial of service via unvalidated array node length",
-        "url": "https://github.com/advisories/GHSA-wp97-x4hv-qvhp",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-115887",
-        "date": "2026-10-28",
-        "id": "GHSA-x8rm-f576-gq67",
-        "packages": [
-          "npm:graphql-scalars (fixed 2.0.1)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "graphql-scalars PhoneNumber scalar is vulnerable to regular expression denial of service",
-        "url": "https://github.com/advisories/GHSA-x8rm-f576-gq67",
+        "title": "@eeacms/volto-chatbot has Unauthenticated Danswer API Confused Deputy Proxy",
+        "url": "https://github.com/advisories/GHSA-w9x9-j56r-h98r",
         "watch": []
       }
     ],
@@ -527,37 +168,37 @@
     "kev": [
       {
         "alert": false,
-        "date": "2026-10-28",
-        "detail": "Broadcom VMWare ESX contains an insufficient logging vulnerability that could allow a malicious actor with admin access to perform certain operations without being logged.",
-        "due": "2026-11-11",
-        "id": "CVE-2026-41709",
+        "date": "2026-10-29",
+        "detail": "Cisco Secure Firewall ASA Software and Cisco Secure FTD Software contains an unchecked return value to NULL pointer dereference vulnerability that could allow an unauthenticated, remote attacker to cause the device to reload unexpectedly, resulting in a denial of service (DoS) condition.",
+        "due": "2026-11-01",
+        "id": "CVE-2026-76418",
         "ransomware": false,
         "source": "kev",
-        "title": "Broadcom VMware ESX - Broadcom VMWare ESX Insufficient Logging Vulnerability",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-41709",
+        "title": "Cisco Secure Firewall ASA Software and Cisco Secure FTD Software - Cisco Secure Firewall ASA Software and Cisco Secure FTD Software Unchecked Return Value to NULL Pointer Dereference Vulnerability",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-76418",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-10-28",
-        "detail": "Linux Kernel contains a missing initialization of a variable vulnerability that could allow for unintended modification of page-cache-backed data via failure to preserve the shared-fragment marker during socket buffer coalescing, causing ESP input processing to decrypt shared fragments in place. This vulnerability can be chained with CVE-2026-109618 and CVE-2026-109619 to implant PHP webshells and run commands as root.",
-        "due": "2026-10-31",
-        "id": "CVE-2026-46300",
+        "date": "2026-10-29",
+        "detail": "GitLab Community Edition and Enterprise Edition contain a integer overflow or wraparound vulnerability that could allow an unauthenticated user to execute arbitrary code on the GitLab server via a specially crafted regular expression in a CI/CD configuration, due to insufficient regular expression validation.",
+        "due": "2026-11-01",
+        "id": "CVE-2026-97229",
         "ransomware": false,
         "source": "kev",
-        "title": "Linux Kernel - Linux Kernel Missing Initialization of a Variable Vulnerability",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-46300",
+        "title": "GitLab Community Edition and Enterprise Edition - GitLab Community Edition and Enterprise Edition Integer Overflow or Wraparound Vulnerability",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-97229",
         "watch": []
       }
     ],
     "node": [
       {
         "alert": false,
-        "date": "2026-10-28",
-        "id": "node 26.13.0",
+        "date": "2026-10-29",
+        "id": "node 27.0.0-alpha.0.0.0",
         "security": false,
         "source": "node",
-        "title": "Node.js 26.13.0 released",
+        "title": "Node.js 27.0.0-alpha.0.0.0 released",
         "url": "https://nodejs.org/en/blog/vulnerability",
         "watch": [
           "node.js"
@@ -567,328 +208,667 @@
     "nvd": [
       {
         "alert": true,
-        "date": "2026-10-28",
-        "id": "CVE-2026-118694",
+        "date": "2026-10-30",
+        "id": "CVE-2026-59387",
+        "score": 8.8,
+        "severity": "HIGH",
+        "source": "nvd",
+        "title": "The Nginx routing configuration for Cloud Controller blocks unauthenticated access to /internal/v4/ and /internal/v5/ endpoints but omits an equivalent deny rule for /internal/v3/. As a result, the staging callback endpoints /internal/v3/staging/:guid/droplet_completed and /internal/v3/staging/:guid/build_completed are reachable from the public API listener without OAuth or mutual TLS.\n\n\n\n\u00a0\n\n\n\nAn attacker with a valid build or droplet GUID can submit a forged staging callback, transition a droplet to STAGED, and persist arbitrary process metadata and sidecar data with no associated package or actor. A SpaceAuditor can enumerate GUIDs without write permissions, making this an effective privilege escalation beyond the intended role boundary.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-59387",
+        "watch": [
+          "nginx"
+        ]
+      },
+      {
+        "alert": true,
+        "date": "2026-10-29",
+        "id": "CVE-2019-25781",
         "score": 8.7,
         "severity": "HIGH",
         "source": "nvd",
-        "title": "python-markdown2 through 2.5.5 contains a denial of service vulnerability that allows remote users to exhaust CPU by submitting Markdown with unclosed inline link destinations. Attackers can submit repeated '[a](' or '![a](' sequences, causing _find_balanced to rescan the remaining document for each link and consume quadratic CPU time.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118694",
+        "title": "Python-Markdown 3.0 through 3.11.2 contains an algorithmic complexity vulnerability in inline link parsing that allows remote attackers to exhaust CPU through unmatched brackets. Attackers can submit short Markdown containing repeated [ or ![ characters, forcing LinkInlineProcessor.getText() and getLink() into quadratic scans that keep workers busy for minutes.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2019-25781",
         "watch": [
           "python"
         ]
       },
       {
-        "alert": true,
-        "date": "2026-10-28",
-        "id": "CVE-2026-116641",
-        "score": 7.6,
-        "severity": "HIGH",
-        "source": "nvd",
-        "title": "The DB Tools rely on the TLS implementation in Golang\u2019s standard library, which generally uses the system CA store. However, the crypto/x509 package also has its own internal denylist of known-bad CA certificates. Golang 1.27.3 adds the eMudhra certificates to this list.\n\n\n\n\nDB Tools version 100.19.0 was compiled with Golang 1.26.8, which does not include this check.\n\n\n\n\nThe issue is resolved by updating to Golang 1.27.3 in DB Tools 100.20.0",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-116641",
-        "watch": [
-          "go"
-        ]
-      },
-      {
         "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-61564",
+        "date": "2026-10-29",
+        "id": "CVE-2026-61991",
         "score": 10.0,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "AVideo is a video-sharing Platform. Prior to 8.1.0, the unauthenticated installer endpoint `install/checkConfiguration.php` assembles `videos/configuration.php` by interpolating request parameters, including `webSiteRootURL`, into single-quoted PHP string literals without escaping. An attacker can terminate a literal and inject PHP that executes as the web-server user when the generated, directly requestable file is loaded. Exploitation requires `videos/configuration.php` to be absent, as on every fresh deployment or after the file is removed or moved; an existing file blocks this endpoint. The supplied `systemRootPath` must contain index.php and a connection using `databaseHost`, `databaseUser`, and `databasePass` must succeed, but the attacker can point those parameters to their own database server and needs no target credentials. The write location is also derived from `systemRootPath` without a base-directory constraint. This permits arbitrary command execution, reading and overwriting files owned by the web-server user, persistent PHP code, and control over stored database connection settings. The endpoint additionally interpolates request values into streamer and configuration INSERT statements, creating a secondary SQL-injection sink. This issue is fixed in version 8.1.0.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-61564",
+        "title": "Unauthenticated Remote Code Execution (RCE) in AjaxLoadMore Cache <= 3.1.1 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-61991",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-61567",
+        "date": "2026-10-29",
+        "id": "CVE-2026-84295",
         "score": 10.0,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "AVideo is a video-sharing Platform. Prior to 8.1.0, the live-streaming endpoint `view/videosListToLive.php` accepts an attacker-named streamer in `webSiteRootURL`, calls `Login::run` in `objects/Login.php`, and trusts the returned JSON as session state. An unauthenticated remote attacker who can host an HTTP service reachable by the encoder can self-grant `isLogged` and `canStream` without legitimate credentials. The endpoint requires only nonempty `playlists_id` and `APISecret` values; `APISecret` is forwarded rather than checked against a stored secret. This path never calls `Streamer::isURLAllowed` and therefore works regardless of the operator's streamer allowlist. It fetches a second attacker-controlled video-list response and interpolates `videos[].path` without shell argument escaping into `ffprobe` and `ffmpeg` commands passed to `exec`; `isAudio` calls `isVideo` to reach the `ffprobe` command. Paths containing shell delimiters execute arbitrary operating-system commands as the web-server user. The request filter does not inspect the video-list JSON. This can disclose database and stored streamer credentials, compromise the upstream platform using those credentials, modify files owned by the web-server user, establish persistence, and deny encoder service. This issue is fixed in version 8.1.0.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-61567",
+        "title": "Improper authentication in Progress Software WS_FTP Server versions prior to 2024.0.6 and 2025.0.3 on Windows could allow an unauthenticated remote attacker to access sensitive information, including administrative credentials.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-84295",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-10-29",
-        "id": "CVE-2026-113617",
+        "id": "CVE-2026-107327",
         "score": 9.9,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "The Automated Import Products to Cart WordPress plugin before 1.0.4 does not sanitize a user-supplied file path before using it to read and delete files, allowing users with minimal permissions, such as subscribers, to read arbitrary files (including ones containing the database credentials) and delete arbitrary files on the server.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-113617",
+        "title": "IBM Langflow OSS 1.0.0 through 1.12.4 could allow a remote authenticated attacker to execute arbitrary code due to missing authorization.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-107327",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-44179",
+        "date": "2026-10-29",
+        "id": "CVE-2026-107328",
         "score": 9.9,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "XWiki Remote Macros provides XWiki rendering macros that are useful when migrating content from Confluence. From 1.13 until 1.14.5, the `excerpt-include` macro does not properly escape the included page's title and executes `excerpt` content with the macro's rights. The title handling in `xwiki-pro-macros-ui/src/main/resources/Confluence/Macros/ExcerptInclude.xml` and the rendering of `excerpt` content into XWiki syntax both allow syntax injection. Any user able to edit a page, even without script or programming rights, can supply executable macro syntax in the title or `excerpt` and cause remote code execution when the page is included. This affects confidentiality, integrity and availability of the whole XWiki installation. This issue is fixed in version 1.14.5.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-44179",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-103406",
-        "score": 9.8,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "An Improper Neutralization of Special Elements used in an OS Command vulnerability in the AutomatedProvisioner in Juniper Networks Session Smart Conductor allows a remote attacker to execute arbitrary commands as root via a specially crafted salt minion ID.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103406",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-103409",
-        "score": 9.8,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "A Missing authentication for critical function vulnerability in Juniper Networks Session Smart Router allows an unauthenticated network-based attacker to obtain administrative privileges by passing crafted URL parameters to an insecure endpoint running as root.\n\nNote that this vulnerability can only be exploited prior to the device being onboarded to Mist/Conductor. The issue can no longer be exploited once a device is onboarded to Mist/Conductor.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103409",
+        "title": "IBM Langflow OSS 1.0.0 through 1.12.4 could allow a remote authenticated attacker to execute arbitrary code due to improper neutralization of code in eval/exec.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-107328",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-10-29",
-        "id": "CVE-2026-109516",
-        "score": 9.8,
+        "id": "CVE-2026-107329",
+        "score": 9.9,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "The Bot for Telegram on WooCommerce plugin for WordPress is vulnerable to Authentication Bypass leading to Account Takeover in all versions up to, and including, 1.3.0. The `/wp-json/woo-telegram/v1/main/` REST endpoint is registered with `permission_callback => '__return_true'` and performs no Telegram webhook signature verification, allowing an unauthenticated attacker to POST a forged bot update with a `message.chat.id` set to any WordPress login name; `bftow_get_user_system_id()` resolves this attacker-supplied value to the targeted account via `get_user_by('login', $tgId)` with no ownership proof, and writes a login token computed as `md5($_SERVER['HTTP_USER_AGENT'] . time())` \u2014 both inputs are fully attacker-controlled or bounded within seconds using the response's own `Date` header. The resulting token is redeemable at the unauthenticated, capability-check-free, and nonce-less `?action=bftow_create_order&bftow_token=` endpoint, which calls `wp_set_auth_cookie()` unconditionally via `login_user_by_id`, issuing a persistent authenticated session cookie for the targeted account to the attacker. This makes it possible for unauthenticated attackers to log in as any WordPress user, including administrators, given only that user's username.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-109516",
+        "title": "IBM Langflow OSS 1.0.0 through 1.12.4 could allow a remote authenticated attacker to execute arbitrary code due to improper control of code generation.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-107329",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-10-29",
-        "id": "CVE-2026-113616",
-        "score": 9.8,
+        "id": "CVE-2026-90868",
+        "score": 9.9,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "The LogixFast Auth WordPress plugin before 1.0.4 does not deliver its password-reset one-time code to the resolved account's own email address, mailing it to the address supplied in the request instead, allowing unauthenticated attackers to reset any user's password, including an administrator's, and take over the account.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-113616",
+        "title": "An OS command injection vulnerability in Progress Software WS_FTP Server versions prior to 2024.0.7 and 2025.0.4 on Windows could allow arbitrary command execution under certain configurations.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-90868",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-114278",
+        "date": "2026-10-30",
+        "id": "CVE-2025-31704",
         "score": 9.8,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "The che-machine-exec service constructs a shell command by concatenating user-controlled input (the username and namespace fields from the /exec/init and /exec/config JSON endpoints) into a double-quoted sh -c \"echo \"...\" > ...\" invocation without any escaping. When che-machine-exec is run with authentication disabled (its default), any network-reachable attacker can achieve remote code execution in containers che-machine-exec is configured to access, via shell command substitution ($(...) or backticks).",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114278",
+        "title": "A vulnerability has been found in the Dahua Intelligent Connection Center. A remote attacker could send a specially crafted request to the affected system, allowing the attacker to execute arbitrary commands, resulting in remote code execution.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-31704",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-30",
+        "id": "CVE-2026-103039",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "The Gravity Forms plugin for WordPress is vulnerable to PHP Object Injection in all versions up to, and including, 3.1.2 via a Post Custom Field whose input type is List. This is due to GFFormsModel::create_post() passing the submitted value to WordPress' unrestricted global maybe_unserialize() rather than the plugin's own hardened GFCommon::maybe_unserialize(), which was added in 3.1.1 and passes allowed_classes => false precisely to prevent object instantiation. Where the field has a content template enabled, the submitted row reaches that call verbatim. This makes it possible for unauthenticated attackers to inject a PHP object into post meta. No PHP Object Injection gadget chain is present in the plugin itself; however, if a gadget chain is present via an additional plugin or theme, it could allow the attacker to perform actions such as remote code execution. Where the custom field is mapped to the protected _wp_page_template meta key, WordPress itself supplies the chain: validate_file() accepts non-scalars, WP_Theme::__toString() then resolves an attacker-controlled path, and on hosts with a readable PEAR install and register_argc_argv enabled this yields remote code execution.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103039",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-10-29",
-        "id": "CVE-2026-115245",
+        "id": "CVE-2026-104339",
         "score": 9.8,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "The Chat AI with Dispatcher WordPress plugin before 2.4 does not properly validate uploaded files, relying only on a spoofable client-supplied content type, allowing unauthenticated attackers to upload arbitrary files, including PHP, which can lead to remote code execution.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115245",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-115968",
-        "score": 9.8,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "Deserialization of Untrusted Data vulnerability in Ultimate Member Ultimate Member ultimate-member allows Object Injection.This issue affects Ultimate Member: from n/a through 2.13.1.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115968",
+        "title": "IBM Langflow OSS 1.0.0 through 1.12.3 could allow a remote attacker to execute arbitrary code due to improper neutralization of special elements used in an OS command.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-104339",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-10-29",
-        "id": "CVE-2026-42922",
+        "id": "CVE-2026-107058",
         "score": 9.8,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "A authorization bypass vulnerability exists in the /nodered functionality of FUXA (version(s): 1.3.2-2809). A specially crafted HTTP request can lead to a arbitrary code execution. An attacker can make an unauthenticated HTTP request to trigger this vulnerability.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-42922",
+        "title": "An issue in Shelter versionCode 445 allows attackers to register their own auth_key and execute a takeover of another user's binder service API and preference state.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-107058",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-115904",
-        "score": 9.6,
+        "date": "2026-10-29",
+        "id": "CVE-2026-110186",
+        "score": 9.8,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "Topluyo is a social networking platform. A vulnerability exists in Topluyo Desktop for Linux prior to version 2026.9.2410 where user-controlled URLs are unsafely processed, leading to OS Command Injection via the `openExternalLinks()` routine in `utils.js`. An attacker who controls a target URL can execute arbitrary operating system commands with the privileges of the user running the application upon opening the link. Version 2026.9.2410 patches the issue.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115904",
+        "title": "IBM Langflow OSS 1.0.0 through 1.12.8 could allow a remote attacker to execute arbitrary code due to improper control of code generation.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-110186",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-105420",
+        "date": "2026-10-29",
+        "id": "CVE-2026-54856",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in RexCoin <= 1.2.6 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-54856",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-54857",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Quirky <= 1.23 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-54857",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-54858",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Printy <= 1.13.0 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-54858",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-54859",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Preservation <= 1.15 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-54859",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-54860",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Ozisti <= 1.1.10 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-54860",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-61992",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in GEO my WordPress <= 4.5.5.3 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-61992",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-61997",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Legal Stone <= 1.2.11 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-61997",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-61998",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Le Truffe <= 1.1.7 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-61998",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62001",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Marcell <= 1.2.14 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62001",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62002",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Meals & Wheels <= 1.1.13 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62002",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62003",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Mission <= 1.22 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62003",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62004",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Motorix <= 1.11 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62004",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62005",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Muzicon <= 1.15 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62005",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62006",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Nuts <= 1.12 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62006",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62008",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Orpheus <= 1.8 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62008",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62009",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Filmax <= 1.1.11 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62009",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62010",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Avventure <= 1.1.12 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62010",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62011",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Bonbon <= 1.11 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62011",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62012",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Coinpress <= 1.0.15 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62012",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62013",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Edge Decor <= 2.9 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62013",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62014",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in EmojiNation <= 1.0.12 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62014",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62015",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Gamezone <= 1.1.11 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62015",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62016",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Gamic <= 1.19 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62016",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62017",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Good Homes <= 1.3.13 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62017",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62018",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Gunslinger <= 1.11 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62018",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-62131",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Unauthenticated PHP Object Injection in Zoho Flow <= 2.14.5 versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-62131",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-93680",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "IBM Langflow OSS 1.0.0 through 1.12.8 could allow a remote attacker to bypass security restrictions due to improper authentication.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-93680",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-30",
+        "id": "CVE-2026-116366",
+        "score": 9.5,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "An issue has been discovered in ClickHouse Server that, under certain conditions, could allow an unauthenticated user with network access to execute arbitrary code on the ClickHouse Server.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-116366",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-103093",
         "score": 9.4,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "Wing FTP Server does not verify user's base folder. An attacker with admin privileges can add user directories via scripts, allowing the added directories to escape the base folder. This allows the attacker to write files on the system and can lead to remote code execution with process owner privileges.Critically, since the installation guide mentions running the command with `sudo`, the files are created as \u201croot.\u201d\n\n\n\n\nThis issue was fixed in version 8.2.6.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-105420",
+        "title": "ServiceNow has remediated a sandbox escape security issue that was identified in the ServiceNow AI Platform. This vulnerability could enable an authenticated user with the admin role to bypass Rhino sandbox restrictions and execute arbitrary code on the underlying host operating system, potentially enabling further unintended access. \n\n\n\nServiceNow deployed an update to hosted instances, and ServiceNow provided the update to our partners and self-hosted customers. We are not currently aware of malicious exploitation against ServiceNow instances. We recommend customers promptly apply appropriate updates or upgrade to a patched release if they have not already done so.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103093",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-63190",
+        "date": "2026-10-29",
+        "id": "CVE-2026-119145",
         "score": 9.4,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "FearlessCMS is a flat-file `content` management system centered on simplicity and open source. Prior to version 0.1.4, five debug/test PHP scripts under `admin/` perform privileged operations without `isLoggedIn()` authentication checks, CSRF protection or adequate `path` validation. On PHP's built-in development server, including the default Docker deployment, `router.php` checks an unnormalized admin URI prefix while the filesystem resolves dot segments, so `/./admin/` bypasses the admin login gate and executes those scripts directly. In `admin/debug_save_flow.php`, attacker-controlled `path` and `content` reach `file_put_contents` for arbitrary `.md` writes under `content`/ or outside it through `path` traversal, enabling site defacement and stored JavaScript in public pages; `print_r($_POST)` output without `htmlspecialchars` escaping also causes reflected cross-site scripting. The `admin/debug_content.php` `path` parameter reaches `scandir()`, `file_get_contents()` and `posix_getpwuid()`, permitting arbitrary directory enumeration and `.md` file reads that expose absolute paths, ownership, permissions, hashes and `content` previews. The `admin/preview-handler.php` endpoint accepts JSON `content` and `title` and writes enumerable files under `content/_preview/`, enabling stored cross-site scripting and disk exhaustion. The `admin/testdebug.php` endpoint appends to `admin/testdebug.log` without authentication, also enabling disk exhaustion. The `admin/test_redirect.php` script exposes a test artifact but escapes its inputs and is not itself an XSS sink. Stored script execution can steal sessions and compromise administrators when they view affected `content`. Reads and writes execute with PHP's privileges; the tested deployment runs PHP as root, amplifying filesystem impact. This issue is fixed in version 0.1.4.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-63190",
+        "title": "Frappe before 15.121.0 and 16.x before 16.34.0 contains a path traversal vulnerability because certain file-upload handling does not validate the destination path before writing to disk. Authenticated attackers can upload crafted files to locations outside the intended storage directory to achieve remote code execution on the server.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119145",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-10-29",
-        "id": "CVE-2026-66088",
+        "date": "2026-10-30",
+        "id": "CVE-2026-82104",
         "score": 9.4,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "In openEQUELLA before 2026.1, the system.execute() function available to the scripting engine runs supplied operating system commands without validation or an allow-list of permitted executables. A user able to create or edit scripts can use it to execute arbitrary commands with the privileges of the openEQUELLA service account.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-66088",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-111411",
-        "score": 9.3,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in Aman FunnelKit Automations wp-marketing-automations allows Blind SQL Injection.This issue affects FunnelKit Automations: from n/a through 3.8.5.2.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-111411",
+        "title": "In Teltonika Networks RUTOS devices running versions from 7.22 through 7.24.2 and TSWOS devices running versions 1.9 through 1.10, a vulnerability exists whereby an unauthenticated user can directly call LUA functions, bypassing validations that might be called under normal API requests. Due to those requests not following proper flows, this could lead to OS command execution.\n\n\n\nThis issue affects RUT: from 7.22 through 7.24.2; RUTX: from 7.22 through 7.24.2; RUTM: from 7.22 through 7.24.2; RUTC: from 7.22 through 7.24.2; ATRM: from 7.22 through 7.24.2; TAP: from 7.22 through 7.24.2; CAP: from 7.22 through 7.24.2; OXA: from 7.22 through 7.24.2; DAP: from 7.22 through 7.24.2; TRB: from 7.22 through 7.24.2; OTD: from 7.22 through 7.24.2; EBG: from 7.22 through 7.24.2; SWM: from 1.9 through 1.10; TSW: from 1.9 through 1.10.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-82104",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-10-29",
-        "id": "CVE-2026-114358",
+        "id": "CVE-2023-22793",
         "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "This\nvulnerability exists in the Radius\nXenia M2M Platform due to insufficient validation of user supplied input in\nthe password recovery functionality in the web management interface. An\nunauthenticated remote attacker could exploit this vulnerability by supplying\ncrafted SQL query through input fields to the targeted system.\u00a0\n\n\n\nSuccessful exploitation of this vulnerability\ncould allow the attacker to gain unauthorized access to sensitive information,\nenumerate database structure or modify database records on the targeted system.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114358",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-115607",
-        "score": 9.3,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in Crowd Favorite DXP ToolKit dxp-toolkit allows SQL Injection.This issue affects DXP ToolKit: from n/a through 2.0.1.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115607",
+        "title": "A vulnerability allowing an unauthenticated attacker to perform remote code execution (RCE) on servers running the Veeam Virtualization Extensions service of Veeam Management Pack for Microsoft System Center.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-22793",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-10-29",
-        "id": "CVE-2026-115964",
+        "id": "CVE-2026-111732",
         "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in StylemixThemes Motors motors-car-dealership-classified-listings allows Blind SQL Injection.This issue affects Motors: from n/a through 1.4.126.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115964",
+        "title": "P-Net before 1.0.3, when built with PNET_OPTION_AR_VENDOR_BLOCKS enabled, parses a data length from a field of the ARVendorBlock request that is not part of the block definition and uses it as the number of bytes to copy into a fixed-size buffer, without comparing it with the buffer size or the block length. A crafted Connect request causes an out-of-bounds write. This can lead to a crash (denial of service) or potentially arbitrary code execution.\n\n\n\nThis option is disabled by default.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-111732",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-118690",
+        "date": "2026-10-29",
+        "id": "CVE-2026-118762",
         "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "Signal K Server before 2.33.0 contains a missing authentication vulnerability that allows unauthenticated remote attackers to download log archives via the /skServer/ziplogs endpoint. Attackers can extract the JWT secretKey from security.json in the ZIP, forge administrator tokens, and create persistent admin accounts for full server control.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118690",
+        "title": "Monkeytype is a minimalistic and customizable typing test. Prior to 26.43.0, the .github/workflows/fix-formatting.yml workflow runs on pull_request_target with repository write permissions, checks out a fork pull request, installs dependencies from the fork's package.json, and invokes the fork-controlled oxfmt binary. Because actions/checkout persists the elevated GITHUB_TOKEN in Git configuration until after untrusted code executes, an external contributor whose pull request receives the format label can run arbitrary code, read or exfiltrate the token, and push repository content or modify pull requests and issues. The issue affects the repository CI workflow, not the Monkeytype application or user data. This issue is fixed in version 26.43.0.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118762",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-118633",
+        "date": "2026-10-29",
+        "id": "CVE-2026-97854",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Yamaha wireless LAN router NWR100 provided by Yamaha Corporation contains an OS command injection vulnerability. Arbitrary OS commands may be executed by sending a specially crafted request to the affected product.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-97854",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-112256",
         "score": 9.2,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "A path traversal vulnerability allows a remote unauthenticated attacker to execute arbitrary code as root in Sophos UTM (all versions) after winning a race condition by sustaining repeated attacks for a few minutes when the email proxy is used with scanning enabled. Sophos UTM is end-of-life and the patch must be installed manually.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118633",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-117574",
-        "score": 9.1,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "A flaw was found in ai-gateway-payload-processing. An authenticated remote attacker can exploit this vulnerability by submitting a request specifying another tenant's model identifier in the request body or header. Because the service does not verify authorization before retrieving credentials from the shared store, it injects the target tenant's application programming interface (API) keys into the request. This flaw allows an attacker to perform unauthorized requests and consume another tenant's large language model (LLM) resources and quotas.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117574",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-118264",
-        "score": 9.1,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "Echo is a Go web framework. From 4.0.0 until 4.16.1 and 5.4.1, Echo's Proxy middleware selects a raw tunnel from a client WebSocket upgrade request before verifying that the configured upstream accepted the upgrade. If the upstream rejects the upgrade with an ordinary keep-alive response, later HTTP requests on the connection are sent directly to that upstream without passing through Echo's router or route-specific middleware. This can bypass authentication or authorization enforced only by Echo routes, but requires an accessible proxy route, a cooperating rejected-upgrade response, and a target without independent upstream authorization. This issue is fixed in 4.16.1 and 5.4.1.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118264",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-67074",
-        "score": 9.1,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "HCL BigFix AEX is affected by a Remote Code Execution Vulnerability . It may allow attackers to execute code with the privileges of the affected application or service, potentially leading to unauthorized access, data exposure, or system compromise.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-67074",
+        "title": "Acceptance of extraneous untrusted data with trusted data vulnerability in OpenText Advanced Authentication Server allows Accessing Functionality Not Properly Constrained by ACLs.\n\nThis issue affects Advanced Authentication Server: from 6.4.0.0 through 6.4.3.8, from 6.5.0.0 through 6.5.0.10, and from 6.6.0.0 through 6.6.1.0.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-112256",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-10-29",
-        "id": "CVE-2026-103693",
-        "score": 9.0,
+        "id": "CVE-2026-118769",
+        "score": 9.2,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "The Frontend Dashboard WordPress plugin before 3.0.5, ProfileGrid  WordPress plugin before 6.0.0.5 do not prevent an unauthenticated user from storing a serialized PHP object in user metadata that is deserialized when a public profile is viewed, allowing PHP object injection that can lead to arbitrary file write and potential remote code execution.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-103693",
+        "title": "Botan is a C++ cryptography library. From 2.1.0 until 3.13.0, the Botan C API function botan_block_cipher_block_size converted a size_t block size to int without a bounds check. In an application that accepts external algorithm parameter strings and uses the FFI raw ECB mode, an attacker can select the variable-block-size Lion cipher so that the reported size is truncated, the caller allocates insufficient memory, and later block processing causes memory corruption. The C++ API and normally used C API modes such as CBC and CTR are unaffected. This issue is fixed in version 3.13.0.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118769",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-10-28",
-        "id": "CVE-2026-54162",
-        "score": 4.7,
-        "severity": "MEDIUM",
+        "date": "2026-10-29",
+        "id": "CVE-2026-119050",
+        "score": 9.2,
+        "severity": "CRITICAL",
         "source": "nvd",
-        "title": "Ember is a real-time terminal dashboard for Caddy servers with FrankenPHP support. Prior to 1.4.2, interactive TUI row formatters pass Caddy access-log fields, particularly the request URI, through the `fitCellLeft` render helper without neutralizing terminal escape or control sequences. An unauthenticated remote client can place ANSI, OSC, or CSI control bytes in an ordinary HTTP request target. Caddy JSON-escapes those bytes, `ParseLogLine` decodes them back into raw controls, and the formatters concatenate them into `View()` output reaching `os.Stdout`. When the operator views the default `Logs` tab, the terminal interprets these sequences, allowing monitoring-dashboard spoofing, clipboard hijacking through `OSC 52`, and window-title spoofing through `OSC 0/2`. This works even with a loopback-only log listener because the input arrives through normal Caddy access logs. `Certificates` and `Routes` share secondary unneutralized render sinks. The `--json`, `--once`, and daemon `--expose` modes are unaffected because they do not render an interactive terminal. Consequences depend on the terminal emulator and usually require further operator action to escalate; this is not general-purpose remote code execution. This issue is fixed in version 1.4.2.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-54162",
-        "watch": [
-          "php"
-        ]
+        "title": "Agno through 3.1.11 contains an unsafe reflection vulnerability in PandasTools that allows attackers to invoke arbitrary pandas functions by supplying model-controlled function names to getattr(). Attackers can use prompt injection to make the agent call pandas.read_pickle on attacker-controlled paths for code execution, or call other readers to read local files.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119050",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-107015",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Insecure permissions in Simple Contacts Pro versionCode 107 allow unauthorized attackers to write and read notes in another user's' note database.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-107015",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-107032",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Insecure permissions in Bulk Share : Location Sender v2.1.0 (versionCode 5) allows unauthorized attackers to invoke an exported component, leading to arbitrary data access and control of data flow.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-107032",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-119128",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "ZITADEL 4.0.0 before 4.19.5 contains an authentication bypass vulnerability in the Login V2 UI that allows unauthenticated attackers to set the first credential of users lacking any authentication method. Attackers can compute a valid verificationCheck cookie from the user ID and browser fingerprint to set a password, register a passkey, or link an identity provider, taking over the account.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119128",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-61645",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Docat is a tool for hosting versioned static documentation. In the affected implementation, an arbitrary file upload vulnerability in the `Upload API` arises because the API does not validate the `uploaded file path or type`. An attacker can overwrite sensitive configuration files or place malicious files on the Docat web server. Depending on deployment context, uploaded content can enable remote code execution or cross-site scripting intended to steal cookies or redirect users to malicious websites. Version 1.6.0 mitigates filename-based path traversal; remediation of unrestricted file types or deployment-dependent malicious-content effects is not established by the verified patch.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-61645",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-90863",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Missing authorization in the administrative interface of Progress Software WS_FTP Server versions prior to 2024.0.7 and 2025.0.4 on Windows could allow a delegated Host Administrator to exceed their authorized scope, potentially enabling arbitrary command execution with elevated privileges and complete compromise of the underlying server.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-90863",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-90864",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "A path traversal vulnerability in Progress Software WS_FTP Server versions prior to 2024.0.7 and 2025.0.4 on Windows could allow a delegated Host Administrator to access or modify files outside their authorized scope.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-90864",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-90866",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "A path traversal vulnerability in Progress Software WS_FTP Server versions prior to 2024.0.7 and 2025.0.4 on Windows could allow a delegated Host Administrator to access locations outside their authorized scope, potentially enabling remote code execution.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-90866",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-61707",
+        "score": 9.0,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "SOCFortress CoPilot focuses on providing a single pane of glass for all your security operations needs. Prior to 0.1.76, in the reported deployment, case-report templates uploaded by `customer_user`, the lowest-privilege portal role, are later executed by non-sandboxed Jinja2 engines when an admin or analyst generates a report. The `/case-report-template/upload` route in `backend/app/incidents/routes/db_operations.py` validates only the filename-derived MIME type, not the template content. Templates share a global store without customer_code scoping, and `customer_user` can also list, download and delete them, allowing an attacker to replace a legitimate default template under the same name. In `backend/app/incidents/services/reports.py`, `render_document_with_context` uses `DocxTemplate` without a sandbox; in `backend/app/incidents/services/reports_pdf.py`, `render_html_template` uses a non-sandboxed `Environment` without autoescaping. Normal privileged requests to `POST /api/incidents/report/generate-report-docx` or `/generate-report-pdf` therefore evaluate attacker-controlled Jinja expressions as Python on the backend. The reported deployment executes commands as root, exposing all tenants' incident and SIEM data and stored connector credentials. The HTML/PDF wkhtmltopdf renderer additionally permits local-file reads and requests to internal services. This issue is fixed in version 0.1.76.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-61707",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-10-29",
+        "id": "CVE-2026-90865",
+        "score": 9.0,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "An OS command injection vulnerability in Progress Software WS_FTP Server versions prior to 2024.0.7 and 2025.0.4 on Windows could allow arbitrary command execution with elevated privileges under certain configurations.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-90865",
+        "watch": []
       }
     ],
     "php": []
@@ -898,18 +878,18 @@
       "count": 2,
       "label": "CISA Known Exploited Vulnerabilities",
       "name": "kev",
-      "note": "catalog 2026.10.28",
+      "note": "catalog 2026.10.29",
       "ok": true
     },
     {
-      "count": 29,
+      "count": 60,
       "label": "NVD (new CVEs)",
       "name": "nvd",
-      "note": "421 CVEs published in window; showing CRITICAL (9.0+) and CVEs about a watched product itself; 20 more only mention one (apps, plugins, libraries) and are not listed",
+      "note": "628 CVEs published in window; showing CRITICAL (9.0+) and CVEs about a watched product itself; 58 more only mention one (apps, plugins, libraries) and are not listed",
       "ok": true
     },
     {
-      "count": 32,
+      "count": 7,
       "label": "GitHub Advisory Database",
       "name": "ghsa",
       "note": "critical in all ecosystems; high only for composer, go, npm, pip",
@@ -919,7 +899,7 @@
       "count": 1,
       "label": "nodejs.org release index",
       "name": "node",
-      "note": "877 versions in index",
+      "note": "878 versions in index",
       "ok": true
     },
     {
@@ -958,6 +938,7 @@
     "node 24": "24.22.2",
     "node 25": "25.9.0",
     "node 26": "26.13.0",
+    "node 27": "27.0.0-alpha.0.0.0",
     "node 4": "4.9.1",
     "node 5": "5.12.0",
     "node 6": "6.17.1",

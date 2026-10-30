@@ -3,19 +3,18 @@
 <title>patchcheck security alerts</title>
 <id>https://rahuldeeptech-spe.github.io/rd/</id>
 <link href="https://rahuldeeptech-spe.github.io/rd/feed.xml" rel="self"/>
-<updated>2026-10-29T11:33:08Z</updated>
-<entry><title>CVE-2026-118694 HIGH</title><id>urn:patchcheck:CVE-2026-118694</id><link href="https://nvd.nist.gov/vuln/detail/CVE-2026-118694"/><updated>2026-10-29T11:33:08Z</updated><summary>python-markdown2 through 2.5.5 contains a denial of service vulnerability that allows remote users to exhaust CPU by submitting Markdown with unclosed inline link destinations. Attackers can submit repeated '[a](' or '![a](' sequences, causing _find_balanced to rescan the remaining document for each link and consume quadratic CPU time.</summary></entry>
-<entry><title>CVE-2026-116641 HIGH</title><id>urn:patchcheck:CVE-2026-116641</id><link href="https://nvd.nist.gov/vuln/detail/CVE-2026-116641"/><updated>2026-10-29T11:33:08Z</updated><summary>The DB Tools rely on the TLS implementation in Golang’s standard library, which generally uses the system CA store. However, the crypto/x509 package also has its own internal denylist of known-bad CA certificates. Golang 1.27.3 adds the eMudhra certificates to this list.
+<updated>2026-10-30T11:25:24Z</updated>
+<entry><title>CVE-2026-59387 HIGH</title><id>urn:patchcheck:CVE-2026-59387</id><link href="https://nvd.nist.gov/vuln/detail/CVE-2026-59387"/><updated>2026-10-30T11:25:24Z</updated><summary>The Nginx routing configuration for Cloud Controller blocks unauthenticated access to /internal/v4/ and /internal/v5/ endpoints but omits an equivalent deny rule for /internal/v3/. As a result, the staging callback endpoints /internal/v3/staging/:guid/droplet_completed and /internal/v3/staging/:guid/build_completed are reachable from the public API listener without OAuth or mutual TLS.
 
 
 
-
-DB Tools version 100.19.0 was compiled with Golang 1.26.8, which does not include this check.
-
+ 
 
 
 
-The issue is resolved by…</summary></entry>
-<entry><title>node 24 </title><id>urn:patchcheck:node 24</id><updated>2026-10-29T11:33:08Z</updated><summary>REVIEW: upstream node 24 is 24.22.2, advisories.tsv is reviewed up to 24.22.1. Read the release notes for new security fixes and update the rules.</summary></entry>
-<entry><title>node 26 </title><id>urn:patchcheck:node 26</id><updated>2026-10-29T11:33:08Z</updated><summary>REVIEW: upstream node 26 is 26.13.0, advisories.tsv is reviewed up to 26.12.1. Read the release notes for new security fixes and update the rules.</summary></entry>
+An…</summary></entry>
+<entry><title>CVE-2019-25781 HIGH</title><id>urn:patchcheck:CVE-2019-25781</id><link href="https://nvd.nist.gov/vuln/detail/CVE-2019-25781"/><updated>2026-10-30T11:25:24Z</updated><summary>Python-Markdown 3.0 through 3.11.2 contains an algorithmic complexity vulnerability in inline link parsing that allows remote attackers to exhaust CPU through unmatched brackets. Attackers can submit short Markdown containing repeated [ or ![ characters, forcing LinkInlineProcessor.getText() and getLink() into quadratic scans that keep workers busy for minutes.</summary></entry>
+<entry><title>node 24 </title><id>urn:patchcheck:node 24</id><updated>2026-10-30T11:25:24Z</updated><summary>REVIEW: upstream node 24 is 24.22.2, advisories.tsv is reviewed up to 24.22.1. Read the release notes for new security fixes and update the rules.</summary></entry>
+<entry><title>node 26 </title><id>urn:patchcheck:node 26</id><updated>2026-10-30T11:25:24Z</updated><summary>REVIEW: upstream node 26 is 26.13.0, advisories.tsv is reviewed up to 26.12.1. Read the release notes for new security fixes and update the rules.</summary></entry>
+<entry><title>node 27 </title><id>urn:patchcheck:node 27</id><updated>2026-10-30T11:25:24Z</updated><summary>REVIEW: new node branch 27 exists upstream but advisories.tsv has no rule for it (it falls back to the 'newer' rule).</summary></entry>
 </feed>
