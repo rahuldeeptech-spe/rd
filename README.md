@@ -1,62 +1,80 @@
-# Security report 2026-10-30
+# Security report 2026-10-31
 
-Generated 2026-10-30 11:25 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
+Generated 2026-10-31 10:57 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
 
-## Needs attention (5)
+## Needs attention (4)
 
-- **CVE-2026-59387** CVSS 8.8 HIGH - The Nginx routing configuration for Cloud Controller blocks unauthenticated access to /internal/v4/ and /internal/v5/ endpoints but omits an equivalent deny rule for /internal/v3/. As a result, the staging callback endp… - **watching: nginx** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-59387)
-- **CVE-2019-25781** CVSS 8.7 HIGH - Python-Markdown 3.0 through 3.11.2 contains an algorithmic complexity vulnerability in inline link parsing that allows remote attackers to exhaust CPU through unmatched brackets. Attackers can submit short Markdown cont… - **watching: python** - [source](https://nvd.nist.gov/vuln/detail/CVE-2019-25781)
+- **CVE-2026-119977** CVSS 8.1 HIGH - WordPress Core is vulnerable to Remote Code Execution in versions 4.7 through 7.1.3. This is due to predictable, web-accessible staging paths used during full-package core upgrades. This makes it possible for unauthenti… - **watching: wordpress-core** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-119977)
 - **node 24** - REVIEW: upstream node 24 is 24.22.2, advisories.tsv is reviewed up to 24.22.1. Read the release notes for new security fixes and update the rules. - **watching: node**
 - **node 26** - REVIEW: upstream node 26 is 26.13.0, advisories.tsv is reviewed up to 26.12.1. Read the release notes for new security fixes and update the rules. - **watching: node**
 - **node 27** - REVIEW: new node branch 27 exists upstream but advisories.tsv has no rule for it \(it falls back to the 'newer' rule\). - **watching: node**
 
 ## Actively exploited (CISA KEV, added in window)
 
-- **CVE-2026-76418** - Cisco Secure Firewall ASA Software and Cisco Secure FTD Software - Cisco Secure Firewall ASA Software and Cisco Secure FTD Software Unchecked Return Value to NULL Pointer Dereference Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-76418)
-- **CVE-2026-97229** - GitLab Community Edition and Enterprise Edition - GitLab Community Edition and Enterprise Edition Integer Overflow or Wraparound Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-97229)
+- **CVE-2026-111357** - Ivanti Connect Secure - Ivanti Connect Secure Missing Authentication for Critical Function Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-111357)
+- **CVE-2026-118527** - Ivanti Connect Secure - Ivanti Connect Secure Generation of Predictable Numbers or Identifiers Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-118527)
 
 ## Critical new CVEs and CVEs about watched products (NVD)
 
-- **CVE-2026-59387** CVSS 8.8 HIGH - The Nginx routing configuration for Cloud Controller blocks unauthenticated access to /internal/v4/ and /internal/v5/ endpoints but omits an equivalent deny rule for /internal/v3/. As a result, the staging callback endp… - **watching: nginx** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-59387)
-- **CVE-2019-25781** CVSS 8.7 HIGH - Python-Markdown 3.0 through 3.11.2 contains an algorithmic complexity vulnerability in inline link parsing that allows remote attackers to exhaust CPU through unmatched brackets. Attackers can submit short Markdown cont… - **watching: python** - [source](https://nvd.nist.gov/vuln/detail/CVE-2019-25781)
-- **CVE-2026-61991** CVSS 10.0 CRITICAL - Unauthenticated Remote Code Execution \(RCE\) in AjaxLoadMore Cache &lt;= 3.1.1 versions. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-61991)
-- **CVE-2026-84295** CVSS 10.0 CRITICAL - Improper authentication in Progress Software WS\_FTP Server versions prior to 2024.0.6 and 2025.0.3 on Windows could allow an unauthenticated remote attacker to access sensitive information, including administrative cred… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-84295)
-- **CVE-2026-107327** CVSS 9.9 CRITICAL - IBM Langflow OSS 1.0.0 through 1.12.4 could allow a remote authenticated attacker to execute arbitrary code due to missing authorization. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-107327)
-- **CVE-2026-107328** CVSS 9.9 CRITICAL - IBM Langflow OSS 1.0.0 through 1.12.4 could allow a remote authenticated attacker to execute arbitrary code due to improper neutralization of code in eval/exec. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-107328)
-- **CVE-2026-107329** CVSS 9.9 CRITICAL - IBM Langflow OSS 1.0.0 through 1.12.4 could allow a remote authenticated attacker to execute arbitrary code due to improper control of code generation. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-107329)
-- **CVE-2026-90868** CVSS 9.9 CRITICAL - An OS command injection vulnerability in Progress Software WS\_FTP Server versions prior to 2024.0.7 and 2025.0.4 on Windows could allow arbitrary command execution under certain configurations. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-90868)
+- **CVE-2026-119977** CVSS 8.1 HIGH - WordPress Core is vulnerable to Remote Code Execution in versions 4.7 through 7.1.3. This is due to predictable, web-accessible staging paths used during full-package core upgrades. This makes it possible for unauthenti… - **watching: wordpress-core** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-119977)
+- **CVE-2026-112816** CVSS 10.0 CRITICAL - Improper certificate validation in the HTTPS listener in Canonical LXD 4.0.14, 5.0.10, 5.21.8, 6.9 before 4.0.15, 5.0.11, 5.21.9, 6.10.1 allows an unauthenticated attacker to authenticate as any trusted client and gain… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-112816)
+- **CVE-2026-61738** CVSS 10.0 CRITICAL - SOCFortress CoPilot focuses on providing a single pane of glass for all your security operations needs. Prior to 0.1.77, \`POST /api/scoutsuite/generate-gcp-report\` in \`backend/app/integrations/scoutsuite/routes/scoutsui… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-61738)
+- **CVE-2026-61826** CVSS 10.0 CRITICAL - Bazarr is a companion application to Sonarr and Radarr. Prior to 1.5.7-beta.14, the \`api\_ns\_plex\` namespace in \`bazarr/api/plex/oauth.py\` omits \`@​authenticate\` on its Resource handlers, while normal APIs require an API… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-61826)
+- **CVE-2026-61728** CVSS 9.9 CRITICAL - SOCFortress CoPilot focuses on providing a single pane of glass for all your security operations needs. In affected snapshots preceding the respective 0.1.70 and 0.1.76 sink repairs, portal users, including \`customer\_us… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-61728)
+- **CVE-2026-62853** CVSS 9.9 CRITICAL - ThingLinks is an enterprise IoT platform. Prior to 1.4.0, the \`/groovyScriptTest/registerScript\` endpoint accepts user-supplied Groovy script content and passes it to an unsandboxed \`Groovy compilation and loading\` flow… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-62853)
 - **CVE-2025-31704** CVSS 9.8 CRITICAL - A vulnerability has been found in the Dahua Intelligent Connection Center. A remote attacker could send a specially crafted request to the affected system, allowing the attacker to execute arbitrary commands, resulting… - [source](https://nvd.nist.gov/vuln/detail/CVE-2025-31704)
-- **CVE-2026-103039** CVSS 9.8 CRITICAL - The Gravity Forms plugin for WordPress is vulnerable to PHP Object Injection in all versions up to, and including, 3.1.2 via a Post Custom Field whose input type is List. This is due to GFFormsModel::create\_post\(\) passi… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-103039)
-- **CVE-2026-104339** CVSS 9.8 CRITICAL - IBM Langflow OSS 1.0.0 through 1.12.3 could allow a remote attacker to execute arbitrary code due to improper neutralization of special elements used in an OS command. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-104339)
-- **CVE-2026-107058** CVSS 9.8 CRITICAL - An issue in Shelter versionCode 445 allows attackers to register their own auth\_key and execute a takeover of another user's binder service API and preference state. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-107058)
-- **CVE-2026-110186** CVSS 9.8 CRITICAL - IBM Langflow OSS 1.0.0 through 1.12.8 could allow a remote attacker to execute arbitrary code due to improper control of code generation. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-110186)
-- **CVE-2026-54856** CVSS 9.8 CRITICAL - Unauthenticated PHP Object Injection in RexCoin &lt;= 1.2.6 versions. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-54856)
-- **CVE-2026-54857** CVSS 9.8 CRITICAL - Unauthenticated PHP Object Injection in Quirky &lt;= 1.23 versions. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-54857)
-- **CVE-2026-54858** CVSS 9.8 CRITICAL - Unauthenticated PHP Object Injection in Printy &lt;= 1.13.0 versions. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-54858)
-- **CVE-2026-54859** CVSS 9.8 CRITICAL - Unauthenticated PHP Object Injection in Preservation &lt;= 1.15 versions. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-54859)
-- **CVE-2026-54860** CVSS 9.8 CRITICAL - Unauthenticated PHP Object Injection in Ozisti &lt;= 1.1.10 versions. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-54860)
-- **CVE-2026-61992** CVSS 9.8 CRITICAL - Unauthenticated PHP Object Injection in GEO my WordPress &lt;= 4.5.5.3 versions. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-61992)
-- **CVE-2026-61997** CVSS 9.8 CRITICAL - Unauthenticated PHP Object Injection in Legal Stone &lt;= 1.2.11 versions. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-61997)
-- **CVE-2026-61998** CVSS 9.8 CRITICAL - Unauthenticated PHP Object Injection in Le Truffe &lt;= 1.1.7 versions. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-61998)
-- **CVE-2026-62001** CVSS 9.8 CRITICAL - Unauthenticated PHP Object Injection in Marcell &lt;= 1.2.14 versions. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-62001)
-- **CVE-2026-62002** CVSS 9.8 CRITICAL - Unauthenticated PHP Object Injection in Meals &amp; Wheels &lt;= 1.1.13 versions. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-62002)
-- **CVE-2026-62003** CVSS 9.8 CRITICAL - Unauthenticated PHP Object Injection in Mission &lt;= 1.22 versions. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-62003)
-- **CVE-2026-62004** CVSS 9.8 CRITICAL - Unauthenticated PHP Object Injection in Motorix &lt;= 1.11 versions. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-62004)
-- ...and 35 more (see the source).
+- **CVE-2026-109220** CVSS 9.8 CRITICAL - The PDF Invoice for WooCommerce + Drag and Drop Template Builder plugin for WordPress is vulnerable to PHP Object Injection in all versions up to, and including, 7.1.1 via the 'customer\_note' parameter parameter. This i… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-109220)
+- **CVE-2026-110799** CVSS 9.8 CRITICAL - Vvveb is a powerful and easy to use CMS with page builder to build websites, blogs or ecommerce stores. Prior to version 1.0.8.7, the password reset functionality is vulnerable to an Authentication Bypass due to insuffi… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-110799)
+- **CVE-2026-116386** CVSS 9.8 CRITICAL - Unauthenticated Privilege Escalation in SMS Alert Order Notifications &lt;= 4.0.2 versions. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-116386)
+- **CVE-2026-116512** CVSS 9.8 CRITICAL - The Project Manager – AI Powered Project Management, Task Management, Kanban Board &amp; Time Tracker plugin for WordPress is vulnerable to Remote Code Execution in all versions up to, and including, 4.1.1 via the 'id' para… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-116512)
+- **CVE-2026-118235** CVSS 9.8 CRITICAL - The SimpleForm – Form Maker to Chat Apps with Quiz, Poll and Multi Lead Notifications plugin for WordPress is vulnerable to Arbitrary File Upload in all versions up to, and including, 3.10.2 via the handle\_upload functi… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-118235)
+- **CVE-2026-119096** CVSS 9.8 CRITICAL - The Uncanny Toolkit for LearnDash plugin for WordPress is vulnerable to Authentication Bypass in versions up to, and including, 3.8.2 via the \`email\` parameter of the \`uo\_login\_action\(\)\` function. This is due to a parse… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-119096)
+- **CVE-2026-119526** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in ThemeREX Royal Event allows Object Injection. This issue affects Royal Event: from n/a through 2.0. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-119526)
+- **CVE-2026-39738** CVSS 9.8 CRITICAL - Unauthenticated PHP Object Injection in FunnelKit Automations &lt;= 3.8.6.1 versions. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-39738)
+- **CVE-2026-61620** CVSS 9.8 CRITICAL - HoneySQL turns Clojure data structures into SQL. From 2.0.0 until 2.7.1392, applications that pass user input or other arbitrary data into the HoneySQL \`DSL\` by calling \`keyword\` or \`symbol\` on that input can produce SQ… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-61620)
+- **CVE-2026-61737** CVSS 9.8 CRITICAL - ng-antd-admin is an Angular and NestJS administration system template. Prior to 22.0, a hardcoded default \`JWT\` secret permits token forgery when a deployment has not replaced the default secret, without a startup warni… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-61737)
+- **CVE-2026-63377** CVSS 9.8 CRITICAL - TAKO AI Agent for Okta is a local-first AI agent that helps Okta administrators query tenant data using natural language. Prior to 3.0.1-beta, \`POST /api/auth/setup\` in \`src/api/routers/auth.py\` allows an unauthenticate… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-63377)
+- **CVE-2026-90888** CVSS 9.8 CRITICAL - Unauthenticated PHP Object Injection in LeadSnap &lt;= 1.25 versions. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-90888)
+- **CVE-2026-62863** CVSS 9.6 CRITICAL - MoLing is a computer-use and browser-use based MCP server. Prior to 0.5.0, when MoLing runs in SSE mode using \`-l\`, its \`/sse\` and \`/message\` HTTP endpoints do not authenticate requests and the \`mcp-go\` dependency sets… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-62863)
+- **CVE-2026-116366** CVSS 9.5 CRITICAL - An issue has been discovered in ClickHouse Server that, under certain conditions, could allow an unauthenticated user with network access to execute arbitrary code on the ClickHouse Server. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-116366)
+- **CVE-2026-116241** CVSS 9.4 CRITICAL - pgAdmin 4's Import/Export Data tool wraps a user's query export in a psql \\copy \(...\) TO command and checks that the query's parentheses are balanced so that nothing can escape the wrapper. The check rejected a backslas… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-116241)
+- **CVE-2026-61729** CVSS 9.4 CRITICAL - SOCFortress CoPilot focuses on providing a single pane of glass for all your security operations needs. Prior to 0.1.76, \`verify\_graylog\_header\` in \`backend/app/active\_response/routes/graylog.py\` and \`verify\_velocirapto… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-61729)
+- **CVE-2026-93327** CVSS 9.4 CRITICAL - A Deserialization of Untrusted Data vulnerability in the SubWorkflow task in Google Cloud Application Integration versions prior to 2026-09-11 on Google Cloud Platform allows an authenticated attacker to execute arbitra… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-93327)
+- **CVE-2026-117656** CVSS 9.3 CRITICAL - Acceptance of Extraneous Untrusted Data With Trusted Data vulnerability in the Sign in with Apple strategy in pow-auth Assent allows an unauthenticated remote attacker to impersonate another user via the user parameter… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-117656)
+- ...and 23 more (see the source).
 
 ## GitHub reviewed advisories (critical, plus high in watched ecosystems)
 
-- **GHSA-26mh-57q7-jfvr** HIGH - PraisonAI vulnerable to Remote Code Execution via Broken AST Sandbox (pip:praisonai \(fixed 4.6.78\)) - [source](https://github.com/advisories/GHSA-26mh-57q7-jfvr)
-- **GHSA-8rvj-mm4h-c258** HIGH - cert-manager: Direct ACME Challenge resources can bypass Issuer DNS01 solver policy and use ClusterIssuer DNS credentials (go:github.com/cert-manager/cert-manager \(fixed 1.19.6\), go:github.com/cert-manager/cert-manager \(fixed 1.20.3\)) - [source](https://github.com/advisories/GHSA-8rvj-mm4h-c258)
-- **GHSA-q344-5v34-gm84** HIGH - @​sylphx/pdf-reader-mcp: HTTP transport accepts unauthenticated requests despite a configured MCP\_API\_KEY (npm:@​sylphx/pdf-reader-mcp \(fixed 3.0.1\)) - [source](https://github.com/advisories/GHSA-q344-5v34-gm84)
-- **GHSA-qr28-fpjm-wq7f** HIGH - decode-uri-component vulnerable to denial of service via quadratic replacement of percent-encoded runs (npm:decode-uri-component \(fixed 0.5.1\)) - [source](https://github.com/advisories/GHSA-qr28-fpjm-wq7f)
-- **GHSA-rhj7-vh3v-mcq6** HIGH - Daptin: ParseAcceptLanguage \`\_\` separator bypass enables &gt;250x CPU amplification via Accept-Language header in LanguageMiddleware (go:github.com/daptin/daptin) - [source](https://github.com/advisories/GHSA-rhj7-vh3v-mcq6)
-- **GHSA-vpp8-g58w-m8mp** HIGH - Twisted: Unauthenticated Remote Denial of Service in the Twisted HTTP/2 Server via Rapid Stream Reset (pip:Twisted \(fixed 26.10.0rc1\)) - [source](https://github.com/advisories/GHSA-vpp8-g58w-m8mp)
-- **GHSA-w9x9-j56r-h98r** HIGH - @​eeacms/volto-chatbot has Unauthenticated Danswer API Confused Deputy Proxy (npm:@​eeacms/volto-chatbot \(fixed 2.0.4\)) - [source](https://github.com/advisories/GHSA-w9x9-j56r-h98r)
+- **GHSA-4xm8-rg9h-jhq2** CRITICAL - Signal K resources API path traversal can disclose the JWT signing secret and enable remote code execution (npm:signalk-server \(fixed 2.34.0\), npm:@​signalk/resources-provider \(fixed 1.5.3\)) - [source](https://github.com/advisories/GHSA-4xm8-rg9h-jhq2)
+- **GHSA-5xjx-3w67-w9x9** CRITICAL - pypi-publish action revocation of CA in the chain that Sigstore uses in Trusted Publishing and Digital Attestations for PyPI (actions:pypa/gh-action-pypi-publish \(fixed 1.14.3\)) - [source](https://github.com/advisories/GHSA-5xjx-3w67-w9x9)
+- **GHSA-hff9-5pqw-6w9f** CRITICAL - imgproxy has integer overflow in imgproxy ICO loader that causes denial of service and may permit remote code execution (go:github.com/imgproxy/imgproxy/v3 \(fixed 4.0.16\), go:github.com/imgproxy/imgproxy/v2 \(fixed 4.0.16\), go:github.com/imgproxy/imgproxy \(fixed 4.0.16\)) - [source](https://github.com/advisories/GHSA-hff9-5pqw-6w9f)
+- **GHSA-2qm8-x737-gmw5** HIGH - pyasn1 has quadratic CPU consumption in constructed BIT STRING decoding (pip:pyasn1 \(fixed 0.6.5\)) - [source](https://github.com/advisories/GHSA-2qm8-x737-gmw5)
+- **GHSA-42gh-23hr-vphw** HIGH - pypdf has possible long runtimes when retrieving page labels (pip:pypdf \(fixed 6.21.3\)) - [source](https://github.com/advisories/GHSA-42gh-23hr-vphw)
+- **GHSA-4528-x5fx-h6hg** HIGH - joi: quadratic-time split in \`string\(\).email\({ multiple: true }\)\` allows denial of service (npm:joi \(fixed 17.13.9\), npm:@​hapi/joi, npm:joi \(fixed 18.3.1\)) - [source](https://github.com/advisories/GHSA-4528-x5fx-h6hg)
+- **GHSA-494m-4556-wf5p** HIGH - imgproxy has out-of-bounds heap read/write in ICO loader BMP header reconstruction that allows unauthenticated remote worker crash (go:github.com/imgproxy/imgproxy/v3 \(fixed 4.0.17\)) - [source](https://github.com/advisories/GHSA-494m-4556-wf5p)
+- **GHSA-4vqv-7265-gm2w** HIGH - pypdf has possible large memory usage for exceptions in strict mode (pip:pypdf \(fixed 6.21.3\)) - [source](https://github.com/advisories/GHSA-4vqv-7265-gm2w)
+- **GHSA-5849-834g-hvw5** HIGH - pypdf has possible infinite loop when hitting EOF in standard xref table during trailer search (pip:pypdf \(fixed 6.21.4\)) - [source](https://github.com/advisories/GHSA-5849-834g-hvw5)
+- **GHSA-5x38-2vff-x55p** HIGH - Forge: X.509 basicConstraints bypass in verifyCertificateChain\(\) via deprecated extension OIDs 2.5.29.10 and 2.5.29.13 (npm:node-forge \(fixed 1.4.1\)) - [source](https://github.com/advisories/GHSA-5x38-2vff-x55p)
+- **GHSA-62m5-6wh8-28x7** HIGH - pypdf has possible long runtimes/large memory usage for encrypted PDF files (pip:pypdf \(fixed 6.21.3\)) - [source](https://github.com/advisories/GHSA-62m5-6wh8-28x7)
+- **GHSA-6vfx-w7q3-42gq** HIGH - AdminNeo SQLite Database-List Drop Arbitrary File Deletion (composer:adminneo-org/adminneo \(fixed 5.5.1\)) - [source](https://github.com/advisories/GHSA-6vfx-w7q3-42gq)
+- **GHSA-7984-qgvg-3j9c** HIGH - OAuthLib: Token grants can use attacker-supplied client\_id for authorization after authenticating a different client (pip:oauthlib \(fixed 4.0.0\)) - [source](https://github.com/advisories/GHSA-7984-qgvg-3j9c)
+- **GHSA-79wv-8rh2-9vp2** HIGH - AdminNeo has Cookie Attribute Injection via Unsanitized X-Forwarded-Prefix in Set-Cookie Headers (composer:adminneo-org/adminneo \(fixed 5.5.1\)) - [source](https://github.com/advisories/GHSA-79wv-8rh2-9vp2)
+- **GHSA-7wch-p9px-956x** HIGH - Forge: Regular expression denial of service in PEM decoding \(pem.decode\) (npm:node-forge \(fixed 1.4.1\)) - [source](https://github.com/advisories/GHSA-7wch-p9px-956x)
+- **GHSA-8494-f6mr-cjpv** HIGH - @​hapi/content: quadratic-time parsing of Content-Disposition parameters allows denial of service (npm:@​hapi/content \(fixed 6.0.3\), npm:content) - [source](https://github.com/advisories/GHSA-8494-f6mr-cjpv)
+- **GHSA-8fmv-6rg5-5924** HIGH - Kubeflow Pipelines: Pipeline archive upload allows decompression bomb to exhaust server memory (go:github.com/kubeflow/pipelines \(fixed 0.0.0-20260831164314-ba9ae72cc860\), go:github.com/kubeflow/pipelines) - [source](https://github.com/advisories/GHSA-8fmv-6rg5-5924)
+- **GHSA-8hrf-8g6f-7xwp** HIGH - Forge: Denial of service in TLS record processing via a record interleaved with a fragmented handshake message (npm:node-forge \(fixed 1.4.1\)) - [source](https://github.com/advisories/GHSA-8hrf-8g6f-7xwp)
+- **GHSA-9m75-vc3g-4x39** HIGH - pyasn1 has quadratic-time denial of service in constructed string and indefinite-length ANY decoding (pip:pyasn1 \(fixed 0.6.5\)) - [source](https://github.com/advisories/GHSA-9m75-vc3g-4x39)
+- **GHSA-c73q-w75p-j82v** HIGH - Authlib RFC 7592 examples omit registration-access-token client binding (pip:Authlib \(fixed 1.9.1\)) - [source](https://github.com/advisories/GHSA-c73q-w75p-j82v)
+- **GHSA-cggf-277g-3q54** HIGH - pypdf has possible large memory usage when parsing page tree (pip:pypdf \(fixed 6.21.4\)) - [source](https://github.com/advisories/GHSA-cggf-277g-3q54)
+- **GHSA-fm9c-5rcf-2q5p** HIGH - pyasn1 has quadratic CPU use in schemaless BER/CER/DER container decoding (pip:pyasn1 \(fixed 0.6.5\)) - [source](https://github.com/advisories/GHSA-fm9c-5rcf-2q5p)
+- **GHSA-hqq3-7jhf-c5jx** HIGH - Forge: Denial of service in TLS record processing via call stack exhaustion (npm:node-forge \(fixed 1.4.1\)) - [source](https://github.com/advisories/GHSA-hqq3-7jhf-c5jx)
+- **GHSA-j63v-mwhm-56jx** HIGH - @​sigstore/oci sends the registry Authorization header to a cross-host blob-upload Location (npm:@​sigstore/oci \(fixed 0.7.2\)) - [source](https://github.com/advisories/GHSA-j63v-mwhm-56jx)
+- **GHSA-jc66-7q78-782g** HIGH - Forge: PKCS#​12 MAC forgery and constant-key PBE via zero iteration count (npm:node-forge \(fixed 1.4.1\)) - [source](https://github.com/advisories/GHSA-jc66-7q78-782g)
+- ...and 12 more (see the source).
 
 ## Node.js releases in window
 
-- **node 27.0.0-alpha.0.0.0** - Node.js 27.0.0-alpha.0.0.0 released - **watching: node.js** - [source](https://nodejs.org/en/blog/vulnerability)
+No Node.js release in the window.
 
 ## Tracked versions (upstream latest vs advisories.tsv)
 
@@ -77,10 +95,10 @@ Generated 2026-10-30 11:25 UTC by an automated job. Window: last 24 hours. Not a
 
 | Source | Status | Items | Note |
 |---|---|---|---|
-| CISA Known Exploited Vulnerabilities | OK | 2 | catalog 2026.10.29 |
-| NVD \(new CVEs\) | OK | 60 | 628 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 58 more only mention one \(apps, plugins, libraries\) and are not… |
-| GitHub Advisory Database | OK | 7 | critical in all ecosystems; high only for composer, go, npm, pip |
-| nodejs.org release index | OK | 1 | 878 versions in index |
+| CISA Known Exploited Vulnerabilities | OK | 2 | catalog 2026.10.30 |
+| NVD \(new CVEs\) | OK | 48 | 581 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 28 more only mention one \(apps, plugins, libraries\) and are not… |
+| GitHub Advisory Database | OK | 37 | critical in all ecosystems; high only for composer, go, npm, pip |
+| nodejs.org release index | OK | 0 | 878 versions in index |
 | go.dev downloads | OK | 0 | branches: 1.26, 1.27 |
 | php.net releases | OK | 0 | branches: 8.2, 8.3, 8.4, 8.5 |
 
