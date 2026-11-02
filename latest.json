@@ -34,81 +34,13 @@
       ]
     }
   ],
-  "complete": true,
-  "generated_at": "2026-11-01T11:51:35Z",
+  "complete": false,
+  "generated_at": "2026-11-02T13:32:53Z",
   "items": {
     "ghsa": [],
     "go": [],
     "kev": [],
     "node": [],
-    "nvd": [
-      {
-        "alert": false,
-        "date": "2026-10-31",
-        "id": "CVE-2026-118636",
-        "score": 9.8,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "**UNSUPPORTED WHEN ASSIGNED**\u00a0\n\nJavaNativeMessageDecoder in the MINA 3.0 codec module calls ObjectInputStream.readObject() on frame bytes with no class filter, so an\napplication that puts it in front of an untrusted peer is open to gadget-chain RCE.\n\nAs the 3.0.0 branch is inactive, we do not plan to release a version that fixes this issue. \n\nUsers are recommended to use the latest Apache MINA 2.2.X branch.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-118636",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-01",
-        "id": "CVE-2026-120189",
-        "score": 9.3,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "A vulnerability was identified in D-Link DIR-505 1.10B02. Affected is the function save_upload_file/mp_upload_file of the file /usr/bin/tftpd of the component TFTP Upload Filename Handler. The manipulation leads to stack-based buffer overflow. The attack is possible to be carried out remotely. The exploit is publicly available and might be used.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120189",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-01",
-        "id": "CVE-2026-120195",
-        "score": 9.3,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "A security vulnerability has been detected in WAVLINK WL-WN579A3-A 2026-03-10-94f93d4. The impacted element is the function set_wzdgwMesh of the file /cgi-bin/adm.cgi of the component Initial Setup Wizard. The manipulation of the argument wlan_ssid leads to os command injection. The attack is possible to be carried out remotely. The exploit has been disclosed publicly and may be used. The vendor was contacted early about this disclosure.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120195",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-01",
-        "id": "CVE-2026-120198",
-        "score": 9.3,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "A vulnerability has been found in WAVLINK WL-WN530BE1-A V251117. Affected is the function con_check_read_finish of the file /protocol.csp. Such manipulation of the argument group_name/IP-FROM leads to command injection. It is possible to launch the attack remotely. The exploit has been disclosed to the public and may be used. The vendor was contacted early about this disclosure.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120198",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-10-31",
-        "id": "CVE-2026-120201",
-        "score": 9.3,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "Jpom 2.10.0 through 2.11.12 contains an authentication bypass vulnerability that allows unauthenticated attackers to gain super-administrator access by injecting query conditions into the JPOM-USER-TOKEN header. Attackers can send a value like 'is not null', which Hutool's Condition parser treats as an operator, then execute commands through Jpom's script features.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120201",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-10-31",
-        "id": "CVE-2026-120209",
-        "score": 9.3,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "AJ-Report through 1.7.1 signs share tokens with a hard-coded JWT secret, allowing attackers to forge valid Share-Tokens offline. Attackers can mint a token with reportCode 'dataSet' to access the testTransform endpoint, which passes scripts to GroovyClassLoader for unauthenticated remote code execution.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120209",
-        "watch": []
-      }
-    ],
     "php": []
   },
   "sources": [
@@ -120,11 +52,11 @@
       "ok": true
     },
     {
-      "count": 6,
+      "count": 0,
       "label": "NVD (new CVEs)",
       "name": "nvd",
-      "note": "73 CVEs published in window; showing CRITICAL (9.0+) and CVEs about a watched product itself; 4 more only mention one (apps, plugins, libraries) and are not listed",
-      "ok": true
+      "note": "HTTP 503 for https://services.nvd.nist.gov/rest/json/cves/2.0",
+      "ok": false
     },
     {
       "count": 0,

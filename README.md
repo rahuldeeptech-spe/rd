@@ -1,6 +1,8 @@
-# Security report 2026-11-01
+# Security report 2026-11-02
 
-Generated 2026-11-01 11:51 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
+Generated 2026-11-02 13:32 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
+
+> **INCOMPLETE REPORT.** 1 source(s) failed: nvd. Missing data is not the same as no incidents.
 
 ## Needs attention (3)
 
@@ -14,12 +16,7 @@ No new entries in the window.
 
 ## Critical new CVEs and CVEs about watched products (NVD)
 
-- **CVE-2026-118636** CVSS 9.8 CRITICAL - \*\*UNSUPPORTED WHEN ASSIGNED\*\* JavaNativeMessageDecoder in the MINA 3.0 codec module calls ObjectInputStream.readObject\(\) on frame bytes with no class filter, so an application that puts it in front of an untrusted peer… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-118636)
-- **CVE-2026-120189** CVSS 9.3 CRITICAL - A vulnerability was identified in D-Link DIR-505 1.10B02. Affected is the function save\_upload\_file/mp\_upload\_file of the file /usr/bin/tftpd of the component TFTP Upload Filename Handler. The manipulation leads to stac… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-120189)
-- **CVE-2026-120195** CVSS 9.3 CRITICAL - A security vulnerability has been detected in WAVLINK WL-WN579A3-A 2026-03-10-94f93d4. The impacted element is the function set\_wzdgwMesh of the file /cgi-bin/adm.cgi of the component Initial Setup Wizard. The manipulat… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-120195)
-- **CVE-2026-120198** CVSS 9.3 CRITICAL - A vulnerability has been found in WAVLINK WL-WN530BE1-A V251117. Affected is the function con\_check\_read\_finish of the file /protocol.csp. Such manipulation of the argument group\_name/IP-FROM leads to command injection.… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-120198)
-- **CVE-2026-120201** CVSS 9.3 CRITICAL - Jpom 2.10.0 through 2.11.12 contains an authentication bypass vulnerability that allows unauthenticated attackers to gain super-administrator access by injecting query conditions into the JPOM-USER-TOKEN header. Attacke… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-120201)
-- **CVE-2026-120209** CVSS 9.3 CRITICAL - AJ-Report through 1.7.1 signs share tokens with a hard-coded JWT secret, allowing attackers to forge valid Share-Tokens offline. Attackers can mint a token with reportCode 'dataSet' to access the testTransform endpoint,… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-120209)
+> **Source unavailable.** This section is incomplete. Do not read it as "nothing happened".
 
 ## GitHub reviewed advisories (critical, plus high in watched ecosystems)
 
@@ -49,7 +46,7 @@ No Node.js release in the window.
 | Source | Status | Items | Note |
 |---|---|---|---|
 | CISA Known Exploited Vulnerabilities | OK | 0 | catalog 2026.10.30 |
-| NVD \(new CVEs\) | OK | 6 | 73 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 4 more only mention one \(apps, plugins, libraries\) and are not li… |
+| NVD \(new CVEs\) | **FAILED** | 0 | HTTP 503 for https:​//services.nvd.nist.gov/rest/json/cves/2.0 |
 | GitHub Advisory Database | OK | 0 | critical in all ecosystems; high only for composer, go, npm, pip |
 | nodejs.org release index | OK | 0 | 878 versions in index |
 | go.dev downloads | OK | 0 | branches: 1.26, 1.27 |
