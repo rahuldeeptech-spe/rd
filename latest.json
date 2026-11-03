@@ -2,6 +2,19 @@
   "alerts": [
     {
       "alert": true,
+      "date": "2026-11-02",
+      "id": "CVE-2026-120459",
+      "score": 9.1,
+      "severity": "CRITICAL",
+      "source": "nvd",
+      "title": "python-jose through 3.5.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to forge JWTs because HMACKey and CryptographyHMACKey accept zero-length HMAC secrets. When an application's HS256/HS384/HS512 verification key resolves to empty, such as an oct JWK with empty k, attackers can forge tokens with arbitrary claims that jwt.decode accepts.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120459",
+      "watch": [
+        "python"
+      ]
+    },
+    {
+      "alert": true,
       "date": "",
       "id": "node 24",
       "source": "rules",
@@ -34,13 +47,286 @@
       ]
     }
   ],
-  "complete": false,
-  "generated_at": "2026-11-02T13:32:53Z",
+  "complete": true,
+  "generated_at": "2026-11-03T12:49:14Z",
   "items": {
-    "ghsa": [],
+    "ghsa": [
+      {
+        "alert": false,
+        "cve": "CVE-2026-62374",
+        "date": "2026-11-02",
+        "id": "GHSA-f9j6-8p6x-r9j6",
+        "packages": [
+          "npm:@sd-jwt/decode",
+          "npm:@sd-jwt/core (fixed 0.20.0)"
+        ],
+        "severity": "HIGH",
+        "source": "ghsa",
+        "title": "SD JWT JS: Tampered disclosures silently dropped instead of rejected",
+        "url": "https://github.com/advisories/GHSA-f9j6-8p6x-r9j6",
+        "watch": []
+      }
+    ],
     "go": [],
     "kev": [],
     "node": [],
+    "nvd": [
+      {
+        "alert": true,
+        "date": "2026-11-02",
+        "id": "CVE-2026-120459",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "python-jose through 3.5.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to forge JWTs because HMACKey and CryptographyHMACKey accept zero-length HMAC secrets. When an application's HS256/HS384/HS512 verification key resolves to empty, such as an oct JWK with empty k, attackers can forge tokens with arbitrary claims that jwt.decode accepts.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120459",
+        "watch": [
+          "python"
+        ]
+      },
+      {
+        "alert": false,
+        "date": "2026-11-02",
+        "id": "CVE-2026-102435",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "The Ultra Addons for Contact Form 7 plugin for WordPress is vulnerable to arbitrary file deletion due to insufficient file path validation in the _getObjAttr function in all versions up to, and including, 3.5.54. This makes it possible for unauthenticated attackers to delete arbitrary files on the server, which can easily lead to remote code execution when the right file is deleted (such as wp-config.php). This requires the PDF Generator add-on to be active and a Contact Form 7 form to be configured for PDF generation, as the WPCF7_Submission POP gadget chain relies on CF7 being present to complete the file deletion via __destruct(). Note: This vulnerability can only be exploited when the PDF generator feature is enabled.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-102435",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-03",
+        "id": "CVE-2026-120534",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "The Advanced Custom Fields: Extended PRO plugin for WordPress is vulnerable to Limited Code Injection in all versions up to, and including, 0.9.2.6 via the render_field function. This is due to insufficient validation of form configuration parameters before merging into field settings and passing to call_user_func_array in the render_field method. This makes it possible for unauthenticated attackers to call arbitrary WordPress functions with controlled arguments. Method 1 requires the administrator to enable the non-default 'shortcode_preview' setting for the target form, while Method 2 requires the server environment to lack OpenSSL functions, causing ACF Pro's acf_decrypt to fall back to unverified base64 decoding.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120534",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-03",
+        "id": "CVE-2026-4052",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "This issue only impacts deployments where WSO2 Identity Server is configured as a Resident Key Manager with database sharing. In such environments, a self-registered user may gain access to the System REST APIs of WSO2 API Manager by obtaining a token from the WSO2 Identity Server token endpoint.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-4052",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-02",
+        "id": "CVE-2026-86596",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "The s2Member plugin for WordPress is vulnerable to Remote Code Execution in all versions up to, and including, <= 260927 via the 'item_name' parameter parameter. This is due to insufficient sanitization in strip_php_tags_deep(), which only strips literal '<?' sequences, combined with a post-interpolation placeholder cleanup that reassembles a valid '<?php' opener after the attacker-controlled value has already been embedded in the email template. This makes it possible for authenticated attackers, with custom-level access and above, to execute code on the server.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-86596",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-02",
+        "id": "CVE-2026-105606",
+        "score": 9.5,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Joomla Extension - joomlaboat.com - Unauthenticated arbitrary file upload in Custom Tables < 3.7.8 - An unauthenticated attacker can upload a polyglot file with an attacker-controlled extension to the web-accessible tmp directory of any Joomla site that exposes a public Custom Tables submission form, and the stored path is disclosed in the response. By default the uploaded file is served as static content, so the primary impact is an unauthenticated arbitrary file write to a web-accessible directory, which allows hosting of attacker-controlled content (for example phishing or malware pages) under the victim's domain.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-105606",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-02",
+        "id": "CVE-2026-105603",
+        "score": 9.4,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Joomla Extension - dj-extensions.com - Authenticated arbitrary file upload in DJ-Classifieds < 3.11.3 - The Joomla extension DJ-Classifieds is vulnerable to an unprivileged file upload, leading to full RCE.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-105603",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-02",
+        "id": "CVE-2026-119085",
+        "score": 9.4,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Improper neutralization of special elements used in a template engine in the publishing component of Amazon Virtual Engineering Workbench (VEW) could allow a remote authenticated third party to run arbitrary code with the permissions of the publishing Lambda's IAM role. This could allow access to data and resources across all tenant projects. The code is reachable through a crafted CloudFormation template body containing template engine directives submitted through the product versioning API.\n\n\n\nTo remediate this issue, users should redeploy from the latest version of awslabs/virtual-engineering-workbench.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119085",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-02",
+        "id": "CVE-2026-97718",
+        "score": 9.4,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "CVE-2026-97718 Is a cross-site request forgery vulnerability\nin version 14.60 of the Secure Access server. \u00a0Because of a bypassed security control, an\nattacker can cause an admin to create an account under their control.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-97718",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-02",
+        "id": "CVE-2026-105604",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Joomla Extension - dj-extensions.com - Unauthenticated SQL injection in DJ-Classifieds < 3.11.3 - The Joomla extension DJ-Classifieds is vulnerable to an unauthenticated SQL injection vector in the frontend search.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-105604",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-02",
+        "id": "CVE-2026-105769",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "kaniko before 1.25.20 can send a Microsoft Entra ID (Azure AD) access token for Azure Resource Manager to an attacker-controlled registry host. kaniko uses the Azure Container Registry credential helper github.com/chrismellard/docker-credential-acr-env, which decides whether a host is an ACR registry with an unanchored regular expression, so any hostname containing .azurecr.io, .azurecr.cn, .azurecr.de or .azurecr.us is accepted. kaniko consults this helper for any registry that has no credentials in the Docker config and is not a Google or Amazon ECR registry, before contacting the registry. A Dockerfile that references an image on a lookalike host, such as FROM x.azurecr.io.attacker.com/img or COPY --from=<image>, causes the helper to obtain a token from the build's Azure identity (service principal environment variables, federated workload identity token, or managed identity) and POST it to https://<host>/oauth2/exchange. The attacker can use the token against Azure Resource Manager with the identity's role assignments until it expires, and can exchange it for credentials to any ACR registry the identity can access. No RUN instruction or push is required. This issue is fixed in 1.25.20.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-105769",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-02",
+        "id": "CVE-2026-116606",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "An authentication bypass in Barracuda Email Security Gateway versions earlier than 9.4.0.030 allows an unauthenticated remote attacker to invoke a configuration-import function and restore a crafted, compatible backup archive, resulting in unauthorized modification of the appliance\u2019s global configuration.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-116606",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-02",
+        "id": "CVE-2026-116769",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "CVE-2026-116769 is an authentication bypass\nvulnerability in Secure Access servers starting with version 13.0 and prior to\n14.61. Attackers can modify security settings of a client via the server.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-116769",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-02",
+        "id": "CVE-2026-120442",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "ape-volo-admin before 3.6.1 contains an authentication bypass vulnerability that allows unauthenticated attackers to forge administrator tokens using a hardcoded JWT signing key in appsettings.json. Attackers can sign tokens offline with the jti claim set to the seeded administrator id to gain full API control over users, roles, permissions and data.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120442",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-02",
+        "id": "CVE-2026-73696",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Control Web Panel (CWP) before webpanel_version 1.12 contains an execution after redirect vulnerability in the user panel authentication flow (CWPUserIndex) that allows unauthenticated attackers to bypass authentication by exploiting a missing exit() call after a header('Location: ...') redirect. Attackers can send unauthenticated requests to continue PHP execution past the redirect, reaching user panel functionality that should require authentication.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-73696",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-02",
+        "id": "CVE-2026-77876",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Control Web Panel (CWP) before webpanel_version 1.16 contains an OS command injection vulnerability in the protected_directory user panel module that allows attackers to execute arbitrary commands by submitting unescaped input through the file POST parameter in the acc=deletedp action. Attackers can exploit this flaw, which passes attacker-controlled input directly into a shell_exec call, to achieve code execution in the user panel context.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-77876",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-02",
+        "id": "CVE-2026-120447",
+        "score": 9.2,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "HotGo 2.8.4 through 2.15.1 contains an authentication bypass vulnerability that allows unauthenticated attackers to choose the SMS login verification code by supplying the Code field to /admin/sms/send. Attackers who know a user's mobile number can set a known code and sign in through /admin/site/mobileLogin to take over accounts, including administrators.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120447",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-03",
+        "id": "CVE-2026-121022",
+        "score": 9.2,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Use of Default Password (CWE-1393) in the web client in AxxonSoft Axxon One before 3.0.0 on Windows and Linux allows a remote unauthenticated attacker to log in as the built-in administrator with the default credentials on a newly installed system, because the web client did not enforce the mandatory change of the default password on first login.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-121022",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-03",
+        "id": "CVE-2026-89292",
+        "score": 9.2,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "In Eclipse Mnestix Browser versions 1.6.0 up until but excluding 2.3.0 it was possible for an unauthenticated attacker to exfiltrate the MNESTIX_BACKEND_API_KEY for all configured Infrastructures.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-89292",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-03",
+        "id": "CVE-2026-120518",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "The BuddyPress XProfile Image Field plugin for WordPress is vulnerable to arbitrary file deletion in all versions up to, and including, 3.1.0. This is due to bpxp_image_field_update_on_user_activation() calling unlink() on a path built from visitor-supplied signup metadata with no realpath() resolution, no containment check against the profile-image directory and no extension allow-list. Submitting a zero-byte file with the 'field_N_hidden' parameter during registration makes the plugin store the raw value, which is then resolved against the document root when the pending signup is activated. This makes it possible for unauthenticated attackers to delete arbitrary files on the server, which can easily lead to remote code execution when the right file (such as wp-config.php) is deleted. Requires open registration and an image-type profile field on the signup form.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120518",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-03",
+        "id": "CVE-2026-13594",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Zoho Corporation's ManageEngine Log360 and EventLog Analyzer versions 13062 and below are vulnerable to an issue that could allow an adversary to gain unauthorized access to the product.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-13594",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-02",
+        "id": "CVE-2026-88811",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Missing filtering in the SUSE\u00a0Rancher Manager meta proxy could cause passed in rancher credentials to be leaked to cloud providers. This affects SUSE Rancher 2.15.0 up to 2.15.3, 2.14.0 up to 2.14.7, 2.13.0 up to 2.13.11,",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-88811",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-02",
+        "id": "CVE-2026-94290",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "SUSE Rancher Fleet clusters reference a kubeconfig secret that the controller uses to install and manage a Fleet agent on the target cluster. The controller did not sufficiently restrict which kubeconfig secrets a Fleet Cluster object was allowed to reference. As a result, a Fleet cluster defined in a namespace an ordinary user controls could be associated with administrative credentials for the management cluster itself, causing the controller to manage the management cluster on that user's behalf and to run that user's Fleet content there with elevated privileges. This affects SUSE Rancher Fleet 0.16.0 up to 0.16.3, 0.15.0 up to 0.15.8, 0.14.0 up to 0.14.12, 0.13.0 up to 0.13.17 and possible older versions.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-94290",
+        "watch": []
+      }
+    ],
     "php": []
   },
   "sources": [
@@ -52,14 +338,14 @@
       "ok": true
     },
     {
-      "count": 0,
+      "count": 23,
       "label": "NVD (new CVEs)",
       "name": "nvd",
-      "note": "HTTP 503 for https://services.nvd.nist.gov/rest/json/cves/2.0",
-      "ok": false
+      "note": "453 CVEs published in window; showing CRITICAL (9.0+) and CVEs about a watched product itself; 14 more only mention one (apps, plugins, libraries) and are not listed",
+      "ok": true
     },
     {
-      "count": 0,
+      "count": 1,
       "label": "GitHub Advisory Database",
       "name": "ghsa",
       "note": "critical in all ecosystems; high only for composer, go, npm, pip",

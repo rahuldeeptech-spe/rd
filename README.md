@@ -1,11 +1,10 @@
-# Security report 2026-11-02
+# Security report 2026-11-03
 
-Generated 2026-11-02 13:32 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
+Generated 2026-11-03 12:49 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
 
-> **INCOMPLETE REPORT.** 1 source(s) failed: nvd. Missing data is not the same as no incidents.
+## Needs attention (4)
 
-## Needs attention (3)
-
+- **CVE-2026-120459** CVSS 9.1 CRITICAL - python-jose through 3.5.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to forge JWTs because HMACKey and CryptographyHMACKey accept zero-length HMAC secrets. When an application'… - **watching: python** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-120459)
 - **node 24** - REVIEW: upstream node 24 is 24.22.2, advisories.tsv is reviewed up to 24.22.1. Read the release notes for new security fixes and update the rules. - **watching: node**
 - **node 26** - REVIEW: upstream node 26 is 26.13.0, advisories.tsv is reviewed up to 26.12.1. Read the release notes for new security fixes and update the rules. - **watching: node**
 - **node 27** - REVIEW: new node branch 27 exists upstream but advisories.tsv has no rule for it \(it falls back to the 'newer' rule\). - **watching: node**
@@ -16,11 +15,33 @@ No new entries in the window.
 
 ## Critical new CVEs and CVEs about watched products (NVD)
 
-> **Source unavailable.** This section is incomplete. Do not read it as "nothing happened".
+- **CVE-2026-120459** CVSS 9.1 CRITICAL - python-jose through 3.5.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to forge JWTs because HMACKey and CryptographyHMACKey accept zero-length HMAC secrets. When an application'… - **watching: python** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-120459)
+- **CVE-2026-102435** CVSS 9.8 CRITICAL - The Ultra Addons for Contact Form 7 plugin for WordPress is vulnerable to arbitrary file deletion due to insufficient file path validation in the \_getObjAttr function in all versions up to, and including, 3.5.54. This m… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-102435)
+- **CVE-2026-120534** CVSS 9.8 CRITICAL - The Advanced Custom Fields: Extended PRO plugin for WordPress is vulnerable to Limited Code Injection in all versions up to, and including, 0.9.2.6 via the render\_field function. This is due to insufficient validation o… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-120534)
+- **CVE-2026-4052** CVSS 9.8 CRITICAL - This issue only impacts deployments where WSO2 Identity Server is configured as a Resident Key Manager with database sharing. In such environments, a self-registered user may gain access to the System REST APIs of WSO2… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-4052)
+- **CVE-2026-86596** CVSS 9.8 CRITICAL - The s2Member plugin for WordPress is vulnerable to Remote Code Execution in all versions up to, and including, &lt;= 260927 via the 'item\_name' parameter parameter. This is due to insufficient sanitization in strip\_php\_tag… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-86596)
+- **CVE-2026-105606** CVSS 9.5 CRITICAL - Joomla Extension - joomlaboat.com - Unauthenticated arbitrary file upload in Custom Tables &lt; 3.7.8 - An unauthenticated attacker can upload a polyglot file with an attacker-controlled extension to the web-accessible tmp… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-105606)
+- **CVE-2026-105603** CVSS 9.4 CRITICAL - Joomla Extension - dj-extensions.com - Authenticated arbitrary file upload in DJ-Classifieds &lt; 3.11.3 - The Joomla extension DJ-Classifieds is vulnerable to an unprivileged file upload, leading to full RCE. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-105603)
+- **CVE-2026-119085** CVSS 9.4 CRITICAL - Improper neutralization of special elements used in a template engine in the publishing component of Amazon Virtual Engineering Workbench \(VEW\) could allow a remote authenticated third party to run arbitrary code with t… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-119085)
+- **CVE-2026-97718** CVSS 9.4 CRITICAL - CVE-2026-97718 Is a cross-site request forgery vulnerability in version 14.60 of the Secure Access server. Because of a bypassed security control, an attacker can cause an admin to create an account under their control. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-97718)
+- **CVE-2026-105604** CVSS 9.3 CRITICAL - Joomla Extension - dj-extensions.com - Unauthenticated SQL injection in DJ-Classifieds &lt; 3.11.3 - The Joomla extension DJ-Classifieds is vulnerable to an unauthenticated SQL injection vector in the frontend search. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-105604)
+- **CVE-2026-105769** CVSS 9.3 CRITICAL - kaniko before 1.25.20 can send a Microsoft Entra ID \(Azure AD\) access token for Azure Resource Manager to an attacker-controlled registry host. kaniko uses the Azure Container Registry credential helper github.com/chris… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-105769)
+- **CVE-2026-116606** CVSS 9.3 CRITICAL - An authentication bypass in Barracuda Email Security Gateway versions earlier than 9.4.0.030 allows an unauthenticated remote attacker to invoke a configuration-import function and restore a crafted, compatible backup a… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-116606)
+- **CVE-2026-116769** CVSS 9.3 CRITICAL - CVE-2026-116769 is an authentication bypass vulnerability in Secure Access servers starting with version 13.0 and prior to 14.61. Attackers can modify security settings of a client via the server. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-116769)
+- **CVE-2026-120442** CVSS 9.3 CRITICAL - ape-volo-admin before 3.6.1 contains an authentication bypass vulnerability that allows unauthenticated attackers to forge administrator tokens using a hardcoded JWT signing key in appsettings.json. Attackers can sign t… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-120442)
+- **CVE-2026-73696** CVSS 9.3 CRITICAL - Control Web Panel \(CWP\) before webpanel\_version 1.12 contains an execution after redirect vulnerability in the user panel authentication flow \(CWPUserIndex\) that allows unauthenticated attackers to bypass authentication… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-73696)
+- **CVE-2026-77876** CVSS 9.3 CRITICAL - Control Web Panel \(CWP\) before webpanel\_version 1.16 contains an OS command injection vulnerability in the protected\_directory user panel module that allows attackers to execute arbitrary commands by submitting unescape… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-77876)
+- **CVE-2026-120447** CVSS 9.2 CRITICAL - HotGo 2.8.4 through 2.15.1 contains an authentication bypass vulnerability that allows unauthenticated attackers to choose the SMS login verification code by supplying the Code field to /admin/sms/send. Attackers who kn… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-120447)
+- **CVE-2026-121022** CVSS 9.2 CRITICAL - Use of Default Password \(CWE-1393\) in the web client in AxxonSoft Axxon One before 3.0.0 on Windows and Linux allows a remote unauthenticated attacker to log in as the built-in administrator with the default credentials… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-121022)
+- **CVE-2026-89292** CVSS 9.2 CRITICAL - In Eclipse Mnestix Browser versions 1.6.0 up until but excluding 2.3.0 it was possible for an unauthenticated attacker to exfiltrate the MNESTIX\_BACKEND\_API\_KEY for all configured Infrastructures. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-89292)
+- **CVE-2026-120518** CVSS 9.1 CRITICAL - The BuddyPress XProfile Image Field plugin for WordPress is vulnerable to arbitrary file deletion in all versions up to, and including, 3.1.0. This is due to bpxp\_image\_field\_update\_on\_user\_activation\(\) calling unlink\(\)… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-120518)
+- **CVE-2026-13594** CVSS 9.1 CRITICAL - Zoho Corporation's ManageEngine Log360 and EventLog Analyzer versions 13062 and below are vulnerable to an issue that could allow an adversary to gain unauthorized access to the product. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-13594)
+- **CVE-2026-88811** CVSS 9.1 CRITICAL - Missing filtering in the SUSE Rancher Manager meta proxy could cause passed in rancher credentials to be leaked to cloud providers. This affects SUSE Rancher 2.15.0 up to 2.15.3, 2.14.0 up to 2.14.7, 2.13.0 up to 2.13.1… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-88811)
+- **CVE-2026-94290** CVSS 9.1 CRITICAL - SUSE Rancher Fleet clusters reference a kubeconfig secret that the controller uses to install and manage a Fleet agent on the target cluster. The controller did not sufficiently restrict which kubeconfig secrets a Fleet… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-94290)
 
 ## GitHub reviewed advisories (critical, plus high in watched ecosystems)
 
-No matching advisories in the window.
+- **GHSA-f9j6-8p6x-r9j6** HIGH - SD JWT JS: Tampered disclosures silently dropped instead of rejected (npm:@​sd-jwt/decode, npm:@​sd-jwt/core \(fixed 0.20.0\)) - [source](https://github.com/advisories/GHSA-f9j6-8p6x-r9j6)
 
 ## Node.js releases in window
 
@@ -46,8 +67,8 @@ No Node.js release in the window.
 | Source | Status | Items | Note |
 |---|---|---|---|
 | CISA Known Exploited Vulnerabilities | OK | 0 | catalog 2026.10.30 |
-| NVD \(new CVEs\) | **FAILED** | 0 | HTTP 503 for https:​//services.nvd.nist.gov/rest/json/cves/2.0 |
-| GitHub Advisory Database | OK | 0 | critical in all ecosystems; high only for composer, go, npm, pip |
+| NVD \(new CVEs\) | OK | 23 | 453 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 14 more only mention one \(apps, plugins, libraries\) and are not… |
+| GitHub Advisory Database | OK | 1 | critical in all ecosystems; high only for composer, go, npm, pip |
 | nodejs.org release index | OK | 0 | 878 versions in index |
 | go.dev downloads | OK | 0 | branches: 1.26, 1.27 |
 | php.net releases | OK | 0 | branches: 8.2, 8.3, 8.4, 8.5 |
