@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; manifest-src 'self'; worker-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0b5fff">
+<title>ScamCheck: Is this message a scam?</title>
+<meta name="description" content="Paste an SMS, WhatsApp message or link and see if it is a scam. Covers digital arrest, fake KYC, UPI traps, task jobs and fake APKs. Free, private, works offline.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#input">Skip to checker</a>
+
+<header class="top">
+  <div class="wrap bar">
+    <div class="brand"><img src="icon.svg" width="26" height="26" alt=""><span>ScamCheck</span></div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="hi" aria-pressed="false">हिन्दी</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="title">Is this message a scam?</h1>
+    <p class="sub" data-i18n="subtitle">Paste the SMS, WhatsApp text, email or link. You get an instant answer and what to do next.</p>
+    <p class="privacy" data-i18n="privacy">🔒 Everything is checked on your device. Nothing is uploaded or stored.</p>
+  </section>
+
+  <section class="card" aria-labelledby="checker-h">
+    <h2 id="checker-h" class="sr" data-i18n="checkerHeading">Checker</h2>
+    <label for="input" class="lbl" data-i18n="inputLabel">Message or link to check</label>
+    <textarea id="input" rows="6" maxlength="20000" spellcheck="false" autocomplete="off" autocapitalize="off" data-i18n-ph="placeholder" placeholder="Paste the message here…"></textarea>
+    <div class="row">
+      <button id="check" class="btn primary" type="button" data-i18n="check">Check now</button>
+      <button id="clear" class="btn" type="button" data-i18n="clear">Clear</button>
+    </div>
+    <details class="examples">
+      <summary data-i18n="tryExamples">Try an example</summary>
+      <div class="chips" id="chips"></div>
+    </details>
+  </section>
+
+  <section id="result" class="card result" hidden aria-live="polite" tabindex="-1">
+    <div class="verdict">
+      <div class="meter" role="img" aria-labelledby="verdict-title"><div id="meterFill" class="fill"></div></div>
+      <div class="vtext">
+        <h2 id="verdict-title"></h2>
+        <p id="verdict-sub"></p>
+      </div>
+      <div id="scoreNum" class="score" aria-hidden="true"></div>
+    </div>
+
+    <h3 id="whyH" data-i18n="whyHeading">Why we think so</h3>
+    <ul id="findings" class="findings"></ul>
+
+    <div id="actions" class="actions"></div>
+
+    <div class="row">
+      <button id="share" class="btn" type="button" data-i18n="share">Share this checker</button>
+    </div>
+  </section>
+
+  <section class="card tips" aria-labelledby="tips-h">
+    <h2 id="tips-h" data-i18n="tipsHeading">5 rules that stop most scams</h2>
+    <ol id="tips"></ol>
+  </section>
+
+  <section class="card report" aria-labelledby="rep-h">
+    <h2 id="rep-h" data-i18n="reportHeading">Already lost money or shared an OTP?</h2>
+    <p data-i18n="reportBody">Act within the first hour. It matters a lot.</p>
+    <ul class="links">
+      <li><strong>1930</strong> <span data-i18n="rep1930">National Cyber Crime Helpline (India). Call immediately.</span></li>
+      <li><a href="https://cybercrime.gov.in" rel="noopener noreferrer" target="_blank">cybercrime.gov.in</a> <span data-i18n="repPortal">File a complaint online.</span></li>
+      <li><a href="https://sancharsaathi.gov.in" rel="noopener noreferrer" target="_blank">sancharsaathi.gov.in</a> <span data-i18n="repChakshu">Report suspicious calls/SMS (Chakshu) and block stolen phones.</span></li>
+    </ul>
+  </section>
+
+  <section id="donate" class="card donate" hidden aria-labelledby="don-h">
+    <h2 id="don-h" data-i18n="donateHeading">Keep ScamCheck free</h2>
+    <p data-i18n="donateBody">This tool has no ads and no tracking. If it saved you or your family from a scam, a small contribution pays for development and hosting.</p>
+    <div id="donateBtns" class="row wrapRow"></div>
+    <p id="upiNote" class="small" hidden></p>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <p class="small" data-i18n="disclaimer">ScamCheck uses rules and patterns. It can miss new scams and can occasionally flag a genuine message. A "no red flags" result is not a guarantee. When in doubt, hang up and contact the organisation using the number printed on your card or on their official website.</p>
+  <p class="small"><a id="repoLink" href="https://github.com/rahuldeeptech-spe/rd/tree/main/scamcheck" rel="noopener noreferrer" target="_blank" data-i18n="source">Open source (MIT)</a> · <span id="ver"></span></p>
+</footer>
+
+<script src="config.js"></script>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

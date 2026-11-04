@@ -1,0 +1,11 @@
+{
+  "name": "ScamCheck",
+  "short_name": "ScamCheck",
+  "description": "Check if an SMS, WhatsApp message or link is a scam. Private and offline.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fb",
+  "theme_color": "#0b5fff",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

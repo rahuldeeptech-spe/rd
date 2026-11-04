@@ -1,0 +1,33 @@
+name: ScamCheck
+
+on:
+  push:
+    branches: [main]
+    paths: ['scamcheck/**', '.github/workflows/scamcheck.yml']
+  pull_request:
+    paths: ['scamcheck/**', '.github/workflows/scamcheck.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: scamcheck-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: engine tests
+        run: node --test scamcheck/engine.test.js
+      - name: syntax check
+        run: |
+          node --check scamcheck/engine.js
+          node --check scamcheck/app.js
+          node --check scamcheck/sw.js
+          node --check scamcheck/config.js

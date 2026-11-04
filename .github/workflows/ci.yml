@@ -64,7 +64,7 @@ jobs:
 
   monitor:
     name: monitor (python ${{ matrix.python }})
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04   # ubuntu-latest (26.04) no longer ships Python 3.9, which this matrix still covers
     strategy:
       fail-fast: false
       matrix:
