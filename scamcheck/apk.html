@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; manifest-src 'self'; worker-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0b5fff">
+<title>ScamCheck APK Scanner</title>
+<meta name="description" content="Check an Android APK file before you install it. Finds SMS stealers, banking trojans and fake KYC / PM-Kisan / challan apps. Runs fully in your browser: the file is never uploaded.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#file">Skip to scanner</a>
+
+<header class="top">
+  <div class="wrap bar">
+    <div class="brand"><img src="icon.svg" width="26" height="26" alt=""><span>ScamCheck</span></div>
+    <nav class="nav" aria-label="Tools">
+      <a href="index.html" data-i18n="navMsg">Message checker</a>
+      <a href="apk.html" aria-current="page" data-i18n="navApk">APK scanner</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="hi" aria-pressed="false">हिन्दी</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="title">Is this APK safe to install?</h1>
+    <p class="sub" data-i18n="subtitle">Got an app file on WhatsApp, Telegram or a link ("PM Kisan.apk", "SBI Reward.apk", "RTO Challan.apk")? Check it here before you tap Install.</p>
+    <p class="privacy" data-i18n="privacy">🔒 The file is analysed inside your browser. It is never uploaded.</p>
+  </section>
+
+  <section class="card" aria-labelledby="scan-h">
+    <h2 id="scan-h" class="sr" data-i18n="scanHeading">Scanner</h2>
+    <label for="file" class="drop" id="drop">
+      <span class="dropT" data-i18n="drop">Tap to choose an .apk file, or drop it here</span>
+      <span class="small" data-i18n="dropSub">Up to 150 MB. Nothing is installed or run.</span>
+    </label>
+    <input id="file" class="sr" type="file" accept=".apk,application/vnd.android.package-archive">
+    <p id="status" class="small" role="status" aria-live="polite"></p>
+  </section>
+
+  <section id="result" class="card result" hidden aria-live="polite" tabindex="-1">
+    <div class="verdict">
+      <div class="meter" role="img" aria-labelledby="verdict-title"><div id="meterFill" class="fill"></div></div>
+      <div class="vtext">
+        <h2 id="verdict-title"></h2>
+        <p id="verdict-sub"></p>
+      </div>
+      <div id="scoreNum" class="score" aria-hidden="true"></div>
+    </div>
+
+    <h3 data-i18n="infoHeading">About this file</h3>
+    <dl id="info" class="info"></dl>
+    <div class="row wrapRow">
+      <button id="copyHash" class="btn" type="button" data-i18n="copyHash">Copy SHA-256</button>
+      <a id="vtLink" class="btn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="vtLookup">Look up hash on VirusTotal</a>
+    </div>
+    <p class="small" data-i18n="vtNote">The lookup sends only the hash (a fingerprint), never the file. "Not found" does not mean safe.</p>
+
+    <h3 id="whyH" data-i18n="whyHeading">Why we think so</h3>
+    <ul id="findings" class="findings"></ul>
+
+    <details class="permsBox">
+      <summary><span data-i18n="permsHeading">Permissions requested</span> <span id="permCount"></span></summary>
+      <ul id="perms" class="perms"></ul>
+    </details>
+
+    <div id="actions" class="actions"></div>
+  </section>
+
+  <section id="errorBox" class="card errorBox" hidden role="alert"><p id="errorText"></p></section>
+
+  <section class="card tips" aria-labelledby="tips-h">
+    <h2 id="tips-h" data-i18n="tipsHeading">Rules for APK files</h2>
+    <ol id="tips"></ol>
+  </section>
+
+  <section class="card report" aria-labelledby="rep-h">
+    <h2 id="rep-h" data-i18n="reportHeading">Already installed it?</h2>
+    <ul class="links" id="repList"></ul>
+    <p class="small"><strong>1930</strong> · <a href="https://cybercrime.gov.in" rel="noopener noreferrer" target="_blank">cybercrime.gov.in</a> · <a href="https://sancharsaathi.gov.in" rel="noopener noreferrer" target="_blank">sancharsaathi.gov.in</a></p>
+  </section>
+
+  <section id="donate" class="card donate" hidden aria-labelledby="don-h">
+    <h2 id="don-h" data-i18n="donateHeading">Keep ScamCheck free</h2>
+    <p data-i18n="donateBody">This tool has no ads and no tracking. If it saved you or your family from a scam, a small contribution pays for development and hosting.</p>
+    <div id="donateBtns" class="row wrapRow"></div>
+    <p id="upiNote" class="small" hidden></p>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <p class="small" data-i18n="disclaimer">This is a static check of the app's declared permissions, signature and code strings. It cannot prove an app is safe, and some genuine apps ask for powerful permissions. If someone you do not know sent you the file, do not install it, whatever the score says.</p>
+  <p class="small"><a id="repoLink" href="https://github.com/rahuldeeptech-spe/rd/tree/main/scamcheck" rel="noopener noreferrer" target="_blank" data-i18n="source">Open source (MIT)</a> · <span id="ver"></span></p>
+</footer>
+
+<script src="config.js"></script>
+<script src="engine.js"></script>
+<script src="apkscan.js"></script>
+<script src="apk.js"></script>
+</body>
+</html>

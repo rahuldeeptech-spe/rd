@@ -24,12 +24,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node --test scamcheck/engine.test.js
+      - run: node --test scamcheck/*.test.js
       - name: stage site
         run: |
           mkdir -p _site
-          cp scamcheck/index.html scamcheck/style.css scamcheck/engine.js scamcheck/app.js scamcheck/config.js \
-             scamcheck/sw.js scamcheck/icon.svg scamcheck/manifest.webmanifest _site/
+          cp scamcheck/index.html scamcheck/apk.html scamcheck/style.css scamcheck/engine.js scamcheck/apkscan.js \
+             scamcheck/app.js scamcheck/apk.js scamcheck/config.js scamcheck/sw.js scamcheck/icon.svg \
+             scamcheck/manifest.webmanifest _site/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
