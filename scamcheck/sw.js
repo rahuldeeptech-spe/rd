@@ -1,7 +1,7 @@
 'use strict';
 // Network-first for pages, cache fallback so the checker works offline.
-const CACHE = 'scamcheck-v4';
-const FILES = ['./', 'index.html', 'apk.html', 'mcp.html', 'pkg.html', 'style.css', 'engine.js', 'apkscan.js', 'mcpaudit.js', 'pkgscan.js', 'app.js', 'apk.js', 'mcp.js', 'pkg.js', 'config.js', 'icon.svg', 'manifest.webmanifest'];
+const CACHE = 'scamcheck-v5';
+const FILES = ['./', 'index.html', 'apk.html', 'mcp.html', 'pkg.html', 'wifi.html', 'style.css', 'engine.js', 'apkscan.js', 'mcpaudit.js', 'pkgscan.js', 'wifiaudit.js', 'app.js', 'apk.js', 'mcp.js', 'pkg.js', 'wifi.js', 'config.js', 'icon.svg', 'manifest.webmanifest'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILES)).then(() => self.skipWaiting()));

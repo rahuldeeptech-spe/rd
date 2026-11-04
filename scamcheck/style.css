@@ -116,14 +116,14 @@ a { color: var(--brand); }
 .nav a { color: var(--ink); text-decoration: none; padding: 6px 10px; border-radius: 8px; font-size: 14px; font-weight: 600; white-space: nowrap; }
 .nav a[aria-current="page"] { background: var(--bg); color: var(--brand); }
 .bar { gap: 8px; }
-@media (max-width: 640px) {
-  .bar { height: auto; flex-wrap: wrap; padding-top: 8px; padding-bottom: 8px; row-gap: 6px; }
-  .brand { order: 1; flex: 1; }
-  .lang { order: 2; }
-  .nav { order: 3; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-  .nav::-webkit-scrollbar { display: none; }
-  .nav a { padding: 6px 12px; font-size: 14px; }
-}
+/* The content column is at most 760px wide, which five tool links cannot share with the brand and the language switch:
+   brand + language on the first row, the tool links on their own (scrollable) row, at every screen width. */
+.bar { height: auto; flex-wrap: wrap; padding-top: 8px; padding-bottom: 8px; row-gap: 6px; }
+.brand { order: 1; flex: 1; }
+.lang { order: 2; }
+.nav { order: 3; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.nav::-webkit-scrollbar { display: none; }
+.nav a { padding: 6px 12px; font-size: 14px; }
 .drop { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; padding: 34px 16px; border: 2px dashed var(--brand); border-radius: var(--radius); cursor: pointer; background: var(--bg); }
 .drop:hover, .drop.over { background: var(--card); border-style: solid; }
 .drop:focus-within { outline: 3px solid var(--brand); outline-offset: 2px; }
@@ -149,3 +149,21 @@ textarea.code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, mono
 /* package detector */
 pre.cmd { margin: 8px 0 14px; padding: 12px; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
 pre.cmd code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; white-space: pre; }
+
+/* Wi-Fi & IoT auditor */
+.notice { margin: 8px 0 0; padding: 10px 12px; border-left: 4px solid var(--caution); background: var(--caution-bg); border-radius: 8px; font-size: 14px; }
+.qform { display: grid; gap: 12px; margin-top: 8px; }
+.qrow { display: grid; gap: 4px; }
+.qlabel { font-weight: 600; font-size: 15px; }
+.qsel, .txt { width: 100%; padding: 10px 12px; font: inherit; color: var(--ink); background: var(--bg); border: 1.5px solid var(--line); border-radius: 10px; min-height: 44px; }
+.qsel:focus-visible, .txt:focus-visible { outline: 3px solid var(--brand); outline-offset: 2px; }
+.txt { margin-bottom: 4px; }
+@media (min-width: 640px) { .qrow { grid-template-columns: 1fr 1fr; align-items: center; gap: 12px; } }
+.tblwrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tbl th, .tbl td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.tbl th { background: var(--bg); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.tbl tr:last-child td { border-bottom: 0; }
+.tbl td.bad { color: var(--scam); font-weight: 700; }
+.tbl tr.mine td { background: var(--clean-bg); }
+.tbl td.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; word-break: break-word; }

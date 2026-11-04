@@ -31,9 +31,11 @@ jobs:
           node --check scamcheck/apkscan.js
           node --check scamcheck/mcpaudit.js
           node --check scamcheck/pkgscan.js
+          node --check scamcheck/wifiaudit.js
           node --check scamcheck/app.js
           node --check scamcheck/apk.js
           node --check scamcheck/mcp.js
           node --check scamcheck/pkg.js
+          node --check scamcheck/wifi.js
           node --check scamcheck/sw.js
           node --check scamcheck/config.js

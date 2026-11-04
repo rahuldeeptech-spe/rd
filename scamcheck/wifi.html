@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; manifest-src 'self'; worker-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0b5fff">
+<title>Wi-Fi and IoT Auditor</title>
+<meta name="description" content="Audit your home Wi-Fi and smart devices. Router checklist, Wi-Fi scan analysis (open, WEP, WPS, evil twin) and nmap output analysis (telnet, cameras, ADB, UPnP, exposed databases). Runs fully in your browser.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#checklist">Skip to auditor</a>
+
+<header class="top">
+  <div class="wrap bar">
+    <div class="brand"><img src="icon.svg" width="26" height="26" alt=""><span>ScamCheck</span></div>
+    <nav class="nav" aria-label="Tools">
+      <a href="index.html" data-i18n="navMsg">Message checker</a>
+      <a href="apk.html" data-i18n="navApk">APK scanner</a>
+      <a href="mcp.html" data-i18n="navMcp">MCP auditor</a>
+      <a href="pkg.html" data-i18n="navPkg">Package detector</a>
+      <a href="wifi.html" aria-current="page" data-i18n="navWifi">Wi-Fi &amp; IoT</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="hi" aria-pressed="false">हिन्दी</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="title">Is your Wi-Fi and smart home safe?</h1>
+    <p class="sub" data-i18n="subtitle">Three ways to audit your own network: a router checklist, the output of a Wi-Fi scan, or the output of an nmap scan of your devices.</p>
+    <p class="privacy" data-i18n="privacy">🔒 Everything is analysed in your browser. Nothing you paste is uploaded.</p>
+    <p class="notice" data-i18n="notice">Only audit networks and devices you own or have written permission to test.</p>
+  </section>
+
+  <section class="card" aria-labelledby="a-h">
+    <h2 id="a-h" data-i18n="aHeading">1. Router checklist</h2>
+    <p class="small" data-i18n="aHelp">Answer what you know. "I don't know" is fine, but it counts as a small risk because you cannot fix what you have not checked.</p>
+    <form id="checklist" class="qform" autocomplete="off"></form>
+    <div class="row"><button id="runChecklist" class="btn primary" type="button" data-i18n="auditRouter">Audit my router</button></div>
+  </section>
+
+  <section class="card" aria-labelledby="b-h">
+    <h2 id="b-h" data-i18n="bHeading">2. Wi-Fi scan</h2>
+    <p class="small" data-i18n="bHelp">Run one of these on your laptop, paste the output, and enter your own Wi-Fi name to audit it. Supports nmcli, netsh, iw and airport.</p>
+    <pre class="cmd"><code>Linux:   nmcli -f IN-USE,BSSID,SSID,MODE,CHAN,RATE,SIGNAL,BARS,SECURITY dev wifi list
+Linux:   sudo iw dev wlan0 scan
+Windows: netsh wlan show networks mode=bssid
+macOS:   /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -s</code></pre>
+    <label for="wifiInput" class="lbl" data-i18n="wifiLabel">Wi-Fi scan output</label>
+    <textarea id="wifiInput" class="code" rows="7" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+    <label for="ssid" class="lbl" data-i18n="ssidLabel">Your Wi-Fi name (SSID), optional but recommended</label>
+    <input id="ssid" class="txt" type="text" maxlength="64" autocomplete="off" spellcheck="false">
+    <div class="row">
+      <button id="runWifi" class="btn primary" type="button" data-i18n="auditWifi">Audit Wi-Fi scan</button>
+      <button id="clearWifi" class="btn" type="button" data-i18n="clear">Clear</button>
+    </div>
+    <details class="examples">
+      <summary data-i18n="tryExamples">Try an example</summary>
+      <div class="chips" id="wifiChips"></div>
+    </details>
+  </section>
+
+  <section class="card" aria-labelledby="c-h">
+    <h2 id="c-h" data-i18n="cHeading">3. Network scan (nmap)</h2>
+    <p class="small" data-i18n="cHelp">Scan only your own network, then paste the result. XML, grepable and normal output all work. Add --script http-title for device names.</p>
+    <pre class="cmd"><code>nmap -sV --open -T3 --script http-title,banner 192.168.1.0/24 -oX scan.xml</code></pre>
+    <label for="nmapInput" class="lbl" data-i18n="nmapLabel">nmap output</label>
+    <textarea id="nmapInput" class="code" rows="7" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+    <div class="row">
+      <button id="runNmap" class="btn primary" type="button" data-i18n="auditNmap">Audit nmap output</button>
+      <button id="clearNmap" class="btn" type="button" data-i18n="clear">Clear</button>
+    </div>
+    <details class="examples">
+      <summary data-i18n="tryExamples">Try an example</summary>
+      <div class="chips" id="nmapChips"></div>
+    </details>
+  </section>
+
+  <section id="errorBox" class="card errorBox" hidden role="alert"><p id="errorText"></p></section>
+
+  <section id="result" class="card result" hidden aria-live="polite" tabindex="-1">
+    <div class="verdict">
+      <div class="meter" role="img" aria-labelledby="verdict-title"><div id="meterFill" class="fill"></div></div>
+      <div class="vtext">
+        <h2 id="verdict-title"></h2>
+        <p id="verdict-sub"></p>
+      </div>
+      <div id="scoreNum" class="score" aria-hidden="true"></div>
+    </div>
+    <p id="summary" class="small"></p>
+
+    <h3 id="whyH" data-i18n="whyHeading">Findings</h3>
+    <ul id="findings" class="findings"></ul>
+
+    <div id="tableBox" hidden>
+      <h3 id="tableH"></h3>
+      <div class="tblwrap"><table id="tbl" class="tbl"></table></div>
+    </div>
+    <div id="actions" class="actions"></div>
+  </section>
+
+  <section class="card tips" aria-labelledby="tips-h">
+    <h2 id="tips-h" data-i18n="tipsHeading">Home network basics</h2>
+    <ol id="tips"></ol>
+  </section>
+
+  <section id="donate" class="card donate" hidden aria-labelledby="don-h">
+    <h2 id="don-h" data-i18n="donateHeading">Keep ScamCheck free</h2>
+    <p data-i18n="donateBody">This tool has no ads and no tracking. If it saved you or your family from a scam, a small contribution pays for development and hosting.</p>
+    <div id="donateBtns" class="row wrapRow"></div>
+    <p id="upiNote" class="small" hidden></p>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <p class="small" data-i18n="disclaimer">This tool reads what you paste. It does not scan anything itself. Results are rule-based and can miss problems or flag harmless setups. A clean result means "no known red flags", never proof of safety.</p>
+  <p class="small"><a id="repoLink" href="https://github.com/rahuldeeptech-spe/rd/tree/main/scamcheck" rel="noopener noreferrer" target="_blank" data-i18n="source">Open source (MIT)</a> · <span id="ver"></span></p>
+</footer>
+
+<script src="config.js"></script>
+<script src="wifiaudit.js"></script>
+<script src="wifi.js"></script>
+</body>
+</html>

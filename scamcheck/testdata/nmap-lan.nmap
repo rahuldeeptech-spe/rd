@@ -1,0 +1,227 @@
+# Nmap 7.94SVN scan initiated Wed Nov  4 13:38:44 2026 as: nmap -sV --version-intensity 7 -T4 -n -p 21,22,23,80,554,1883,5555,6379,8080 --script banner,http-title -oX nmap-lan.xml -oG nmap-lan.gnmap -oN nmap-lan.nmap 127.0.0.1-7
+Nmap scan report for 127.0.0.1
+Host is up (0.000010s latency).
+
+PORT     STATE  SERVICE VERSION
+21/tcp   closed ftp
+22/tcp   closed ssh
+23/tcp   closed telnet
+80/tcp   closed http
+554/tcp  closed rtsp
+1883/tcp closed mqtt
+5555/tcp closed freeciv
+6379/tcp closed redis
+8080/tcp open   http    SimpleHTTPServer 0.6 (Python 3.12.3)
+|_http-server-header: SimpleHTTP/0.6 Python/3.12.3
+|_http-title: Directory listing for /
+
+Nmap scan report for 127.0.0.2
+Host is up (0.000018s latency).
+
+PORT     STATE  SERVICE    VERSION
+21/tcp   open   ftp        vsftpd 2.3.4
+|_banner: 220 (vsFTPd 2.3.4)
+22/tcp   closed ssh
+23/tcp   closed telnet
+80/tcp   closed http
+554/tcp  closed rtsp
+1883/tcp closed mqtt
+5555/tcp closed freeciv
+6379/tcp closed redis
+8080/tcp closed http-proxy
+Service Info: OS: Unix
+
+Nmap scan report for 127.0.0.3
+Host is up (0.0000030s latency).
+
+PORT     STATE  SERVICE    VERSION
+21/tcp   closed ftp
+22/tcp   closed ssh
+23/tcp   open   telnet     Linux telnetd
+| fingerprint-strings: 
+|   GenericLines, GetRequest, Help, NCP, RPCCheck, SIPOptions, tn3270: 
+|     login: 
+|     Password:
+|   NULL: 
+|_    login:
+|_banner: \xFF\xFD\x18\xFF\xFD \xFF\xFD#\xFF\xFD'\x0D\x0Alogin:
+80/tcp   closed http
+554/tcp  closed rtsp
+1883/tcp closed mqtt
+5555/tcp closed freeciv
+6379/tcp closed redis
+8080/tcp closed http-proxy
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port23-TCP:V=7.94SVN%I=7%D=11/4%Time=6AEB356A%P=x86_64-pc-linux-gnu%r(N
+SF:ULL,15,"\xff\xfd\x18\xff\xfd\x20\xff\xfd#\xff\xfd'\r\nlogin:\x20")%r(Ge
+SF:nericLines,21,"\xff\xfd\x18\xff\xfd\x20\xff\xfd#\xff\xfd'\r\nlogin:\x20
+SF:\r\nPassword:\x20")%r(tn3270,21,"\xff\xfd\x18\xff\xfd\x20\xff\xfd#\xff\
+SF:xfd'\r\nlogin:\x20\r\nPassword:\x20")%r(GetRequest,21,"\xff\xfd\x18\xff
+SF:\xfd\x20\xff\xfd#\xff\xfd'\r\nlogin:\x20\r\nPassword:\x20")%r(RPCCheck,
+SF:21,"\xff\xfd\x18\xff\xfd\x20\xff\xfd#\xff\xfd'\r\nlogin:\x20\r\nPasswor
+SF:d:\x20")%r(Help,21,"\xff\xfd\x18\xff\xfd\x20\xff\xfd#\xff\xfd'\r\nlogin
+SF::\x20\r\nPassword:\x20")%r(SIPOptions,21,"\xff\xfd\x18\xff\xfd\x20\xff\
+SF:xfd#\xff\xfd'\r\nlogin:\x20\r\nPassword:\x20")%r(NCP,21,"\xff\xfd\x18\x
+SF:ff\xfd\x20\xff\xfd#\xff\xfd'\r\nlogin:\x20\r\nPassword:\x20");
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Nmap scan report for 127.0.0.4
+Host is up (0.0000020s latency).
+
+PORT     STATE  SERVICE    VERSION
+21/tcp   closed ftp
+22/tcp   open   ssh        Dropbear sshd 2014.65 (protocol 2.0)
+|_banner: SSH-2.0-dropbear_2014.65
+23/tcp   closed telnet
+80/tcp   open   http       Boa/0.94.14rc21
+|_http-server-header: Boa/0.94.14rc21
+|_http-title: Network Camera Login
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, DNSVersionBindReqTCP, FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, RPCCheck, RTSPRequest, X11Probe: 
+|     HTTP/1.0 200 OK
+|     Server: Boa/0.94.14rc21
+|     Content-Type: text/html
+|     Connection: close
+|_    <html><head><title>Network Camera Login</title></head><body>login</body></html>
+554/tcp  open   rtsp
+| fingerprint-strings: 
+|   FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, RTSPRequest, SIPOptions: 
+|     RTSP/1.0 200 OK
+|     CSeq: 1
+|_    Public: OPTIONS, DESCRIBE, SETUP, PLAY, TEARDOWN
+1883/tcp closed mqtt
+5555/tcp closed freeciv
+6379/tcp closed redis
+8080/tcp closed http-proxy
+2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port80-TCP:V=7.94SVN%I=7%D=11/4%Time=6AEB356A%P=x86_64-pc-linux-gnu%r(G
+SF:etRequest,A7,"HTTP/1\.0\x20200\x20OK\r\nServer:\x20Boa/0\.94\.14rc21\r\
+SF:nContent-Type:\x20text/html\r\nConnection:\x20close\r\n\r\n<html><head>
+SF:<title>Network\x20Camera\x20Login</title></head><body>login</body></htm
+SF:l>")%r(HTTPOptions,A7,"HTTP/1\.0\x20200\x20OK\r\nServer:\x20Boa/0\.94\.
+SF:14rc21\r\nContent-Type:\x20text/html\r\nConnection:\x20close\r\n\r\n<ht
+SF:ml><head><title>Network\x20Camera\x20Login</title></head><body>login</b
+SF:ody></html>")%r(RTSPRequest,A7,"HTTP/1\.0\x20200\x20OK\r\nServer:\x20Bo
+SF:a/0\.94\.14rc21\r\nContent-Type:\x20text/html\r\nConnection:\x20close\r
+SF:\n\r\n<html><head><title>Network\x20Camera\x20Login</title></head><body
+SF:>login</body></html>")%r(X11Probe,A7,"HTTP/1\.0\x20200\x20OK\r\nServer:
+SF:\x20Boa/0\.94\.14rc21\r\nContent-Type:\x20text/html\r\nConnection:\x20c
+SF:lose\r\n\r\n<html><head><title>Network\x20Camera\x20Login</title></head
+SF:><body>login</body></html>")%r(FourOhFourRequest,A7,"HTTP/1\.0\x20200\x
+SF:20OK\r\nServer:\x20Boa/0\.94\.14rc21\r\nContent-Type:\x20text/html\r\nC
+SF:onnection:\x20close\r\n\r\n<html><head><title>Network\x20Camera\x20Logi
+SF:n</title></head><body>login</body></html>")%r(GenericLines,A7,"HTTP/1\.
+SF:0\x20200\x20OK\r\nServer:\x20Boa/0\.94\.14rc21\r\nContent-Type:\x20text
+SF:/html\r\nConnection:\x20close\r\n\r\n<html><head><title>Network\x20Came
+SF:ra\x20Login</title></head><body>login</body></html>")%r(RPCCheck,A7,"HT
+SF:TP/1\.0\x20200\x20OK\r\nServer:\x20Boa/0\.94\.14rc21\r\nContent-Type:\x
+SF:20text/html\r\nConnection:\x20close\r\n\r\n<html><head><title>Network\x
+SF:20Camera\x20Login</title></head><body>login</body></html>")%r(DNSVersio
+SF:nBindReqTCP,A7,"HTTP/1\.0\x20200\x20OK\r\nServer:\x20Boa/0\.94\.14rc21\
+SF:r\nContent-Type:\x20text/html\r\nConnection:\x20close\r\n\r\n<html><hea
+SF:d><title>Network\x20Camera\x20Login</title></head><body>login</body></h
+SF:tml>")%r(DNSStatusRequestTCP,A7,"HTTP/1\.0\x20200\x20OK\r\nServer:\x20B
+SF:oa/0\.94\.14rc21\r\nContent-Type:\x20text/html\r\nConnection:\x20close\
+SF:r\n\r\n<html><head><title>Network\x20Camera\x20Login</title></head><bod
+SF:y>login</body></html>");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port554-TCP:V=7.94SVN%I=7%D=11/4%Time=6AEB356A%P=x86_64-pc-linux-gnu%r(
+SF:GetRequest,4E,"RTSP/1\.0\x20200\x20OK\r\nCSeq:\x201\r\nPublic:\x20OPTIO
+SF:NS,\x20DESCRIBE,\x20SETUP,\x20PLAY,\x20TEARDOWN\r\n\r\n")%r(RTSPRequest
+SF:,4E,"RTSP/1\.0\x20200\x20OK\r\nCSeq:\x201\r\nPublic:\x20OPTIONS,\x20DES
+SF:CRIBE,\x20SETUP,\x20PLAY,\x20TEARDOWN\r\n\r\n")%r(GenericLines,4E,"RTSP
+SF:/1\.0\x20200\x20OK\r\nCSeq:\x201\r\nPublic:\x20OPTIONS,\x20DESCRIBE,\x2
+SF:0SETUP,\x20PLAY,\x20TEARDOWN\r\n\r\n")%r(HTTPOptions,4E,"RTSP/1\.0\x202
+SF:00\x20OK\r\nCSeq:\x201\r\nPublic:\x20OPTIONS,\x20DESCRIBE,\x20SETUP,\x2
+SF:0PLAY,\x20TEARDOWN\r\n\r\n")%r(FourOhFourRequest,4E,"RTSP/1\.0\x20200\x
+SF:20OK\r\nCSeq:\x201\r\nPublic:\x20OPTIONS,\x20DESCRIBE,\x20SETUP,\x20PLA
+SF:Y,\x20TEARDOWN\r\n\r\n")%r(SIPOptions,4E,"RTSP/1\.0\x20200\x20OK\r\nCSe
+SF:q:\x201\r\nPublic:\x20OPTIONS,\x20DESCRIBE,\x20SETUP,\x20PLAY,\x20TEARD
+SF:OWN\r\n\r\n");
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Nmap scan report for 127.0.0.5
+Host is up (0.0000020s latency).
+
+PORT     STATE  SERVICE    VERSION
+21/tcp   closed ftp
+22/tcp   closed ssh
+23/tcp   closed telnet
+80/tcp   closed http
+554/tcp  closed rtsp
+1883/tcp closed mqtt
+5555/tcp closed freeciv
+6379/tcp open   redis?
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, DNSVersionBindReqTCP, GenericLines, GetRequest, HTTPOptions, Help, RPCCheck, RTSPRequest, SSLSessionReq, TLSSessionReq, TerminalServerCookie, redis-server: 
+|_    -DENIED Redis is running in protected mode because protected mode is enabled and no password is set.
+8080/tcp closed http-proxy
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port6379-TCP:V=7.94SVN%I=7%D=11/4%Time=6AEB356A%P=x86_64-pc-linux-gnu%r
+SF:(redis-server,66,"-DENIED\x20Redis\x20is\x20running\x20in\x20protected\
+SF:x20mode\x20because\x20protected\x20mode\x20is\x20enabled\x20and\x20no\x
+SF:20password\x20is\x20set\.\r\n")%r(GenericLines,66,"-DENIED\x20Redis\x20
+SF:is\x20running\x20in\x20protected\x20mode\x20because\x20protected\x20mod
+SF:e\x20is\x20enabled\x20and\x20no\x20password\x20is\x20set\.\r\n")%r(GetR
+SF:equest,66,"-DENIED\x20Redis\x20is\x20running\x20in\x20protected\x20mode
+SF:\x20because\x20protected\x20mode\x20is\x20enabled\x20and\x20no\x20passw
+SF:ord\x20is\x20set\.\r\n")%r(HTTPOptions,66,"-DENIED\x20Redis\x20is\x20ru
+SF:nning\x20in\x20protected\x20mode\x20because\x20protected\x20mode\x20is\
+SF:x20enabled\x20and\x20no\x20password\x20is\x20set\.\r\n")%r(RTSPRequest,
+SF:66,"-DENIED\x20Redis\x20is\x20running\x20in\x20protected\x20mode\x20bec
+SF:ause\x20protected\x20mode\x20is\x20enabled\x20and\x20no\x20password\x20
+SF:is\x20set\.\r\n")%r(RPCCheck,66,"-DENIED\x20Redis\x20is\x20running\x20i
+SF:n\x20protected\x20mode\x20because\x20protected\x20mode\x20is\x20enabled
+SF:\x20and\x20no\x20password\x20is\x20set\.\r\n")%r(DNSVersionBindReqTCP,6
+SF:6,"-DENIED\x20Redis\x20is\x20running\x20in\x20protected\x20mode\x20beca
+SF:use\x20protected\x20mode\x20is\x20enabled\x20and\x20no\x20password\x20i
+SF:s\x20set\.\r\n")%r(DNSStatusRequestTCP,66,"-DENIED\x20Redis\x20is\x20ru
+SF:nning\x20in\x20protected\x20mode\x20because\x20protected\x20mode\x20is\
+SF:x20enabled\x20and\x20no\x20password\x20is\x20set\.\r\n")%r(Help,66,"-DE
+SF:NIED\x20Redis\x20is\x20running\x20in\x20protected\x20mode\x20because\x2
+SF:0protected\x20mode\x20is\x20enabled\x20and\x20no\x20password\x20is\x20s
+SF:et\.\r\n")%r(SSLSessionReq,66,"-DENIED\x20Redis\x20is\x20running\x20in\
+SF:x20protected\x20mode\x20because\x20protected\x20mode\x20is\x20enabled\x
+SF:20and\x20no\x20password\x20is\x20set\.\r\n")%r(TerminalServerCookie,66,
+SF:"-DENIED\x20Redis\x20is\x20running\x20in\x20protected\x20mode\x20becaus
+SF:e\x20protected\x20mode\x20is\x20enabled\x20and\x20no\x20password\x20is\
+SF:x20set\.\r\n")%r(TLSSessionReq,66,"-DENIED\x20Redis\x20is\x20running\x2
+SF:0in\x20protected\x20mode\x20because\x20protected\x20mode\x20is\x20enabl
+SF:ed\x20and\x20no\x20password\x20is\x20set\.\r\n");
+
+Nmap scan report for 127.0.0.6
+Host is up (0.000063s latency).
+
+Bug in mqtt-subscribe: no string output.
+PORT     STATE  SERVICE    VERSION
+21/tcp   closed ftp
+22/tcp   closed ssh
+23/tcp   closed telnet
+80/tcp   closed http
+554/tcp  closed rtsp
+1883/tcp open   mqtt?
+5555/tcp open   freeciv?
+6379/tcp closed redis
+8080/tcp closed http-proxy
+
+Nmap scan report for 127.0.0.7
+Host is up (0.000011s latency).
+
+PORT     STATE  SERVICE    VERSION
+21/tcp   closed ftp
+22/tcp   open   ssh        OpenSSH 6.7p1 Debian 5+deb8u8 (protocol 2.0)
+|_banner: SSH-2.0-OpenSSH_6.7p1 Debian-5+deb8u8
+23/tcp   closed telnet
+80/tcp   open   http       lighttpd 1.4.35
+|_http-server-header: lighttpd/1.4.35
+|_http-title: Home Router Admin
+554/tcp  closed rtsp
+1883/tcp closed mqtt
+5555/tcp closed freeciv
+6379/tcp closed redis
+8080/tcp closed http-proxy
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Nov  4 13:38:59 2026 -- 7 IP addresses (7 hosts up) scanned in 15.36 seconds
