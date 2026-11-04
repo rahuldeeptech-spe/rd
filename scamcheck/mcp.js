@@ -35,7 +35,7 @@
 
   var T = {
     en: {
-      navMsg: 'Message checker', navApk: 'APK scanner', navMcp: 'MCP auditor', navPkg: 'Package detector',
+      navMsg: 'Message checker', navApk: 'APK scanner', navMcp: 'MCP auditor', navPkg: 'Package detector', navWifi: 'Wi-Fi & IoT',
       title: 'Is your MCP setup safe?',
       subtitle: "Paste your MCP client config (claude_desktop_config.json, .mcp.json, Cursor, VS Code, Zed ...) or a server's tools/list response. Get a security audit in a second.",
       privacy: '🔒 Audited inside your browser. Your config and any secrets in it are never uploaded.',
@@ -88,7 +88,7 @@
       nothing: 'No MCP servers or tools were found in this JSON. Check that you pasted the whole config.',
     },
     hi: {
-      navMsg: 'मैसेज चेकर', navApk: 'APK स्कैनर', navMcp: 'MCP ऑडिटर', navPkg: 'पैकेज डिटेक्टर',
+      navMsg: 'मैसेज चेकर', navApk: 'APK स्कैनर', navMcp: 'MCP ऑडिटर', navPkg: 'पैकेज डिटेक्टर', navWifi: 'Wi-Fi और IoT',
       title: 'क्या आपका MCP सेटअप सुरक्षित है?',
       subtitle: 'अपना MCP क्लाइंट कॉन्फ़िग (claude_desktop_config.json, .mcp.json, Cursor, VS Code, Zed ...) या सर्वर का tools/list रिस्पॉन्स पेस्ट करें। एक सेकंड में सुरक्षा ऑडिट पाएँ।',
       privacy: '🔒 ऑडिट आपके ब्राउज़र के अंदर होता है। आपका कॉन्फ़िग और उसमें के सीक्रेट कभी अपलोड नहीं होते।',

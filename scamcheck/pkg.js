@@ -15,7 +15,7 @@
 
   var T = {
     en: {
-      navMsg: 'Message checker', navApk: 'APK scanner', navMcp: 'MCP auditor', navPkg: 'Package detector',
+      navMsg: 'Message checker', navApk: 'APK scanner', navMcp: 'MCP auditor', navPkg: 'Package detector', navWifi: 'Wi-Fi & IoT',
       title: 'Is this package safe to install?',
       subtitle: 'Check an npm or PyPI package, or your dependency list, before you run npm install or pip install. Everything is read, nothing is executed.',
       privacy: '🔒 Analysed inside your browser. Your files and dependency lists are never uploaded.',
@@ -68,7 +68,7 @@
       },
     },
     hi: {
-      navMsg: 'मैसेज चेकर', navApk: 'APK स्कैनर', navMcp: 'MCP ऑडिटर', navPkg: 'पैकेज डिटेक्टर',
+      navMsg: 'मैसेज चेकर', navApk: 'APK स्कैनर', navMcp: 'MCP ऑडिटर', navPkg: 'पैकेज डिटेक्टर', navWifi: 'Wi-Fi और IoT',
       title: 'क्या यह पैकेज इंस्टॉल करना सुरक्षित है?',
       subtitle: 'npm install या pip install चलाने से पहले npm/PyPI पैकेज या अपनी dependency सूची जाँचें। सब कुछ सिर्फ़ पढ़ा जाता है, कुछ चलता नहीं।',
       privacy: '🔒 जाँच आपके ब्राउज़र के अंदर होती है। आपकी फ़ाइलें और dependency सूची कभी अपलोड नहीं होतीं।',

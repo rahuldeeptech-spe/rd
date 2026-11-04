@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Wed Nov  4 13:38:44 2026 as: nmap -sV -&#45;version-intensity 7 -T4 -n -p 21,22,23,80,554,1883,5555,6379,8080 -&#45;script banner,http-title -oX nmap-lan.xml -oG nmap-lan.gnmap -oN nmap-lan.nmap 127.0.0.1-7 -->
+<nmaprun scanner="nmap" args="nmap -sV -&#45;version-intensity 7 -T4 -n -p 21,22,23,80,554,1883,5555,6379,8080 -&#45;script banner,http-title -oX nmap-lan.xml -oG nmap-lan.gnmap -oN nmap-lan.nmap 127.0.0.1-7" start="1793799524" startstr="Wed Nov  4 13:38:44 2026" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="9" services="21-23,80,554,1883,5555,6379,8080"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1793799524" endtime="1793799539"><status state="up" reason="localhost-response" reason_ttl="0"/>
+<address addr="127.0.0.1" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="closed" reason="reset" reason_ttl="64"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="closed" reason="reset" reason_ttl="64"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="23"><state state="closed" reason="reset" reason_ttl="64"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="closed" reason="reset" reason_ttl="64"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="554"><state state="closed" reason="reset" reason_ttl="64"/><service name="rtsp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1883"><state state="closed" reason="reset" reason_ttl="64"/><service name="mqtt" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5555"><state state="closed" reason="reset" reason_ttl="64"/><service name="freeciv" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6379"><state state="closed" reason="reset" reason_ttl="64"/><service name="redis" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="SimpleHTTPServer" version="0.6" extrainfo="Python 3.12.3" method="probed" conf="10"><cpe>cpe:/a:python:simplehttpserver:0.6</cpe></service><script id="http-server-header" output="SimpleHTTP/0.6 Python/3.12.3"><elem>SimpleHTTP/0.6 Python/3.12.3</elem>
+</script><script id="http-title" output="Directory listing for /"><elem key="title">Directory listing for /</elem>
+</script></port>
+</ports>
+<times srtt="10" rttvar="509" to="100000"/>
+</host>
+<host starttime="1793799524" endtime="1793799539"><status state="up" reason="localhost-response" reason_ttl="0"/>
+<address addr="127.0.0.2" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ftp" product="vsftpd" version="2.3.4" ostype="Unix" method="probed" conf="10"><cpe>cpe:/a:vsftpd:vsftpd:2.3.4</cpe></service><script id="banner" output="220 (vsFTPd 2.3.4)"/></port>
+<port protocol="tcp" portid="22"><state state="closed" reason="reset" reason_ttl="64"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="23"><state state="closed" reason="reset" reason_ttl="64"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="closed" reason="reset" reason_ttl="64"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="554"><state state="closed" reason="reset" reason_ttl="64"/><service name="rtsp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1883"><state state="closed" reason="reset" reason_ttl="64"/><service name="mqtt" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5555"><state state="closed" reason="reset" reason_ttl="64"/><service name="freeciv" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6379"><state state="closed" reason="reset" reason_ttl="64"/><service name="redis" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="closed" reason="reset" reason_ttl="64"/><service name="http-proxy" method="table" conf="3"/></port>
+</ports>
+<times srtt="18" rttvar="522" to="100000"/>
+</host>
+<host starttime="1793799524" endtime="1793799539"><status state="up" reason="localhost-response" reason_ttl="0"/>
+<address addr="127.0.0.3" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="closed" reason="reset" reason_ttl="64"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="closed" reason="reset" reason_ttl="64"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="23"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="telnet" product="Linux telnetd" ostype="Linux" servicefp="SF-Port23-TCP:V=7.94SVN%I=7%D=11/4%Time=6AEB356A%P=x86_64-pc-linux-gnu%r(NULL,15,&quot;\xff\xfd\x18\xff\xfd\x20\xff\xfd#\xff\xfd&apos;\r\nlogin:\x20&quot;)%r(GenericLines,21,&quot;\xff\xfd\x18\xff\xfd\x20\xff\xfd#\xff\xfd&apos;\r\nlogin:\x20\r\nPassword:\x20&quot;)%r(tn3270,21,&quot;\xff\xfd\x18\xff\xfd\x20\xff\xfd#\xff\xfd&apos;\r\nlogin:\x20\r\nPassword:\x20&quot;)%r(GetRequest,21,&quot;\xff\xfd\x18\xff\xfd\x20\xff\xfd#\xff\xfd&apos;\r\nlogin:\x20\r\nPassword:\x20&quot;)%r(RPCCheck,21,&quot;\xff\xfd\x18\xff\xfd\x20\xff\xfd#\xff\xfd&apos;\r\nlogin:\x20\r\nPassword:\x20&quot;)%r(Help,21,&quot;\xff\xfd\x18\xff\xfd\x20\xff\xfd#\xff\xfd&apos;\r\nlogin:\x20\r\nPassword:\x20&quot;)%r(SIPOptions,21,&quot;\xff\xfd\x18\xff\xfd\x20\xff\xfd#\xff\xfd&apos;\r\nlogin:\x20\r\nPassword:\x20&quot;)%r(NCP,21,&quot;\xff\xfd\x18\xff\xfd\x20\xff\xfd#\xff\xfd&apos;\r\nlogin:\x20\r\nPassword:\x20&quot;);" method="probed" conf="10"><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id="fingerprint-strings" output="&#xa;  GenericLines, GetRequest, Help, NCP, RPCCheck, SIPOptions, tn3270: &#xa;    login: &#xa;    Password:&#xa;  NULL: &#xa;    login:"><elem key="GenericLines, GetRequest, Help, NCP, RPCCheck, SIPOptions, tn3270">&#xa;    login: &#xa;    Password:</elem>
+<elem key="NULL">&#xa;    login:</elem>
+</script><script id="banner" output="\xFF\xFD\x18\xFF\xFD \xFF\xFD#\xFF\xFD&apos;\x0D\x0Alogin:"/></port>
+<port protocol="tcp" portid="80"><state state="closed" reason="reset" reason_ttl="64"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="554"><state state="closed" reason="reset" reason_ttl="64"/><service name="rtsp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1883"><state state="closed" reason="reset" reason_ttl="64"/><service name="mqtt" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5555"><state state="closed" reason="reset" reason_ttl="64"/><service name="freeciv" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6379"><state state="closed" reason="reset" reason_ttl="64"/><service name="redis" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="closed" reason="reset" reason_ttl="64"/><service name="http-proxy" method="table" conf="3"/></port>
+</ports>
+<times srtt="3" rttvar="499" to="100000"/>
+</host>
+<host starttime="1793799524" endtime="1793799539"><status state="up" reason="localhost-response" reason_ttl="0"/>
+<address addr="127.0.0.4" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="closed" reason="reset" reason_ttl="64"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ssh" product="Dropbear sshd" version="2014.65" extrainfo="protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:matt_johnston:dropbear_ssh_server:2014.65</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id="banner" output="SSH-2.0-dropbear_2014.65"/></port>
+<port protocol="tcp" portid="23"><state state="closed" reason="reset" reason_ttl="64"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="Boa/0.94.14rc21" servicefp="SF-Port80-TCP:V=7.94SVN%I=7%D=11/4%Time=6AEB356A%P=x86_64-pc-linux-gnu%r(GetRequest,A7,&quot;HTTP/1\.0\x20200\x20OK\r\nServer:\x20Boa/0\.94\.14rc21\r\nContent-Type:\x20text/html\r\nConnection:\x20close\r\n\r\n&lt;html&gt;&lt;head&gt;&lt;title&gt;Network\x20Camera\x20Login&lt;/title&gt;&lt;/head&gt;&lt;body&gt;login&lt;/body&gt;&lt;/html&gt;&quot;)%r(HTTPOptions,A7,&quot;HTTP/1\.0\x20200\x20OK\r\nServer:\x20Boa/0\.94\.14rc21\r\nContent-Type:\x20text/html\r\nConnection:\x20close\r\n\r\n&lt;html&gt;&lt;head&gt;&lt;title&gt;Network\x20Camera\x20Login&lt;/title&gt;&lt;/head&gt;&lt;body&gt;login&lt;/body&gt;&lt;/html&gt;&quot;)%r(RTSPRequest,A7,&quot;HTTP/1\.0\x20200\x20OK\r\nServer:\x20Boa/0\.94\.14rc21\r\nContent-Type:\x20text/html\r\nConnection:\x20close\r\n\r\n&lt;html&gt;&lt;head&gt;&lt;title&gt;Network\x20Camera\x20Login&lt;/title&gt;&lt;/head&gt;&lt;body&gt;login&lt;/body&gt;&lt;/html&gt;&quot;)%r(X11Probe,A7,&quot;HTTP/1\.0\x20200\x20OK\r\nServer:\x20Boa/0\.94\.14rc21\r\nContent-Type:\x20text/html\r\nConnection:\x20close\r\n\r\n&lt;html&gt;&lt;head&gt;&lt;title&gt;Network\x20Camera\x20Login&lt;/title&gt;&lt;/head&gt;&lt;body&gt;login&lt;/body&gt;&lt;/html&gt;&quot;)%r(FourOhFourRequest,A7,&quot;HTTP/1\.0\x20200\x20OK\r\nServer:\x20Boa/0\.94\.14rc21\r\nContent-Type:\x20text/html\r\nConnection:\x20close\r\n\r\n&lt;html&gt;&lt;head&gt;&lt;title&gt;Network\x20Camera\x20Login&lt;/title&gt;&lt;/head&gt;&lt;body&gt;login&lt;/body&gt;&lt;/html&gt;&quot;)%r(GenericLines,A7,&quot;HTTP/1\.0\x20200\x20OK\r\nServer:\x20Boa/0\.94\.14rc21\r\nContent-Type:\x20text/html\r\nConnection:\x20close\r\n\r\n&lt;html&gt;&lt;head&gt;&lt;title&gt;Network\x20Camera\x20Login&lt;/title&gt;&lt;/head&gt;&lt;body&gt;login&lt;/body&gt;&lt;/html&gt;&quot;)%r(RPCCheck,A7,&quot;HTTP/1\.0\x20200\x20OK\r\nServer:\x20Boa/0\.94\.14rc21\r\nContent-Type:\x20text/html\r\nConnection:\x20close\r\n\r\n&lt;html&gt;&lt;head&gt;&lt;title&gt;Network\x20Camera\x20Login&lt;/title&gt;&lt;/head&gt;&lt;body&gt;login&lt;/body&gt;&lt;/html&gt;&quot;)%r(DNSVersionBindReqTCP,A7,&quot;HTTP/1\.0\x20200\x20OK\r\nServer:\x20Boa/0\.94\.14rc21\r\nContent-Type:\x20text/html\r\nConnection:\x20close\r\n\r\n&lt;html&gt;&lt;head&gt;&lt;title&gt;Network\x20Camera\x20Login&lt;/title&gt;&lt;/head&gt;&lt;body&gt;login&lt;/body&gt;&lt;/html&gt;&quot;)%r(DNSStatusRequestTCP,A7,&quot;HTTP/1\.0\x20200\x20OK\r\nServer:\x20Boa/0\.94\.14rc21\r\nContent-Type:\x20text/html\r\nConnection:\x20close\r\n\r\n&lt;html&gt;&lt;head&gt;&lt;title&gt;Network\x20Camera\x20Login&lt;/title&gt;&lt;/head&gt;&lt;body&gt;login&lt;/body&gt;&lt;/html&gt;&quot;);" method="probed" conf="10"/><script id="http-server-header" output="Boa/0.94.14rc21"><elem>Boa/0.94.14rc21</elem>
+</script><script id="http-title" output="Network Camera Login"><elem key="title">Network Camera Login</elem>
+</script><script id="fingerprint-strings" output="&#xa;  DNSStatusRequestTCP, DNSVersionBindReqTCP, FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, RPCCheck, RTSPRequest, X11Probe: &#xa;    HTTP/1.0 200 OK&#xa;    Server: Boa/0.94.14rc21&#xa;    Content-Type: text/html&#xa;    Connection: close&#xa;    &lt;html&gt;&lt;head&gt;&lt;title&gt;Network Camera Login&lt;/title&gt;&lt;/head&gt;&lt;body&gt;login&lt;/body&gt;&lt;/html&gt;"><elem key="DNSStatusRequestTCP, DNSVersionBindReqTCP, FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, RPCCheck, RTSPRequest, X11Probe">&#xa;    HTTP/1.0 200 OK&#xa;    Server: Boa/0.94.14rc21&#xa;    Content-Type: text/html&#xa;    Connection: close&#xa;    &lt;html&gt;&lt;head&gt;&lt;title&gt;Network Camera Login&lt;/title&gt;&lt;/head&gt;&lt;body&gt;login&lt;/body&gt;&lt;/html&gt;</elem>
+</script></port>
+<port protocol="tcp" portid="554"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="rtsp" servicefp="SF-Port554-TCP:V=7.94SVN%I=7%D=11/4%Time=6AEB356A%P=x86_64-pc-linux-gnu%r(GetRequest,4E,&quot;RTSP/1\.0\x20200\x20OK\r\nCSeq:\x201\r\nPublic:\x20OPTIONS,\x20DESCRIBE,\x20SETUP,\x20PLAY,\x20TEARDOWN\r\n\r\n&quot;)%r(RTSPRequest,4E,&quot;RTSP/1\.0\x20200\x20OK\r\nCSeq:\x201\r\nPublic:\x20OPTIONS,\x20DESCRIBE,\x20SETUP,\x20PLAY,\x20TEARDOWN\r\n\r\n&quot;)%r(GenericLines,4E,&quot;RTSP/1\.0\x20200\x20OK\r\nCSeq:\x201\r\nPublic:\x20OPTIONS,\x20DESCRIBE,\x20SETUP,\x20PLAY,\x20TEARDOWN\r\n\r\n&quot;)%r(HTTPOptions,4E,&quot;RTSP/1\.0\x20200\x20OK\r\nCSeq:\x201\r\nPublic:\x20OPTIONS,\x20DESCRIBE,\x20SETUP,\x20PLAY,\x20TEARDOWN\r\n\r\n&quot;)%r(FourOhFourRequest,4E,&quot;RTSP/1\.0\x20200\x20OK\r\nCSeq:\x201\r\nPublic:\x20OPTIONS,\x20DESCRIBE,\x20SETUP,\x20PLAY,\x20TEARDOWN\r\n\r\n&quot;)%r(SIPOptions,4E,&quot;RTSP/1\.0\x20200\x20OK\r\nCSeq:\x201\r\nPublic:\x20OPTIONS,\x20DESCRIBE,\x20SETUP,\x20PLAY,\x20TEARDOWN\r\n\r\n&quot;);" method="probed" conf="10"/><script id="fingerprint-strings" output="&#xa;  FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, RTSPRequest, SIPOptions: &#xa;    RTSP/1.0 200 OK&#xa;    CSeq: 1&#xa;    Public: OPTIONS, DESCRIBE, SETUP, PLAY, TEARDOWN"><elem key="FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, RTSPRequest, SIPOptions">&#xa;    RTSP/1.0 200 OK&#xa;    CSeq: 1&#xa;    Public: OPTIONS, DESCRIBE, SETUP, PLAY, TEARDOWN</elem>
+</script></port>
+<port protocol="tcp" portid="1883"><state state="closed" reason="reset" reason_ttl="64"/><service name="mqtt" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5555"><state state="closed" reason="reset" reason_ttl="64"/><service name="freeciv" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6379"><state state="closed" reason="reset" reason_ttl="64"/><service name="redis" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="closed" reason="reset" reason_ttl="64"/><service name="http-proxy" method="table" conf="3"/></port>
+</ports>
+<times srtt="2" rttvar="500" to="100000"/>
+</host>
+<host starttime="1793799524" endtime="1793799539"><status state="up" reason="localhost-response" reason_ttl="0"/>
+<address addr="127.0.0.5" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="closed" reason="reset" reason_ttl="64"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="closed" reason="reset" reason_ttl="64"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="23"><state state="closed" reason="reset" reason_ttl="64"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="closed" reason="reset" reason_ttl="64"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="554"><state state="closed" reason="reset" reason_ttl="64"/><service name="rtsp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1883"><state state="closed" reason="reset" reason_ttl="64"/><service name="mqtt" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5555"><state state="closed" reason="reset" reason_ttl="64"/><service name="freeciv" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6379"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="redis" servicefp="SF-Port6379-TCP:V=7.94SVN%I=7%D=11/4%Time=6AEB356A%P=x86_64-pc-linux-gnu%r(redis-server,66,&quot;-DENIED\x20Redis\x20is\x20running\x20in\x20protected\x20mode\x20because\x20protected\x20mode\x20is\x20enabled\x20and\x20no\x20password\x20is\x20set\.\r\n&quot;)%r(GenericLines,66,&quot;-DENIED\x20Redis\x20is\x20running\x20in\x20protected\x20mode\x20because\x20protected\x20mode\x20is\x20enabled\x20and\x20no\x20password\x20is\x20set\.\r\n&quot;)%r(GetRequest,66,&quot;-DENIED\x20Redis\x20is\x20running\x20in\x20protected\x20mode\x20because\x20protected\x20mode\x20is\x20enabled\x20and\x20no\x20password\x20is\x20set\.\r\n&quot;)%r(HTTPOptions,66,&quot;-DENIED\x20Redis\x20is\x20running\x20in\x20protected\x20mode\x20because\x20protected\x20mode\x20is\x20enabled\x20and\x20no\x20password\x20is\x20set\.\r\n&quot;)%r(RTSPRequest,66,&quot;-DENIED\x20Redis\x20is\x20running\x20in\x20protected\x20mode\x20because\x20protected\x20mode\x20is\x20enabled\x20and\x20no\x20password\x20is\x20set\.\r\n&quot;)%r(RPCCheck,66,&quot;-DENIED\x20Redis\x20is\x20running\x20in\x20protected\x20mode\x20because\x20protected\x20mode\x20is\x20enabled\x20and\x20no\x20password\x20is\x20set\.\r\n&quot;)%r(DNSVersionBindReqTCP,66,&quot;-DENIED\x20Redis\x20is\x20running\x20in\x20protected\x20mode\x20because\x20protected\x20mode\x20is\x20enabled\x20and\x20no\x20password\x20is\x20set\.\r\n&quot;)%r(DNSStatusRequestTCP,66,&quot;-DENIED\x20Redis\x20is\x20running\x20in\x20protected\x20mode\x20because\x20protected\x20mode\x20is\x20enabled\x20and\x20no\x20password\x20is\x20set\.\r\n&quot;)%r(Help,66,&quot;-DENIED\x20Redis\x20is\x20running\x20in\x20protected\x20mode\x20because\x20protected\x20mode\x20is\x20enabled\x20and\x20no\x20password\x20is\x20set\.\r\n&quot;)%r(SSLSessionReq,66,&quot;-DENIED\x20Redis\x20is\x20running\x20in\x20protected\x20mode\x20because\x20protected\x20mode\x20is\x20enabled\x20and\x20no\x20password\x20is\x20set\.\r\n&quot;)%r(TerminalServerCookie,66,&quot;-DENIED\x20Redis\x20is\x20running\x20in\x20protected\x20mode\x20because\x20protected\x20mode\x20is\x20enabled\x20and\x20no\x20password\x20is\x20set\.\r\n&quot;)%r(TLSSessionReq,66,&quot;-DENIED\x20Redis\x20is\x20running\x20in\x20protected\x20mode\x20because\x20protected\x20mode\x20is\x20enabled\x20and\x20no\x20password\x20is\x20set\.\r\n&quot;);" method="table" conf="3"/><script id="fingerprint-strings" output="&#xa;  DNSStatusRequestTCP, DNSVersionBindReqTCP, GenericLines, GetRequest, HTTPOptions, Help, RPCCheck, RTSPRequest, SSLSessionReq, TLSSessionReq, TerminalServerCookie, redis-server: &#xa;    -DENIED Redis is running in protected mode because protected mode is enabled and no password is set."><elem key="DNSStatusRequestTCP, DNSVersionBindReqTCP, GenericLines, GetRequest, HTTPOptions, Help, RPCCheck, RTSPRequest, SSLSessionReq, TLSSessionReq, TerminalServerCookie, redis-server">&#xa;    -DENIED Redis is running in protected mode because protected mode is enabled and no password is set.</elem>
+</script></port>
+<port protocol="tcp" portid="8080"><state state="closed" reason="reset" reason_ttl="64"/><service name="http-proxy" method="table" conf="3"/></port>
+</ports>
+<times srtt="2" rttvar="500" to="100000"/>
+</host>
+<host starttime="1793799524" endtime="1793799539"><status state="up" reason="localhost-response" reason_ttl="0"/>
+<address addr="127.0.0.6" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="closed" reason="reset" reason_ttl="64"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="closed" reason="reset" reason_ttl="64"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="23"><state state="closed" reason="reset" reason_ttl="64"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="closed" reason="reset" reason_ttl="64"/><service name="http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="554"><state state="closed" reason="reset" reason_ttl="64"/><service name="rtsp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1883"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="mqtt" method="table" conf="3"/><script id="mqtt-subscribe" output=""><table key="ERROR">
+<elem>ssl failed</elem>
+<elem>Failed to connect</elem>
+<elem>Could not connect</elem>
+<elem>ERROR</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="5555"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="freeciv" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6379"><state state="closed" reason="reset" reason_ttl="64"/><service name="redis" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="closed" reason="reset" reason_ttl="64"/><service name="http-proxy" method="table" conf="3"/></port>
+</ports>
+<times srtt="63" rttvar="586" to="100000"/>
+</host>
+<host starttime="1793799524" endtime="1793799539"><status state="up" reason="localhost-response" reason_ttl="0"/>
+<address addr="127.0.0.7" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="closed" reason="reset" reason_ttl="64"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="ssh" product="OpenSSH" version="6.7p1 Debian 5+deb8u8" extrainfo="protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:6.7p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id="banner" output="SSH-2.0-OpenSSH_6.7p1 Debian-5+deb8u8"/></port>
+<port protocol="tcp" portid="23"><state state="closed" reason="reset" reason_ttl="64"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="64"/><service name="http" product="lighttpd" version="1.4.35" method="probed" conf="10"><cpe>cpe:/a:lighttpd:lighttpd:1.4.35</cpe></service><script id="http-server-header" output="lighttpd/1.4.35"><elem>lighttpd/1.4.35</elem>
+</script><script id="http-title" output="Home Router Admin"><elem key="title">Home Router Admin</elem>
+</script></port>
+<port protocol="tcp" portid="554"><state state="closed" reason="reset" reason_ttl="64"/><service name="rtsp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1883"><state state="closed" reason="reset" reason_ttl="64"/><service name="mqtt" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5555"><state state="closed" reason="reset" reason_ttl="64"/><service name="freeciv" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6379"><state state="closed" reason="reset" reason_ttl="64"/><service name="redis" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="closed" reason="reset" reason_ttl="64"/><service name="http-proxy" method="table" conf="3"/></port>
+</ports>
+<times srtt="11" rttvar="512" to="100000"/>
+</host>
+<runstats><finished time="1793799539" timestr="Wed Nov  4 13:38:59 2026" summary="Nmap done at Wed Nov  4 13:38:59 2026; 7 IP addresses (7 hosts up) scanned in 15.36 seconds" elapsed="15.36" exit="success"/><hosts up="7" down="0" total="7"/>
+</runstats>
+</nmaprun>

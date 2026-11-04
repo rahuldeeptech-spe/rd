@@ -1,0 +1,16 @@
+# Nmap 7.94SVN scan initiated Wed Nov  4 13:38:44 2026 as: nmap -sV --version-intensity 7 -T4 -n -p 21,22,23,80,554,1883,5555,6379,8080 --script banner,http-title -oX nmap-lan.xml -oG nmap-lan.gnmap -oN nmap-lan.nmap 127.0.0.1-7
+Host: 127.0.0.1 ()	Status: Up
+Host: 127.0.0.1 ()	Ports: 21/closed/tcp//ftp///, 22/closed/tcp//ssh///, 23/closed/tcp//telnet///, 80/closed/tcp//http///, 554/closed/tcp//rtsp///, 1883/closed/tcp//mqtt///, 5555/closed/tcp//freeciv///, 6379/closed/tcp//redis///, 8080/open/tcp//http//SimpleHTTPServer 0.6 (Python 3.12.3)/
+Host: 127.0.0.2 ()	Status: Up
+Host: 127.0.0.2 ()	Ports: 21/open/tcp//ftp//vsftpd 2.3.4/, 22/closed/tcp//ssh///, 23/closed/tcp//telnet///, 80/closed/tcp//http///, 554/closed/tcp//rtsp///, 1883/closed/tcp//mqtt///, 5555/closed/tcp//freeciv///, 6379/closed/tcp//redis///, 8080/closed/tcp//http-proxy///
+Host: 127.0.0.3 ()	Status: Up
+Host: 127.0.0.3 ()	Ports: 21/closed/tcp//ftp///, 22/closed/tcp//ssh///, 23/open/tcp//telnet//Linux telnetd/, 80/closed/tcp//http///, 554/closed/tcp//rtsp///, 1883/closed/tcp//mqtt///, 5555/closed/tcp//freeciv///, 6379/closed/tcp//redis///, 8080/closed/tcp//http-proxy///
+Host: 127.0.0.4 ()	Status: Up
+Host: 127.0.0.4 ()	Ports: 21/closed/tcp//ftp///, 22/open/tcp//ssh//Dropbear sshd 2014.65 (protocol 2.0)/, 23/closed/tcp//telnet///, 80/open/tcp//http//Boa|0.94.14rc21/, 554/open/tcp//rtsp///, 1883/closed/tcp//mqtt///, 5555/closed/tcp//freeciv///, 6379/closed/tcp//redis///, 8080/closed/tcp//http-proxy///
+Host: 127.0.0.5 ()	Status: Up
+Host: 127.0.0.5 ()	Ports: 21/closed/tcp//ftp///, 22/closed/tcp//ssh///, 23/closed/tcp//telnet///, 80/closed/tcp//http///, 554/closed/tcp//rtsp///, 1883/closed/tcp//mqtt///, 5555/closed/tcp//freeciv///, 6379/open/tcp//redis?///, 8080/closed/tcp//http-proxy///
+Host: 127.0.0.6 ()	Status: Up
+Host: 127.0.0.6 ()	Ports: 21/closed/tcp//ftp///, 22/closed/tcp//ssh///, 23/closed/tcp//telnet///, 80/closed/tcp//http///, 554/closed/tcp//rtsp///, 1883/open/tcp//mqtt?///, 5555/open/tcp//freeciv?///, 6379/closed/tcp//redis///, 8080/closed/tcp//http-proxy///
+Host: 127.0.0.7 ()	Status: Up
+Host: 127.0.0.7 ()	Ports: 21/closed/tcp//ftp///, 22/open/tcp//ssh//OpenSSH 6.7p1 Debian 5+deb8u8 (protocol 2.0)/, 23/closed/tcp//telnet///, 80/open/tcp//http//lighttpd 1.4.35/, 554/closed/tcp//rtsp///, 1883/closed/tcp//mqtt///, 5555/closed/tcp//freeciv///, 6379/closed/tcp//redis///, 8080/closed/tcp//http-proxy///
+# Nmap done at Wed Nov  4 13:38:59 2026 -- 7 IP addresses (7 hosts up) scanned in 15.36 seconds
