@@ -20,6 +20,8 @@ Looking for: *is my server vulnerable to PHP2Shell / Node2Shell?*, *CVE-2026-109
 *Node.js October 2026 security release check*, *free daily vulnerability report for PHP, Node.js, Go and Python*. This is that tool.
 Maintained by [@rahuldeeptech-spe](https://github.com/rahuldeeptech-spe). Free, MIT licensed, no tracking.
 
+**Also in this repo: [ScamCheck](scamcheck/)**, a free, private, offline web tool (English/हिन्दी) that checks an SMS, WhatsApp message or link for digital-arrest, fake-KYC, UPI and task-job scams.
+
 ## Get it
 
 **Homebrew (macOS/Linux):**
