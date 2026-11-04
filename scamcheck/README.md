@@ -12,9 +12,24 @@ It targets the scams that hurt people in India right now:
 - Task / part-time job scams, investment and stock-tip groups, lottery and advance-fee scams
 - Fake courier, FASTag, challan, electricity-bill scares, "Hi Mum, new number"
 
+## APK scanner (`apk.html`)
+
+Drop in an `.apk` that someone sent you (WhatsApp, Telegram, a link) **before** installing it. Everything runs in the browser, the file is never uploaded.
+
+It unzips the APK, decodes the binary `AndroidManifest.xml`, and looks for the traits of Indian SMS-stealer and banking-trojan apps:
+
+- SMS read/receive/send, notification listener, Accessibility service, Device Admin, screen overlay, "install other apps"
+- Combos: SMS + internet (OTP exfiltration), Accessibility + overlay (banking trojan), powerful permissions with no launcher icon (hidden app)
+- Telegram-bot exfiltration strings, dynamic code loading, payloads hidden in `assets/`, suspicious server URLs in the DEX
+- Missing signature or a generic "Android Debug" certificate, very old target SDK
+- Lure names: `PM_Kisan`, `KYC`, `challan`, `SBI reward`, ...
+- SHA-256 of the file, with a hash-only VirusTotal lookup link
+
+Limits: static analysis only (no code is run), no signature database, and obfuscated or packed malware can hide behaviour. A legit-looking score never makes an unknown APK safe. Files over 150 MB are refused, and decompression is capped to defeat zip bombs.
+
 ## How it works
 
-`engine.js` is a rule engine (about 25 text rules plus URL analysis). Each finding has a severity,
+`engine.js` (messages and links) is a rule engine (about 25 text rules plus URL analysis). Each finding has a severity,
 a weight, an English and a Hindi explanation, and the exact text that triggered it. Scores add up
 (0-100, capped); any *critical* finding forces at least 60. Genuine bank SMS that say
 "Do not share OTP with anyone" are recognised and stay clean.
@@ -33,8 +48,11 @@ Or just open `index.html` in a browser (the service worker only registers on htt
 ## Test
 
 ```bash
-node --test scamcheck/engine.test.js
+node --test scamcheck/*.test.js
 ```
+
+`apkfixture.js` builds synthetic APKs (ZIP + binary AndroidManifest) for the tests, including fuzzing.
+The parser was also checked against a real 105 MB APK (Termux) in Node and in Chromium.
 
 ## Deploy
 

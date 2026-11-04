@@ -7,6 +7,7 @@
 
   var T = {
     en: {
+      navMsg: 'Message checker', navApk: 'APK scanner',
       title: 'Is this message a scam?',
       subtitle: 'Paste the SMS, WhatsApp text, email or link. You get an instant answer and what to do next.',
       privacy: '🔒 Everything is checked on your device. Nothing is uploaded or stored.',
@@ -62,6 +63,7 @@
       ],
     },
     hi: {
+      navMsg: 'मैसेज चेकर', navApk: 'APK स्कैनर',
       title: 'क्या यह संदेश ठगी है?',
       subtitle: 'SMS, WhatsApp, ईमेल या लिंक यहाँ पेस्ट करें। तुरंत जवाब और आगे क्या करना है, दोनों मिलेंगे।',
       privacy: '🔒 सारी जाँच आपके फ़ोन/कंप्यूटर पर ही होती है। कुछ भी अपलोड या सेव नहीं होता।',

@@ -110,3 +110,26 @@ a { color: var(--brand); }
 
 @media (max-width: 480px) { .card { padding: 14px; } .score { font-size: 28px; } }
 @media print { .top, .donate, .row, .examples { display: none; } }
+
+/* APK scanner + nav */
+.nav { display: flex; gap: 4px; }
+.nav a { color: var(--ink); text-decoration: none; padding: 6px 10px; border-radius: 8px; font-size: 14px; font-weight: 600; white-space: nowrap; }
+.nav a[aria-current="page"] { background: var(--bg); color: var(--brand); }
+.bar { gap: 8px; }
+@media (max-width: 560px) { .brand span { display: none; } .nav a { padding: 6px 8px; font-size: 13px; } }
+.drop { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; padding: 34px 16px; border: 2px dashed var(--brand); border-radius: var(--radius); cursor: pointer; background: var(--bg); }
+.drop:hover, .drop.over { background: var(--card); border-style: solid; }
+.drop:focus-within { outline: 3px solid var(--brand); outline-offset: 2px; }
+.dropT { font-weight: 700; font-size: 18px; color: var(--brand); }
+.info { display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; margin: 0 0 10px; }
+.info dt { color: var(--muted); font-size: 14px; }
+.info dd { margin: 0; min-width: 0; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; word-break: break-all; }
+.bad { color: var(--scam); font-weight: 700; }
+.permsBox { margin-top: 14px; }
+.permsBox summary { cursor: pointer; color: var(--brand); font-weight: 600; }
+.perms { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.perms li { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); }
+.perms li.danger { border-color: var(--likely); color: var(--likely); font-weight: 700; }
+.errorBox { border-color: var(--scam); background: var(--scam-bg); }
+.errorBox p { margin: 0; font-weight: 600; }
