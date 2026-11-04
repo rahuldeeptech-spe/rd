@@ -29,7 +29,9 @@ jobs:
         run: |
           node --check scamcheck/engine.js
           node --check scamcheck/apkscan.js
+          node --check scamcheck/mcpaudit.js
           node --check scamcheck/app.js
           node --check scamcheck/apk.js
+          node --check scamcheck/mcp.js
           node --check scamcheck/sw.js
           node --check scamcheck/config.js
