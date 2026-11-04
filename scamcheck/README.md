@@ -27,9 +27,30 @@ It unzips the APK, decodes the binary `AndroidManifest.xml`, and looks for the t
 
 Limits: static analysis only (no code is run), no signature database, and obfuscated or packed malware can hide behaviour. A legit-looking score never makes an unknown APK safe. Files over 150 MB are refused, and decompression is capped to defeat zip bombs.
 
+## MCP auditor (`mcp.html`)
+
+For people who connect AI assistants to MCP servers. Paste an MCP client config (`claude_desktop_config.json`, `.mcp.json`, Cursor, VS Code, Zed, Gemini CLI, Cline, Claude Code settings) and/or a server's `tools/list` response. Nothing leaves the browser, so secrets in the config stay local.
+
+**Config checks**
+- Real secrets written into the config (GitHub/Anthropic/OpenAI/AWS/Slack/Google tokens, JWTs, private keys, literal `*_TOKEN` values), shown masked
+- `npx`/`uvx` packages without a pinned version, typosquatted look-alikes of official `@modelcontextprotocol/*` packages, git/URL packages
+- `curl | sh`, encoded PowerShell, shell wrappers, scripts in temp folders
+- Docker: `--privileged`, `docker.sock`, home mounts, host network, `:latest` images
+- File servers given `/` or your whole home, servers bound to `0.0.0.0`, plain-`http` or tunnel endpoints, secrets in URLs
+- Client settings: trust-all-project-servers, bypass-permissions mode, wildcard allow-lists, `trust: true`, auto-approved write/exec tools
+
+**Tool-description checks (tool poisoning / prompt injection)**
+- Fake `<IMPORTANT>`/`<system>` tags, "ignore previous instructions", "do not tell the user", confirmation bypass
+- Instructions to read `~/.ssh`, MCP config or credentials, and to smuggle contents out through a parameter or URL
+- Cross-tool shadowing (one tool giving orders about another)
+- Invisible characters: zero-width, bidi controls and Unicode *tag* characters (the hidden message is decoded and shown)
+- **Rug-pull detection**: save a SHA-256 fingerprint baseline of your tools, and any later change to a tool's text or schema is flagged
+
+Limits: static and rule-based, JSON only (no TOML yet). It cannot see runtime behaviour. A clean result is not proof of safety.
+
 ## How it works
 
-`engine.js` (messages and links) is a rule engine (about 25 text rules plus URL analysis). Each finding has a severity,
+`engine.js` (messages and links, `apkscan.js` for APKs, `mcpaudit.js` for MCP) is a rule engine (about 25 text rules plus URL analysis). Each finding has a severity,
 a weight, an English and a Hindi explanation, and the exact text that triggered it. Scores add up
 (0-100, capped); any *critical* finding forces at least 60. Genuine bank SMS that say
 "Do not share OTP with anyone" are recognised and stay clean.

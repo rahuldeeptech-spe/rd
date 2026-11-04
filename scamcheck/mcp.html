@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; manifest-src 'self'; worker-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0b5fff">
+<title>MCP Security Auditor</title>
+<meta name="description" content="Paste your MCP config or tool definitions and find leaked secrets, unpinned or typosquatted packages, risky Docker and filesystem access, tool poisoning and prompt injection. Runs fully in your browser.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#input">Skip to auditor</a>
+
+<header class="top">
+  <div class="wrap bar">
+    <div class="brand"><img src="icon.svg" width="26" height="26" alt=""><span>ScamCheck</span></div>
+    <nav class="nav" aria-label="Tools">
+      <a href="index.html" data-i18n="navMsg">Message checker</a>
+      <a href="apk.html" data-i18n="navApk">APK scanner</a>
+      <a href="mcp.html" aria-current="page" data-i18n="navMcp">MCP auditor</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="hi" aria-pressed="false">हिन्दी</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="title">Is your MCP setup safe?</h1>
+    <p class="sub" data-i18n="subtitle">Paste your MCP client config (claude_desktop_config.json, .mcp.json, Cursor, VS Code, Zed ...) or a server's tools/list response. Get a security audit in a second.</p>
+    <p class="privacy" data-i18n="privacy">🔒 Audited inside your browser. Your config and any secrets in it are never uploaded.</p>
+  </section>
+
+  <section class="card" aria-labelledby="aud-h">
+    <h2 id="aud-h" class="sr" data-i18n="audHeading">Auditor</h2>
+    <label for="input" class="lbl" data-i18n="inputLabel">MCP config or tool definitions (JSON)</label>
+    <textarea id="input" class="code" rows="10" maxlength="1000000" spellcheck="false" autocomplete="off" autocapitalize="off" data-i18n-ph="placeholder" placeholder='{ "mcpServers": { ... } }'></textarea>
+    <details class="examples">
+      <summary data-i18n="baselineHeading">Rug-pull check: compare with a saved baseline (optional)</summary>
+      <p class="small" data-i18n="baselineHelp">Audit your tools once and save the fingerprint file it shows. Later, paste the new tools/list here and the old fingerprint below: any tool whose text changed is flagged.</p>
+      <textarea id="baseline" class="code" rows="4" spellcheck="false" autocomplete="off" data-i18n-ph="baselinePh" placeholder='{ "version": 1, "tools": { "name": "sha256…" } }'></textarea>
+    </details>
+    <div class="row">
+      <button id="audit" class="btn primary" type="button" data-i18n="audit">Audit now</button>
+      <button id="clear" class="btn" type="button" data-i18n="clear">Clear</button>
+    </div>
+    <details class="examples" open>
+      <summary data-i18n="tryExamples">Try an example</summary>
+      <div class="chips" id="chips"></div>
+    </details>
+    <p id="status" class="small" role="status" aria-live="polite"></p>
+  </section>
+
+  <section id="errorBox" class="card errorBox" hidden role="alert"><p id="errorText"></p></section>
+
+  <section id="result" class="card result" hidden aria-live="polite" tabindex="-1">
+    <div class="verdict">
+      <div class="meter" role="img" aria-labelledby="verdict-title"><div id="meterFill" class="fill"></div></div>
+      <div class="vtext">
+        <h2 id="verdict-title"></h2>
+        <p id="verdict-sub"></p>
+      </div>
+      <div id="scoreNum" class="score" aria-hidden="true"></div>
+    </div>
+    <p id="summary" class="small"></p>
+
+    <h3 id="whyH" data-i18n="whyHeading">Findings</h3>
+    <ul id="findings" class="findings"></ul>
+
+    <div id="fpBox" hidden>
+      <h3 data-i18n="fpHeading">Tool fingerprints (baseline)</h3>
+      <p class="small" data-i18n="fpHelp">Save this. Next time, paste it into the baseline box to detect changed tools.</p>
+      <textarea id="fpOut" class="code" rows="5" readonly spellcheck="false"></textarea>
+      <div class="row"><button id="copyFp" class="btn" type="button" data-i18n="copyFp">Copy baseline</button></div>
+    </div>
+
+    <div id="actions" class="actions"></div>
+  </section>
+
+  <section class="card tips" aria-labelledby="tips-h">
+    <h2 id="tips-h" data-i18n="tipsHeading">Safe-MCP habits</h2>
+    <ol id="tips"></ol>
+  </section>
+
+  <section id="donate" class="card donate" hidden aria-labelledby="don-h">
+    <h2 id="don-h" data-i18n="donateHeading">Keep ScamCheck free</h2>
+    <p data-i18n="donateBody">This tool has no ads and no tracking. If it saved you or your family from a scam, a small contribution pays for development and hosting.</p>
+    <div id="donateBtns" class="row wrapRow"></div>
+    <p id="upiNote" class="small" hidden></p>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <p class="small" data-i18n="disclaimer">This is a static, rule-based audit. It cannot see what a server does at runtime, and it can both miss attacks and flag harmless text. Treat a clean result as "no known red flags", never as proof of safety. Read a server's source before you trust it with your files or tokens.</p>
+  <p class="small"><a id="repoLink" href="https://github.com/rahuldeeptech-spe/rd/tree/main/scamcheck" rel="noopener noreferrer" target="_blank" data-i18n="source">Open source (MIT)</a> · <span id="ver"></span></p>
+</footer>
+
+<script src="config.js"></script>
+<script src="engine.js"></script>
+<script src="mcpaudit.js"></script>
+<script src="mcp.js"></script>
+</body>
+</html>
