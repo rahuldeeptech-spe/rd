@@ -7,7 +7,7 @@
 
   var T = {
     en: {
-      navMsg: 'Message checker', navApk: 'APK scanner', navMcp: 'MCP auditor',
+      navMsg: 'Message checker', navApk: 'APK scanner', navMcp: 'MCP auditor', navPkg: 'Package detector',
       title: 'Is this APK safe to install?',
       subtitle: 'Got an app file on WhatsApp, Telegram or a link ("PM Kisan.apk", "SBI Reward.apk", "RTO Challan.apk")? Check it here before you tap Install.',
       privacy: '🔒 The file is analysed inside your browser. It is never uploaded.',
@@ -66,7 +66,7 @@
       perm: 'Sensitive',
     },
     hi: {
-      navMsg: 'मैसेज चेकर', navApk: 'APK स्कैनर', navMcp: 'MCP ऑडिटर',
+      navMsg: 'मैसेज चेकर', navApk: 'APK स्कैनर', navMcp: 'MCP ऑडिटर', navPkg: 'पैकेज डिटेक्टर',
       title: 'क्या यह APK इंस्टॉल करना सुरक्षित है?',
       subtitle: 'WhatsApp, Telegram या किसी लिंक से ऐप फ़ाइल मिली ("PM Kisan.apk", "SBI Reward.apk", "RTO Challan.apk")? Install दबाने से पहले यहाँ जाँच लें।',
       privacy: '🔒 फ़ाइल की जाँच आपके ब्राउज़र के अंदर ही होती है। कुछ भी अपलोड नहीं होता।',

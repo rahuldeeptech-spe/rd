@@ -48,9 +48,24 @@ For people who connect AI assistants to MCP servers. Paste an MCP client config 
 
 Limits: static and rule-based, JSON only (no TOML yet). It cannot see runtime behaviour. A clean result is not proof of safety.
 
+## Package detector (`pkg.html`)
+
+Check an npm or PyPI package **before** you install it. Everything is read, nothing is executed, and nothing is uploaded.
+
+**Scan a package file** (`npm pack name --ignore-scripts` gives a `.tgz`, `pip download name --no-deps` a `.whl`/sdist; neither runs install scripts). The archive is opened and every script is analysed:
+- Install-time execution: `postinstall` hooks, `setup.py`, `.pth` files, and whether suspicious code sits in a file that runs at install
+- Decode-and-run (`eval(atob(...))`, `exec(base64...)`), `curl | sh`, reverse shells, miners
+- Credential and wallet theft (SSH keys, `.npmrc`/`.pypirc`, cloud credentials, browser data), environment-variable dumps, exfiltration endpoints (Discord/Telegram webhooks, request catchers, tunnels)
+- Persistence (shell rc files, cron, launch agents, `authorized_keys`), worm behaviour (publishing, CI workflow writes)
+- Obfuscation, Trojan-Source bidi characters, hidden executables, `../` path traversal and escaping symlinks, commands that shadow system tools
+
+**Check a dependency file** (`package.json`, `package-lock.json`, `requirements.txt`): typosquats of popular packages (transposition, dropped dash, homoglyphs), git/URL dependencies, wildcard versions, non-default or plain-http registries, missing lockfile integrity, and dependency-confusion setups (`--extra-index-url`).
+
+Tuned against 41 real packages (28 npm, 13 Python: lodash, express, webpack, prettier, three, pip, setuptools, pandas, cryptography ...): none is flagged. That says nothing about recall on brand-new malware, so treat a clean result as "no known red flags".
+
 ## How it works
 
-`engine.js` (messages and links, `apkscan.js` for APKs, `mcpaudit.js` for MCP) is a rule engine (about 25 text rules plus URL analysis). Each finding has a severity,
+`engine.js` (messages and links, `apkscan.js` for APKs, `mcpaudit.js` for MCP, `pkgscan.js` for packages) is a rule engine (about 25 text rules plus URL analysis). Each finding has a severity,
 a weight, an English and a Hindi explanation, and the exact text that triggered it. Scores add up
 (0-100, capped); any *critical* finding forces at least 60. Genuine bank SMS that say
 "Do not share OTP with anyone" are recognised and stay clean.

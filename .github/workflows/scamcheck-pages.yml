@@ -28,9 +28,9 @@ jobs:
       - name: stage site
         run: |
           mkdir -p _site
-          cp scamcheck/index.html scamcheck/apk.html scamcheck/mcp.html scamcheck/style.css \
-             scamcheck/engine.js scamcheck/apkscan.js scamcheck/mcpaudit.js \
-             scamcheck/app.js scamcheck/apk.js scamcheck/mcp.js scamcheck/config.js scamcheck/sw.js scamcheck/icon.svg \
+          cp scamcheck/index.html scamcheck/apk.html scamcheck/mcp.html scamcheck/pkg.html scamcheck/style.css \
+             scamcheck/engine.js scamcheck/apkscan.js scamcheck/mcpaudit.js scamcheck/pkgscan.js \
+             scamcheck/app.js scamcheck/apk.js scamcheck/mcp.js scamcheck/pkg.js scamcheck/config.js scamcheck/sw.js scamcheck/icon.svg \
              scamcheck/manifest.webmanifest _site/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
