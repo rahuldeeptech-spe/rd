@@ -425,3 +425,43 @@ test('hostile inputs finish quickly (ReDoS and size guards)', () => {
     assert.ok(Date.now() - t0 < 5000, `took ${Date.now() - t0}ms for ${t.slice(0, 25)}`);
   }
 });
+
+// Regression tests for review findings on this PR.
+test('regression: hidden nmcli networks ("--") are not one big evil twin', () => {
+  const t = `IN-USE  BSSID              SSID  MODE   CHAN  RATE        SIGNAL  BARS  SECURITY
+        AA:BB:CC:00:11:22  --    Infra  6     54 Mbit/s   60      ▂▄__  --
+        AA:BB:CC:00:11:23  --    Infra  6     54 Mbit/s   55      ▂▄__  WPA2
+        AA:BB:CC:00:11:24  Real  Infra  6     54 Mbit/s   55      ▂▄__  WPA2
+`;
+  const parsed = W.parseWifiScan(t);
+  assert.deepEqual(parsed.networks.map((n) => n.ssid), ['', '', 'Real']);
+  const r = W.auditWifiScan(t);
+  assert.ok(!ids(r).includes('wf_evil_twin'), ids(r).join());
+  assert.ok(r.info.list.slice(0, 2).every((n) => n.ssid === ''));
+});
+
+test('regression: "Host script results:" in normal nmap output belongs to the host, not the last port', () => {
+  const n = `Nmap scan report for 192.168.1.30
+Host is up.
+PORT     STATE SERVICE
+8080/tcp open  http-proxy
+
+Host script results:
+| smb-protocols: 
+|   dialects: 
+|     NT LM 0.12 (SMBv1) [dangerous, but default]
+|_    2:0:2
+| smb-vuln-ms17-010: 
+|   VULNERABLE:
+|_    Remote Code Execution vulnerability in Microsoft SMBv1
+`;
+  const r = W.auditNmap(n);
+  assert.ok(ids(r).includes('net_smb1'), ids(r).join());
+  const vuln = r.findings.find((f) => f.id === 'net_vuln');
+  assert.deepEqual(vuln.where, ['192.168.1.30'], 'a host-level result must not be pinned on an unrelated port');
+  // a host with no port lines at all before the heading still keeps its host scripts
+  const bare = W.auditNmap('Nmap scan report for 10.0.0.7\nHost is up.\n\nHost script results:\n| smb-protocols: \n|_  NT LM 0.12 (SMBv1) [dangerous, but default]\n');
+  assert.ok(ids(bare).includes('net_smb1'));
+  // port-level scripts keep working
+  assert.ok(ids(W.auditNmap('Nmap scan report for 10.0.0.8\nPORT STATE SERVICE\n21/tcp open ftp\n| ftp-anon: Anonymous FTP login allowed (FTP code 230)\n')).includes('net_ftp_anon'));
+});

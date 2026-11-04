@@ -56,7 +56,7 @@ Linux:   sudo iw dev wlan0 scan
 Windows: netsh wlan show networks mode=bssid
 macOS:   /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport -s</code></pre>
     <label for="wifiInput" class="lbl" data-i18n="wifiLabel">Wi-Fi scan output</label>
-    <textarea id="wifiInput" class="code" rows="7" maxlength="3000000" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+    <textarea id="wifiInput" class="code" rows="7" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
     <label for="ssid" class="lbl" data-i18n="ssidLabel">Your Wi-Fi name (SSID), optional but recommended</label>
     <input id="ssid" class="txt" type="text" maxlength="64" autocomplete="off" spellcheck="false">
     <div class="row">
@@ -74,7 +74,7 @@ macOS:   /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airpor
     <p class="small" data-i18n="cHelp">Scan only your own network, then paste the result. XML, grepable and normal output all work. Add --script http-title for device names.</p>
     <pre class="cmd"><code>nmap -sV --open -T3 --script http-title,banner 192.168.1.0/24 -oX scan.xml</code></pre>
     <label for="nmapInput" class="lbl" data-i18n="nmapLabel">nmap output</label>
-    <textarea id="nmapInput" class="code" rows="7" maxlength="3000000" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
+    <textarea id="nmapInput" class="code" rows="7" spellcheck="false" autocomplete="off" autocapitalize="off"></textarea>
     <div class="row">
       <button id="runNmap" class="btn primary" type="button" data-i18n="auditNmap">Audit nmap output</button>
       <button id="clearNmap" class="btn" type="button" data-i18n="clear">Clear</button>

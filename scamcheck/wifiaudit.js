@@ -247,7 +247,9 @@
       var bssid = iB >= 0 ? cell(line, iB) : (MAC_RE.exec(line) || [''])[0];
       if (iB >= 0 && !MAC_RE.test(bssid)) continue;
       var sec = secFromNmcli(cell(line, iSec));
-      out.push({ ssid: cell(line, iS), bssid: bssid.toLowerCase(), security: sec.security, legacyWpa: !!sec.legacyWpa, cipher: '', wps: false, channel: cell(line, iC), signal: cell(line, iG) });
+      var ssid = cell(line, iS);
+      if (ssid === '--') ssid = ''; // nmcli prints "--" for a hidden network; every other parser yields ''
+      out.push({ ssid: ssid, bssid: bssid.toLowerCase(), security: sec.security, legacyWpa: !!sec.legacyWpa, cipher: '', wps: false, channel: cell(line, iC), signal: cell(line, iG) });
     }
     return out;
   }
@@ -592,6 +594,8 @@
         return;
       }
       if (!cur) return;
+      // Host-level scripts (smb-protocols, smb-vuln-*, ...) are listed after the port table under this heading.
+      if (/^Host script results:/.test(line)) { lastScript = { port: { scripts: cur.scripts }, name: '' }; return; }
       m = /^MAC Address:\s*((?:[0-9A-F]{2}:){5}[0-9A-F]{2})(?:\s+\((.*)\))?/i.exec(line);
       if (m) { cur.mac = m[1]; cur.vendor = m[2] || ''; return; }
       m = /^(?:OS details|Running(?: \(JUST GUESSING\))?|Aggressive OS guesses):\s*(.+)$/.exec(line);
