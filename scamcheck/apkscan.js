@@ -529,5 +529,5 @@
     return res;
   }
 
-  return { scanApk: scanApk, assess: assess, parseManifest: parseManifest, readZip: readZip, VERSION: VERSION, DANGEROUS: DANGEROUS, MAX_FILE: MAX_FILE };
+  return { scanApk: scanApk, assess: assess, parseManifest: parseManifest, readZip: readZip, entryData: entryData, VERSION: VERSION, DANGEROUS: DANGEROUS, MAX_FILE: MAX_FILE };
 });

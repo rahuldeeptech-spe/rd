@@ -145,3 +145,7 @@ a { color: var(--brand); }
 textarea.code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; line-height: 1.5; white-space: pre; overflow: auto; }
 .fixline { margin: 8px 0 0; font-size: 14px; }
 .findings .small { margin: 4px 0 0; }
+
+/* package detector */
+pre.cmd { margin: 8px 0 14px; padding: 12px; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; font-size: 13px; line-height: 1.5; }
+pre.cmd code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; white-space: pre; }
