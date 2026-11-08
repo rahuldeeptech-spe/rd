@@ -3,8 +3,8 @@
 <title>patchcheck security alerts</title>
 <id>https://rahuldeeptech-spe.github.io/rd/</id>
 <link href="https://rahuldeeptech-spe.github.io/rd/feed.xml" rel="self"/>
-<updated>2026-11-07T11:45:03Z</updated>
-<entry><title>node 24 </title><id>urn:patchcheck:node 24</id><updated>2026-11-07T11:45:03Z</updated><summary>REVIEW: upstream node 24 is 24.22.2, advisories.tsv is reviewed up to 24.22.1. Read the release notes for new security fixes and update the rules.</summary></entry>
-<entry><title>node 26 </title><id>urn:patchcheck:node 26</id><updated>2026-11-07T11:45:03Z</updated><summary>REVIEW: upstream node 26 is 26.13.0, advisories.tsv is reviewed up to 26.12.1. Read the release notes for new security fixes and update the rules.</summary></entry>
-<entry><title>node 27 </title><id>urn:patchcheck:node 27</id><updated>2026-11-07T11:45:03Z</updated><summary>REVIEW: new node branch 27 exists upstream but advisories.tsv has no rule for it (it falls back to the 'newer' rule).</summary></entry>
+<updated>2026-11-08T11:57:22Z</updated>
+<entry><title>node 24 </title><id>urn:patchcheck:node 24</id><updated>2026-11-08T11:57:22Z</updated><summary>REVIEW: upstream node 24 is 24.22.2, advisories.tsv is reviewed up to 24.22.1. Read the release notes for new security fixes and update the rules.</summary></entry>
+<entry><title>node 26 </title><id>urn:patchcheck:node 26</id><updated>2026-11-08T11:57:22Z</updated><summary>REVIEW: upstream node 26 is 26.13.0, advisories.tsv is reviewed up to 26.12.1. Read the release notes for new security fixes and update the rules.</summary></entry>
+<entry><title>node 27 </title><id>urn:patchcheck:node 27</id><updated>2026-11-08T11:57:22Z</updated><summary>REVIEW: new node branch 27 exists upstream but advisories.tsv has no rule for it (it falls back to the 'newer' rule).</summary></entry>
 </feed>

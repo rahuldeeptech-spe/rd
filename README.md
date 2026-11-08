@@ -1,6 +1,6 @@
-# Security report 2026-11-07
+# Security report 2026-11-08
 
-Generated 2026-11-07 11:45 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
+Generated 2026-11-08 11:57 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
 
 ## Needs attention (3)
 
@@ -10,49 +10,24 @@ Generated 2026-11-07 11:45 UTC by an automated job. Window: last 24 hours. Not a
 
 ## Actively exploited (CISA KEV, added in window)
 
-- **CVE-2026-19868** - SonicWall SonicOS SSLVPN - SonicWall SonicOS SSLVPN Use of Single-factor Authentication Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-19868)
+No new entries in the window.
 
 ## Critical new CVEs and CVEs about watched products (NVD)
 
-- **CVE-2026-109469** CVSS 10.0 CRITICAL - Authorization bypass through user-controlled key in Entra Device Registration allows an unauthorized attacker to elevate privileges over a network. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-109469)
-- **CVE-2026-71495** CVSS 10.0 CRITICAL - Wanderer is a self-hosted trail database for saving and sharing adventures. Prior to 0.20.0, when PUBLIC\_PRIVATE\_INSTANCE is not set to true, the unauthenticated POST /api/v1/trail/download handler passes the attacker-c… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-71495)
-- **CVE-2026-16884** CVSS 9.9 CRITICAL - IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain sensitive information due to an XML external entity \(XXE\) injection. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-16884)
-- **CVE-2026-16920** CVSS 9.9 CRITICAL - IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to bypass security restrictions due to a confused deputy vulnerability. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-16920)
-- **CVE-2026-17049** CVSS 9.9 CRITICAL - IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information and modify arbitrary documents due to authorization bypass through user-controlled keys. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17049)
-- **CVE-2026-17117** CVSS 9.9 CRITICAL - IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code due to improperly controlled modification of object attributes. A user could… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17117)
-- **CVE-2026-17132** CVSS 9.9 CRITICAL - IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary SQL commands due to improper neutralization of special elements used in an SQL command. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17132)
-- **CVE-2026-17134** CVSS 9.9 CRITICAL - IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary SQL commands due to SQL injection. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17134)
-- **CVE-2026-17146** CVSS 9.9 CRITICAL - IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary JavaScript and obtain sensitive information due to improper input validation. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17146)
-- **CVE-2026-17147** CVSS 9.9 CRITICAL - IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code and perform unauthorized administrative actions due to a path traversal vuln… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17147)
-- **CVE-2026-17150** CVSS 9.9 CRITICAL - IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code and access sensitive information from other tenants due to insufficient inpu… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17150)
-- **CVE-2026-17158** CVSS 9.9 CRITICAL - IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to gain elevated privileges due to improper authentication. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17158)
-- **CVE-2026-17239** CVSS 9.9 CRITICAL - IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code due to a path traversal vulnerability. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17239)
-- **CVE-2026-17298** CVSS 9.9 CRITICAL - IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to obtain sensitive information due to server-side request forgery. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17298)
-- **CVE-2026-17336** CVSS 9.9 CRITICAL - IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary SQL commands due to improper neutralization of special elements used in an SQL command. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17336)
-- **CVE-2026-17342** CVSS 9.9 CRITICAL - IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code due to improper control of generation of code. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17342)
-- **CVE-2026-17354** CVSS 9.9 CRITICAL - IBM API Connect 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to perform arbitrary file writes due to path traversal. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17354)
-- **CVE-2026-17359** CVSS 9.9 CRITICAL - IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code due to improper control of generation of code. A user-supplied value can inf… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17359)
-- **CVE-2026-17392** CVSS 9.9 CRITICAL - IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to gain unauthorized administrative access to other tenants due to LDAP injection. User-supplied input… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17392)
-- **CVE-2026-17399** CVSS 9.9 CRITICAL - IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary code due to insufficient validation of uploaded content. Content uploaded to the… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17399)
-- **CVE-2026-17402** CVSS 9.9 CRITICAL - IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to execute arbitrary commands due to OS command injection. User-supplied input is not properly neutral… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17402)
-- **CVE-2026-17410** CVSS 9.9 CRITICAL - IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote authenticated attacker to access and modify other tenants' portal data due to improper neutralization of argument delimiters. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-17410)
-- **CVE-2026-107622** CVSS 9.8 CRITICAL - The BuddyForms plugin for WordPress is vulnerable to Privilege Escalation in all versions up to, and including, 2.10.5 via a form-type confusion attack through the \`bf\_post\_type\` parameter. This is due to the public fro… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-107622)
-- **CVE-2026-123218** CVSS 9.8 CRITICAL - IBM Aspera Faspex 5.0.0 through 5.0.19 could allow an authorized user to craft a specific message to bypass user authorization and gain full administrative privileges. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123218)
-- **CVE-2026-16720** CVSS 9.8 CRITICAL - IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 could allow a remote attacker to obtain valid access tokens for other users due to improper authentication. Authentication against a connected dir… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-16720)
-- ...and 46 more (see the source).
+- **CVE-2026-123551** CVSS 10.0 CRITICAL - OpenAM from 14.0.0 before 16.1.4 contains an information disclosure vulnerability that allows unauthenticated attackers to read live session tokens from the notification WebSocket. Attackers can bypass the agent-only ch… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123551)
+- **CVE-2026-104014** CVSS 9.8 CRITICAL - The Naimur Email OTP Verification for WooCommerce plugin for WordPress is vulnerable to authentication bypass in versions up to, and including, 2.1.0. This is due to the plugin's password-reset finalization endpoint \(th… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-104014)
+- **CVE-2026-119075** CVSS 9.8 CRITICAL - The Registration Form for WooCommerce plugin for WordPress is vulnerable to privilege escalation due to a missing allow-list check in the FormHandler::validate\_checkout\_fields\(\) function in versions up to, and including… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-119075)
+- **CVE-2026-123549** CVSS 9.3 CRITICAL - OpenAM before 16.1.4 fails to enforce the Valid Creation Attributes list during self-registration, allowing anonymous attackers to set restricted attributes including group membership. Attackers can register through the… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123549)
+- **CVE-2026-123550** CVSS 9.3 CRITICAL - OpenAM before 16.1.4 contains an authentication bypass vulnerability in its SAML v2.0 service provider that accepts unsigned assertions on the ECP \(PAOS\) and HTTP-Artifact bindings when WantAssertionsSigned is false. Un… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123550)
+- **CVE-2026-123614** CVSS 9.3 CRITICAL - imgproxy from 4.0.0 before 4.0.16 contains an integer overflow in the ICO loader that allows remote attackers to trigger a heap buffer overflow via a crafted data\_size value. Attackers can submit a crafted ICO image who… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123614)
+- **CVE-2026-123966** CVSS 9.3 CRITICAL - A vulnerability was determined in Tenda AC19 16.03.10.07. Affected by this issue is the function saveParentControlInfo of the file /goform/saveParentControlInfo. This manipulation of the argument deviceId causes heap-ba… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123966)
+- **CVE-2026-118066** CVSS 9.1 CRITICAL - The Appointment Booking Plugin – LatePoint \| Calendar &amp; Scheduling for WordPress plugin for WordPress is vulnerable to Authentication Bypass via Account Takeover in all versions up to, and including, 5.7.6. This is due… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-118066)
+- **CVE-2026-120984** CVSS 9.1 CRITICAL - A flaw was found in the Keycloak server's client management component. When a client is created or imported with authorization services enabled, the system fails to properly clear an internal session attribute used duri… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-120984)
+- **CVE-2026-122041** CVSS 9.1 CRITICAL - The Checkout Field Editor for WooCommerce \(Pro\) plugin for WordPress is vulnerable to unauthorized deletion of arbitrary attachments due to a missing capability/ownership check in the ajax\_remove\_uploaded\(\) function in… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-122041)
 
 ## GitHub reviewed advisories (critical, plus high in watched ecosystems)
 
-- **GHSA-47w9-6r3f-938g** CRITICAL - LXD has restricted project bypass leading to arbitrary command execution (go:github.com/canonical/lxd \(fixed 0.0.0-20260630083100-c5184be310b1\)) - [source](https://github.com/advisories/GHSA-47w9-6r3f-938g)
-- **GHSA-9j25-mm2h-2f76** CRITICAL - LXD has arbitrary file write on host via \`exec-output\` symlink in crafted image (go:github.com/canonical/lxd \(fixed 0.0.0-20260626085134-124f90100640\)) - [source](https://github.com/advisories/GHSA-9j25-mm2h-2f76)
-- **GHSA-fmc8-p6q7-75cc** CRITICAL - LXD has argument injection in backup compression algorithm leading to AFW and ACE (go:github.com/canonical/lxd \(fixed 0.0.0-20260630083100-c5184be310b1\)) - [source](https://github.com/advisories/GHSA-fmc8-p6q7-75cc)
-- **GHSA-jpf8-86f3-wp38** CRITICAL - LXD has arbitrary file read+write on host via templates/ symlink in malicious image (go:github.com/canonical/lxd \(fixed 0.0.0-20260203144152-d1c8ba15d160\)) - [source](https://github.com/advisories/GHSA-jpf8-86f3-wp38)
-- **GHSA-pjff-c2wc-f6jm** CRITICAL - LXD has arbitrary file write on client due to trusted image hash (go:github.com/canonical/lxd \(fixed 0.0.0-20260630083100-c5184be310b1\)) - [source](https://github.com/advisories/GHSA-pjff-c2wc-f6jm)
-- **GHSA-vghh-5rfx-xhq8** CRITICAL - LXD has arbitrary file read+write on host via rootfs/ symlink in malicious image (go:github.com/canonical/lxd \(fixed 0.0.0-20260630083100-c5184be310b1\)) - [source](https://github.com/advisories/GHSA-vghh-5rfx-xhq8)
-- **GHSA-5w5g-j6hw-6p8f** HIGH - OSAC operator: Kubeconfig credential-plugin execution and SSRF in console proxy (go:github.com/osac-project/osac-operator \(fixed 0.0.4\)) - [source](https://github.com/advisories/GHSA-5w5g-j6hw-6p8f)
-- **GHSA-7mr3-28h5-m5vx** HIGH - LXD has project restriction bypass for custom volume copy across projects (go:github.com/canonical/lxd \(fixed 0.0.0-20260630083100-c5184be310b1\)) - [source](https://github.com/advisories/GHSA-7mr3-28h5-m5vx)
-- **GHSA-9fpx-fr6j-2vh6** HIGH - GeoNode has OS command injection via uploaded file layer name (pip:GeoNode \(fixed 5.1.0\)) - [source](https://github.com/advisories/GHSA-9fpx-fr6j-2vh6)
-- **GHSA-qx75-2p3r-pwm5** HIGH - LXD has project restriction bypass in instance copy across projects (go:github.com/canonical/lxd \(fixed 0.0.0-20260630083100-c5184be310b1\)) - [source](https://github.com/advisories/GHSA-qx75-2p3r-pwm5)
+No matching advisories in the window.
 
 ## Node.js releases in window
 
@@ -77,9 +52,9 @@ No Node.js release in the window.
 
 | Source | Status | Items | Note |
 |---|---|---|---|
-| CISA Known Exploited Vulnerabilities | OK | 1 | catalog 2026.11.06 |
-| NVD \(new CVEs\) | OK | 71 | 664 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 28 more only mention one \(apps, plugins, libraries\) and are not… |
-| GitHub Advisory Database | OK | 10 | critical in all ecosystems; high only for composer, go, npm, pip |
+| CISA Known Exploited Vulnerabilities | OK | 0 | catalog 2026.11.06 |
+| NVD \(new CVEs\) | OK | 10 | 255 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 11 more only mention one \(apps, plugins, libraries\) and are not… |
+| GitHub Advisory Database | OK | 0 | critical in all ecosystems; high only for composer, go, npm, pip |
 | nodejs.org release index | OK | 0 | 878 versions in index |
 | go.dev downloads | OK | 0 | branches: 1.26, 1.27 |
 | php.net releases | OK | 0 | branches: 8.2, 8.3, 8.4, 8.5 |
