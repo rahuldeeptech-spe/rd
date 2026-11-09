@@ -1,4 +1,6 @@
-#@ updated 2026-10-24
+#@ updated 2026-11-09
+#@ reviewed node 26 26.13.0 2026-11-09
+#@ reviewed node 24 24.22.2 2026-11-09
 # patchcheck advisory data. Single source of truth for patchcheck.sh and patchcheck.ps1.
 # Tab-separated, one rule per line. Use '-' for an empty field.
 # runtime  branch  status  fixed  id  source  note
