@@ -1,78 +1,62 @@
-# Security report 2026-11-11
+# Security report 2026-11-12
 
-Generated 2026-11-11 12:44 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
+Generated 2026-11-12 13:48 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
 
-## Needs attention (8)
+## Needs attention (11)
 
-- **CVE-2026-115538** CVSS 7.0 HIGH - Moby's overlay network driver does not restore the iptables rules for encrypted overlay networks after firewalld deletes them. Unlike other Docker Engine networking components, the overlay driver does not handle firewal… - **watching: docker** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-115538)
-- **CVE-2026-97040** UNSCORED - Building a package containing a crafted ".syso" file could bypass cgo flag validation and inject arbitrary linker flags when linking. When loading ".syso" entries from a package archive, the linker only checked for reco… - **watching: go** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-97040)
-- **CVE-2026-97043** UNSCORED - Building a malicious package that uses cgo could bypass "#​cgo LDFLAGS" validation and cause unexpected code execution at build time, or cause the go command to panic, via crafted quoting in "//go:cgo\_ldflag" directives.… - **watching: go** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-97043)
+- **CVE-2026-65982** CVSS 8.7 HIGH - nginx-http-flv-module is a media streaming server based on nginx-rtmp-module. Prior to version 1.2.14, if a server received an HTTP/1.0 request without a header Host, which was permitted by HTTP core of Nginx, then r-&gt;h… - **watching: nginx** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-65982)
+- **CVE-2026-123866** CVSS 7.5 HIGH - A use-after-free in Node.js HTTP/2 stream teardown can leak response memory, including the contents of other connections' response buffers, to a peer. When a stream is torn down while a write is still backpressured, for… - **watching: node.js** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123866)
+- **CVE-2026-123874** CVSS 7.5 HIGH - A use-after-free in Node.js HTTP/2 lets an unauthenticated client corrupt server memory, over both TLS and cleartext, when the server serves files with respondWithFile\(\) or respondWithFD\(\). A client can make the server… - **watching: node.js** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123874)
+- **CVE-2026-106023** UNSCORED - NULL pointer dereference vulnerability in Apache HTTP Server's mod\_md during HTTP request processing. This issue affects Apache HTTP Server: from 2.4.30 through 2.4.69. - **watching: apache-httpd** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-106023)
+- **CVE-2026-109163** UNSCORED - Stack-based buffer overflow vulnerability in Apache HTTP Server's mod\_vhost\_alias \(after CVE-2026-63292\) This issue affects Apache HTTP Server: 2.4.69. - **watching: apache-httpd** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-109163)
 - **go 1.26** - REVIEW: upstream go 1.26 is 1.26.11, advisories.tsv is reviewed up to 1.26.10. Read the release notes for new security fixes and update the rules. - **watching: go**
 - **go 1.27** - REVIEW: upstream go 1.27 is 1.27.4, advisories.tsv is reviewed up to 1.27.3. Read the release notes for new security fixes and update the rules. - **watching: go**
-- **node 24** - REVIEW: upstream node 24 is 24.22.2, advisories.tsv is reviewed up to 24.22.1. Read the release notes for new security fixes and update the rules. - **watching: node**
-- **node 26** - REVIEW: upstream node 26 is 26.13.0, advisories.tsv is reviewed up to 26.12.1. Read the release notes for new security fixes and update the rules. - **watching: node**
+- **node 22** - REVIEW: upstream node 22 is 22.23.5, advisories.tsv is reviewed up to 22.23.4 and upstream marks it a security release. Read the release notes for new security fixes and update the rules. - **watching: node**
+- **node 24** - REVIEW: upstream node 24 is 24.22.3, advisories.tsv is reviewed up to 24.22.1 and upstream marks it a security release. Read the release notes for new security fixes and update the rules. - **watching: node**
+- **node 26** - REVIEW: upstream node 26 is 26.13.1, advisories.tsv is reviewed up to 26.12.1 and upstream marks it a security release. Read the release notes for new security fixes and update the rules. - **watching: node**
 - **node 27** - REVIEW: new node branch 27 exists upstream but advisories.tsv has no rule for it \(it falls back to the 'newer' rule\). - **watching: node**
 
 ## Actively exploited (CISA KEV, added in window)
 
-- **CVE-2026-111560** - Barracuda Networks Multiple Products - Barracuda Networks Multiple Products OS Command Injection Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-111560)
-- **CVE-2026-111793** - Openwave Messaging Limited Webtop Media Transcoder - Openwave Messaging Limited Webtop Media Transcoder Incorrect Resource Transfer Between Spheres Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-111793)
-- **CVE-2026-116606** - Barracuda Networks Barracuda Email Security Gateway \(ESG\) - Barracuda Networks Email Security Gateway \(ESG\) Authentication Bypass Using an Alternate Path or Channel Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-116606)
-- **CVE-2026-124194** - Microsoft Office - Microsoft Office Outlook Missing User Interaction for Potentially Unsafe Action Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-124194)
-- **CVE-2026-125350** - Google Chromium - Google Chromium Use-After-Free Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-125350)
-- **CVE-2026-20320** - Cisco BroadWorks - Cisco BroadWorks Improper Restriction of XML External Entity Reference Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-20320)
+No new entries in the window.
 
 ## Critical new CVEs and CVEs about watched products (NVD)
 
-- **CVE-2026-115538** CVSS 7.0 HIGH - Moby's overlay network driver does not restore the iptables rules for encrypted overlay networks after firewalld deletes them. Unlike other Docker Engine networking components, the overlay driver does not handle firewal… - **watching: docker** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-115538)
-- **CVE-2026-97040** UNSCORED - Building a package containing a crafted ".syso" file could bypass cgo flag validation and inject arbitrary linker flags when linking. When loading ".syso" entries from a package archive, the linker only checked for reco… - **watching: go** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-97040)
-- **CVE-2026-97043** UNSCORED - Building a malicious package that uses cgo could bypass "#​cgo LDFLAGS" validation and cause unexpected code execution at build time, or cause the go command to panic, via crafted quoting in "//go:cgo\_ldflag" directives.… - **watching: go** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-97043)
-- **CVE-2026-121351** CVSS 10.0 CRITICAL - Adobe Connect is affected by an Improper Limitation of a Pathname to a Restricted Directory \('Path Traversal'\) vulnerability that could lead to arbitrary file system read. An attacker could exploit this vulnerability to… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-121351)
-- **CVE-2026-121352** CVSS 10.0 CRITICAL - Adobe Connect is affected by an Incorrect Authorization vulnerability that could result in privilege escalation. An attacker could exploit this vulnerability to gain unauthorized access to sensitive resources. Exploitat… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-121352)
-- **CVE-2026-121353** CVSS 10.0 CRITICAL - Adobe Connect is affected by an Improper Neutralization of CRLF Sequences \('CRLF Injection'\) vulnerability that could result in arbitrary code execution in the context of the current user, potentially gaining elevated a… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-121353)
-- **CVE-2026-121356** CVSS 10.0 CRITICAL - Adobe Connect is affected by a Server-Side Request Forgery \(SSRF\) vulnerability that could result in privilege escalation. Exploitation of this issue does not require user interaction. Scope is changed. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-121356)
-- **CVE-2026-121889** CVSS 10.0 CRITICAL - Adobe Connect is affected by a Server-Side Request Forgery \(SSRF\) vulnerability that could result in privilege escalation. Exploitation of this issue does not require user interaction. Scope is changed. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-121889)
-- **CVE-2026-78287** CVSS 10.0 CRITICAL - Improper Control of Generation of Code \('Code Injection'\) vulnerability in Staggs STAGGS staggs allows Remote Code Inclusion.This issue affects STAGGS: from n/a through 3.3.0. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-78287)
-- **CVE-2026-109467** CVSS 9.9 CRITICAL - Improper authentication in Azure DevOps allows an authorized attacker to execute code over a network. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-109467)
-- **CVE-2026-113579** CVSS 9.9 CRITICAL - Adobe Experience Manager is affected by an Improper Control of Generation of Code \('Code Injection'\) vulnerability that could result in arbitrary code execution in the context of the current user. A low-privileged attac… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-113579)
-- **CVE-2026-113580** CVSS 9.9 CRITICAL - Adobe Experience Manager is affected by an Improper Control of Generation of Code \('Code Injection'\) vulnerability that could result in arbitrary code execution in the context of the current user. A low-privileged attac… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-113580)
-- **CVE-2026-114371** CVSS 9.9 CRITICAL - Adobe Experience Manager is affected by an Incorrect Authorization vulnerability that could result in arbitrary code execution in the context of the current user. A low-privileged attacker could exploit this vulnerabili… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-114371)
-- **CVE-2026-119017** CVSS 9.9 CRITICAL - Adobe Experience Manager is affected by an Incorrect Authorization vulnerability that could result in arbitrary code execution in the context of the current user. A low-privileged attacker could exploit this vulnerabili… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-119017)
-- **CVE-2026-120002** CVSS 9.9 CRITICAL - Incorrect authorization in Microsoft Office SharePoint allows an authorized attacker to elevate privileges over a network. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-120002)
-- **CVE-2026-121354** CVSS 9.9 CRITICAL - Adobe Connect is affected by an Improper Limitation of a Pathname to a Restricted Directory \('Path Traversal'\) vulnerability that could lead to arbitrary file system read. An attacker could exploit this vulnerability to… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-121354)
-- **CVE-2026-121887** CVSS 9.9 CRITICAL - Adobe Connect is affected by an Improper Restriction of XML External Entity Reference \('XXE'\) vulnerability that could result in arbitrary code execution in the context of the current user. A low-privileged attacker cou… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-121887)
-- **CVE-2026-121892** CVSS 9.9 CRITICAL - Adobe Connect is affected by an Improper Control of Generation of Code \('Code Injection'\) vulnerability that could result in arbitrary code execution in the context of the current user. A low-privileged attacker could e… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-121892)
-- **CVE-2026-121894** CVSS 9.9 CRITICAL - Adobe Connect is affected by an Improper Neutralization of Special Elements used in an SQL Command \('SQL Injection'\) vulnerability that could result in arbitrary code execution in the context of the current user. A low-… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-121894)
-- **CVE-2026-121896** CVSS 9.9 CRITICAL - Adobe Connect is affected by an Improper Neutralization of Special Elements used in an SQL Command \('SQL Injection'\) vulnerability that could result in arbitrary code execution in the context of the current user. A low-… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-121896)
-- **CVE-2026-121898** CVSS 9.9 CRITICAL - Adobe Connect is affected by an Improper Neutralization of Special Elements used in an SQL Command \('SQL Injection'\) vulnerability that could result in arbitrary code execution in the context of the current user. A low-… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-121898)
-- **CVE-2026-121906** CVSS 9.9 CRITICAL - Adobe Connect is affected by an Improper Limitation of a Pathname to a Restricted Directory \('Path Traversal'\) vulnerability that could lead to arbitrary file system read. An attacker could exploit this vulnerability to… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-121906)
-- **CVE-2026-121908** CVSS 9.9 CRITICAL - Adobe Connect is affected by an Improper Neutralization of Special Elements used in an SQL Command \('SQL Injection'\) vulnerability that could result in arbitrary code execution in the context of the current user. A low-… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-121908)
-- **CVE-2026-112967** CVSS 9.8 CRITICAL - Heap-based buffer overflow in Windows Xbox Live Networking Service allows an unauthorized attacker to execute code over a network. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-112967)
-- **CVE-2026-114160** CVSS 9.8 CRITICAL - Server-side request forgery \(ssrf\) in Azure Managed Grafana allows an unauthorized attacker to elevate privileges over a network. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-114160)
-- ...and 77 more (see the source).
+- **CVE-2026-65982** CVSS 8.7 HIGH - nginx-http-flv-module is a media streaming server based on nginx-rtmp-module. Prior to version 1.2.14, if a server received an HTTP/1.0 request without a header Host, which was permitted by HTTP core of Nginx, then r-&gt;h… - **watching: nginx** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-65982)
+- **CVE-2026-123866** CVSS 7.5 HIGH - A use-after-free in Node.js HTTP/2 stream teardown can leak response memory, including the contents of other connections' response buffers, to a peer. When a stream is torn down while a write is still backpressured, for… - **watching: node.js** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123866)
+- **CVE-2026-123874** CVSS 7.5 HIGH - A use-after-free in Node.js HTTP/2 lets an unauthenticated client corrupt server memory, over both TLS and cleartext, when the server serves files with respondWithFile\(\) or respondWithFD\(\). A client can make the server… - **watching: node.js** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123874)
+- **CVE-2026-106023** UNSCORED - NULL pointer dereference vulnerability in Apache HTTP Server's mod\_md during HTTP request processing. This issue affects Apache HTTP Server: from 2.4.30 through 2.4.69. - **watching: apache-httpd** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-106023)
+- **CVE-2026-109163** UNSCORED - Stack-based buffer overflow vulnerability in Apache HTTP Server's mod\_vhost\_alias \(after CVE-2026-63292\) This issue affects Apache HTTP Server: 2.4.69. - **watching: apache-httpd** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-109163)
+- **CVE-2026-124815** CVSS 10.0 CRITICAL - The Clockinator Lite WordPress plugin before 1.1.0 does not restrict access to several of its record deletion actions, and uses a user-supplied table name in a SQL query without validating or escaping it, allowing unaut… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-124815)
+- **CVE-2026-110697** CVSS 9.9 CRITICAL - A flaw was found in Quay where the robot account listing function constructs a SQL LIKE pattern from user-controlled namespace names without escaping wildcard metacharacters. An attacker who creates a namespace containi… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-110697)
+- **CVE-2026-12591** CVSS 9.9 CRITICAL - Zohocorp ManageEngine M365 Manager Plus versions below 4818 is affected by an authenticated technician may exploit insufficient permission validation in the delegated administration interface to escalate privileges beyo… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-12591)
+- **CVE-2026-110959** CVSS 9.8 CRITICAL - The Descope WordPress plugin before 1.2.0 does not validate the authentication token it receives before creating a WordPress session, accepting any non-empty token, so an unauthenticated attacker can obtain a session fo… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-110959)
+- **CVE-2026-123710** CVSS 9.8 CRITICAL - A flaw was found in Red Hat Quay. An unauthenticated client can obtain an anonymous registry token with an audience it controls, present that token to the service key rotation endpoint, and install its own approved sign… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123710)
+- **CVE-2026-124814** CVSS 9.8 CRITICAL - The Ultimate Addons for Elementor Forms WordPress plugin before 1.0.8 does not properly validate the extension of uploaded files in its bundled file upload field, allowing unauthenticated users to upload arbitrary files… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-124814)
+- **CVE-2026-126147** CVSS 9.8 CRITICAL - A improper limitation of a pathname to a restricted directory \('path traversal'\) vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.6, FortiMail 7.4.0 through 7.4.8, FortiMail 7.2 all v… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-126147)
+- **CVE-2026-126148** CVSS 9.8 CRITICAL - A improper neutralization of special elements used in an os command \('os command injection'\) vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.6 may allow an unauthenticated attacker t… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-126148)
+- **CVE-2026-126170** CVSS 9.8 CRITICAL - A improper encoding or escaping of output vulnerability in Fortinet FortiAnalyzer 8.0.0 through 8.0.2, FortiAnalyzer 7.6.0 through 7.6.7, FortiAnalyzer Cloud 8.0.1 through 8.0.2, FortiAnalyzer Cloud 7.6.0 through 7.6.7,… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-126170)
+- **CVE-2026-126259** CVSS 9.8 CRITICAL - A missing authentication for critical function vulnerability in Fortinet FortiOS 8.0.0, FortiOS 7.6.0 through 7.6.7, FortiOS 7.4.0 through 7.4.12, FortiOS 7.2.0 through 7.2.13 may allow an unauthenticated attacker with… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-126259)
+- **CVE-2026-126262** CVSS 9.8 CRITICAL - A improper neutralization of special elements used in an sql command \('sql injection'\) vulnerability in Fortinet FortiAnalyzer 8.0.0 through 8.0.1, FortiAnalyzer 7.6.0 through 7.6.7, FortiAnalyzer 7.4.0 through 7.4.11,… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-126262)
+- **CVE-2026-126263** CVSS 9.8 CRITICAL - A improper neutralization of special elements used in an sql command \('sql injection'\) vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.4, FortiMail 7.4.0 through 7.4.6 may allow an a… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-126263)
+- **CVE-2026-67449** CVSS 9.8 CRITICAL - Portabase is a database backup and restore tool for PostgreSQL, MySQL, MsSQL, MariaDB, Firebird SQL, SQLite, MongoDB, Redis, Files and Docker Volume. Prior to version 1.21.2, a path traversal in the TUS upload webhook h… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-67449)
+- **CVE-2026-76954** CVSS 9.8 CRITICAL - An improper neutralization of special elements used in an SQL command vulnerability in the Auth API in Synology DiskStation Manager \(DSM\) before 7.2.1-69057-13, 7.2.2-72806-10, 7.3.2-86009-5, and 7.4.1-90080-1 allows re… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-76954)
+- **CVE-2026-126254** CVSS 9.6 CRITICAL - A numeric truncation error vulnerability in Fortinet FortiOS 8.0.0 through 8.0.1, FortiOS 7.6.0 through 7.6.7, FortiOS 7.4.0 through 7.4.12, FortiOS 7.2.0 through 7.2.13 may allow a configured ibgp neighbor to send mali… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-126254)
+- **CVE-2026-65840** CVSS 9.6 CRITICAL - Fider is a feedback portal for feature requests and suggestions. Prior to version 0.36.0, in multi-tenant mode \(HOST\_MODE=multi\), an attacker can use an email verification key issued by Tenant A to authenticate as the s… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-65840)
+- **CVE-2026-126164** CVSS 9.4 CRITICAL - A improper neutralization of special elements used in an sql command \('sql injection'\) vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.6, FortiMail 7.4.0 through 7.4.8, FortiMail 7.2… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-126164)
+- **CVE-2026-8333** CVSS 9.4 CRITICAL - A stored cross-site scripting vulnerability in Microchip the TimePictra platform could allow an authenticated, low-privileged attacker to store malicious script content that executes when another user views the affected… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-8333)
+- **CVE-2026-110003** CVSS 9.3 CRITICAL - A vulnerability in the administration REST interface of Azul Payara allows a remote, unauthenticated attacker to bypass secure-admin remote-access restrictions by supplying an arbitrary value in the X-GlassFish-authToke… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-110003)
+- **CVE-2026-126253** CVSS 9.3 CRITICAL - A authentication bypass by primary weakness vulnerability in Fortinet FortiOS 8.0.0 through 8.0.1, FortiOS 7.6.0 through 7.6.7, FortiOS 7.4.0 through 7.4.12, FortiOS 7.2.0 through 7.2.13 may allow an unauthenticated att… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-126253)
+- ...and 23 more (see the source).
 
 ## GitHub reviewed advisories (critical, plus high in watched ecosystems)
 
-- **GHSA-62m9-f875-rqw6** CRITICAL - GPUStack: SAML callback trusts an unverified SAMLResponse, allowing authentication bypass and account takeover (pip:gpustack \(fixed 2.2.2\)) - [source](https://github.com/advisories/GHSA-62m9-f875-rqw6)
-- **GHSA-8vv3-6qpc-gpw6** CRITICAL - bitcoinjs-lib: Undetected merkle node duplication in block root computation validates a forged transaction list (npm:bitcoinjs-lib \(fixed 5.2.1\), npm:bitcoinjs-lib \(fixed 6.1.8\), npm:bitcoinjs-lib \(fixed 7.0.2\)) - [source](https://github.com/advisories/GHSA-8vv3-6qpc-gpw6)
-- **GHSA-pcrw-h46h-c93h** CRITICAL - Mongoose: sanitizeFilter not applied on countDocuments (npm:mongoose \(fixed 6.13.11\), npm:mongoose \(fixed 7.8.12\), npm:mongoose \(fixed 8.24.3\), npm:mongoose \(fixed 9.9.2\)) - [source](https://github.com/advisories/GHSA-pcrw-h46h-c93h)
-- **GHSA-xggf-m53x-jc3f** CRITICAL - node-opcua: Namespace-Level RBAC Fail-Open - Anonymous Write/Call Bypass via Unbound \`DefaultRolePermissions (npm:node-opcua \(fixed 2.180.0\), npm:node-opcua-address-space \(fixed 2.180.0\), npm:node-opcua-server \(fixed 2.180.0\)) - [source](https://github.com/advisories/GHSA-xggf-m53x-jc3f)
-- **GHSA-xqc2-xf4c-x3h3** CRITICAL - React: Unauthenticated Remote Code Execution in React Server Components (npm:react-server-dom-parcel \(fixed 19.0.9\), npm:react-server-dom-parcel \(fixed 19.1.10\), npm:react-server-dom-parcel \(fixed 19.2.9\), npm:react-server-dom-parce…) - [source](https://github.com/advisories/GHSA-xqc2-xf4c-x3h3)
-- **GHSA-2h4w-29cv-2cmv** HIGH - AG2: Newline injection in SandboxShellTool bypasses allowed=\[...\] and readonly=True, enabling arbitrary command execution (pip:ag2 \(fixed 1.1.1\), pip:autogen) - [source](https://github.com/advisories/GHSA-2h4w-29cv-2cmv)
-- **GHSA-3hch-x692-6qj3** HIGH - GPUStack: Missing authorization on several cluster and resource endpoints allows cross-user access and cluster takeover (pip:gpustack \(fixed 2.2.2\)) - [source](https://github.com/advisories/GHSA-3hch-x692-6qj3)
-- **GHSA-6qrw-m8cv-hcxf** HIGH - Forge: RSA PKCS#​1 v1.5 signature forgery via non-canonical DigestInfo encoding (npm:node-forge \(fixed 1.4.1\)) - [source](https://github.com/advisories/GHSA-6qrw-m8cv-hcxf)
-- **GHSA-8332-j7wj-wjw4** HIGH - Mongoose walks into inherited properties when hydrating, setting, and merging, allowing overwrites of built-in functions \(denial of service\) and shared schema state (npm:mongoose \(fixed 6.13.12\), npm:mongoose \(fixed 7.8.13\), npm:mongoose \(fixed 8.24.7\), npm:mongoose \(fixed 9.11.4\)) - [source](https://github.com/advisories/GHSA-8332-j7wj-wjw4)
-- **GHSA-gg4r-jv3p-qx3c** HIGH - Mongoose: Connection-level sanitizeFilter not applied (npm:mongoose \(fixed 6.13.12\), npm:mongoose \(fixed 7.8.13\), npm:mongoose \(fixed 8.24.7\), npm:mongoose \(fixed 9.11.4\)) - [source](https://github.com/advisories/GHSA-gg4r-jv3p-qx3c)
-- **GHSA-ghwv-vrp2-2975** HIGH - Cocos AI Intra-handshake attested TLS implementation is vulnerable to TOCTOU Attacks (go:github.com/ultravioletrs/cocos \(fixed 0.9.0\)) - [source](https://github.com/advisories/GHSA-ghwv-vrp2-2975)
-- **GHSA-m63f-xhvm-6mv5** HIGH - Microsoft Security Advisory CVE-2026-120778 - Aspire Elevation of Privilege Vulnerability (nuget:Aspire.Cli \(fixed 13.6.5\), nuget:Aspire.Cli.linux-x64 \(fixed 13.6.5\), nuget:Aspire.Cli.linux-arm64 \(fixed 13.6.5\), nuget:Aspire.Cli.linux-musl-x64 \(fixed…) - [source](https://github.com/advisories/GHSA-m63f-xhvm-6mv5)
-- **GHSA-q6jf-24jf-m3cg** HIGH - Microsoft Security Advisory CVE-2026-120792 - Aspire Information Disclosure Vulnerability (nuget:Aspire.Cli \(fixed 13.6.5\), nuget:Aspire.Cli.linux-x64 \(fixed 13.6.5\), nuget:Aspire.Cli.linux-arm64 \(fixed 13.6.5\), nuget:Aspire.Cli.linux-musl-x64 \(fixed…) - [source](https://github.com/advisories/GHSA-q6jf-24jf-m3cg)
-- **GHSA-rhr8-3pm8-cq29** HIGH - Forge: ASN.1 resource exhaustion via BIT STRING decoding in asn1.fromDer (npm:node-forge \(fixed 1.4.1\)) - [source](https://github.com/advisories/GHSA-rhr8-3pm8-cq29)
-- **GHSA-xwgp-w3pj-q5h3** HIGH - OHIF Viewers: DOM-Based Cross Site Scripting \(XSS\) through MIME type of document (npm:@​ohif/extension-dicom-pdf \(fixed 3.12.18\), npm:@​ohif/extension-dicom-pdf \(fixed 3.13.10\), npm:@​ohif/extension-dicom-pdf \(fixed 3.14.0-beta.36\)) - [source](https://github.com/advisories/GHSA-xwgp-w3pj-q5h3)
-- **GHSA-xxrh-5hgg-gj4h** HIGH - Nuxt Content: Unauthenticated SQLite Function DoS via Content Query API (npm:@​nuxt/content \(fixed 3.15.2\)) - [source](https://github.com/advisories/GHSA-xxrh-5hgg-gj4h)
+No matching advisories in the window.
 
 ## Node.js releases in window
 
-No Node.js release in the window.
+- **node 27.0.0-alpha.0.1.0** - Node.js 27.0.0-alpha.0.1.0 released - **watching: node.js** - [source](https://nodejs.org/en/blog/vulnerability)
+- **node 22.23.5** - Node.js 22.23.5 released \(security release\) - **watching: node.js** - [source](https://nodejs.org/en/blog/vulnerability)
 
 ## Tracked versions (upstream latest vs advisories.tsv)
 
@@ -80,10 +64,10 @@ No Node.js release in the window.
 |---|---|---|---|---|
 | go | 1.26 | 1.26.11 | 1.26.10 | - |
 | go | 1.27 | 1.27.4 | 1.27.3 | - |
-| node | 22 | 22.23.4 | 22.23.4 | - |
-| node | 24 | 24.22.2 | 24.22.1 | - |
-| node | 26 | 26.13.0 | 26.12.1 | - |
-| node | 27 | 27.0.0-alpha.0.0.0 | - | - |
+| node | 22 | 22.23.5 | 22.23.4 | - |
+| node | 24 | 24.22.3 | 24.22.1 | - |
+| node | 26 | 26.13.1 | 26.12.1 | - |
+| node | 27 | 27.0.0-alpha.0.1.0 | - | - |
 | php | 8.2 | 8.2.35 | 8.2.35 | - |
 | php | 8.3 | 8.3.36 | 8.3.36 | - |
 | php | 8.4 | 8.4.27 | 8.4.27 | - |
@@ -93,10 +77,10 @@ No Node.js release in the window.
 
 | Source | Status | Items | Note |
 |---|---|---|---|
-| CISA Known Exploited Vulnerabilities | OK | 6 | catalog 2026.11.10 |
-| NVD \(new CVEs\) | OK | 102 | 2110 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 38 more only mention one \(apps, plugins, libraries\) and are not… |
-| GitHub Advisory Database | OK | 16 | critical in all ecosystems; high only for composer, go, npm, pip |
-| nodejs.org release index | OK | 0 | 878 versions in index |
+| CISA Known Exploited Vulnerabilities | OK | 0 | catalog 2026.11.10 |
+| NVD \(new CVEs\) | OK | 48 | 550 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 25 more only mention one \(apps, plugins, libraries\) and are not… |
+| GitHub Advisory Database | OK | 0 | critical in all ecosystems; high only for composer, go, npm, pip |
+| nodejs.org release index | OK | 2 | 882 versions in index |
 | go.dev downloads | OK | 0 | branches: 1.26, 1.27 |
 | php.net releases | OK | 0 | branches: 8.2, 8.3, 8.4, 8.5 |
 
