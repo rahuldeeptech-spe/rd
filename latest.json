@@ -2,67 +2,106 @@
   "alerts": [
     {
       "alert": true,
-      "date": "2026-11-11",
-      "id": "CVE-2026-65982",
-      "score": 8.7,
+      "date": "2026-11-13",
+      "id": "CVE-2026-128027",
+      "score": 9.3,
+      "severity": "CRITICAL",
+      "source": "nvd",
+      "title": "FrankenPHP Docker images before 1.1.11 were rebuilt only when new base image tags were created, so security fixes that Alpine, PHP, and Go applied under existing tags were not propagated. Remote attackers could exploit known flaws in the stale system libraries, such as CVE-2025-15467 in libcrypto3, to execute code.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128027",
+      "watch": [
+        "php"
+      ]
+    },
+    {
+      "alert": true,
+      "date": "2026-11-13",
+      "id": "CVE-2026-128014",
+      "score": 9.2,
+      "severity": "CRITICAL",
+      "source": "nvd",
+      "title": "FrankenPHP standalone static binaries 1.8.0 before 1.13.2 bundle the PHP brotli extension statically linked with Brotli 1.2.0, whose decoder contains an out-of-bounds write (CVE-2026-111497). Unauthenticated remote attackers can send crafted data to applications that pass it to brotli_uncompress_add() to crash the entire FrankenPHP process, and possibly cause memory disclosure or code execution.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128014",
+      "watch": [
+        "php"
+      ]
+    },
+    {
+      "alert": true,
+      "date": "2026-11-13",
+      "id": "CVE-2026-128023",
+      "score": 9.1,
+      "severity": "CRITICAL",
+      "source": "nvd",
+      "title": "FrankenPHP before 1.13.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to spoof trusted headers by sending dot-form header names that PHP rewrites to underscores. Attackers can send headers like X.Authenticated.User or X.Forwarded.For that map to $_SERVER keys, spoofing user identity, client IP, or scheme.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128023",
+      "watch": [
+        "php"
+      ]
+    },
+    {
+      "alert": true,
+      "date": "2026-11-13",
+      "id": "CVE-2026-128015",
+      "score": 8.3,
       "severity": "HIGH",
       "source": "nvd",
-      "title": "nginx-http-flv-module is a media streaming server based on nginx-rtmp-module. Prior to version 1.2.14, if a server received an HTTP/1.0 request without a header Host, which was permitted by HTTP core of Nginx, then r->headers_in.host was NULL, nginx-http-flv-module used r->headers_in.host->value to make a pseudo tcUrl, so NULL-pointer dereference happened. This issue has been patched in version 1.2.14.",
-      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-65982",
+      "title": "FrankenPHP before 1.13.4 contains a use-after-free vulnerability that leaves a dangling pointer to a freed environment table when putenv() is called during request shutdown. Attackers triggering putenv() in shutdown functions, destructors, or session handlers can crash the process on the next getenv() call or leak previous request environment values.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128015",
       "watch": [
-        "nginx"
+        "php"
       ]
     },
     {
       "alert": true,
-      "date": "2026-11-11",
-      "id": "CVE-2026-123866",
-      "score": 7.5,
+      "date": "2026-11-13",
+      "id": "CVE-2026-128016",
+      "score": 8.3,
       "severity": "HIGH",
       "source": "nvd",
-      "title": "A use-after-free in Node.js HTTP/2 stream teardown can leak response memory, including the contents of other connections' response buffers, to a peer. When a stream is torn down while a write is still backpressured, for example by a peer RST_STREAM or by the server's own per-stream timeout destroying the stream, the stream's response buffer is freed but a reference to it is still used, so freed or unrelated heap memory is written to the socket instead of the intended response. On Node.js 26.x and 24.x the teardown can be driven purely by a remote peer once the window-size change from 26.9.0 and 24.22.0 is present, and on all supported lines the same defect is reachable through an application-initiated teardown such as a per-stream idle timeout. This vulnerability affects Node.js 26.x, 24.x, and 22.x.",
-      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123866",
+      "title": "FrankenPHP before 1.13.4 contains a use-after-free vulnerability in worker mode that frees internal streams of SplTempFileObject or SplFileObject on php://temp instances surviving across requests. Remote clients can send requests reaching code that uses such persisted objects, causing reads of freed memory that leak garbage data or crash the process.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128016",
       "watch": [
-        "node.js"
+        "php"
       ]
     },
     {
       "alert": true,
-      "date": "2026-11-11",
-      "id": "CVE-2026-123874",
-      "score": 7.5,
+      "date": "2026-11-13",
+      "id": "CVE-2026-128020",
+      "score": 8.2,
       "severity": "HIGH",
       "source": "nvd",
-      "title": "A use-after-free in Node.js HTTP/2 lets an unauthenticated client corrupt server memory, over both TLS and cleartext, when the server serves files with respondWithFile() or respondWithFD(). A client can make the server free an Http2Stream while a write request that points to it is still queued on the socket; when that write completes, the code dereferences and makes a virtual call through the freed object. The only precondition is that the application serves a file with stream.respondWithFile() or stream.respondWithFD(), with default settings otherwise. This vulnerability affects Node.js 26.x (since 26.9.0) and 24.x (since 24.22.0).",
-      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123874",
+      "title": "FrankenPHP before 1.13.2 contains an uncontrolled recursion vulnerability in its PHP-to-Go array converter that fails to detect circular references in PHP arrays. Passing a self-referential array to frankenphp_log() or returning one from a worker callback triggers a fatal Go stack overflow, terminating the entire server process.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128020",
       "watch": [
-        "node.js"
+        "php"
       ]
     },
     {
       "alert": true,
-      "date": "2026-11-11",
-      "id": "CVE-2026-106023",
-      "score": null,
-      "severity": "UNSCORED",
+      "date": "2026-11-13",
+      "id": "CVE-2026-128024",
+      "score": 8.2,
+      "severity": "HIGH",
       "source": "nvd",
-      "title": "NULL pointer dereference vulnerability in Apache HTTP Server's mod_md during HTTP request processing.\n\n\n\nThis issue affects Apache HTTP Server: from 2.4.30 through 2.4.69.",
-      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-106023",
+      "title": "FrankenPHP before 1.13.0 contains a denial of service vulnerability in goArray() that allows remote attackers to abort the server process via arrays with null integer-keyed elements. Attackers can send crafted JSON passed to frankenphp_log() or returned from worker callbacks, triggering an unrecovered cgo panic that terminates every vhost and in-flight request.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128024",
       "watch": [
-        "apache-httpd"
+        "php"
       ]
     },
     {
       "alert": true,
-      "date": "2026-11-11",
-      "id": "CVE-2026-109163",
-      "score": null,
-      "severity": "UNSCORED",
+      "date": "2026-11-12",
+      "id": "CVE-2026-126329",
+      "score": 7.3,
+      "severity": "HIGH",
       "source": "nvd",
-      "title": "Stack-based buffer overflow vulnerability in Apache HTTP Server's mod_vhost_alias (after\u00a0CVE-2026-63292)\n\n\n\nThis issue affects Apache HTTP Server: 2.4.69.",
-      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-109163",
+      "title": "Docker Sandboxes reuses existing state and configuration directories without verifying their ownership. If sbx or sandboxd is run as root with HOME or, on Linux, XDG_STATE_HOME pointing to an attacker-controlled location, a local unprivileged user can substitute control-plane sockets and configuration trusted by the root process, potentially executing commands as root. Exploitation requires a privileged invocation with an attacker-influenced environment. The issue affects Linux and macOS and is fixed in version 0.53.0.",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126329",
       "watch": [
-        "apache-httpd"
+        "docker"
       ]
     },
     {
@@ -133,9 +172,115 @@
     }
   ],
   "complete": true,
-  "generated_at": "2026-11-12T13:48:16Z",
+  "generated_at": "2026-11-13T13:09:29Z",
   "items": {
-    "ghsa": [],
+    "ghsa": [
+      {
+        "alert": false,
+        "cve": "CVE-2026-118740",
+        "date": "2026-11-12",
+        "id": "GHSA-4g86-54fm-h9h8",
+        "packages": [
+          "nuget:Aspire.Dashboard.Sdk.linux-x64 (fixed 13.6.5)",
+          "nuget:Aspire.Dashboard.Sdk.linux-arm64 (fixed 13.6.5)",
+          "nuget:Aspire.Dashboard.Sdk.linux-musl-x64 (fixed 13.6.5)",
+          "nuget:Aspire.Dashboard.Sdk.osx-x64 (fixed 13.6.5)"
+        ],
+        "severity": "CRITICAL",
+        "source": "ghsa",
+        "title": "Microsoft Security Advisory CVE-2026-118740 - Aspire Security Feature Bypass Vulnerability",
+        "url": "https://github.com/advisories/GHSA-4g86-54fm-h9h8",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "cve": "CVE-2026-122006",
+        "date": "2026-11-12",
+        "id": "GHSA-f3w6-w445-fwh9",
+        "packages": [
+          "rubygems:activestorage (fixed 8.1.4.1)",
+          "rubygems:activestorage (fixed 8.0.5.2)"
+        ],
+        "severity": "CRITICAL",
+        "source": "ghsa",
+        "title": "Active Storage: Possible arbitrary file write and read in image analysis",
+        "url": "https://github.com/advisories/GHSA-f3w6-w445-fwh9",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "cve": "CVE-2026-100397",
+        "date": "2026-11-13",
+        "id": "GHSA-x585-4vv8-2mh2",
+        "packages": [
+          "pip:rucio (fixed 35.9.1)",
+          "pip:rucio (fixed 38.6.1)",
+          "pip:rucio (fixed 40.4.2)",
+          "pip:rucio (fixed 41.1.1)"
+        ],
+        "severity": "CRITICAL",
+        "source": "ghsa",
+        "title": "Rucio: Unauthenticated administrator impersonation through SSH challenge tokens",
+        "url": "https://github.com/advisories/GHSA-x585-4vv8-2mh2",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "cve": "CVE-2026-125327",
+        "date": "2026-11-12",
+        "id": "GHSA-5qg5-rgp6-j5m5",
+        "packages": [
+          "go:github.com/pgEdge/pgedge-rag-server (fixed 1.0.1-0.20260729020411-a09d4872356b)"
+        ],
+        "severity": "HIGH",
+        "source": "ghsa",
+        "title": "pgEdge RAG Server unbounded corpus read allows resource exhaustion from unauthenticated requests",
+        "url": "https://github.com/advisories/GHSA-5qg5-rgp6-j5m5",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "cve": "CVE-2026-126190",
+        "date": "2026-11-13",
+        "id": "GHSA-mmhr-3c5m-f64f",
+        "packages": [
+          "pip:soupsieve (fixed 4.0.0)"
+        ],
+        "severity": "HIGH",
+        "source": "ghsa",
+        "title": "Soup Sieve: Polynomial-time denial of service in the descendant combinator",
+        "url": "https://github.com/advisories/GHSA-mmhr-3c5m-f64f",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "cve": "CVE-2026-125323",
+        "date": "2026-11-12",
+        "id": "GHSA-vq9p-w6wv-cr25",
+        "packages": [
+          "go:github.com/pgEdge/control-plane (fixed 0.11.0)"
+        ],
+        "severity": "HIGH",
+        "source": "ghsa",
+        "title": "pgEdge Control Plane generates pg_hba.conf with trust authentication for local and loopback connections",
+        "url": "https://github.com/advisories/GHSA-vq9p-w6wv-cr25",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "cve": "CVE-2026-128067",
+        "date": "2026-11-12",
+        "id": "GHSA-xcvg-w56q-r89m",
+        "packages": [
+          "pip:Pillow (fixed 13.0.0)"
+        ],
+        "severity": "HIGH",
+        "source": "ghsa",
+        "title": "Pillow: Heap buffer overflow saving TIFF with libtiff when tags override image size",
+        "url": "https://github.com/advisories/GHSA-xcvg-w56q-r89m",
+        "watch": []
+      }
+    ],
     "go": [],
     "kev": [],
     "node": [
@@ -150,502 +295,683 @@
         "watch": [
           "node.js"
         ]
-      },
-      {
-        "alert": false,
-        "date": "2026-11-11",
-        "id": "node 22.23.5",
-        "security": true,
-        "source": "node",
-        "title": "Node.js 22.23.5 released (security release)",
-        "url": "https://nodejs.org/en/blog/vulnerability",
-        "watch": [
-          "node.js"
-        ]
       }
     ],
     "nvd": [
       {
         "alert": true,
-        "date": "2026-11-11",
-        "id": "CVE-2026-65982",
-        "score": 8.7,
+        "date": "2026-11-13",
+        "id": "CVE-2026-128027",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "FrankenPHP Docker images before 1.1.11 were rebuilt only when new base image tags were created, so security fixes that Alpine, PHP, and Go applied under existing tags were not propagated. Remote attackers could exploit known flaws in the stale system libraries, such as CVE-2025-15467 in libcrypto3, to execute code.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128027",
+        "watch": [
+          "php"
+        ]
+      },
+      {
+        "alert": true,
+        "date": "2026-11-13",
+        "id": "CVE-2026-128014",
+        "score": 9.2,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "FrankenPHP standalone static binaries 1.8.0 before 1.13.2 bundle the PHP brotli extension statically linked with Brotli 1.2.0, whose decoder contains an out-of-bounds write (CVE-2026-111497). Unauthenticated remote attackers can send crafted data to applications that pass it to brotli_uncompress_add() to crash the entire FrankenPHP process, and possibly cause memory disclosure or code execution.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128014",
+        "watch": [
+          "php"
+        ]
+      },
+      {
+        "alert": true,
+        "date": "2026-11-13",
+        "id": "CVE-2026-128023",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "FrankenPHP before 1.13.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to spoof trusted headers by sending dot-form header names that PHP rewrites to underscores. Attackers can send headers like X.Authenticated.User or X.Forwarded.For that map to $_SERVER keys, spoofing user identity, client IP, or scheme.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128023",
+        "watch": [
+          "php"
+        ]
+      },
+      {
+        "alert": true,
+        "date": "2026-11-13",
+        "id": "CVE-2026-128015",
+        "score": 8.3,
         "severity": "HIGH",
         "source": "nvd",
-        "title": "nginx-http-flv-module is a media streaming server based on nginx-rtmp-module. Prior to version 1.2.14, if a server received an HTTP/1.0 request without a header Host, which was permitted by HTTP core of Nginx, then r->headers_in.host was NULL, nginx-http-flv-module used r->headers_in.host->value to make a pseudo tcUrl, so NULL-pointer dereference happened. This issue has been patched in version 1.2.14.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-65982",
+        "title": "FrankenPHP before 1.13.4 contains a use-after-free vulnerability that leaves a dangling pointer to a freed environment table when putenv() is called during request shutdown. Attackers triggering putenv() in shutdown functions, destructors, or session handlers can crash the process on the next getenv() call or leak previous request environment values.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128015",
         "watch": [
-          "nginx"
+          "php"
         ]
       },
       {
         "alert": true,
-        "date": "2026-11-11",
-        "id": "CVE-2026-123866",
-        "score": 7.5,
+        "date": "2026-11-13",
+        "id": "CVE-2026-128016",
+        "score": 8.3,
         "severity": "HIGH",
         "source": "nvd",
-        "title": "A use-after-free in Node.js HTTP/2 stream teardown can leak response memory, including the contents of other connections' response buffers, to a peer. When a stream is torn down while a write is still backpressured, for example by a peer RST_STREAM or by the server's own per-stream timeout destroying the stream, the stream's response buffer is freed but a reference to it is still used, so freed or unrelated heap memory is written to the socket instead of the intended response. On Node.js 26.x and 24.x the teardown can be driven purely by a remote peer once the window-size change from 26.9.0 and 24.22.0 is present, and on all supported lines the same defect is reachable through an application-initiated teardown such as a per-stream idle timeout. This vulnerability affects Node.js 26.x, 24.x, and 22.x.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123866",
+        "title": "FrankenPHP before 1.13.4 contains a use-after-free vulnerability in worker mode that frees internal streams of SplTempFileObject or SplFileObject on php://temp instances surviving across requests. Remote clients can send requests reaching code that uses such persisted objects, causing reads of freed memory that leak garbage data or crash the process.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128016",
         "watch": [
-          "node.js"
+          "php"
         ]
       },
       {
         "alert": true,
-        "date": "2026-11-11",
-        "id": "CVE-2026-123874",
-        "score": 7.5,
+        "date": "2026-11-13",
+        "id": "CVE-2026-128020",
+        "score": 8.2,
         "severity": "HIGH",
         "source": "nvd",
-        "title": "A use-after-free in Node.js HTTP/2 lets an unauthenticated client corrupt server memory, over both TLS and cleartext, when the server serves files with respondWithFile() or respondWithFD(). A client can make the server free an Http2Stream while a write request that points to it is still queued on the socket; when that write completes, the code dereferences and makes a virtual call through the freed object. The only precondition is that the application serves a file with stream.respondWithFile() or stream.respondWithFD(), with default settings otherwise. This vulnerability affects Node.js 26.x (since 26.9.0) and 24.x (since 24.22.0).",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123874",
+        "title": "FrankenPHP before 1.13.2 contains an uncontrolled recursion vulnerability in its PHP-to-Go array converter that fails to detect circular references in PHP arrays. Passing a self-referential array to frankenphp_log() or returning one from a worker callback triggers a fatal Go stack overflow, terminating the entire server process.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128020",
         "watch": [
-          "node.js"
+          "php"
         ]
       },
       {
         "alert": true,
-        "date": "2026-11-11",
-        "id": "CVE-2026-106023",
-        "score": null,
-        "severity": "UNSCORED",
+        "date": "2026-11-13",
+        "id": "CVE-2026-128024",
+        "score": 8.2,
+        "severity": "HIGH",
         "source": "nvd",
-        "title": "NULL pointer dereference vulnerability in Apache HTTP Server's mod_md during HTTP request processing.\n\n\n\nThis issue affects Apache HTTP Server: from 2.4.30 through 2.4.69.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-106023",
+        "title": "FrankenPHP before 1.13.0 contains a denial of service vulnerability in goArray() that allows remote attackers to abort the server process via arrays with null integer-keyed elements. Attackers can send crafted JSON passed to frankenphp_log() or returned from worker callbacks, triggering an unrecovered cgo panic that terminates every vhost and in-flight request.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128024",
         "watch": [
-          "apache-httpd"
+          "php"
         ]
       },
       {
         "alert": true,
-        "date": "2026-11-11",
-        "id": "CVE-2026-109163",
-        "score": null,
-        "severity": "UNSCORED",
+        "date": "2026-11-12",
+        "id": "CVE-2026-126329",
+        "score": 7.3,
+        "severity": "HIGH",
         "source": "nvd",
-        "title": "Stack-based buffer overflow vulnerability in Apache HTTP Server's mod_vhost_alias (after\u00a0CVE-2026-63292)\n\n\n\nThis issue affects Apache HTTP Server: 2.4.69.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-109163",
+        "title": "Docker Sandboxes reuses existing state and configuration directories without verifying their ownership. If sbx or sandboxd is run as root with HOME or, on Linux, XDG_STATE_HOME pointing to an attacker-controlled location, a local unprivileged user can substitute control-plane sockets and configuration trusted by the root process, potentially executing commands as root. Exploitation requires a privileged invocation with an attacker-influenced environment. The issue affects Linux and macOS and is fixed in version 0.53.0.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126329",
         "watch": [
-          "apache-httpd"
+          "docker"
         ]
       },
       {
         "alert": false,
         "date": "2026-11-12",
-        "id": "CVE-2026-124815",
+        "id": "CVE-2026-117551",
         "score": 10.0,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "The Clockinator Lite WordPress plugin before 1.1.0 does not restrict access to several of its record deletion actions, and uses a user-supplied table name in a SQL query without validating or escaping it, allowing unauthenticated users to perform SQL injection attacks, deleting data from any database table and extracting sensitive information such as password hashes.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-124815",
+        "title": "Joomla Extension - jdownloads.com - RCE through file upload in jDownloads < 4.1.8 -  Insufficient validation of frontend thumbnail uploads allowed users with upload permission to place executable files on the server. This results in PHP code execution.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-117551",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-110697",
-        "score": 9.9,
+        "date": "2026-11-13",
+        "id": "CVE-2026-119077",
+        "score": 9.8,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "A flaw was found in Quay where the robot account listing function constructs a SQL LIKE pattern from user-controlled namespace names without escaping wildcard metacharacters. An attacker who creates a namespace containing an underscore character can match and retrieve robot accounts and their decrypted authentication tokens from other tenants' namespaces, leading to cross-tenant credential theft and unauthorized image operations.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-110697",
+        "title": "The ELEX WordPress HelpDesk & Customer Ticketing System plugin for WordPress is vulnerable to PHP Object Injection in all versions up to, and including, 3.3.9 via the 'form (specifically the attacker-controlled ticket_label field inside the url-encoded form string)' parameter parameter. This is due to missing server-side authentication and the absence of a class allowlist on deserialization, with the only guard being a nonce publicly emitted on any page carrying the [wsdesk_support] shortcode. This makes it possible for unauthenticated attackers to execute code on the server. A successful exploit requires a single anonymous GET to any public page carrying the [wsdesk_support] shortcode to harvest the publicly emitted wsdesk_nonce value, after which a single unauthenticated POST completes the attack.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119077",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-125055",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "The Chatterbug Forms \u2013 Fast, Flexible WordPress Form Builder plugin for WordPress is vulnerable to Arbitrary File Upload in all versions up to, and including, 1.0.2 via the cbforms_check_form_submissions function. This is due to missing server-side file extension validation in cbforms_check_form_submissions(), where the allowed-type check defaults to the uploaded file's own extension when no field restriction is configured, trivially allowing any extension including .php. This makes it possible for unauthenticated attackers to upload files that may be executable, which makes remote code execution possible. The submission nonce printed inline on every public page containing a Chatterbug form is freely obtainable by unauthenticated visitors and therefore does not constitute an effective access control barrier.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-125055",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-11-12",
-        "id": "CVE-2026-12591",
-        "score": 9.9,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "Zohocorp ManageEngine\u00a0M365 Manager Plus\u00a0versions below\u00a04818\u00a0is affected by\u00a0an authenticated technician may exploit insufficient permission validation in the delegated administration interface to escalate privileges beyond their intended scope, which could result in remote code execution during administrative processing.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-12591",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-12",
-        "id": "CVE-2026-110959",
-        "score": 9.8,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "The Descope WordPress plugin before 1.2.0 does not validate the authentication token it receives before creating a WordPress session, accepting any non-empty token, so an unauthenticated attacker can obtain a session for any existing account, including an administrator, by supplying that account's email address.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-110959",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-123710",
-        "score": 9.8,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "A flaw was found in Red Hat Quay. An unauthenticated client can obtain an anonymous registry token with an audience it controls, present that token to the service key rotation endpoint, and install its own approved signing key with no expiry. Registry tokens signed with that key are accepted for any repository, allowing read and write access to private images and replacement of repository tags.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123710",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-12",
-        "id": "CVE-2026-124814",
-        "score": 9.8,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "The Ultimate Addons for Elementor Forms WordPress plugin before 1.0.8 does not properly validate the extension of uploaded files in its bundled file upload field, allowing unauthenticated users to upload arbitrary files such as PHP scripts and achieve remote code execution.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-124814",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126147",
-        "score": 9.8,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "A improper limitation of a pathname to a restricted directory ('path traversal') vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.6, FortiMail 7.4.0 through 7.4.8, FortiMail 7.2 all versions may allow an unauthenticated attacker to execute unauthorized code or commands via crafted requests.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126147",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126148",
-        "score": 9.8,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "A improper neutralization of special elements used in an os command ('os command injection') vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.6 may allow an unauthenticated attacker to execute unauthorized code or commands via crafted HA join-request packets.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126148",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126170",
-        "score": 9.8,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "A improper encoding or escaping of output vulnerability in Fortinet FortiAnalyzer 8.0.0 through 8.0.2, FortiAnalyzer 7.6.0 through 7.6.7, FortiAnalyzer Cloud 8.0.1 through 8.0.2, FortiAnalyzer Cloud 7.6.0 through 7.6.7, FortiAnalyzer-BigData 7.6.0 through 7.6.2, FortiManager 8.0.0 through 8.0.2, FortiManager 7.6.0 through 7.6.7, FortiManager Cloud 8.0.1 through 8.0.2, FortiManager Cloud 7.6.0 through 7.6.7 may allow an unauthenticated attacker to execute unauthorized code or commands via a specially crafted HTTP request",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126170",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126259",
-        "score": 9.8,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "A missing authentication for critical function vulnerability in Fortinet FortiOS 8.0.0, FortiOS 7.6.0 through 7.6.7, FortiOS 7.4.0 through 7.4.12, FortiOS 7.2.0 through 7.2.13 may allow an unauthenticated attacker with HA FGSP + standalone-config-sync, or autoscale to execute command as super admin via crafted HA packets.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126259",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126262",
-        "score": 9.8,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "A improper neutralization of special elements used in an sql command ('sql injection') vulnerability in Fortinet FortiAnalyzer 8.0.0 through 8.0.1, FortiAnalyzer 7.6.0 through 7.6.7, FortiAnalyzer 7.4.0 through 7.4.11, FortiAnalyzer 7.2.0 through 7.2.12, FortiManager 8.0.0, FortiManager 7.6.0 through 7.6.7, FortiManager 7.4.0 through 7.4.11, FortiManager 7.2.0 through 7.2.12 may allow an unauthenticated attacker who has access to the oftp port to execute code or command on the system via crafted OFTP packets.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126262",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126263",
-        "score": 9.8,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "A improper neutralization of special elements used in an sql command ('sql injection') vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.4, FortiMail 7.4.0 through 7.4.6 may allow an authenticated attacker to execute unauthorized code or commands via specifically crafted requests.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126263",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-67449",
-        "score": 9.8,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "Portabase is a database backup and restore tool for PostgreSQL, MySQL, MsSQL, MariaDB, Firebird SQL, SQLite, MongoDB, Redis, Files and Docker Volume. Prior to version 1.21.2, a path traversal in the TUS upload webhook handler (app/api/tus/hooks/route.ts) allowed an unauthenticated attacker to overwrite arbitrary files under the private data directory, including /data/private/keys/master_key.bin (the AES-256-GCM master key). This issue has been patched in version 1.21.2.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-67449",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-12",
-        "id": "CVE-2026-76954",
-        "score": 9.8,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "An improper neutralization of special elements used in an SQL command vulnerability in the Auth API in Synology DiskStation Manager (DSM) before 7.2.1-69057-13, 7.2.2-72806-10, 7.3.2-86009-5, and 7.4.1-90080-1 allows remote attackers to read or write arbitrary files and conduct denial-of-service attacks.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-76954",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126254",
+        "id": "CVE-2026-107360",
         "score": 9.6,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "A numeric truncation error vulnerability in Fortinet FortiOS 8.0.0 through 8.0.1, FortiOS 7.6.0 through 7.6.7, FortiOS 7.4.0 through 7.4.12, FortiOS 7.2.0 through 7.2.13 may allow a configured ibgp neighbor to send malicious/malformed attributes to all connected routers via a specially crafted request",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126254",
+        "title": "A flaw was found in rubygem-safemode. Compound assignment expressions in sandboxed code are evaluated without mediating method calls through the Jail allow-list. An authenticated attacker who can supply template content can invoke arbitrary no-argument methods on objects exposed to the template renderer without Jail mediation, including destructive operations such as host deletion and disclosure of non-allow-listed object state.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-107360",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-65840",
-        "score": 9.6,
+        "date": "2026-11-13",
+        "id": "CVE-2026-107412",
+        "score": 9.5,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "Fider is a feedback portal for feature requests and suggestions. Prior to version 0.36.0, in multi-tenant mode (HOST_MODE=multi), an attacker can use an email verification key issued by Tenant A to authenticate as the same email address on Tenant B. This completely bypasses tenant isolation and allows unauthorized account takeover across tenants. Single-host deployments (HOST_MODE=single, the default) are NOT affected. This issue has been patched in version 0.36.0.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-65840",
+        "title": "Multiple Memory overflow vulnerabilities can lead to unpredictable or erroneous behavior and Denial of Service in Citrix NetScaler ADC and Citrix NetScaler Gateway.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-107412",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126164",
+        "date": "2026-11-13",
+        "id": "CVE-2026-126378",
         "score": 9.4,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "A improper neutralization of special elements used in an sql command ('sql injection') vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.6, FortiMail 7.4.0 through 7.4.8, FortiMail 7.2 all versions may allow an unauthenticated attacker to execute unauthorized code or commands via crafted requests.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126164",
+        "title": "Vvveb through 1.0.8.6 contains a file upload vulnerability in the theme installer validFile() function that uses strpos() instead of strict path matching. Attackers with admin credentials can upload a ZIP containing a PHP file whose path includes /theme.php to achieve remote code execution on nginx deployments.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126378",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-12",
-        "id": "CVE-2026-8333",
+        "date": "2026-11-13",
+        "id": "CVE-2026-126380",
         "score": 9.4,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "A stored cross-site scripting vulnerability in Microchip the TimePictra platform could allow an authenticated, low-privileged attacker to store malicious script content that executes when another user views the affected page",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-8333",
+        "title": "Vvveb before 1.0.9.0 contains a denylist bypass in system/traits/media.php where '.phar' is misconfigured with a leading dot, allowing authenticated administrators to upload .phar PHP files. Attackers can upload a GIF magic-byte polyglot webshell bypassing binary inspection and execute arbitrary OS commands as the web-server user.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126380",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-127073",
+        "score": 9.4,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "OpsTree BuildPiper before 2.7.0 contains a privilege escalation vulnerability that allows project users to gain Kubernetes cluster-admin rights by submitting unrestricted manifests through the Additional Manifest feature. Attackers can deploy a ClusterRoleBinding binding a service account to cluster-admin, which the pipeline applies with cluster-wide credentials, granting control over all workloads and secrets.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-127073",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-127080",
+        "score": 9.4,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "OpsTree BuildPiper before 2.7.0 contains an improper authorization vulnerability that allows authenticated deploy users to define arbitrary Kubernetes hostPath volumes without allow-list or policy checks. Attackers can set the host path to / in the Define HostPath Volume configuration to mount the worker node root filesystem read-write, breaking container isolation and enabling node and cluster compromise.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-127080",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-128049",
+        "score": 9.4,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "OpenMage Magento LTS before 20.18.2 and 21.0.0-beta1 before 21.0.0-beta3 contains a cross-site request forgery vulnerability in the admin and storefront OAuth confirm and confirmSimple actions, which accept GET requests without form-key validation. Attackers holding OAuth consumer credentials can lure a logged-in administrator or customer to a crafted confirm URL that authorizes the attacker's request token, then exchange it at /oauth/token for a persistent REST API access token bound to the victim.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128049",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-11-12",
-        "id": "CVE-2026-110003",
-        "score": 9.3,
+        "id": "CVE-2026-68548",
+        "score": 9.4,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "A vulnerability in the administration REST interface of Azul Payara allows a remote, unauthenticated attacker to bypass secure-admin remote-access restrictions by supplying an arbitrary value in the X-GlassFish-authToken HTTP header. The header's presence waives the remote-rejection check before the token is validated, and an invalid token falls through to password-based authentication, which succeeds without credentials on default domains configured with an empty administrative password. Successful exploitation grants execution of arbitrary administrative commands, equivalent to complete compromise of the server.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-110003",
+        "title": "Algernon is a small self-contained pure-Go web server. Prior to version 1.17.10, Algernon's URL-prefix authorization gate matches its protected prefixes (/admin, /repo, /data) with case-sensitive strings.HasPrefix, while the exact same raw req.URL.Path is later resolved against the filesystem. On case-insensitive filesystems (Windows NTFS \u2014 always; macOS APFS/HFS+ \u2014 default), a request for /Admin/secret.lua evades every protected-prefix check, falls through to the public-prefix accept branch, and then resolves on disk to admin/secret.lua. The result is an unauthenticated bypass of the /admin, /repo, and /data authorization boundary, enabling read (and, for Lua files, execution) of protected content. The permission system is active in the default configuration. This issue has been patched in version 1.17.10.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-68548",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126253",
+        "date": "2026-11-13",
+        "id": "CVE-2026-107407",
         "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "A authentication bypass by primary weakness vulnerability in Fortinet FortiOS 8.0.0 through 8.0.1, FortiOS 7.6.0 through 7.6.7, FortiOS 7.4.0 through 7.4.12, FortiOS 7.2.0 through 7.2.13 may allow an unauthenticated attacker to broadcast LSA via specially crafted request",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126253",
+        "title": "Memory overflow in SMPP traffic can lead to unpredictable or erroneous behavior or Denial of Service in Citrix NetScaler",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-107407",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126768",
+        "date": "2026-11-13",
+        "id": "CVE-2026-107408",
         "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "OpsTree REMS through 1.0.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to obtain valid JWTs by setting the client-controlled is_local_auth field. Attackers can send a POST /api/v1/user/login/ request for the admin account with an invalid password and is_local_auth true to gain SuperUser administrative access.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126768",
+        "title": "Memory corruption in DNS / DNS-over-HTTPS (DoH) can lead to unpredictable or erroneous behavior or Denial of Service in Citrix NetScaler",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-107408",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-107409",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Memory corruption in DNS-over-HTTPS (DoH) can lead to unpredictable or erroneous behavior or a Denial of Service in Citrix NetScaler",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-107409",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-107410",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Memory overflow in NetScaler Push can lead to unpredictable or erroneous behavior or Denial of Service in Citrix NetScaler",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-107410",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-107415",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Memory overflow in Email OTP authentication can lead to unpredictable or erroneous behavior or Denial of Service in Citrix NetScaler ADC and Citrix NetScaler Gateway.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-107415",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-111334",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Memory overflow in Endpoint Analysis (EPA/EPAS) can lead to unpredictable or erroneous behavior or a Denial of Service in Citrix NetScaler ADC and Citrix NetScaler Gateway.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-111334",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-120864",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Memory overflow in ICA proxy can lead to unpredictable or erroneous behavior or Denial of Service in Citrix NetScaler ADC and Citrix NetScaler Gateway.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120864",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-120868",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Memory overflow in Packet Processing can lead to unpredictable or erroneous behavior or Denial of Service in NetScaler ADC and NetScaler Gateway.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120868",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-11-12",
-        "id": "CVE-2026-126785",
+        "id": "CVE-2026-120869",
         "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "A vulnerability has been found in rmalright TR-VISION HOME 2.0.5. Impacted is the function sub_11504 in the library WFanManager.sys of the component IOCTL Handler. Such manipulation leads to incorrect default permissions. The attack must be carried out locally. The vendor was contacted early about this disclosure but did not respond in any way.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126785",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126797",
-        "score": 9.3,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "NextScan 1.1.0 through 1.2.0 contains an authentication bypass vulnerability in ns-admin that allows unauthenticated attackers to forge administrator tokens using a hardcoded JWT signing key. Attackers can sign an HS256 X-Access-Token carrying the public super administrator role ID to gain full access to user management, scan tasks and stored vulnerability results.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126797",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126800",
-        "score": 9.3,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "Hydro @hydrooj/ui-default before 4.59.1 contains a stored cross-site scripting vulnerability that allows registered users to inject script by placing double quotes in language- class tokens within markdown-it-xss.ts. Attackers can store a payload in their profile bio that executes when administrators or other users view it, stealing the non-httpOnly sid session cookie for session hijacking.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126800",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126806",
-        "score": 9.3,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "WWBN AVideo 14.3 through 29.7.1 contains a stored cross-site scripting vulnerability that allows uploaders to inject scripts via the videoDownloadedLink value stored unescaped through objects/aVideoEncoder.json.php. Attackers can embed event-handler payloads in the URL host rendered as a Source tag in view/managerVideos_body.php, executing in administrator sessions to install plugin archives containing PHP.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126806",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126812",
-        "score": 9.3,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "blueprintUE Self-Hosted Edition before 4.3.7 contains an insecure default configuration in its Docker Compose examples that sets MYSQL_ALLOW_EMPTY_PASSWORD=yes in database.env and publishes MariaDB on port 3306. Unauthenticated attackers reaching the Docker host on port 3306 can log in as root without a password to read, modify, or delete user accounts, blueprints, and all databases.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126812",
+        "title": "An unauthenticated attacker can bypass authentication controls to access restricted resources on the Citrix NetScaler Console appliance",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120869",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-11-12",
-        "id": "CVE-2026-90908",
+        "id": "CVE-2026-124002",
         "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "A vulnerability in the GenericAdminAuthenticator component of Azul Payara Server and Azul Payara Micro allows a remote, unauthenticated attacker to bypass JMX/RMI administrative access restrictions by spoofing the client host address. Successful exploitation can grant administrative access to the MBean server and lead to remote code execution. Azul Payara Micro is affected only when its JMX connector is enabled.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-90908",
+        "title": "XWEB EVO versions 5.2.3 through before 5.7.0 contains a pre-authentication OS command injection vulnerability that allows unauthenticated remote attackers to execute arbitrary OS commands by injecting shell metacharacters into the username field of login.lua, cleanout.lua, or api.lua before the password check occurs. Attackers can exploit this flaw combined with the setuid-root wlua interpreter to execute commands with root privileges, achieving full system compromise. This product line reached it's end of service date in March 2026.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-124002",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126325",
+        "date": "2026-11-12",
+        "id": "CVE-2026-124004",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "XWEB EVO before 5.6.2 contains a hardcoded backdoor password vulnerability that allows unauthenticated remote attackers to gain full administrative access to the built-in Administrator account. Attackers can authenticate using the hardcoded credential xwebevonewgeneration in a single request to obtain a complete admin session and full control over the application. This product line reached it's end of service date in March 2026.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-124004",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-12",
+        "id": "CVE-2026-124010",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "XWEB EVO before 5.6.2 contains a command injection vulnerability that allows unauthenticated remote attackers to execute arbitrary commands as root by exploiting the setuid-root CGI xwconsole.cgi. Attackers can supply malicious input through the sh parameter, which is passed unsanitized to popen(), to achieve full system compromise. This product line reached it's end of service date in March 2026.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-124010",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-126269",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "NocoDB before 2026.09.0 contains a stored cross-site scripting vulnerability that allows authenticated Editor users to execute scripts by storing crafted attachment MIME types like text/html;image/png. Attackers can write the value through the records API so the /dltemp signed URL serves HTML inline, stealing session tokens from localStorage to impersonate victims.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126269",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-126274",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "NocoDB before 2026.08.0 contains a stored cross-site scripting vulnerability that allows authenticated Creator users to inject script by embedding markup in column or table titles. The Delete.vue confirmation dialog renders these titles through an unescaped innerHTML binding, executing script when a victim deletes an external-source table to steal session tokens from localStorage.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126274",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-126315",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Frappe HRMS 16.14.0 before 16.20.1 sends product usage events on certain HR transactions without checking the site's telemetry setting, and some events include more detail than needed. During normal use, with no user action, values such as leave type names, claimed amounts and appraisal scores are transmitted even when telemetry is disabled.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126315",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-126473",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "OpenEMR before 8.4.0 contains OAuth scope canonicalization and containment flaws that allow unauthenticated attackers to obtain unapproved system-level FHIR access. Attackers can register a colon-form system:Patient.read client that bypasses approval, then request unregistered system/Patient.write scope to read, modify, and create Patient records.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126473",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-126945",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Zipline before 4.5.1 contains a stored cross-site scripting vulnerability in the HighlightCode component that renders unescaped file content before highlight.js finishes loading. Authenticated attackers can upload text files containing HTML/JavaScript payloads that execute in viewers' browsers, enabling API calls such as account changes on the victim's behalf.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126945",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-12",
+        "id": "CVE-2026-127063",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "The\nthird-party RMM+ extension for ConnectWise ScreenConnect uses a static API\nsecret by default. The value can be changed by an administrator; however,\nenvironments retaining the default value may allow unauthorized access to\nextension API functionality, including the ability to send commands to managed\nagents. This issue is specific to the third-party extension and does not affect\nthe ScreenConnect server or client.\n\n\n\n\n\nScope: This issue affects the third-party RMM+\nextension for ConnectWise ScreenConnect. Deployments without the extension are\nnot affected. ScreenConnect server or client software are not impacted.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-127063",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-127275",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "A vulnerability was determined in Linksys EA8100 1.0.3.216940. This issue affects the function SetRemoteSetting/SetUnsecuredWiFiWarning of the file ui_server.lua of the component JNAP API. This manipulation of the argument isEnabled/enabled causes missing authentication. It is possible to initiate the attack remotely. The exploit has been publicly disclosed and may be utilized. The vendor was contacted early about this disclosure but did not respond in any way.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-127275",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-127277",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "A security flaw has been discovered in Linksys EA8100 1.0.3.216940. The affected element is an unknown function of the file etc/init.d/service_smbd.sh of the component SMB Service. Performing a manipulation of the argument ANON_ACCESS results in improper initialization. The attack can be initiated remotely. The exploit has been released to the public and may be used for attacks. The vendor was contacted early about this disclosure but did not respond in any way.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-127277",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-12",
+        "id": "CVE-2026-124005",
         "score": 9.2,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "A critical remote code execution (RCE) vulnerability has been reported in PTC Windchill and PTC FlexPLM. The vulnerability may be exploited through the deserialization of untrusted data.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126325",
+        "title": "XWEB EVO 4.3.0 through 5.8.8 contains a weak password generation vulnerability that allows remote attackers to derive the Administrator code-of-the-day password using only the device MAC address and date, with no server secret involved. Attackers can analyze the firmware binary xwpasswd, which itself functions as the password generator, to compute valid Administrator credentials offline and authenticate to the device without authorization. This product line reached it's end of service date in March 2026.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-124005",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-11-12",
-        "id": "CVE-2026-127016",
+        "id": "CVE-2026-124006",
         "score": 9.2,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "The MISP Modules website component exposes external tool management endpoints (add, delete, change status, and change configuration) that did not enforce the optional administrator authentication policy. When ADMIN_PASSWORD was configured in the application environment, the module configuration endpoints correctly required an authenticated administrator session, but the external tools management handlers processed requests from anonymous users without any authorization check. An unauthenticated attacker with network access to the website could add arbitrary external tools, delete existing tools, toggle their active status, and modify their configurations including API keys and ingestion URLs. This inconsistency allowed bypass of the intended access control for the external tools management functionality. The vulnerability is conditional on ADMIN_PASSWORD being set; installations without an admin password intentionally permit open management access by design. The affected component is the external_tools Flask blueprint within the MISP Modules website application.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-127016",
+        "title": "XWEB EVO through 5.8.8 contains a predictable credential generation vulnerability that allows attackers to derive the Linux root password by computing a fixed prefix combined with a daily password value. Attackers can calculate the deterministic root credential, which before 5.7.0 was identical across all units and from 5.7.0 onward remains derivable from the MAC-based daily password, to gain unauthorized root access to the underlying operating system. This product line reached it's end of service date in March 2026.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-124006",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-11-12",
-        "id": "CVE-2026-127046",
+        "id": "CVE-2026-124007",
         "score": 9.2,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "The MISP Modules website component contains an information disclosure vulnerability in the external tools management interface. The /external_tools/list endpoint returned stored API keys (the api_key field) in its JSON response via the ExternalTools model serializer. Additionally, the browser-based edit form pre-populated the API key input field with the stored credential value, exposing it in the DOM.\n\nThe /external_tools/list endpoint is accessible without authentication (the regression tests verify the response for both authenticated and unauthenticated clients), meaning any network-reachable client could retrieve the API keys for all configured external tools. These keys are used by the server to authenticate submissions to external analysis or enrichment services, so their disclosure allows an attacker to impersonate the MISP instance or directly access those external services.\n\nThe vulnerability also affected the edit workflow: the change_config endpoint previously required the API key to be present and non-empty on every save, forcing the key to round-trip through the client. The browser JavaScript stored the key in a reactive state object and updated the in-memory tool list with the credential value, further increasing the window of exposure in client-side memory and network traffic.\n\nAffected component: the website sub-application of MISP Modules, specifically the external_tools module (serializer in models.py, list endpoint, and the external_tools_index.html template). The impact is limited to confidentiality of the stored API keys; no integrity or availability impact on the MISP Modules website itself is indicated by the patch.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-127046",
+        "title": "XWEB EVO before 5.6.2 contains a pre-authentication OS command injection vulnerability that allows unauthenticated remote attackers to execute arbitrary commands by injecting shell metacharacters into the password field. Attackers can exploit the unescaped interpolation of the password value into the hashpass invocation within login.lua, cleanout.lua, and api.lua to achieve root-level command execution via the setuid wlua interpreter. This product line reached it's end of service date in March 2026.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-124007",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-11-12",
-        "id": "CVE-2026-12507",
-        "score": 9.1,
+        "id": "CVE-2026-124012",
+        "score": 9.2,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "Zohocorp ManageEngine AssetExplorer versions below 7860, ServiceDesk Plus versions below 15290, ServiceDesk Plus MSP versions below 15150, and SupportCenter Plus versions below 15150 are affected by a authenticated remote code execution vulnerability in the Reports module. An authenticated user with the Create Query Reports permission could exploit specially crafted database queries to execute arbitrary commands on the underlying server.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-12507",
+        "title": "XWEB EVO 5.6.2 through 5.8.8 contains a hardcoded credential vulnerability where the Administrator web account is configured to use password_mode daily_password with no stored password, as the Users.authenticate function in lualib_users.lua synthesizes the Administrator configuration without validating any stored secret. Attackers who can derive the MAC-based daily password can authenticate as Administrator to obtain a full admin session on the device. This product line reached it's end of service date in March 2026.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-124012",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126150",
-        "score": 9.1,
+        "date": "2026-11-13",
+        "id": "CVE-2026-126273",
+        "score": 9.2,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "A weak password recovery mechanism for forgotten password vulnerability in Fortinet FortiMail 8.0.0, FortiMail 7.6.0 through 7.6.5, FortiMail 7.4.0 through 7.4.7, FortiMail 7.2.0 through 7.2.9 may allow an unauthenticated attacker to reset the password of an arbitrary IBE webmail user and take over their account via specially crafted HTTP requests.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126150",
+        "title": "NocoDB before 2026.09.0 contains a privilege escalation vulnerability in initAdminFromEnv.ts that silently skips super-admin bootstrap when the admin password environment variable is empty. Unauthenticated attackers can call the public signup endpoint first on a fresh instance to receive Creator and Super Admin roles, gaining full administrative control.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126273",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126155",
-        "score": 9.1,
+        "date": "2026-11-13",
+        "id": "CVE-2026-126377",
+        "score": 9.2,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "A incorrect authorization vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.6, FortiMail 7.4.0 through 7.4.8, FortiMail 7.2 all versions may allow an unauthenticated remote attacker to obtain an authenticated IBE webmail session as any IBE recipient and read or send their encrypted mail via crafted HTTP requests.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126155",
+        "title": "Vvveb before 1.0.9.0 contains an authentication bypass vulnerability in generateCookie() in system/user/user.php that uses loose comparison to validate MD5 cookie hashes. Unauthenticated attackers can brute-force cookie values until the server's MD5 computation yields a 0e magic hash, then forge persistent cookies for account takeover.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126377",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126156",
-        "score": 9.1,
+        "date": "2026-11-13",
+        "id": "CVE-2026-126937",
+        "score": 9.2,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "A authorization bypass through user-controlled key vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.6, FortiMail 7.4.0 through 7.4.8, FortiMail 7.2 all versions may allow an unauthenticated remote attacker to take over an arbitrary IBE recipient account via crafted HTTP requests.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126156",
+        "title": "Zipline before 4.6.5 contains a TOCTOU race condition in the POST /api/setup endpoint that allows unauthenticated attackers to create multiple SUPERADMIN accounts by racing concurrent requests before the firstSetup flag is reset. Attackers can send simultaneous requests with spoofed X-Forwarded-For headers during the argon2 hashing window to gain full administrative control of the instance.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126937",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126157",
-        "score": 9.1,
+        "date": "2026-11-13",
+        "id": "CVE-2026-126952",
+        "score": 9.2,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "A improper authentication vulnerability in Fortinet FortiMail 8.0.0 through 8.0.1, FortiMail 7.6.0 through 7.6.6, FortiMail 7.4.0 through 7.4.8, FortiMail 7.2 all versions may allow an unauthenticated attacker to gain access to other users' secure email accounts via crafted HTTP requests.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126157",
+        "title": "Zipline through 4.4.0 contains an authentication bypass vulnerability in the WebAuthn login endpoint that creates sessions for a supplied registered credential ID without verifying the assertion. Attackers who obtain a target's passkey credential ID can impersonate that account without its authenticator, potentially gaining administrative control over SUPERADMIN accounts.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126952",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126229",
-        "score": 9.1,
+        "date": "2026-11-13",
+        "id": "CVE-2026-126953",
+        "score": 9.2,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "A authorization bypass through user-controlled key vulnerability in Fortinet FortiAnalyzer 8.0.0 through 8.0.1, FortiAnalyzer 7.6.0 through 7.6.7, FortiAnalyzer 7.4.0 through 7.4.11, FortiAnalyzer 7.2.0 through 7.2.12, FortiAnalyzer 7.0 all versions, FortiAnalyzer Cloud 8.0.1, FortiAnalyzer Cloud 7.6.0 through 7.6.7, FortiAnalyzer Cloud 7.4.1 through 7.4.11, FortiAnalyzer Cloud 7.2.1 through 7.2.12, FortiAnalyzer Cloud 7.0 all versions, FortiManager 8.0.0 through 8.0.1, FortiManager 7.6.0 through 7.6.7, FortiManager 7.4.0 through 7.4.11, FortiManager 7.2.0 through 7.2.12, FortiManager 7.0 all versions, FortiManager Cloud 8.0.1, FortiManager Cloud 7.6.0 through 7.6.7, FortiManager Cloud 7.4.1 through 7.4.11, FortiManager Cloud 7.2.1 through 7.2.12, FortiManager Cloud 7.0 all versions may allow an authenticated administrator to access to other VDOMs via specially crafted HTTP requests.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126229",
+        "title": "Cudy TR3000 before 2.5.42 contains an OS command injection vulnerability that allows a malicious or compromised ACS to execute commands as root by supplying an unvalidated InternetGatewayDevice.User.{i}.Username value. Attackers can send a SetParameterValues request with shell metacharacters that set_UserUsername() in obuspa_system.lua passes to os.execute(), gaining root command execution.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126953",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126251",
-        "score": 9.1,
+        "date": "2026-11-13",
+        "id": "CVE-2026-128046",
+        "score": 9.2,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "A incorrect authorization vulnerability in Fortinet FortiAuthenticator 8.0.0 through 8.0.3, FortiAuthenticator 6.6.0 through 6.6.10 may allow an attacker to bypass authentication and gain unauthorized access.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126251",
+        "title": "OpenMage magento-lts 20.17.0 before 20.18.2 and 21.0.0-beta1 before 21.0.0-beta3 contains an unrestricted file upload vulnerability because the general/file/protected_extensions blocklist omits phar, php8, and phps. Unauthenticated attackers can upload a .phar file through a product File custom option to a predictable media/custom_options path and request it directly to execute code on servers that map .phar to PHP and serve that directory.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128046",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126777",
+        "date": "2026-11-13",
+        "id": "CVE-2026-128047",
+        "score": 9.2,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "OpenMage magento-lts before 20.18.2 and 21.0.0-beta pre-releases before 21.0.0-beta3 generate customer email-confirmation keys with md5(uniqid()) and customer and administrator password-reset tokens with the non-cryptographic uniqHash(). Unauthenticated attackers can brute-force the roughly 20-bit confirmation key via the unrate-limited confirmAction endpoint to log in as pending customers, or predict administrator reset tokens after recovering generator state.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128047",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-75491",
+        "score": 9.2,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Cudy TR3000 before 2.5.42 contains an authentication bypass vulnerability in the Mosquitto plugin auth_plugin_jwt.so that accepts unsigned JWTs using alg none. Attackers holding any Cudy-trusted client certificate can authenticate as admincudydevice on port 8883 and publish batchcmd requests to execute commands as root.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-75491",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-75495",
+        "score": 9.2,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Cudy TR3000 before 2.5.42 contains an OS command injection vulnerability that allows a malicious or compromised ACS to execute commands as root by supplying a crafted InternetGatewayDevice.User.{i}.Password value. Attackers can send a SetParameterValues request with shell metacharacters that obuspa_system.lua concatenates into a luci.util.exec() command string, gaining root command execution.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-75495",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-126265",
         "score": 9.1,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "Traccar 3.15 before 6.17.0 contains an authentication bypass vulnerability in LdapProvider.login() that fails to reject empty passwords, causing LDAP binds to be performed as unauthenticated binds when LDAP authentication is enabled. Unauthenticated attackers who know a valid username can log in via POST /api/session or HTTP Basic authentication with an empty password against directories that permit unauthenticated binds, obtaining sessions for any account including administrators.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126777",
+        "title": "SiYuan 2.1.0 before 3.8.9 contains a flaw where the loginAuth CAPTCHA challenge lives in a signed client-side cookie, allowing reuse of a solved challenge. Attackers can replay the original signed siyuan cookie with distinct wrong access codes to brute-force the code and gain an administrator session.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126265",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-126280",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "NocoDB before 2026.08.0 contains a race condition in refresh-token rotation that allows attackers to reuse tokens because UserRefreshToken.ts never checks the affected-row count. Attackers holding a captured refresh token can present it concurrently with the legitimate user to obtain a valid authenticated session, and no reuse event is recorded.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126280",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-12",
+        "id": "CVE-2026-126837",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "A validation flaw in the DNS SRV host discovery of the MongoDB Node.js driver may cause the driver to connect to a host outside the expected domain. For a mongodb+srv:// connection string, the driver checks each host name in the DNS SRV response against the domain of the connection string. The driver then builds the connection address from the original name, in which certain characters end the host name early. An unauthenticated party who can forge or change the DNS SRV response may redirect the connection to a host of their choice. TLS does not prevent this, because the driver verifies the server certificate against the redirected host name. This may result in unintended disclosure of application data and authentication credentials, and in altered query results. Applications that use mongodb:// connection strings are not affected.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126837",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-127079",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "OpsTree BuildPiper before 2.7.0 lacks rate limiting on password-reset OTP verification, allowing unauthenticated attackers to brute force 6-digit OTPs. Attackers can initiate a reset and submit unthrottled guesses to the check_otp endpoint, resetting the target's password and taking over the account.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-127079",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-12",
+        "id": "CVE-2026-127111",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "SOGo before 5.12.13 contains an improper restriction of excessive authentication attempts vulnerability that allows unauthenticated attackers to reset account passwords by repeatedly guessing secret-question answers via the passwordRecoveryCheck endpoint without lockout or rate limiting. Attackers can submit unlimited candidate answers to obtain a valid recovery JWT, then use it to change the account password without the old credential and log in via the connect endpoint, achieving full account takeover on accounts without TOTP enabled.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-127111",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-12",
+        "id": "CVE-2026-127131",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "SOGo before 5.12.13 contains a missing rate limiting vulnerability in its web login TOTP verification that allows attackers who already possess a victim's password to brute-force the second-factor code without triggering any lockout. Attackers can send repeated POST requests to /SOGo/connect with wrong verification codes at high speed since failed TOTP attempts never increment the failed-login counter and SOGoMaximumFailedLoginCount does not apply, enabling indefinite guessing across 30-second code windows to bypass two-factor authentication.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-127131",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-128332",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Listmonk 6.0.0 before 7.0.0-beta.2 contains a 2FA bypass vulnerability that allows attackers with a valid password to brute-force TOTP codes because the attempt counter resets on every new password login. Attackers can repeatedly submit credentials to POST /admin/login to obtain fresh tokens, each allowing 15 more guesses, gaining sessions for 2FA-protected accounts including Super Admin.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128332",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-128333",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "listmonk 6.0.0 before 7.0.0-beta.2 contains an authentication bypass vulnerability in doResetPassword that skips TOTP verification after a password reset. Attackers who can complete a reset, such as by reading the victim's reset email, obtain fully authenticated sessions including Super Admin without the TOTP code.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128333",
         "watch": []
       },
       {
@@ -661,50 +987,106 @@
       },
       {
         "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-85632",
-        "score": 9.1,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "Missing authentication for critical function and Improper validation of integrity check value vulnerability in Sipay Electronic Money and Payment Services Inc. WooCommerce Virtual POS Module allows Authentication Bypass and Application API Message Manipulation via Man-in-the-Middle.\n\nThis issue affects WooCommerce Virtual POS Module: from 26.8.3 before 26.9.1.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-85632",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-126257",
-        "score": 9.0,
-        "severity": "CRITICAL",
-        "source": "nvd",
-        "title": "A use of hard-coded password vulnerability in Fortinet FortiAuthenticator 8.0.0 through 8.0.3, FortiAuthenticator 6.6.0 through 6.6.10 may allow an unauthenticated attacker to bypass credential validation in certain circumstances outside of the attacker's control and gain unauthorized access.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126257",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-123871",
-        "score": 6.2,
+        "date": "2026-11-13",
+        "id": "CVE-2026-128022",
+        "score": 6.9,
         "severity": "MEDIUM",
         "source": "nvd",
-        "title": "Node.js discloses proxy credentials in ERR_PROXY_INVALID_CONFIG error messages. CVE-2026-48615 established that a proxy credential must not appear in a Node.js error message and redacted the username and password from ProxyConfig.href, but that fix missed four error paths in the same subsystem, one of them inside the same constructor, which interpolate the raw proxy URL, credentials included, into an ERR_PROXY_INVALID_CONFIG message. The proxy URL comes from the environment, but the defect is the sink: a secret that Node.js redacts everywhere else is emitted verbatim into a much wider audience than the process environment, such as stderr, container logs, log aggregation, and crash reporting services. This vulnerability affects Node.js 26.x, 24.x, and 22.x.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123871",
+        "title": "FrankenPHP before 1.13.2 contains a resource exhaustion vulnerability that allows unauthenticated clients to tie up PHP threads because queued requests are not cancelled when clients disconnect. Attackers can send many requests and close connections immediately, forcing handleRequestWithRegularPHPThreads and worker handlers to execute them and delay all clients sharing the thread pool.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128022",
         "watch": [
-          "node.js"
+          "php"
         ]
       },
       {
         "alert": false,
-        "date": "2026-11-11",
-        "id": "CVE-2026-123875",
-        "score": 5.9,
+        "date": "2026-11-13",
+        "id": "CVE-2026-128025",
+        "score": 6.9,
         "severity": "MEDIUM",
         "source": "nvd",
-        "title": "A NULL pointer dereference in Node.js HTTP/2 lets an unauthenticated client crash the server, over both TLS and cleartext, by cancelling file downloads. When the server serves a file with stream.respondWithFile() or stream.respondWithFD() and the client cancels the request, a StreamPipe used for the transfer is torn down in an order that leaves a NULL pointer which is then dereferenced, aborting the process. No crafted frames are needed, and a handful of cancelled requests against a default file-serving handler is enough. This vulnerability affects Node.js 26.x, 24.x, and 22.x.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-123875",
+        "title": "FrankenPHP before 1.13.0 contains a path-split interpretation conflict in splitPos in cgi.go that allows unauthenticated attackers to execute protected PHP scripts by embedding .php inside a filename component. Attackers can request paths like /uploads/a.php.txt/b.php to execute uploads/a.php despite route-level or WAF deny rules and forge PATH_INFO, SCRIPT_NAME, and PHP_SELF values.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128025",
         "watch": [
-          "node.js"
+          "php"
+        ]
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-128026",
+        "score": 6.9,
+        "severity": "MEDIUM",
+        "source": "nvd",
+        "title": "FrankenPHP from 1.5.0 before 1.13.0 contains an incomplete environment sandbox vulnerability in which putenv writes to the process-wide OS environment via os.Setenv, leaking values across concurrent requests. Attackers reaching a request path that spawns child processes with the default environment through proc_open or exec can read secrets such as database passwords set by other requests.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128026",
+        "watch": [
+          "php"
+        ]
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-128017",
+        "score": 6.3,
+        "severity": "MEDIUM",
+        "source": "nvd",
+        "title": "FrankenPHP before 1.13.4 contains a double free vulnerability in worker mode that frees SG(request_info).content_type_dup twice when a worker script ends its loop after a non-form POST request. Unauthenticated attackers can send repeated JSON POST requests until the worker loop ends, aborting the whole process when USE_ZEND_ALLOC=0 is set.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128017",
+        "watch": [
+          "php"
+        ]
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-128018",
+        "score": 6.3,
+        "severity": "MEDIUM",
+        "source": "nvd",
+        "title": "FrankenPHP before 1.13.4 contains a denial of service vulnerability in worker mode where frankenphp_handle_request() returns false without finishing the dequeued request after a fatal error during request startup. Attackers who trigger startup fatal errors against worker scripts that keep calling frankenphp_handle_request() can leave client requests hanging indefinitely while the worker continues running.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128018",
+        "watch": [
+          "php"
+        ]
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-128019",
+        "score": 6.3,
+        "severity": "MEDIUM",
+        "source": "nvd",
+        "title": "FrankenPHP before 1.13.4 contains an information disclosure vulnerability in worker mode that leaks per-request environment variables into later requests on the same PHP thread. Attackers can read values set via env directives with request placeholders or WithRequestEnv() through getenv() or $_SERVER, causing applications to act on another user's routing, tenant, or authorization values.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128019",
+        "watch": [
+          "php"
+        ]
+      },
+      {
+        "alert": false,
+        "date": "2026-11-13",
+        "id": "CVE-2026-128021",
+        "score": 6.3,
+        "severity": "MEDIUM",
+        "source": "nvd",
+        "title": "FrankenPHP before 1.13.2 contains an information disclosure vulnerability that allows later clients to read earlier clients' libxml errors because worker mode never resets LIBXML(error_list) between requests. Attackers sending requests to the same worker thread can call libxml_get_errors() or libxml_get_last_error() to obtain other clients' parsed-document fragments and server filesystem paths.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-128021",
+        "watch": [
+          "php"
+        ]
+      },
+      {
+        "alert": false,
+        "date": "2026-11-12",
+        "id": "CVE-2026-126330",
+        "score": 2.4,
+        "severity": "LOW",
+        "source": "nvd",
+        "title": "Docker Sandboxes can silently republish a sandbox service after an operator removes its automatically assigned host-port mapping. The daemon removes the active binding but retains the original publication request, allowing a later port change or sandbox restart to publish the service again on a new host port. An attacker able to reach the restored endpoint may regain access to the service. Both TCP and UDP mappings are affected. Exposure is limited to the original bind address, which defaults to loopback. The issue is fixed in version 0.53.0.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126330",
+        "watch": [
+          "docker"
         ]
       }
     ],
@@ -719,21 +1101,21 @@
       "ok": true
     },
     {
-      "count": 48,
+      "count": 69,
       "label": "NVD (new CVEs)",
       "name": "nvd",
-      "note": "550 CVEs published in window; showing CRITICAL (9.0+) and CVEs about a watched product itself; 25 more only mention one (apps, plugins, libraries) and are not listed",
+      "note": "695 CVEs published in window; showing CRITICAL (9.0+) and CVEs about a watched product itself; 43 more only mention one (apps, plugins, libraries) and are not listed",
       "ok": true
     },
     {
-      "count": 0,
+      "count": 7,
       "label": "GitHub Advisory Database",
       "name": "ghsa",
       "note": "critical in all ecosystems; high only for composer, go, npm, pip",
       "ok": true
     },
     {
-      "count": 2,
+      "count": 1,
       "label": "nodejs.org release index",
       "name": "node",
       "note": "882 versions in index",
