@@ -1,6 +1,6 @@
-# Security report 2026-11-14
+# Security report 2026-11-15
 
-Generated 2026-11-14 12:14 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
+Generated 2026-11-15 12:46 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
 
 ## Needs attention (6)
 
@@ -13,50 +13,24 @@ Generated 2026-11-14 12:14 UTC by an automated job. Window: last 24 hours. Not a
 
 ## Actively exploited (CISA KEV, added in window)
 
-- **CVE-2026-114713** - UnrealIRCd UnrealIRCd - UnrealIRCd Improper Neutralization of Delimiters Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-114713)
-- **CVE-2026-123039** - Check Point Multiple Products - Check Point Multiple Products Incorrect Permission Assignment for Critical Resource Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123039)
+No new entries in the window.
 
 ## Critical new CVEs and CVEs about watched products (NVD)
 
-- **CVE-2026-125851** CVSS 9.9 CRITICAL - Unrestricted Upload of File with Dangerous Type vulnerability in themagnifico52 Hotel Booking Lite hotel-booking-lite allows Upload a Web Shell to a Web Server.This issue affects Hotel Booking Lite: from n/a through 2.5… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-125851)
-- **CVE-2026-125855** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in Elextensions ELEX WordPress HelpDesk &amp; Customer Ticketing System elex-helpdesk-customer-support-ticket-system allows Object Injection.This issue affects ELEX WordPress… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-125855)
-- **CVE-2026-126173** CVSS 9.8 CRITICAL - The AutomatorWP Pro plugin for WordPress' webhook addon is vulnerable to authorization bypass in all versions up to, and including, 1.4.4. This is due to the plugin not properly verifying that a user is authorized to pe… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-126173)
-- **CVE-2026-129165** CVSS 9.4 CRITICAL - Tactical RMM 0.17.0 through 1.6.1 contains an arbitrary file read in the /reporting/templates/preview/ endpoint because WeasyPrint resolves file:// links in user-supplied template\_md and embeds the files in the returned… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129165)
-- **CVE-2026-95377** CVSS 9.4 CRITICAL - OS command injection in the TFTP provisioning module of Zenitel EdgeAudioClient before 9.6.3.0, and 10.x before 10.1.3.0, on VSFF6, VSFF8, VSFF8MP, VSFF8MN, and VSFT devices allows unauthenticated adjacent attackers to… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-95377)
-- **CVE-2026-109445** CVSS 9.3 CRITICAL - PLANET GS-5220-8P2T2S \(hardware version 3.0\) firmware versions before 3.2412b261008 contains a stack-based buffer overflow vulnerability that allows unauthenticated attackers to corrupt stack memory by submitting an ove… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-109445)
-- **CVE-2026-123965** CVSS 9.3 CRITICAL - A prompt injection vulnerability in all versions of Jet Admin Cloud Platform allows a remote attacker with a free account to expose sensitive .env configuration files and exfiltrate critical credentials. Mitigated via s… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123965)
-- **CVE-2026-124415** CVSS 9.3 CRITICAL - Improper Neutralization of Special Elements used in an SQL Command \('SQL Injection'\) vulnerability in Alejandro Alex Reservations alex-reservations allows SQL Injection.This issue affects Alex Reservations: from n/a thr… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-124415)
-- **CVE-2026-124970** CVSS 9.3 CRITICAL - Improper Neutralization of Special Elements used in an SQL Command \('SQL Injection'\) vulnerability in WP BASE WP BASE Booking wp-base-booking-of-appointments-services-and-events allows Blind SQL Injection.This issue aff… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-124970)
-- **CVE-2026-129110** CVSS 9.3 CRITICAL - sysPass 3.0.1 through 3.2.11 contains an authentication bypass vulnerability that allows unauthenticated attackers to reinstall an already-installed instance by POSTing to the install/install handler, which never checks… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129110)
-- **CVE-2026-129171** CVSS 9.3 CRITICAL - NginxPulse 1.5.0 before 1.6.26 contains an unauthenticated sql injection vulnerability that allows remote attackers to append SQL via the id and locationType parameters of /api/stats/:type. Attackers can close the quote… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129171)
-- **CVE-2026-63079** CVSS 9.3 CRITICAL - RBH Access Technologies Integra32 Security Management System 5.1.11 R5.0 contains an unauthenticated deserialization vulnerability in its deprecated .NET Remoting service, exposed on TCP port 2001 via the AxcvcLt.dll li… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-63079)
-- **CVE-2026-82504** CVSS 9.3 CRITICAL - VITEC EZ TV Platform Server before 8.5.0 contains an unrestricted file upload vulnerability in the upload handler that allows unauthenticated remote attackers to upload arbitrary files by supplying a target filename in… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-82504)
-- **CVE-2026-95614** CVSS 9.3 CRITICAL - The host configuration watcher in Zenitel Connect before 1.11.0 applies a rsyslog configuration file written to a data volume that is shared with the hiatus application container, which allows local attackers with write… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-95614)
-- **CVE-2026-124020** CVSS 9.2 CRITICAL - Control Web Panel \(CWP\) before webpanel\_version 1.30.6 contains a host header injection vulnerability that allows unauthenticated attackers to manipulate the password-recovery reset URL by injecting the HTTP Host header… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-124020)
-- **CVE-2026-124021** CVSS 9.2 CRITICAL - Control Web Panel \(CWP\) before webpanel\_version 1.30.6 contains an authorization bypass vulnerability in the validate\(\) function of api/v1/index.php that allows attackers holding a password-recovery token and a predicta… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-124021)
-- **CVE-2026-129124** CVSS 9.2 CRITICAL - C-Kermit before 11.1.515 contains an OS command injection vulnerability that allows remote clients to execute shell commands by supplying unquoted arguments to REMOTE WHO or REMOTE SPACE. Attackers can append shell meta… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129124)
-- **CVE-2026-129125** CVSS 9.2 CRITICAL - C-Kermit 6.0.192 before 11.1.515 contains a remote code execution vulnerability that allows Kermit clients to run shell commands on servers with host commands disabled by abusing REMOTE QUERY evaluation. Attackers can s… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129125)
-- **CVE-2026-129126** CVSS 9.2 CRITICAL - C-Kermit before 11.1.515 contains a heap buffer overflow vulnerability in putsrv\(\) in ckcfns.c that allows malicious peers to write past the srvcmd buffer by sending crafted packets. Attackers can use Kermit repeat-coun… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129126)
-- **CVE-2026-129167** CVSS 9.2 CRITICAL - Seafile SeaDoc converter 2.0.4 before 2.0.11 and 3.0.0 before 3.0.8 contains an absolute path traversal vulnerability that allows unauthenticated attackers holding a public share token to execute code. Attackers supply… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129167)
-- **CVE-2026-103813** CVSS 9.1 CRITICAL - Dell PowerStore contains an OS Command Injection vulnerability. An authenticated user with limited privileges could potentially exploit this vulnerability, potentially leading to privilege escalation to root on the appl… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-103813)
-- **CVE-2026-129161** CVSS 9.1 CRITICAL - Dromara free-fs 2.0.1 through 2.3.1 contains an improper restriction of authentication attempts vulnerability that allows unauthenticated attackers to brute-force six-digit password reset codes via PUT /apis/user/forget… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129161)
+- **CVE-2026-120522** CVSS 9.8 CRITICAL - The Cloud Storage Manager for Fluent Forms – Google Drive, Dropbox, OneDrive, S3 Uploads plugin for WordPress is vulnerable to Arbitrary File Write in all versions up to, and including, 1.2.0. This is due to missing aut… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-120522)
+- **CVE-2026-19907** CVSS 9.8 CRITICAL - The Shipo plugin for WordPress is vulnerable to Authentication Bypass in versions 1.6 through 1.8.0. This is due to the \`authenticate\_rest\_user\(\)\` function parsing the \`LOGGED\_IN\_COOKIE\` value and authenticating the nam… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-19907)
+- **CVE-2026-129433** CVSS 9.4 CRITICAL - Dokploy before 0.31.1 contains an OS command injection vulnerability in getComposeContainerCommand\(\) that allows authenticated organization members to execute shell commands via the serviceName parameter. Attackers can… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129433)
+- **CVE-2026-129255** CVSS 9.3 CRITICAL - A vulnerability was identified in CoolerMaster MASTERPLUS+ 1.9.6. This affects the function sub\_11504 in the library WinRing0x64.sys of the component Device Driver. The manipulation of the argument PhysicalAddress leads… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129255)
+- **CVE-2026-129261** CVSS 9.3 CRITICAL - A vulnerability was found in Kingston FURY CTRL RGB Control Software up to 2.0.66.0. The impacted element is an unknown function in the library NTIOLib\_X64.sys of the component IOCTL Handler. Performing a manipulation r… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129261)
+- **CVE-2026-129351** CVSS 9.3 CRITICAL - A security vulnerability has been detected in TRENDnet TEW-657BRM 1.00.1. This vulnerability affects the function sprintf of the file /setup.cgi of the component mini\_httpd. Such manipulation leads to out-of-bounds writ… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129351)
+- **CVE-2026-129353** CVSS 9.3 CRITICAL - A vulnerability was detected in D-Link DIR-600L 2.17/2.17b02. Affected by this vulnerability is the function authenticationcgi\_main of the file authentication.cgi. Performing a manipulation of the argument id/password r… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129353)
+- **CVE-2026-129354** CVSS 9.3 CRITICAL - A flaw has been found in D-Link DIR-600L 2.17b02. Affected by this issue is the function hnap\_main of the file htdocs/cgibin of the component HNAP Handler. Executing a manipulation can lead to stack-based buffer overflo… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129354)
+- **CVE-2026-129444** CVSS 9.3 CRITICAL - A vulnerability was identified in D-Link DSL-6740C 20131126. This affects an unknown function of the file /etc/templates/ftpd/ftpd\_conf.php of the component FTP Daemon. Such manipulation leads to hard-coded credentials.… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129444)
+- **CVE-2026-129349** CVSS 9.1 CRITICAL - When authentication caching is enabled on DefaultLdapRealm, after a user logs in successfully once, subsequent logins for that user succeed with any password. A cached authentication skips the LDAP bind, and the AllowAl… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129349)
 
 ## GitHub reviewed advisories (critical, plus high in watched ecosystems)
 
-- **GHSA-4hvg-fv5c-9936** HIGH - Duplicate Advisory: Unbounded CPU consumption in NLTK SteppingRecursiveDescentParser.parse\(\) with ambiguous or self-embedding grammars (pip:nltk) - [source](https://github.com/advisories/GHSA-4hvg-fv5c-9936)
-- **GHSA-6655-6qjp-jx7x** HIGH - Soup Sieve: Exponential ReDoS in selector compilation via \\9-run in CSS\_ESCAPES/IDENTIFIER (pip:soupsieve \(fixed 3.0.2\)) - [source](https://github.com/advisories/GHSA-6655-6qjp-jx7x)
-- **GHSA-6665-2vj3-h76r** HIGH - Duplicate Advisory: Quadratic-time CPU denial of service in Tree.chomsky\_normal\_form right-factor binarization via list.pop\(0\) (pip:nltk) - [source](https://github.com/advisories/GHSA-6665-2vj3-h76r)
-- **GHSA-7r4r-6ppg-7ff8** HIGH - Duplicate Advisory: Symlink escape in YCOECorpusReader lets a psd/pos directory symlink read files outside the corpus root within the data sandbox (pip:nltk) - [source](https://github.com/advisories/GHSA-7r4r-6ppg-7ff8)
-- **GHSA-89p3-fcch-88ph** HIGH - NLTK: Quadratic-time CPU denial of service in CCG lexicon parser \(fromstring\) on wide bracket bodies and operator chains (pip:nltk \(fixed 3.10.4\)) - [source](https://github.com/advisories/GHSA-89p3-fcch-88ph)
-- **GHSA-8fx7-8jr8-84rv** HIGH - NLTK: Unbounded CPU consumption in SteppingRecursiveDescentParser.parse\(\) with ambiguous or self-embedding grammars (pip:nltk \(fixed 3.10.4\)) - [source](https://github.com/advisories/GHSA-8fx7-8jr8-84rv)
-- **GHSA-f7j6-hf97-9v99** HIGH - Duplicate Advisory: BllipParser passes caller-supplied model paths to the bllipparser C extension with no pathsec check, enabling arbitrary read (pip:nltk) - [source](https://github.com/advisories/GHSA-f7j6-hf97-9v99)
-- **GHSA-jh6r-h4rx-2j3w** HIGH - Duplicate Advisory: Quadratic-time CPU denial of service in NLTK CCG lexicon parser \(fromstring\) on wide bracket bodies and operator chains (pip:nltk) - [source](https://github.com/advisories/GHSA-jh6r-h4rx-2j3w)
-- **GHSA-qfx6-q44v-9qqw** HIGH - ag-psd can exhaust memory when parsing crafted PSD dimensions (npm:ag-psd \(fixed 31.0.0\)) - [source](https://github.com/advisories/GHSA-qfx6-q44v-9qqw)
-- **GHSA-qg35-44qx-7vrr** HIGH - NLTK: Symlink escape in YCOECorpusReader lets a psd/pos directory symlink read files outside the corpus root within the data sandbox (pip:nltk \(fixed 3.10.4\)) - [source](https://github.com/advisories/GHSA-qg35-44qx-7vrr)
-- **GHSA-qvhx-rvgc-jhwf** HIGH - Duplicate Advisory: Quadratic-time CPU denial of service in ConllCorpusReader SRL instance builder via nested span rescan (pip:nltk) - [source](https://github.com/advisories/GHSA-qvhx-rvgc-jhwf)
-- **GHSA-r53h-rw34-8h97** HIGH - NLTK: Quadratic-time CPU denial of service in Tree.chomsky\_normal\_form right-factor binarization via list.pop\(0\) (pip:nltk \(fixed 3.10.4\)) - [source](https://github.com/advisories/GHSA-r53h-rw34-8h97)
-- **GHSA-v8f3-6phw-6mh9** HIGH - NLTK: Quadratic-time CPU denial of service in ConllCorpusReader SRL instance builder via nested span rescan (pip:nltk \(fixed 3.10.4\)) - [source](https://github.com/advisories/GHSA-v8f3-6phw-6mh9)
-- **GHSA-vvf4-9x63-8xvv** HIGH - dnspython has excessive memory and CPU use (pip:dnspython \(fixed 2.9.2\)) - [source](https://github.com/advisories/GHSA-vvf4-9x63-8xvv)
+No matching advisories in the window.
 
 ## Node.js releases in window
 
@@ -81,9 +55,9 @@ No Node.js release in the window.
 
 | Source | Status | Items | Note |
 |---|---|---|---|
-| CISA Known Exploited Vulnerabilities | OK | 2 | catalog 2026.11.13 |
-| NVD \(new CVEs\) | OK | 22 | 359 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 20 more only mention one \(apps, plugins, libraries\) and are not… |
-| GitHub Advisory Database | OK | 14 | critical in all ecosystems; high only for composer, go, npm, pip |
+| CISA Known Exploited Vulnerabilities | OK | 0 | catalog 2026.11.13 |
+| NVD \(new CVEs\) | OK | 10 | 63 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 1 more only mention one \(apps, plugins, libraries\) and are not li… |
+| GitHub Advisory Database | OK | 0 | critical in all ecosystems; high only for composer, go, npm, pip |
 | nodejs.org release index | OK | 0 | 882 versions in index |
 | go.dev downloads | OK | 0 | branches: 1.26, 1.27 |
 | php.net releases | OK | 0 | branches: 8.2, 8.3, 8.4, 8.5 |
