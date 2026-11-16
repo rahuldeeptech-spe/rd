@@ -1,6 +1,6 @@
-# Security report 2026-11-15
+# Security report 2026-11-16
 
-Generated 2026-11-15 12:46 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
+Generated 2026-11-16 13:41 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
 
 ## Needs attention (6)
 
@@ -17,16 +17,16 @@ No new entries in the window.
 
 ## Critical new CVEs and CVEs about watched products (NVD)
 
-- **CVE-2026-120522** CVSS 9.8 CRITICAL - The Cloud Storage Manager for Fluent Forms – Google Drive, Dropbox, OneDrive, S3 Uploads plugin for WordPress is vulnerable to Arbitrary File Write in all versions up to, and including, 1.2.0. This is due to missing aut… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-120522)
-- **CVE-2026-19907** CVSS 9.8 CRITICAL - The Shipo plugin for WordPress is vulnerable to Authentication Bypass in versions 1.6 through 1.8.0. This is due to the \`authenticate\_rest\_user\(\)\` function parsing the \`LOGGED\_IN\_COOKIE\` value and authenticating the nam… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-19907)
-- **CVE-2026-129433** CVSS 9.4 CRITICAL - Dokploy before 0.31.1 contains an OS command injection vulnerability in getComposeContainerCommand\(\) that allows authenticated organization members to execute shell commands via the serviceName parameter. Attackers can… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129433)
-- **CVE-2026-129255** CVSS 9.3 CRITICAL - A vulnerability was identified in CoolerMaster MASTERPLUS+ 1.9.6. This affects the function sub\_11504 in the library WinRing0x64.sys of the component Device Driver. The manipulation of the argument PhysicalAddress leads… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129255)
-- **CVE-2026-129261** CVSS 9.3 CRITICAL - A vulnerability was found in Kingston FURY CTRL RGB Control Software up to 2.0.66.0. The impacted element is an unknown function in the library NTIOLib\_X64.sys of the component IOCTL Handler. Performing a manipulation r… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129261)
-- **CVE-2026-129351** CVSS 9.3 CRITICAL - A security vulnerability has been detected in TRENDnet TEW-657BRM 1.00.1. This vulnerability affects the function sprintf of the file /setup.cgi of the component mini\_httpd. Such manipulation leads to out-of-bounds writ… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129351)
-- **CVE-2026-129353** CVSS 9.3 CRITICAL - A vulnerability was detected in D-Link DIR-600L 2.17/2.17b02. Affected by this vulnerability is the function authenticationcgi\_main of the file authentication.cgi. Performing a manipulation of the argument id/password r… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129353)
-- **CVE-2026-129354** CVSS 9.3 CRITICAL - A flaw has been found in D-Link DIR-600L 2.17b02. Affected by this issue is the function hnap\_main of the file htdocs/cgibin of the component HNAP Handler. Executing a manipulation can lead to stack-based buffer overflo… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129354)
-- **CVE-2026-129444** CVSS 9.3 CRITICAL - A vulnerability was identified in D-Link DSL-6740C 20131126. This affects an unknown function of the file /etc/templates/ftpd/ftpd\_conf.php of the component FTP Daemon. Such manipulation leads to hard-coded credentials.… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129444)
-- **CVE-2026-129349** CVSS 9.1 CRITICAL - When authentication caching is enabled on DefaultLdapRealm, after a user logs in successfully once, subsequent logins for that user succeed with any password. A cached authentication skips the LDAP bind, and the AllowAl… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129349)
+- **CVE-2026-93664** CVSS 10.0 CRITICAL - A Deserialization of Untrusted Data vulnerability affecting Station Launcher App in 3DEXPERIENCE platform from Release 3DEXPERIENCE R2023x through Release 3DEXPERIENCE R2026x could lead to an unauthenticated remote code… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-93664)
+- **CVE-2026-19732** CVSS 9.9 CRITICAL - An OS Command Injection vulnerability affecting Station Launcher App in 3DEXPERIENCE platform from Release 3DEXPERIENCE R2023x through Release 3DEXPERIENCE R2026x could allow an attacker to execute arbitrary commands on… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-19732)
+- **CVE-2026-77033** CVSS 9.9 CRITICAL - An OS Command Injection vulnerability affecting Station Launcher App in 3DEXPERIENCE platform from Release 3DEXPERIENCE R2023x through Release 3DEXPERIENCE R2026x could allow an attacker to execute arbitrary commands on… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-77033)
+- **CVE-2026-122662** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in Barn2 Plugins Document Library Pro document-library-pro allows Object Injection.This issue affects Document Library Pro: from n/a before 4.2.2. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-122662)
+- **CVE-2026-125769** CVSS 9.8 CRITICAL - Incorrect Privilege Assignment vulnerability in Nasir Ahmed Advanced Form Integration advanced-form-integration allows Privilege Escalation.This issue affects Advanced Form Integration: from n/a through 2.11.3. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-125769)
+- **CVE-2026-125795** CVSS 9.8 CRITICAL - Improper Control of Filename for Include/Require Statement in PHP Program \('PHP Remote File Inclusion'\) vulnerability in Estatik Estatik estatik allows PHP Local File Inclusion.This issue affects Estatik: from n/a throu… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-125795)
+- **CVE-2026-111559** CVSS 9.3 CRITICAL - Batflat CMS does not sanitize data passed to the /contact endpoint. A remote unauthenticated attacker can send a POST request with a crafted message, causing arbitrary PHP code execution with www-data user privileges. T… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-111559)
+- **CVE-2026-129483** CVSS 9.3 CRITICAL - Cyrus SASL through 2.1.28 contains an authentication bypass vulnerability in the SRP server mechanism because srp\_server\_mech\_step2 does not reject client public values A that are multiples of N. Unauthenticated network… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129483)
+- **CVE-2026-129550** CVSS 9.3 CRITICAL - Tensei through 0.11.5 contains a privilege escalation vulnerability in @​tensei/auth that allows unauthenticated or authenticated users to assign themselves arbitrary roles via the exposed User Roles field. Attackers can… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129550)
+- **CVE-2026-129552** CVSS 9.3 CRITICAL - Tensei through 0.11.5 contains an authentication bypass vulnerability in @​tensei/auth that falls back to the hard-coded JWT signing key 'auth-secret-key' when JWT\_SECRET is unset. Unauthenticated attackers can sign toke… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129552)
 
 ## GitHub reviewed advisories (critical, plus high in watched ecosystems)
 
@@ -56,7 +56,7 @@ No Node.js release in the window.
 | Source | Status | Items | Note |
 |---|---|---|---|
 | CISA Known Exploited Vulnerabilities | OK | 0 | catalog 2026.11.13 |
-| NVD \(new CVEs\) | OK | 10 | 63 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 1 more only mention one \(apps, plugins, libraries\) and are not li… |
+| NVD \(new CVEs\) | OK | 10 | 195 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 5 more only mention one \(apps, plugins, libraries\) and are not l… |
 | GitHub Advisory Database | OK | 0 | critical in all ecosystems; high only for composer, go, npm, pip |
 | nodejs.org release index | OK | 0 | 882 versions in index |
 | go.dev downloads | OK | 0 | branches: 1.26, 1.27 |
