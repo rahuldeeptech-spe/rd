@@ -2,15 +2,67 @@
   "alerts": [
     {
       "alert": true,
-      "date": "2026-11-16",
-      "id": "CVE-2026-95839",
-      "score": 7.1,
+      "date": "2026-11-17",
+      "id": "CVE-2026-114938",
+      "score": 8.1,
       "severity": "HIGH",
       "source": "nvd",
-      "title": "containerd is an open-source container runtime. From 2.2.0 until 2.2.10, 2.3.7, and 2.4.2, image manifest processing through the transfer service can encounter a child descriptor containing the io.containerd.manifest.subject annotation and a malformed digest. Pulling or importing such an image, including through a default CRI PullImage request, can trigger an unrecovered panic and crash the containerd daemon. In Kubernetes, kubelet retries can repeatedly trigger the crash and disrupt container operations on the worker node. This issue is fixed in versions 2.2.10, 2.3.7, and 2.4.2.",
-      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-95839",
+      "title": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: Compiler).  Supported versions that are affected are Oracle Java SE: 8u511b33-perf, 17.0.21.0.3, 21.0.13.0.3, 25.0.5.0.3, 27.0.1.0.3; Oracle GraalVM for JDK: 17.0.21.0.3 and  21.0.13.0.3; Oracle GraalVM Enterprise Edition: 21.3.20.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in takeover of Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition. Note: This vulnerability can only be exploited by supplying data to APIs in the specified Component without using Untrusted Java Web Start applications or Untrusted Java applets, such as through a web service. CVSS 3.1 Base Score 8.1 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114938",
       "watch": [
-        "docker"
+        "java"
+      ]
+    },
+    {
+      "alert": true,
+      "date": "2026-11-17",
+      "id": "CVE-2026-114939",
+      "score": 7.4,
+      "severity": "HIGH",
+      "source": "nvd",
+      "title": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: JGSS).  Supported versions that are affected are Oracle Java SE: 8u511b33, 8u511b33-perf, 11.0.33.0.3, 17.0.21.0.3,  21.0.13.0.3, 25.0.5.0.3, 27.0.1.0.3; Oracle GraalVM for JDK: 17.0.21.0.3 and  21.0.13.0.3; Oracle GraalVM Enterprise Edition: 21.3.20.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data as well as  unauthorized access to critical data or complete access to all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data. Note: This vulnerability applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. This vulnerability does not apply to Java deployments, typically in servers, that load and run only trusted code (e.g., code installed by an administrator). CVSS 3.1 Base Score 7.4 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N).",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114939",
+      "watch": [
+        "java"
+      ]
+    },
+    {
+      "alert": true,
+      "date": "2026-11-17",
+      "id": "CVE-2026-114940",
+      "score": 7.4,
+      "severity": "HIGH",
+      "source": "nvd",
+      "title": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: JSSE).  Supported versions that are affected are Oracle Java SE: 8u511b33, 8u511b33-perf, 11.0.33.0.3, 17.0.21.0.3, 21.0.13.0.3, 25.0.5.0.3, 27.0.1.0.3; Oracle GraalVM for JDK: 17.0.21.0.3 and  21.0.13.0.3; Oracle GraalVM Enterprise Edition: 21.3.20.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via TLS to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data as well as  unauthorized access to critical data or complete access to all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data. Note: This vulnerability can be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. This vulnerability also applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. CVSS 3.1 Base Score 7.4 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N).",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114940",
+      "watch": [
+        "java"
+      ]
+    },
+    {
+      "alert": true,
+      "date": "2026-11-17",
+      "id": "CVE-2026-114941",
+      "score": 7.0,
+      "severity": "HIGH",
+      "source": "nvd",
+      "title": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK product of Oracle Java SE (component: Compiler).  Supported versions that are affected are Oracle Java SE: 21.0.13.0.3, 25.0.5.0.3 and  27.0.1.0.3; Oracle GraalVM for JDK: 21.0.13.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK.  Successful attacks of this vulnerability can result in unauthorized ability to cause a hang or frequently repeatable crash (complete DOS) of Oracle Java SE, Oracle GraalVM for JDK as well as  unauthorized update, insert or delete access to some of Oracle Java SE, Oracle GraalVM for JDK accessible data and  unauthorized read access to a subset of Oracle Java SE, Oracle GraalVM for JDK accessible data. Note: This vulnerability can only be exploited by supplying data to APIs in the specified Component without using Untrusted Java Web Start applications or Untrusted Java applets, such as through a web service. CVSS 3.1 Base Score 7.0 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:H).",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114941",
+      "watch": [
+        "java"
+      ]
+    },
+    {
+      "alert": true,
+      "date": "2026-11-17",
+      "id": "CVE-2026-114942",
+      "score": 7.0,
+      "severity": "HIGH",
+      "source": "nvd",
+      "title": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK product of Oracle Java SE (component: Libraries).  Supported versions that are affected are Oracle Java SE: 21.0.13.0.3, 25.0.5.0.3 and  27.0.1.0.3; Oracle GraalVM for JDK: 21.0.13.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK.  Successful attacks of this vulnerability can result in unauthorized ability to cause a hang or frequently repeatable crash (complete DOS) of Oracle Java SE, Oracle GraalVM for JDK as well as  unauthorized update, insert or delete access to some of Oracle Java SE, Oracle GraalVM for JDK accessible data and  unauthorized read access to a subset of Oracle Java SE, Oracle GraalVM for JDK accessible data. Note: This vulnerability can only be exploited by supplying data to APIs in the specified Component without using Untrusted Java Web Start applications or Untrusted Java applets, such as through a web service. CVSS 3.1 Base Score 7.0 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:H).",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114942",
+      "watch": [
+        "java"
       ]
     },
     {
@@ -81,357 +133,865 @@
     }
   ],
   "complete": true,
-  "generated_at": "2026-11-17T14:28:34Z",
+  "generated_at": "2026-11-18T14:03:35Z",
   "items": {
     "ghsa": [
       {
         "alert": false,
-        "cve": "CVE-2026-128127",
-        "date": "2026-11-16",
-        "id": "GHSA-24c4-3p7v-29cm",
+        "cve": "CVE-2026-53998",
+        "date": "2026-11-17",
+        "id": "GHSA-gfv3-m769-5xm3",
         "packages": [
-          "pip:aiohttp (fixed 3.14.4)"
+          "pip:arize-phoenix (fixed 15.7.0)"
         ],
-        "severity": "HIGH",
+        "severity": "CRITICAL",
         "source": "ghsa",
-        "title": "AIOHTTP: Base64 multipart parts bypass client_max_size",
-        "url": "https://github.com/advisories/GHSA-24c4-3p7v-29cm",
+        "title": "Phoenix: Format String Injection in applyChatTemplate",
+        "url": "https://github.com/advisories/GHSA-gfv3-m769-5xm3",
         "watch": []
       },
       {
         "alert": false,
-        "cve": "CVE-2026-86046",
-        "date": "2026-11-16",
-        "id": "GHSA-259w-wmqg-fp76",
+        "cve": "CVE-2026-110782",
+        "date": "2026-11-17",
+        "id": "GHSA-r7hw-jx6r-756g",
         "packages": [
-          "pip:termux-sync (fixed 1.2.4)"
+          "composer:simplesamlphp/saml2 (fixed 6.2.4)",
+          "composer:simplesamlphp/saml2 (fixed 7.0.0-rc2)"
         ],
         "severity": "HIGH",
         "source": "ghsa",
-        "title": "termux-sync: Arbitrary file write during restore via attacker-controlled manifest source path",
-        "url": "https://github.com/advisories/GHSA-259w-wmqg-fp76",
+        "title": "SAML2: Incomplete fix of CVE-2026-49283: unsigned embedded Response bypasses HTTP-Artifact signature verification (no embedded-Issuer binding)",
+        "url": "https://github.com/advisories/GHSA-r7hw-jx6r-756g",
         "watch": []
       },
       {
         "alert": false,
-        "cve": "CVE-2026-128130",
-        "date": "2026-11-16",
-        "id": "GHSA-28qf-cpwq-vmc2",
+        "cve": "CVE-2026-110789",
+        "date": "2026-11-17",
+        "id": "GHSA-rvfr-cqwq-rc4j",
         "packages": [
-          "pip:aiohttp (fixed 3.14.4)"
+          "npm:@libp2p/crypto (fixed 5.1.22)"
         ],
         "severity": "HIGH",
         "source": "ghsa",
-        "title": "AIOHTTP: Pure-Python parser request replay and buffer growth behind a declined upgrade",
-        "url": "https://github.com/advisories/GHSA-28qf-cpwq-vmc2",
+        "title": "libp2p: ASN.1 DER decoder drives an unbounded synchronous loop on attacker-controlled length fields, stalling the Node event loop pre-auth",
+        "url": "https://github.com/advisories/GHSA-rvfr-cqwq-rc4j",
         "watch": []
       },
       {
         "alert": false,
-        "cve": "CVE-2026-128120",
-        "date": "2026-11-16",
-        "id": "GHSA-3r8g-jcqq-3p5j",
+        "cve": "CVE-2026-119793",
+        "date": "2026-11-17",
+        "id": "GHSA-x2vm-cf3p-m2w8",
         "packages": [
-          "npm:@sveltejs/kit (fixed 3.1.1)"
+          "npm:@libp2p/gossipsub (fixed 17.0.0)"
         ],
         "severity": "HIGH",
         "source": "ghsa",
-        "title": "SvelteKit: DoS while parsing form data from a remote functions `form`",
-        "url": "https://github.com/advisories/GHSA-3r8g-jcqq-3p5j",
+        "title": "libp2p: gossipsub creates a permanent topics-map entry per distinct subscription with no cap in the default config",
+        "url": "https://github.com/advisories/GHSA-x2vm-cf3p-m2w8",
         "watch": []
       },
       {
         "alert": false,
-        "cve": "CVE-2026-128128",
-        "date": "2026-11-16",
-        "id": "GHSA-3rp8-rxj8-mvjw",
+        "cve": "CVE-2026-62336",
+        "date": "2026-11-17",
+        "id": "GHSA-xhv5-8fpq-g7hf",
         "packages": [
-          "pip:aiohttp (fixed 3.14.4)"
+          "go:go.qbee.io/agent (fixed 0.0.0-20260615134032-0fdf8e411de5)"
         ],
         "severity": "HIGH",
         "source": "ghsa",
-        "title": "AIOHTTP: WebSocket max_msg_size bypass via integer overflow",
-        "url": "https://github.com/advisories/GHSA-3rp8-rxj8-mvjw",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-128132",
-        "date": "2026-11-16",
-        "id": "GHSA-5rmc-48h2-hvcm",
-        "packages": [
-          "pip:aiohttp (fixed 3.14.4)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "AIOHTTP: WebSocket receive queue limits bypassed by small or compressed messages",
-        "url": "https://github.com/advisories/GHSA-5rmc-48h2-hvcm",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-129297",
-        "date": "2026-11-16",
-        "id": "GHSA-72px-j8gh-p79x",
-        "packages": [
-          "pip:mail-parser (fixed 4.6.2)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "mail-parser: Sender IP address spoofing in get_server_ipaddress()",
-        "url": "https://github.com/advisories/GHSA-72px-j8gh-p79x",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-128134",
-        "date": "2026-11-16",
-        "id": "GHSA-7mxv-7h3q-9324",
-        "packages": [
-          "pip:nltk (fixed 3.10.4)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "NLTK dot2img runs Graphviz 'dot' without the trusted-exec chokepoint, enabling local code execution via a writable PATH element",
-        "url": "https://github.com/advisories/GHSA-7mxv-7h3q-9324",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-129236",
-        "date": "2026-11-16",
-        "id": "GHSA-8vf2-hxg5-crqh",
-        "packages": [
-          "go:github.com/kubeshark/kubeshark (fixed 0.0.2-0.20260812200004-a76a1920dc75)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Kubeshark: MCP `start_kubeshark` argument injection via `pod_regex` \u2192 image redirect \u2192 cluster takeover",
-        "url": "https://github.com/advisories/GHSA-8vf2-hxg5-crqh",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-91115",
-        "date": "2026-11-16",
-        "id": "GHSA-c94f-87xg-65wf",
-        "packages": [
-          "composer:silverstripe/framework (fixed 6.2.13)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "Silverstripe Framework: RCE via i18nTextCollectorTask writer parameter",
-        "url": "https://github.com/advisories/GHSA-c94f-87xg-65wf",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-128131",
-        "date": "2026-11-16",
-        "id": "GHSA-h4cc-hm5h-fmm9",
-        "packages": [
-          "pip:aiohttp (fixed 3.14.4)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "AIOHTTP: Concatenated compressed streams cause excessive CPU use",
-        "url": "https://github.com/advisories/GHSA-h4cc-hm5h-fmm9",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-128124",
-        "date": "2026-11-16",
-        "id": "GHSA-jm3w-gw2p-xjfj",
-        "packages": [
-          "pip:aiohttp (fixed 3.14.4)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "AIOHTTP: Event loop stall in add_domain() wildcard matching",
-        "url": "https://github.com/advisories/GHSA-jm3w-gw2p-xjfj",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-68934",
-        "date": "2026-11-16",
-        "id": "GHSA-jq3q-62jc-fqq9",
-        "packages": [
-          "npm:code-review-mcp-server (fixed 1.5.3)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "code-review-mcp-server: Command injection via unsanitized folderPath/baseBranch parameters",
-        "url": "https://github.com/advisories/GHSA-jq3q-62jc-fqq9",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-128118",
-        "date": "2026-11-16",
-        "id": "GHSA-m9j8-jcmv-hp69",
-        "packages": [
-          "npm:@sveltejs/kit (fixed 3.1.1)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "SvelteKit: Build-time server-only module import guard could fail, resulting in server secrets being statically replaced in client bundle",
-        "url": "https://github.com/advisories/GHSA-m9j8-jcmv-hp69",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-128129",
-        "date": "2026-11-16",
-        "id": "GHSA-pw86-h8fm-j323",
-        "packages": [
-          "pip:aiohttp (fixed 3.14.4)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "AIOHTTP: Unbounded buffering of data received during an upgrade request",
-        "url": "https://github.com/advisories/GHSA-pw86-h8fm-j323",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-129295",
-        "date": "2026-11-16",
-        "id": "GHSA-r7w7-vpq8-c5vv",
-        "packages": [
-          "pip:mail-parser (fixed 4.6.1)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "mail-parser is vulnerable to polynomial ReDoS in email header parsing",
-        "url": "https://github.com/advisories/GHSA-r7w7-vpq8-c5vv",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-63182",
-        "date": "2026-11-16",
-        "id": "GHSA-w553-pwx6-3mg9",
-        "packages": [
-          "composer:litesaml/lightsaml (fixed 5.0.1)",
-          "composer:litesaml/lightsaml (fixed 4.7.1)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "lightsaml allows Signature wrapping bypass",
-        "url": "https://github.com/advisories/GHSA-w553-pwx6-3mg9",
-        "watch": []
-      },
-      {
-        "alert": false,
-        "cve": "CVE-2026-128126",
-        "date": "2026-11-16",
-        "id": "GHSA-xgw8-8ccx-rmqh",
-        "packages": [
-          "pip:aiohttp (fixed 3.14.4)"
-        ],
-        "severity": "HIGH",
-        "source": "ghsa",
-        "title": "AIOHTTP: Too many URL-encoded form fields block the event loop",
-        "url": "https://github.com/advisories/GHSA-xgw8-8ccx-rmqh",
+        "title": "qbee-agent: Local Privilege Escalation and Arbitrary File Tampering via Symlink Following in createFile helper",
+        "url": "https://github.com/advisories/GHSA-xhv5-8fpq-g7hf",
         "watch": []
       }
     ],
     "go": [],
-    "kev": [],
-    "node": [
+    "kev": [
       {
         "alert": false,
-        "date": "2026-11-16",
-        "id": "node 27.0.0-alpha.0.1.1",
-        "security": false,
-        "source": "node",
-        "title": "Node.js 27.0.0-alpha.0.1.1 released",
-        "url": "https://nodejs.org/en/blog/vulnerability",
-        "watch": [
-          "node.js"
-        ]
+        "date": "2026-11-17",
+        "detail": "Perforce Puppet Enterprise contains a deserialization of untrusted data vulnerability in Puppet\u2019s report-processing code that allows a client with any CA-signed agent certificate to execute arbitrary code on the Puppet Server as the service user by submitting a report containing a crafted rich-data type through a PUT request. If the certificate authority automatically signs requests without strong verification, an unauthenticated network attacker can obtain a valid certificate and exploit the vulnerability.",
+        "due": "2026-12-01",
+        "id": "CVE-2026-115731",
+        "ransomware": false,
+        "source": "kev",
+        "title": "Perforce Puppet Enterprise - Perforce Puppet Enterprise Deserialization of Untrusted Data Vulnerability",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115731",
+        "watch": []
       }
     ],
+    "node": [],
     "nvd": [
       {
         "alert": true,
-        "date": "2026-11-16",
-        "id": "CVE-2026-95839",
-        "score": 7.1,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114938",
+        "score": 8.1,
         "severity": "HIGH",
         "source": "nvd",
-        "title": "containerd is an open-source container runtime. From 2.2.0 until 2.2.10, 2.3.7, and 2.4.2, image manifest processing through the transfer service can encounter a child descriptor containing the io.containerd.manifest.subject annotation and a malformed digest. Pulling or importing such an image, including through a default CRI PullImage request, can trigger an unrecovered panic and crash the containerd daemon. In Kubernetes, kubelet retries can repeatedly trigger the crash and disrupt container operations on the worker node. This issue is fixed in versions 2.2.10, 2.3.7, and 2.4.2.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-95839",
+        "title": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: Compiler).  Supported versions that are affected are Oracle Java SE: 8u511b33-perf, 17.0.21.0.3, 21.0.13.0.3, 25.0.5.0.3, 27.0.1.0.3; Oracle GraalVM for JDK: 17.0.21.0.3 and  21.0.13.0.3; Oracle GraalVM Enterprise Edition: 21.3.20.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in takeover of Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition. Note: This vulnerability can only be exploited by supplying data to APIs in the specified Component without using Untrusted Java Web Start applications or Untrusted Java applets, such as through a web service. CVSS 3.1 Base Score 8.1 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114938",
         "watch": [
-          "docker"
+          "java"
+        ]
+      },
+      {
+        "alert": true,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114939",
+        "score": 7.4,
+        "severity": "HIGH",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: JGSS).  Supported versions that are affected are Oracle Java SE: 8u511b33, 8u511b33-perf, 11.0.33.0.3, 17.0.21.0.3,  21.0.13.0.3, 25.0.5.0.3, 27.0.1.0.3; Oracle GraalVM for JDK: 17.0.21.0.3 and  21.0.13.0.3; Oracle GraalVM Enterprise Edition: 21.3.20.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data as well as  unauthorized access to critical data or complete access to all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data. Note: This vulnerability applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. This vulnerability does not apply to Java deployments, typically in servers, that load and run only trusted code (e.g., code installed by an administrator). CVSS 3.1 Base Score 7.4 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114939",
+        "watch": [
+          "java"
+        ]
+      },
+      {
+        "alert": true,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114940",
+        "score": 7.4,
+        "severity": "HIGH",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: JSSE).  Supported versions that are affected are Oracle Java SE: 8u511b33, 8u511b33-perf, 11.0.33.0.3, 17.0.21.0.3, 21.0.13.0.3, 25.0.5.0.3, 27.0.1.0.3; Oracle GraalVM for JDK: 17.0.21.0.3 and  21.0.13.0.3; Oracle GraalVM Enterprise Edition: 21.3.20.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via TLS to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data as well as  unauthorized access to critical data or complete access to all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data. Note: This vulnerability can be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. This vulnerability also applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. CVSS 3.1 Base Score 7.4 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114940",
+        "watch": [
+          "java"
+        ]
+      },
+      {
+        "alert": true,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114941",
+        "score": 7.0,
+        "severity": "HIGH",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK product of Oracle Java SE (component: Compiler).  Supported versions that are affected are Oracle Java SE: 21.0.13.0.3, 25.0.5.0.3 and  27.0.1.0.3; Oracle GraalVM for JDK: 21.0.13.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK.  Successful attacks of this vulnerability can result in unauthorized ability to cause a hang or frequently repeatable crash (complete DOS) of Oracle Java SE, Oracle GraalVM for JDK as well as  unauthorized update, insert or delete access to some of Oracle Java SE, Oracle GraalVM for JDK accessible data and  unauthorized read access to a subset of Oracle Java SE, Oracle GraalVM for JDK accessible data. Note: This vulnerability can only be exploited by supplying data to APIs in the specified Component without using Untrusted Java Web Start applications or Untrusted Java applets, such as through a web service. CVSS 3.1 Base Score 7.0 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114941",
+        "watch": [
+          "java"
+        ]
+      },
+      {
+        "alert": true,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114942",
+        "score": 7.0,
+        "severity": "HIGH",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK product of Oracle Java SE (component: Libraries).  Supported versions that are affected are Oracle Java SE: 21.0.13.0.3, 25.0.5.0.3 and  27.0.1.0.3; Oracle GraalVM for JDK: 21.0.13.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK.  Successful attacks of this vulnerability can result in unauthorized ability to cause a hang or frequently repeatable crash (complete DOS) of Oracle Java SE, Oracle GraalVM for JDK as well as  unauthorized update, insert or delete access to some of Oracle Java SE, Oracle GraalVM for JDK accessible data and  unauthorized read access to a subset of Oracle Java SE, Oracle GraalVM for JDK accessible data. Note: This vulnerability can only be exploited by supplying data to APIs in the specified Component without using Untrusted Java Web Start applications or Untrusted Java applets, such as through a web service. CVSS 3.1 Base Score 7.0 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114942",
+        "watch": [
+          "java"
         ]
       },
       {
         "alert": false,
         "date": "2026-11-17",
-        "id": "CVE-2026-120387",
+        "id": "CVE-2026-100397",
         "score": 10.0,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "An improper JWT signature verification vulnerability in CIRCUTOR PowerStudio SCADA WAVE desktop version allows an unauthenticated remote attacker to bypass authentication by submitting an unsigned JWT with the algorithm set to \u201cnone\u201d. The shared JWT validation component accepts the token without verifying a cryptographic signature, allowing the attacker to impersonate another user and access protected functionality with that user's privileges.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120387",
+        "title": "Rucio is a scientific data management framework. From 1.14.0 until 35.9.1, 38.6.1, 40.4.2, and 41.1.1, validate_auth_token in lib/rucio/core/authentication.py does not distinguish short-lived SSH challenge nonces from authentication tokens stored in the same token table. An unauthenticated attacker can request /auth/ssh_challenge_token for an arbitrary account by supplying X-Rucio-Account, then present the returned X-Rucio-SSH-Challenge-Token as X-Rucio-Auth-Token to authenticate to other API endpoints as that account, including an administrative account. This issue is fixed in versions 35.9.1, 38.6.1, 40.4.2, and 41.1.1.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-100397",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-16",
-        "id": "CVE-2026-53998",
+        "date": "2026-11-18",
+        "id": "CVE-2026-114202",
         "score": 10.0,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "Phoenix is an AI observability and evaluation platform. From 13.0.0 until 15.7.0, the applyChatTemplate GraphQL query passed attacker-controlled F-string templates to FStringTemplateFormatter._format, while DotDict.__getattr__ did not prevent traversal through Python private attributes. A crafted field could traverse object internals such as __class__, __init__, and __globals__ to read process environment variables and internal module state. The endpoint is unauthenticated on default installations, and any account can reach it when authentication is enabled. Exposure of PHOENIX_SECRET can allow administrative session-token forgery and decryption of credentials protected by keys derived from that secret. This issue is fixed in version 15.7.0.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-53998",
+        "title": "Use of Hard-coded Cryptographic Key\u00a0in ASUS Control Center Express allows a remote user to gain administrative privileges via a forged authentication token.\nRefer to the '\nSecurity Update for ASUS Control Center Express Agent\u00a0\u00a0' section on the ASUS Security Advisory for more information.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114202",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-11-17",
-        "id": "CVE-2026-129448",
+        "id": "CVE-2026-114784",
+        "score": 10.0,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Business Intelligence Enterprise Edition product of Oracle Analytics (component: Platform Security).  Supported versions that are affected are 8.2.0.0.0 and  26.01.0.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Business Intelligence Enterprise Edition.  While the vulnerability is in Oracle Business Intelligence Enterprise Edition, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in takeover of Oracle Business Intelligence Enterprise Edition. CVSS 3.1 Base Score 10.0 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114784",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114824",
+        "score": 10.0,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Platform Security for Java product of Oracle Fusion Middleware (component: Centralized Thirdparty Jars).  Supported versions that are affected are 12.2.1.4.0 and  14.1.2.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Platform Security for Java.  While the vulnerability is in Oracle Platform Security for Java, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in takeover of Oracle Platform Security for Java. CVSS 3.1 Base Score 10.0 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114824",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114835",
+        "score": 10.0,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Access Manager product of Oracle Fusion Middleware (component: Admin Console).  Supported versions that are affected are 12.2.1.4.0 and  14.1.2.1.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Access Manager.  While the vulnerability is in Oracle Access Manager, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in takeover of Oracle Access Manager. CVSS 3.1 Base Score 10.0 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114835",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-91500",
+        "score": 10.0,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Access Manager product of Oracle Fusion Middleware (component: Authentication Engine).  Supported versions that are affected are 12.2.1.4.0 and  14.1.2.1.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Access Manager.  While the vulnerability is in Oracle Access Manager, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Access Manager accessible data as well as  unauthorized access to critical data or complete access to all Oracle Access Manager accessible data and unauthorized ability to cause a partial denial of service (partial DOS) of Oracle Access Manager. CVSS 3.1 Base Score 10.0 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:L).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91500",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-91510",
+        "score": 10.0,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Access Manager product of Oracle Fusion Middleware (component: Authentication Engine).  Supported versions that are affected are 12.2.1.4.0 and  14.1.2.1.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Access Manager.  While the vulnerability is in Oracle Access Manager, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Access Manager accessible data as well as  unauthorized access to critical data or complete access to all Oracle Access Manager accessible data and unauthorized ability to cause a partial denial of service (partial DOS) of Oracle Access Manager. CVSS 3.1 Base Score 10.0 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:L).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91510",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-91569",
+        "score": 10.0,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: TopLink Integration).  Supported versions that are affected are 12.2.1.4.0, 14.1.1.0.0, 14.1.2.0.0 and  15.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server.  While the vulnerability is in Oracle WebLogic Server, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in takeover of Oracle WebLogic Server. CVSS 3.1 Base Score 10.0 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91569",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114819",
+        "score": 9.9,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Text component of Oracle Database Server.  Supported versions that are affected are 19.3-19.32, 21.3-21.24 and  23.4.0-23.26.3. Easily exploitable vulnerability allows low privileged attacker having Create Session privilege with network access via Oracle Net to compromise Oracle Text.  While the vulnerability is in Oracle Text, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in takeover of Oracle Text. CVSS 3.1 Base Score 9.9 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114819",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114822",
+        "score": 9.9,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the RDBMS component of Oracle Database Server.  Supported versions that are affected are 23.4.0-23.26.4. Easily exploitable vulnerability allows low privileged attacker having Create Session privilege with network access via Oracle Net to compromise RDBMS.  While the vulnerability is in RDBMS, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in takeover of RDBMS. CVSS 3.1 Base Score 9.9 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114822",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114848",
+        "score": 9.9,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Text component of Oracle Database Server.  Supported versions that are affected are 19.3-19.33, 21.3-21.24 and  23.4.0-23.26.3. Easily exploitable vulnerability allows low privileged attacker having Create Session privilege with network access via Oracle Net to compromise Oracle Text.  While the vulnerability is in Oracle Text, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in takeover of Oracle Text. CVSS 3.1 Base Score 9.9 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114848",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114978",
+        "score": 9.9,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Hyperion Financial Management product of Oracle Hyperion (component: Security).   The supported version that is affected is 11.2.26.0.000. Easily exploitable vulnerability allows low privileged attacker with network access via HTTP to compromise Oracle Hyperion Financial Management.  While the vulnerability is in Oracle Hyperion Financial Management, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in takeover of Oracle Hyperion Financial Management. CVSS 3.1 Base Score 9.9 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114978",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114980",
+        "score": 9.9,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle AutoVue product of Oracle Supply Chain (component: Security Related Issues).   The supported version that is affected is 21.1.0. Easily exploitable vulnerability allows low privileged attacker with network access via HTTP to compromise Oracle AutoVue.  While the vulnerability is in Oracle AutoVue, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in takeover of Oracle AutoVue. CVSS 3.1 Base Score 9.9 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114980",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-28273",
+        "score": 9.9,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "ZoneMinder is a free, open source closed-circuit television software application. Prior to 1.38.4, any authenticated user can use the /api/configs/edit/{name}.json endpoint to modify protected configuration settings because ConfigsController::edit() does not enforce the System=Edit authorization requirement and its system-variable protection is ineffective. An attacker can set ZM_PATH_FFMPEG to a command-bearing value and trigger an exec() sink in web/views/image.php or web/includes/Event.php by requesting frame extraction. This permits arbitrary command execution with the privileges of the web server user and can expose private camera feeds, recordings, and database data or establish persistence. This issue is fixed in version 1.38.4.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-28273",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-110486",
         "score": 9.8,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "Deserialization of Untrusted Data in Apache Roller versions 4.0.0 through 6.1.4 allows an unauthenticated remote attacker to execute arbitrary code. The XML-RPC endpoint accepts vendor extension types and deserializes them before authenticating the requester.\n\nThis is the same vulnerability as CVE-2026-82384, which listed only Apache Roller 6.1.5 as affected. This issue is being actively exploited.\n\nUsers are recommended to upgrade to Apache Roller 6.1.6 or later, which disables the extension types and rejects XML-RPC requests when the XML-RPC feature is disabled.\n\nUsers who cannot upgrade right away should set \"enabledForExtensions\" to \"false\" in WEB-INF/web.xml, or remove the \"/roller-services/xmlrpc\" servlet mapping, and restart Roller. Disabling XML-RPC in the administration UI is not enough, because older versions deserialize the request before checking that setting.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-129448",
+        "title": "In Eclipse Mosquitto versions 2.1 through 2.1.2, a listener configured with `protocol websockets` mishandles empty WebSocket data frames. `net__read_ws()` in `lib/net_ws.c` returns the number of framing bytes consumed (the 4 masking-key bytes) for a data frame with a zero-length payload, without writing any bytes to the caller\u2019s buffer. The MQTT packet reader in `packet__read_single()` (`lib/packet_mosq.c`) trusts that return value as a payload byte count. A remote client can therefore advance the read position over an uninitialised heap allocation, causing the broker to process and forward uninitialised heap memory (information disclosure, including heap and libc pointers), and can underflow the unsigned `to_process` counter so that subsequent attacker-controlled frame data is written past the end of the allocation (heap out-of-bounds write). The out-of-bounds write is reachable from the CONNECT packet before any authentication check, so an unauthenticated client can corrupt the heap and crash the broker even when `allow_anonymous false` is set. Combining the disclosure and the write allows remote code execution as the broker\u2019s user by any client able to establish a session.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-110486",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-11-17",
-        "id": "CVE-2026-79614",
+        "id": "CVE-2026-114826",
         "score": 9.8,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "An out-of-bounds write vulnerability in \u201clibclinkc.so\u201d in Zyxel DX3301-T0/EX3301-T0 firmware versions through 5.50(ABVY.8.3)C0 could allow an unauthenticated attacker to elevate privileges and potentially execute arbitrary commands by sending a crafted HTTP request. WAN access is disabled by default on these devices.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-79614",
+        "title": "Vulnerability in the Service Delivery Platform product of Oracle Fusion Middleware (component: Messaging Enabler).   The supported version that is affected is 14.1.2.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via SOAP to compromise Service Delivery Platform.  Successful attacks of this vulnerability can result in takeover of Service Delivery Platform. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114826",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-11-17",
-        "id": "CVE-2026-119623",
-        "score": 9.4,
+        "id": "CVE-2026-114849",
+        "score": 9.8,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "The installer (first installation wizard) could be re-enabled on an already configured instance by placing a file whose name starts with FIRST_INSTALL in the public web root or the project root. The installer then became accessible without authentication, allowing for example to change the database connection and to create a new administrator and system maintainer account, which leads to remote code execution. As demonstrated in TYPO3-CORE-SA-2026-026, such a file could be created by an authenticated, low-privileged backend user without any further permissions. Other ways of creating files in the web root, as well as leftover or restored marker files, could be abused in the same way.\n\nWith the fixed versions, the installer can no longer be re-enabled on an already configured instance by a marker file. A new internal setting $GLOBALS['TYPO3_CONF_VARS']['SYS']['isInstalling'] is stored in the system configuration and is only enabled while a new installation is running. Additionally, only the exact file names FIRST_INSTALL and FIRST_INSTALL.txt are accepted as marker files.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119623",
+        "title": "Vulnerability in Oracle APEX (component: General).  Supported versions that are affected are 24.1.22, 24.2.21, 26.1.5 and  26.2.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTPS to compromise Oracle APEX.  Successful attacks of this vulnerability can result in takeover of Oracle APEX. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114849",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-16",
-        "id": "CVE-2026-120699",
+        "date": "2026-11-17",
+        "id": "CVE-2026-114850",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in Oracle APEX (component: General).  Supported versions that are affected are 24.1.22, 24.2.21, 26.1.5 and  26.2.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTPS to compromise Oracle APEX.  Successful attacks of this vulnerability can result in takeover of Oracle APEX. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114850",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114863",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Universal Work Queue product of Oracle E-Business Suite (component: Media Integration issues).  Supported versions that are affected are 12.2.3-12.2.15. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Universal Work Queue.  Successful attacks of this vulnerability can result in takeover of Oracle Universal Work Queue. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114863",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114880",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Document Management and Collaboration product of Oracle E-Business Suite (component: Attachments).  Supported versions that are affected are 12.2.3-12.2.15. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Document Management and Collaboration.  Successful attacks of this vulnerability can result in takeover of Document Management and Collaboration. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114880",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114924",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Application Object Library product of Oracle E-Business Suite (component: Core).  Supported versions that are affected are 12.2.3-12.2.15. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Application Object Library.  Successful attacks of this vulnerability can result in takeover of Oracle Application Object Library. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114924",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114925",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Applications Framework product of Oracle E-Business Suite (component: REST Services).  Supported versions that are affected are 12.2.3-12.2.15. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Applications Framework.  Successful attacks of this vulnerability can result in takeover of Oracle Applications Framework. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114925",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-115047",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Hyperion Infrastructure Technology product of Oracle Hyperion (component: Installation and Configuration).   The supported version that is affected is 11.2.26.0.000. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Hyperion Infrastructure Technology.  Successful attacks of this vulnerability can result in takeover of Oracle Hyperion Infrastructure Technology. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115047",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-115048",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Hyperion Infrastructure Technology product of Oracle Hyperion (component: Common Security).   The supported version that is affected is 11.2.26.0.000. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Hyperion Infrastructure Technology.  Successful attacks of this vulnerability can result in takeover of Oracle Hyperion Infrastructure Technology. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115048",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-115080",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Hyperion Infrastructure Technology product of Oracle Hyperion (component: Installation and Configuration).   The supported version that is affected is 11.2.26.0.000. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Hyperion Infrastructure Technology.  Successful attacks of this vulnerability can result in takeover of Oracle Hyperion Infrastructure Technology. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115080",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-115086",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Hyperion Planning product of Oracle Hyperion (component: Security).   The supported version that is affected is 11.2.26.0.000. Easily exploitable vulnerability allows unauthenticated attacker with network access via RMI to compromise Oracle Hyperion Planning.  Successful attacks of this vulnerability can result in takeover of Oracle Hyperion Planning. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115086",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-115089",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Hyperion Planning product of Oracle Hyperion (component: Application Development Framework).   The supported version that is affected is 11.2.26.0.000. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Hyperion Planning.  Successful attacks of this vulnerability can result in takeover of Oracle Hyperion Planning. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115089",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-122055",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "ICRTouch PocketTouch version 1.700 build 2025.3726 contains a default socket password set to the literal value password. Where the default value remains unchanged and is accepted by a TouchPoint POS terminal, an attacker with network access to the terminal\u2019s socket service may authenticate using publicly known credentials.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-122055",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-122142",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "ICRTouch Commander administrative login interface does not adequately restrict repeated authentication attempts. The interface also returns distinguishable responses for multiple authentication states, including different behavior when a `siteID` value is supplied.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-122142",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-122147",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "ICRTouch PocketTouch version 1.700 build 2025.3726 defines hard-coded default values for multiple credential fields, including a socket password and configuration and shutdown passwords. An additional email-related password field is initialized without a value.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-122147",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-127324",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle AutoVue product of Oracle Supply Chain (component: Security).   The supported version that is affected is 21.1.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle AutoVue.  Successful attacks of this vulnerability can result in takeover of Oracle AutoVue. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-127324",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-127325",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle AutoVue product of Oracle Supply Chain (component: Security).   The supported version that is affected is 21.1.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle AutoVue.  Successful attacks of this vulnerability can result in takeover of Oracle AutoVue. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-127325",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-127326",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle AutoVue product of Oracle Supply Chain (component: Security).   The supported version that is affected is 21.1.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle AutoVue.  Successful attacks of this vulnerability can result in takeover of Oracle AutoVue. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-127326",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-127327",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle AutoVue product of Oracle Supply Chain (component: Security).   The supported version that is affected is 21.1.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle AutoVue.  Successful attacks of this vulnerability can result in takeover of Oracle AutoVue. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-127327",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-130801",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "The device's command parser does not require asymmetric cryptographic signatures to validate incoming APDU packets. This enables an attacker to inject forged, unauthorized commands to manipulate device features and configurations once the initial handshake is bypassed.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130801",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-61675",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "WeGIA is a web manager for charitable institutions. Prior to 3.8.7, web/html/socio/sistema/atualiza_pagamentos.php performs payment-status database updates without checking whether the requester has an authenticated session. An unauthenticated remote requester can supply a payment identifier, payment date, and paid value to mark arbitrary payment records as paid or otherwise modify payment information, causing financial record corruption. This issue is fixed in version 3.8.7.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-61675",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-61676",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "WeGIA is a web manager for charitable institutions. Prior to 3.8.7, web/html/socio/sistema/cadastro_cobranca.php creates billing records without checking for an authenticated session. An unauthenticated remote requester who supplies valid billing parameters can create arbitrary billing entries, enabling financial data manipulation and operational disruption. This issue is fixed in version 3.8.7.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-61676",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-61677",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "WeGIA is a web manager for charitable institutions. Prior to 3.8.7, web/html/socio/sistema/processa_edicao_socio.php updates member information without validating an authenticated session. An unauthenticated remote requester who supplies a target member identifier and replacement member fields can modify arbitrary member records, corrupt personal information, and cause loss of data integrity. This issue is fixed in version 3.8.7.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-61677",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-61680",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "WeGIA is a web manager for charitable institutions. Prior to 3.8.6, web/html/socio/sistema/cadastro_cobrancas_geracao.php performs privileged charge-generation operations without checking for an authenticated session. An unauthenticated remote requester who supplies valid charge-generation parameters can create arbitrary charge records, enabling financial record manipulation and large-scale billing corruption. This issue is fixed in version 3.8.6.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-61680",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-69157",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Atomic Server is an open source headless CMS and real-time database. From 0.29.0 to 0.40.2, Atomic Server provisions a well-known /setup invite with write enabled, the Drive root as its target, and usagesLeft set to one. construct_invite_redirect in server/src/plugins/invite.rs discards the redeemer identity, so an unauthenticated request containing an attacker-controlled public-key can create a new Agent and grant it write access to the entire Drive. On a fresh, unclaimed deployment, this permits reading, modifying, or deleting resources, changing permissions, and creating or altering Agents. No complete fixed version was verified as of this review.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-69157",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-91456",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core).  Supported versions that are affected are 12.2.1.4.0, 14.1.1.0.0, 14.1.2.0.0 and  15.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via SOAP to compromise Oracle WebLogic Server.  Successful attacks of this vulnerability can result in takeover of Oracle WebLogic Server. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91456",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-91470",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core).  Supported versions that are affected are 12.2.1.4.0, 14.1.1.0.0, 14.1.2.0.0 and  15.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via T3, IIOP to compromise Oracle WebLogic Server.  Successful attacks of this vulnerability can result in takeover of Oracle WebLogic Server. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91470",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-91570",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: TopLink Integration).  Supported versions that are affected are 12.2.1.4.0, 14.1.1.0.0, 14.1.2.0.0 and  15.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server.  Successful attacks of this vulnerability can result in takeover of Oracle WebLogic Server. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91570",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-91583",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: TopLink Integration).  Supported versions that are affected are 12.2.1.4.0, 14.1.1.0.0, 14.1.2.0.0 and  15.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server.  Successful attacks of this vulnerability can result in takeover of Oracle WebLogic Server. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91583",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-91585",
+        "score": 9.8,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: TopLink Integration).  Supported versions that are affected are 12.2.1.4.0, 14.1.1.0.0, 14.1.2.0.0 and  15.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via TCP to compromise Oracle WebLogic Server.  Successful attacks of this vulnerability can result in takeover of Oracle WebLogic Server. CVSS 3.1 Base Score 9.8 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91585",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114785",
+        "score": 9.6,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Hyperion Planning product of Oracle Hyperion (component: Security).   The supported version that is affected is 11.2.26.0.000. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Hyperion Planning.  Successful attacks require human interaction from a person other than the attacker and while the vulnerability is in Oracle Hyperion Planning, attacks may significantly impact additional products (scope change). Successful attacks of this vulnerability can result in takeover of Oracle Hyperion Planning. CVSS 3.1 Base Score 9.6 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114785",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114856",
+        "score": 9.6,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in Oracle REST Data Services (component: General).  Supported versions that are affected are 24.2.0-26.3.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTPS to compromise Oracle REST Data Services.  Successful attacks require human interaction from a person other than the attacker and while the vulnerability is in Oracle REST Data Services, attacks may significantly impact additional products (scope change). Successful attacks of this vulnerability can result in takeover of Oracle REST Data Services. CVSS 3.1 Base Score 9.6 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114856",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-130910",
+        "score": 9.6,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Protection mechanism failure in ANGLE in Google Chrome on on Android prior to 158.0.8127.36 allowed a remote attacker to potentially execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: High)",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130910",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-130971",
+        "score": 9.6,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Out of bounds write in ANGLE in Google Chrome prior to 158.0.8127.36 allowed a remote attacker to potentially execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: Medium)",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130971",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-130994",
+        "score": 9.6,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Use after free in WebGL in Google Chrome prior to 158.0.8127.36 allowed a remote attacker to potentially execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: High)",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130994",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-130996",
+        "score": 9.6,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Out of bounds write in ANGLE in Google Chrome prior to 158.0.8127.36 allowed a remote attacker to potentially execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: High)",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130996",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-131025",
+        "score": 9.6,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Out of bounds read in ANGLE in Google Chrome prior to 158.0.8127.36 allowed a remote attacker to potentially execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: High)",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-131025",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-131031",
+        "score": 9.6,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Out of bounds write in GPU in Google Chrome prior to 158.0.8127.36 allowed a remote attacker to execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: Critical)",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-131031",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-131054",
+        "score": 9.6,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Out of bounds write in ANGLE in Google Chrome prior to 158.0.8127.36 allowed a remote attacker to execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: Critical)",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-131054",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-131057",
+        "score": 9.6,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Out of bounds read in ANGLE in Google Chrome on on Android prior to 158.0.8127.36 allowed a remote attacker to potentially execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: High)",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-131057",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-131061",
+        "score": 9.6,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Buffer overflow in Color in Google Chrome prior to 158.0.8127.36 allowed a remote attacker to execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: Medium)",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-131061",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-131077",
+        "score": 9.6,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Out of bounds write in Tint in Google Chrome prior to 158.0.8127.36 allowed a remote attacker to potentially execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: Medium)",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-131077",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-131088",
+        "score": 9.6,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Improper input validation in WebAppInstalls in Google Chrome prior to 158.0.8127.36 allowed a remote attacker who had compromised the renderer process to potentially execute arbitrary code outside the sandbox via a crafted HTML page. (Chromium security severity: Low)",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-131088",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-91561",
+        "score": 9.6,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Service Bus product of Oracle Fusion Middleware (component: Core).  Supported versions that are affected are 12.2.1.4.0 and  14.1.2.0.0. Easily exploitable vulnerability allows low privileged attacker with network access via RMI to compromise Oracle Service Bus.  While the vulnerability is in Oracle Service Bus, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Service Bus accessible data as well as  unauthorized access to critical data or complete access to all Oracle Service Bus accessible data. CVSS 3.1 Base Score 9.6 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:H/I:H/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91561",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-129961",
+        "score": 9.5,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "LMS (Lan Management System) is vulnerable to Remote Code Execution\u00a0in its e-mail-based Helpdesk ticket intake. The mail parser does not reject Apache .htaccess configuration files or PHP-executable files when saving ticket attachments. A remote unauthenticated attacker can e-mail a Helpdesk ticket with such an attachment; in the default configuration, anyone can request the uploaded file's URL which executes attacker-supplied code\u00a0with the privileges of the web server process.\u00a0No operator interaction or LMS client session is required.\n\n\nThe issue was fixed in commit\u00a0d5059b1.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-129961",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-19707",
+        "score": 9.5,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "A bug in the Airlock Gateway (8.5.2 and earlier, and 8.6.0)  allows attacker-controlled HTML in a backend response to exploit the Smart Form Protection feature, possibly leading to a Denial of Service (DoS) or Remote Code Execution (RCE) attack against the Airlock Gateway. The issue has been fixed in Airlock Gateway version 8.5.3 and 8.6.1.\n\nFor an attack to be executable, the Airlock Gateway needs to have 'Smart Form Protection' (or the corresponding expert settings) enabled on a mapping whose backend returns a response containing certain multi-byte HTML character references. The buffer overflow then happens during the parsing of that HTML response. Such a response can come either from a malicious or compromised backend, or from an otherwise trusted backend that returns attacker-supplied HTML, e.g. an application that stores and serves plain user-provided HTML files.\n\nSuccessfully exploiting the vulnerability can enable an attacker to perform a DoS attack or, in the worst case, an RCE attack against the Airlock Gateway in front of the affected backend. Compromising the functionality of the Airlock Gateway could in this way also affect the availability and protection of other well-intentioned backends deployed behind the same Gateway.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-19707",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-114205",
         "score": 9.4,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "CubeSandbox is an instant, concurrent, secure, and lightweight sandbox for AI agents. Prior to 0.5.1, any authenticated tenant permitted to call POST /sandboxes can supply metadata[\"host-mount\"] with an arbitrary existing host path because the control plane performs no authorization check or allowed-prefix validation for the path. injectHostDirMounts forwards the path to prepareHostDirVolume, where Cubelet uses mount --rbind through the function to perform a recursive bind mount as root and exposes the host subtree to the tenant's MicroVM through virtio-fs, read-write by default. This allows host-root file access and modification, host code execution, access to the container runtime, and compromise of co-resident tenants without a kernel or virtual-machine-monitor flaw. This issue is fixed in version 0.5.1.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-120699",
+        "title": "Incorrect authorization in ASUS Control Center Express allows a remote authenticated user with a low-privileged role to create an administrator account, resulting in administrative control of the management console and of the clients it manages.\nRefer to the '\nSecurity Update for ASUS Control Center Express Agent\u00a0\u00a0' section on the ASUS Security Advisory for more information.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114205",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-126574",
+        "score": 9.4,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Missing authorization vulnerability in ASUS Control Center Datacenter and\u00a0Control Center Enterprise allows remote authenticated users with a low-privileged Viewer role to change the password of an Administrator account, thereby obtaining administrative privileges, via a crafted password update request.\u00a0\nRefer to the '\nSecurity Update for ASUS Control Center\u00a0\u00a0' section on the ASUS Security Advisory for more information.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126574",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-127143",
+        "score": 9.4,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "LMS (Lan Management System)\u00a0is vulnerable to privilege escalation in the lmsd daemon. The daemon loads the libraries listed in the LMS database without checking that they come from a trusted location. An attacker with access to the web server process or with write access to the LMS database can register a malicious library and trigger a configuration reload, causing lmsd to load and execute it.\u00a0Because the example systemd unit does not set a separate user, lmsd runs as root, allowing the attacker to execute arbitrary code with root privileges.\nThis issue was fixed in commit\u00a089dd3f7.\u00a0The lmsd component was removed. For existing installations that use lmsd, the recommended solution is to disable and remove this component.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-127143",
         "watch": []
       },
       {
@@ -447,101 +1007,189 @@
       },
       {
         "alert": false,
-        "date": "2026-11-17",
-        "id": "CVE-2026-129272",
-        "score": 9.3,
+        "date": "2026-11-18",
+        "id": "CVE-2026-130678",
+        "score": 9.4,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "N-able N-central before 2026.4.1 HF3 uses a predictable credential to authenticate appliances to an agent-facing API. A remote, unauthenticated attacker who knows or guesses an appliance identifier can obtain a valid appliance token and session and impersonate that appliance.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-129272",
+        "title": "SiYuan before 3.8.10 contains a stored cross-site scripting vulnerability that allows attackers to execute script by storing malicious Attribute View column names rendered unescaped in col.ts. Attackers can inject HTML via addAttributeViewKey, .sy.zip import, or sync, and when a victim adds or duplicates the column, insertAdjacentHTML runs JavaScript with Node.js privileges for desktop code execution.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130678",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-130679",
+        "score": 9.4,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "SiYuan before 3.8.10 contains a stored cross-site scripting vulnerability in genAVValueHTML() that allows attackers who can store Attribute View asset values to inject script through an unescaped image src attribute. Attackers can store an image URL containing a double quote and onerror handler that executes OS commands via Node.js in the desktop app when victims open the bound note or row attribute panel.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130679",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-130680",
+        "score": 9.4,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "SiYuan from 3.3.0 before 3.8.10 contains a stored cross-site scripting vulnerability that allows attackers to inject HTML via unescaped checkbox column names in Gallery and Kanban AttributeView renderers. Attackers can share a crafted .sy.zip document whose rendering in the Electron desktop client with nodeIntegration enabled executes Node.js and host OS commands.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130680",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-130681",
+        "score": 9.4,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "SiYuan before 3.8.10 contains a stored cross-site scripting vulnerability, an incomplete fix for CVE-2026-44670, because renderAVAttribute() inserts an Attribute View name unescaped into the database row attribute panel header. Attackers who can persist the name, such as via the setAttrViewName action, can inject an onerror handler that runs OS commands through Node.js when a desktop user opens the panel.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130681",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-130682",
+        "score": 9.4,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "SiYuan before 3.8.10 persists a table block's caption attribute into IAL properties without HTML sanitization, causing stored cross-site scripting upon import or sync. Attackers can inject an entity-encoded caption with an onerror handler that executes in the Electron client's nodeIntegration context to achieve remote code execution.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130682",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-130706",
+        "score": 9.4,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "NocoDB before 2026.09.0 contains an sql injection vulnerability that allows authenticated Creator or Owner users to inject raw SQL by persisting a crafted formula parsed_tree reused without revalidation. Attackers can bypass the SQLite metadata path guard with an alias to plant the tree, escalating to super administrator or executing OS commands on external PostgreSQL hosts.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130706",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-11-17",
-        "id": "CVE-2026-129280",
-        "score": 9.3,
+        "id": "CVE-2026-91469",
+        "score": 9.4,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "Multiple ServerUI and ServerUI2 SOAP operations in N-able N-central before 2026.4.1 HF3 do not verify the caller's session, permissions or customer scope. A remote attacker, in some cases without authentication, can read device and patch data, test passwords of user accounts, send messages to managed agents, and modify device and service settings belonging to other customers.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-129280",
+        "title": "Vulnerability in the Oracle WebLogic Server product of Oracle Fusion Middleware (component: Core).  Supported versions that are affected are 12.2.1.4.0, 14.1.1.0.0, 14.1.2.0.0 and  15.1.1.0.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle WebLogic Server.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle WebLogic Server accessible data as well as  unauthorized read access to a subset of Oracle WebLogic Server accessible data and unauthorized ability to cause a hang or frequently repeatable crash (complete DOS) of Oracle WebLogic Server. CVSS 3.1 Base Score 9.4 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:H/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91469",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-16",
-        "id": "CVE-2026-129941",
+        "date": "2026-11-18",
+        "id": "CVE-2025-59906",
         "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "Prime CMS (@primecms/core) through 0.4.0-beta.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to register accounts via the createUser mutation on /prime/graphql. Because the isAuthenticated() guard has its check commented out and createAbility() hard-codes every role to admin, attackers can log in with full administrative control over content, users, webhooks and settings.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-129941",
+        "title": "Hardcoded credentials in the executable file. These can be extracted using the \u201cStrings.exe\u201d tool and could allow an attacker unauthorized access to the database and SMTP server.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-59906",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-16",
-        "id": "CVE-2026-129952",
+        "date": "2026-11-18",
+        "id": "CVE-2025-59907",
         "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "NodePress through 8.5.1 contains an authentication bypass vulnerability that allows unauthenticated remote attackers to gain administrator access by forging JWTs with the hardcoded 'nodepress-secret' fallback key. Attackers can sign HS256 bearer tokens with the default issuer, audience, and role 'admin' to access administrator-only APIs for article, comment, options, and file management.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-129952",
+        "title": "Hardcoded credentials in the executable file. These can be extracted using the \u201cStrings.exe\u201d tool and could allow an attacker unauthorized access to the database and SMTP server.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-59907",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-16",
-        "id": "CVE-2026-129955",
+        "date": "2026-11-17",
+        "id": "CVE-2026-101691",
         "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "NodePress through 8.5.1 contains an authentication bypass vulnerability that allows unauthenticated attackers to gain administrator access by using the hardcoded default password 'root'. Attackers can send base64-encoded 'root' to POST /admin/login when NP_ADMIN_DEFAULT_PASSWORD is unset to obtain admin tokens and fully control the site.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-129955",
+        "title": "Vulnerability in the Oracle Mobile Field Service product of Oracle E-Business Suite (component: Admin UI).  Supported versions that are affected are 12.2.3-12.2.15. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Mobile Field Service.  While the vulnerability is in Oracle Mobile Field Service, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in  unauthorized access to critical data or complete access to all Oracle Mobile Field Service accessible data as well as  unauthorized update, insert or delete access to some of Oracle Mobile Field Service accessible data. CVSS 3.1 Base Score 9.3 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-101691",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-16",
-        "id": "CVE-2026-130070",
+        "date": "2026-11-17",
+        "id": "CVE-2026-114934",
         "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "Ghost by muneeb141 on the main branch from commit c731cdf through commit 672dfec contains an authentication bypass vulnerability in the whitelisted ghost.api.ghost.convert_to_real_user method that allows unauthenticated attackers to skip OTP verification by setting the client-supplied bypass_otp parameter. Attackers can obtain a ghost session from the guest-accessible create_ghost_session endpoint, then call convert_to_real_user with an arbitrary real_email and bypass_otp=1 to receive OAuth tokens for existing accounts and take them over.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130070",
+        "title": "Vulnerability in the PeopleSoft Enterprise PeopleTools product of Oracle PeopleSoft (component: Integration Broker).  Supported versions that are affected are 8.61-8.63. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise PeopleSoft Enterprise PeopleTools.  While the vulnerability is in PeopleSoft Enterprise PeopleTools, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in  unauthorized access to critical data or complete access to all PeopleSoft Enterprise PeopleTools accessible data as well as  unauthorized update, insert or delete access to some of PeopleSoft Enterprise PeopleTools accessible data. CVSS 3.1 Base Score 9.3 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114934",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-16",
-        "id": "CVE-2026-130071",
+        "date": "2026-11-17",
+        "id": "CVE-2026-114956",
         "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "TridotsTech go1cms master branch through commit 7f68d05 and version-3 branch before commit ead8da3 contains a missing authentication vulnerability in the guest-whitelisted update_doc method that allows unauthenticated attackers to modify any document. Attackers can supply a doctype, name and arbitrary fields that are saved with ignore_permissions=True, altering User records to escalate privileges, take over accounts or tamper with business data.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130071",
+        "title": "Vulnerability in the Oracle Hyperion Planning product of Oracle Hyperion (component: Security).   The supported version that is affected is 11.2.26.0.000. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Hyperion Planning.  Successful attacks require human interaction from a person other than the attacker and while the vulnerability is in Oracle Hyperion Planning, attacks may significantly impact additional products (scope change). Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Hyperion Planning accessible data as well as  unauthorized access to critical data or complete access to all Oracle Hyperion Planning accessible data. CVSS 3.1 Base Score 9.3 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114956",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-16",
-        "id": "CVE-2026-130320",
+        "date": "2026-11-17",
+        "id": "CVE-2026-115139",
         "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "In Open Object Rexx (ooRexx) before 5.2.0, RXAPI mishandles nameArg and userid bounds checking, possibly leading to arbitrary code execution via crafted messages.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130320",
+        "title": "Vulnerability in the Oracle Hyperion Infrastructure Technology product of Oracle Hyperion (component: Installation and Configuration).   The supported version that is affected is 11.2.26.0.000. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Hyperion Infrastructure Technology.  Successful attacks require human interaction from a person other than the attacker and while the vulnerability is in Oracle Hyperion Infrastructure Technology, attacks may significantly impact additional products (scope change). Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Hyperion Infrastructure Technology accessible data as well as  unauthorized access to critical data or complete access to all Oracle Hyperion Infrastructure Technology accessible data. CVSS 3.1 Base Score 9.3 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115139",
         "watch": []
       },
       {
         "alert": false,
-        "date": "2026-11-16",
-        "id": "CVE-2026-130327",
+        "date": "2026-11-17",
+        "id": "CVE-2026-119293",
         "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "In Open Object Rexx (ooRexx) before 5.2.0, RXAPI relies on a world-writable /tmp file unless XDG_RUNTIME_DIR is set, or localhost TCP port 10010, allowing RXAPI communication by any local user, e.g., for injection of a macro that will be executed by a REXX script.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130327",
+        "title": "FreeSWITCH is a Software Defined Telecom Stack enabling the digital transformation from proprietary telecom switches to a software implementation that runs on any commodity hardware. In 1.11.2 and earlier, rtp_common_read() in src/switch_rtp.c uses one session-wide autoadj_tally to learn RTP sources that differ from the address negotiated in SDP. An unauthenticated remote attacker who sends plaintext RTP during call setup can make packets from one or more non-advertised sources reach the threshold before the legitimate endpoint, causing FreeSWITCH to adopt the source of the threshold-crossing packet as the media peer. The attacker can then receive call audio, inject media, and deny media to the legitimate endpoint without being on the media path. FreeSWITCH 1.11.2 adds two opt-in controls, but both default to zero and the release remains affected unless both are configured before RTP session creation. This vulnerability is fixed in 1.11.2.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-119293",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-126551",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Use of Hard-coded Cryptographic Key vulnerability in Broadcom AutoSys Workload Automation (Workload Control Center (WCC) modules) on Windows, Linux allows Session Credential Falsification through Forging.This issue affects AutoSys Workload Automation: from 12.1 through 24.2.00.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126551",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-126552",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Missing Authentication for Critical Function, OS Command Injection vulnerability in Broadcom AutoSys Workload Automation (Workload Control Center (WCC) modules) on Windows, Linux allows OS Command Injection.This issue affects AutoSys Workload Automation: from 12.1 through 24.0.01.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126552",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-126553",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Deserialization of Untrusted Data vulnerability in Broadcom AutoSys Workload Automation (Workload Control Center (WCC) modules) on Windows, Linux allows Object Injection.This issue affects AutoSys Workload Automation: from 12.1 through 24.0.01.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126553",
         "watch": []
       },
       {
@@ -557,68 +1205,189 @@
       },
       {
         "alert": false,
-        "date": "2026-11-16",
-        "id": "CVE-2026-104840",
-        "score": 9.2,
+        "date": "2026-11-18",
+        "id": "CVE-2026-130648",
+        "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "OpenCTI is an open source platform for managing cyber threat intelligence knowledge and observables. Prior to 7.260428.0, the token GraphQL mutation used for primary login has no endpoint-specific rate limit, while the global Express limiter defaults to permitting 10,000 requests in a one-second window. An unauthenticated remote attacker can make password guesses at network speed against a chosen user account and, if a credential is recovered, access the account's threat-intelligence data and permitted operations. This issue is fixed in version 7.260428.0.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-104840",
+        "title": "WWBN AVideo from 6.5 contains a stored cross-site scripting vulnerability that allows users with upload permission to inject script by submitting a javascript: scheme videoLink for embed videos. The unvalidated URL is rendered into an iframe src in videoEmbeded.php and PlayerSkins.php, executing for viewers including administrators and enabling creation of new administrator accounts.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130648",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-130650",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "WWBN AVideo through c3edcc274c389816d434acadac07ee78eaf330c1 contains a cross-site scripting vulnerability because the default node socket server relays autoEvalCodeOnHTML without the PHP-only filter. Unauthenticated attackers can obtain an anonymous socket token and send a spoofed MSG_BATCH message to trigger client eval() in administrators' browsers for account takeover.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130650",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-130674",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Craft CMS from 5.0.0 before 5.11.4 contains an incomplete blocklist fix that allows attackers who can author entry type title formats to write arbitrary files using ZipArchive or XMLWriter classes. Attackers can abuse the non-sandboxed renderObjectTemplate() renderer to write attacker-controlled content into the web docroot, achieving remote code execution.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130674",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-130675",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Craft CMS from 5.0.0 before 5.11.4 contains a remote code execution vulnerability in ImageTransforms::normalizeTransform() that allows attackers to instantiate arbitrary classes by supplying class:null with a __class key. Attackers can reach the method through Craft Commerce's payments/pay redirect template calling customer.photo.getUrl() with a crafted transform to instantiate classes like yii\\rbac\\PhpManager and execute PHP.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130675",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-130683",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "SiYuan before 3.8.10 uses an incomplete deny-list in IsSensitivePath that omits shell-initialization files such as .zshenv and .bash_profile, as well as ~/.local. Authenticated administrators can call /api/file/copyFile with an absolute destination outside the workspace to write payloads there, which execute as the user on the next shell or login.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130683",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-130712",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "NocoDB before 2026.08.1 contains an authorization bypass vulnerability that allows authenticated Creators to access another tenant's external database by reusing a victim source id when adding a source. Because NcConnectionMgrv2 caches connections by bare source id, attackers can reflect the victim's cached database schema and read, update, and insert records through their own base models.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130712",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-130716",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "NocoDB before 2026.08.0 contains a stored cross-site scripting vulnerability that allows authenticated Creator or Editor users to execute script by injecting markup into fields rendered through URL() formulas. The canvas grid renderer assigns unsanitized formula output to innerHTML, letting attackers steal session tokens from localStorage and take over accounts of users viewing the table.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130716",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-130730",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "NocoDB before 2026.10.1 contains an authentication bypass vulnerability that allows OAuth token holders to act as full sessions because OAuth access tokens are signed with the instance JWT secret. Attackers can present a narrowly scoped OAuth token to the session strategy, short-lived-token exchange, or NocoSocket handshake to gain the granting user's full privileges.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130730",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-130733",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Grav from 2.0.0 before 2.2.18 contains an authorization bypass vulnerability that allows publishers to overwrite pages their per-page permissions deny by abusing FolderStorage key delimiter collisions and PageStorage folder reconstruction. Attackers can rename a folder like locked*** or save from a page with an unusual prefix width through a front-end Flex pages form, replacing protected content and permissions to access the protected subtree.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130733",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-130735",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Grav from 2.0.0 before 2.2.18 contains a Twig injection vulnerability that allows media-only accounts and anonymous uploaders to execute Twig by placing delimiters in image titles, alt text, class, id, or file names. Attackers can combine injected Twig with the autoescape tag to serve script to every page visitor, including super admins, or expose unpublished page content.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130735",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-11-17",
-        "id": "CVE-2026-129286",
-        "score": 9.2,
+        "id": "CVE-2026-130840",
+        "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "N-able N-central before 2026.4.1 HF3 does not validate version values and download locations in software update metadata. An attacker able to supply or modify the update metadata received by the server can write files outside the download directory and execute code as the N-central service account.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-129286",
+        "title": "BISHENG before 3.0.0 contains an authentication bypass vulnerability that allows unauthenticated remote attackers to impersonate administrators by abusing a hard-coded default jwt_secret used by AuthJwt. Attackers can forge an HS256 token offline naming user_id 1 with the admin role, send it as access_token_cookie, and gain full administrative access to users, workspaces, knowledge bases and workflows.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130840",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-11-17",
-        "id": "CVE-2026-130366",
-        "score": 9.2,
+        "id": "CVE-2026-130849",
+        "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "AdminNeo before 5.9.1 contains an authentication bypass vulnerability in the ClickHouse driver that allows remote attackers to log in to passwordless accounts without the configured defaultPasswordHash password. Attackers who know the name of a ClickHouse no_password account can submit any non-empty password, because connect() skips openPasswordless(), and obtain a session with that account's rights.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130366",
+        "title": "BZFlag bzfs before 2.4.32 contains a heap out-of-bounds write vulnerability in NetHandler::tcpReceive() that allows remote unauthenticated attackers to corrupt heap memory by sending a TCP message with a body length of exactly 1024. Attackers can overwrite the tcplen receive offset with a negative value to write controlled bytes before the buffer, crashing the server or executing commands as the bzfs user.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130849",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-11-17",
-        "id": "CVE-2026-130369",
-        "score": 9.2,
+        "id": "CVE-2026-130856",
+        "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "phpMyFAQ 4.1.9 before 4.1.12 and 4.2.0-alpha before 4.2.0-RC.2 contains an authorization bypass vulnerability in multisite deployments that allows attackers to overwrite passkeys of accounts on other tenants via a shared PHP session store. Attackers can run WebAuthn prepare() for a login on one tenant, then replay the session against /api/webauthn/register on another tenant or the master to replace that user's passkeys and log in as admin.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130369",
+        "title": "53AIHub before 0.5.5 contains a missing authentication vulnerability that allows remote unauthenticated attackers to reinitialize installed instances by calling the public POST /api/init endpoint. Attackers can reset an existing account's password, assign the top creator role, and obtain an access token to take over accounts and use admin-only API routes.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130856",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-131852",
+        "score": 9.3,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "OwnTracks Recorder before 1.0.5 contains a format string vulnerability in json_response() and related output functions that allows unauthenticated attackers to execute code by storing a malicious tid value. Attackers can publish locations via POST /pub or MQTT with printf specifiers in tid, then read them back through GET /api/0/last to leak addresses and write memory.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-131852",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-11-17",
-        "id": "CVE-2026-130371",
-        "score": 9.2,
+        "id": "CVE-2026-91507",
+        "score": 9.3,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "phpMyFAQ before 4.1.12 and 4.2.0-alpha before 4.2.0-RC.2 contains an authentication bypass vulnerability because the web installer ignores the legacy config/database.php during 3.x upgrades. Unauthenticated attackers can reinstall the site against an attacker-controlled database and create their own administrator account to take over the application.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130371",
+        "title": "Vulnerability in the Oracle Access Manager product of Oracle Fusion Middleware (component: Authentication Engine).  Supported versions that are affected are 12.2.1.4.0 and  14.1.2.1.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Access Manager.  While the vulnerability is in Oracle Access Manager, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Access Manager accessible data as well as  unauthorized read access to a subset of Oracle Access Manager accessible data. CVSS 3.1 Base Score 9.3 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:L/I:H/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91507",
         "watch": []
       },
       {
         "alert": false,
         "date": "2026-11-17",
-        "id": "CVE-2026-130380",
+        "id": "CVE-2025-62165",
         "score": 9.2,
         "severity": "CRITICAL",
         "source": "nvd",
-        "title": "AdminNeo before 5.9.1 contains an authentication bypass vulnerability in the sqlsrv-based MS SQL driver that allows unauthenticated attackers to log in by submitting an empty username. Attackers can supply any non-empty password, triggering Windows integrated authentication that grants a full session with the web server identity's SQL Server privileges.",
-        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130380",
+        "title": "Pi-hole FTL is the core engine of the Pi-hole network-level advertisement and tracker blocker. From 6.0 until 6.7, CivetWeb permits unauthenticated clients to flood the WebUI login page and API invalid paths without connection or request-rate limits. Repeated requests can consume substantial CPU in request processing and session authentication, making the WebUI sluggish or unresponsive and potentially affecting the wider system and DNS service. Requests to selected invalid or redirecting paths also generate a log entry for each request, allowing network traffic to expand logs and exhaust constrained storage such as an SD card, while other request forms consume CPU without producing a corresponding request log. This vulnerability is fixed in 6.7.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-62165",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-109857",
+        "score": 9.2,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "CAST Imaging is vulnerable to authentication bypass in the TenantFilter class. The TenantFilter processes the X-ISSUER-LOCATION HTTP header and dynamically registers an OpenID Connect issuer based on its value. An unauthenticated remote attacker can register a malicious identity provider, create users matching existing administrative usernames, and obtain valid JWTs which will be accepted by the application. This results in complete authentication bypass and privilege escalation to administrative access.\n\n\n\n\nThe vulnerability has only been confirmed in version 3.6.2 but may also affect other versions.\u00a0The vendor did not provide the affected version range, but assured that the vulnerability is fixed \"in newer versions\".",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-109857",
         "watch": []
       },
       {
@@ -631,34 +1400,317 @@
         "title": "Rootways Authorize.net CIM Pro extension for Magento 2 before 4.1.5 contains an unauthenticated server-side request forgery vulnerability in the Apple Pay merchant validation controller. Attackers can supply file://, gopher://, or dict:// URLs in the validationUrl parameter to read app/etc/env.php credentials and encryption keys or reach internal services and cloud metadata endpoints.",
         "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130583",
         "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-130747",
+        "score": 9.2,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Grav before 1.7.53.7 and 2.x before 2.2.18 contains an authentication bypass vulnerability that allows anonymous visitors to create super-admin accounts because UserCollection::count() uses an unescaped glob() pattern. On installs whose path contains brackets or a backslash, the account count returns zero, so attackers can send requests to POST /api/v1/auth/setup or the classic admin registration form to create or overwrite administrator accounts.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130747",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-111508",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Dell PowerStore contains an OS Command Injection vulnerability. Exploitation could lead to arbitrary command execution with root privileges on the appliance.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-111508",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114847",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in Oracle Autonomous Health Framework (component: Developer triaging platform).  Supported versions that are affected are 26.4-26.10. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Autonomous Health Framework.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Autonomous Health Framework accessible data as well as  unauthorized access to critical data or complete access to all Oracle Autonomous Health Framework accessible data. CVSS 3.1 Base Score 9.1 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114847",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114862",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the PeopleSoft Enterprise PeopleTools product of Oracle PeopleSoft (component: Weblogic).  Supported versions that are affected are 8.61-8.63. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise PeopleSoft Enterprise PeopleTools.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all PeopleSoft Enterprise PeopleTools accessible data as well as  unauthorized access to critical data or complete access to all PeopleSoft Enterprise PeopleTools accessible data. CVSS 3.1 Base Score 9.1 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114862",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114881",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Document Management and Collaboration product of Oracle E-Business Suite (component: Attachments).  Supported versions that are affected are 12.2.3-12.2.15. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Document Management and Collaboration.  Successful attacks of this vulnerability can result in  unauthorized access to critical data or complete access to all Document Management and Collaboration accessible data and unauthorized ability to cause a hang or frequently repeatable crash (complete DOS) of Document Management and Collaboration. CVSS 3.1 Base Score 9.1 (Confidentiality and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114881",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114952",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the MySQL Server, MySQL Cluster product of Oracle MySQL (component: Client programs).  Supported versions that are affected are MySQL Server: 8.4.0-8.4.13, 9.7.0-9.7.4, 26.10; MySQL Cluster: 8.0.0-8.0.50, 8.4.0-8.4.13, 9.7.0-9.7.4 and  26.10. Easily exploitable vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise MySQL Server, MySQL Cluster.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all MySQL Server, MySQL Cluster accessible data as well as  unauthorized access to critical data or complete access to all MySQL Server, MySQL Cluster accessible data. CVSS 3.1 Base Score 9.1 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114952",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-115050",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Hyperion Infrastructure Technology product of Oracle Hyperion (component: Installation and Configuration).   The supported version that is affected is 11.2.26.0.000. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Hyperion Infrastructure Technology.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Hyperion Infrastructure Technology accessible data as well as  unauthorized access to critical data or complete access to all Oracle Hyperion Infrastructure Technology accessible data. CVSS 3.1 Base Score 9.1 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115050",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-122122",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "The order-tracking functionality in ICRTouch ByTable and TouchTakeaway does not adequately verify that a requester is authorized to access the specified order. An unauthenticated remote attacker can modify an order identifier to retrieve information associated with other customers\u2019 orders.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-122122",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-122149",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "The PocketTouch and TouchPoint POS protocol includes a `SAVECONFIG` command that appears capable of overwriting till configuration files remotely. \r\nAn attacker with network access to the POS socket service may be able to submit a crafted `SAVECONFIG` command and replace or modify terminal configuration data.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-122149",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-122150",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "The PocketTouch and TouchPoint POS `CHECKPAYMENT` workflow accepts a caller-supplied clerk number without adequately verifying that the requesting client is authorized to act as that clerk.\r\nAn attacker with access to the POS protocol may be able to specify another employee\u2019s clerk identifier and submit payment-related requests under that identity.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-122150",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-126969",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "SmarterTools SmarterMail Insufficient Entropy Authentication Bypass Vulnerability. This vulnerability allows remote attackers to bypass authentication on affected installations of SmarterTools SmarterMail. Authentication is not required to exploit this vulnerability.\n\nThe specific flaw exists within the generation of Application Passwords. The issue results from using insufficient entropy in the generation of credentials. An attacker can leverage this vulnerability to bypass authentication on the system. Was ZDI-CAN-33568.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-126969",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-127362",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Hyperion Financial Close Management product of Oracle Hyperion (component: Reconciliation Manage).   The supported version that is affected is 11.2.26.0.000. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Hyperion Financial Close Management.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Hyperion Financial Close Management accessible data as well as  unauthorized access to critical data or complete access to all Oracle Hyperion Financial Close Management accessible data. CVSS 3.1 Base Score 9.1 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-127362",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-127369",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Hyperion Financial Close Management product of Oracle Hyperion (component: Reconciliation Manage).   The supported version that is affected is 11.2.26.0.000. Easily exploitable vulnerability allows unauthenticated attacker with network access via Oracle Net to compromise Oracle Hyperion Financial Close Management.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Hyperion Financial Close Management accessible data as well as  unauthorized access to critical data or complete access to all Oracle Hyperion Financial Close Management accessible data. CVSS 3.1 Base Score 9.1 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-127369",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-130802",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "The NFC authentication handshake relies on a fixed, static challenge instead of a unique, random value for every session. This allows an attacker to perform a \"replay attack,\" successfully authenticating by simply sending the same pre-recorded response.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130802",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-130838",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Radicale 3.3.0 before 3.8.3 contains an authorization bypass vulnerability that allows unauthenticated attackers to inherit group-based rights by reusing group memberships never reset between requests. Attackers can send credential-less requests after a group member logs in to read and write group-shared calendar and address book collections evaluated by the from_file rights backend.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130838",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-130868",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "GreaterWMS through 2.1.54 contains a predictable authentication token vulnerability that allows unauthenticated attackers to forge openid tokens by recomputing an unsalted MD5 hash of username and registration timestamp. Attackers who know a username and can bound its registration time can brute-force candidate openid values in the Token header to gain full read and write access to warehouse, staff, customer, supplier and order data.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130868",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-130870",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "ClearFlask before 2.7.3 contains an improper authorization vulnerability that allows any account holding an invitation ID to accept it regardless of invited email. Attackers who obtain a forwarded or shared invitation link can redeem it via accountAcceptInvitationAdmin or accountSignupAdmin to become project administrators.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-130870",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-91618",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Application Development Framework (ADF) product of Oracle Fusion Middleware (component: Security Framework).   The supported version that is affected is 12.2.1.4.0. Easily exploitable vulnerability allows unauthenticated attacker with network access via HTTP to compromise Oracle Application Development Framework (ADF).  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Application Development Framework (ADF) accessible data as well as  unauthorized access to critical data or complete access to all Oracle Application Development Framework (ADF) accessible data. CVSS 3.1 Base Score 9.1 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-91618",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-95643",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Zohocorp Manageengine DDI Central build below\u00a06500 are affected by\u00a0a authenticated\u00a0PowerShell command injection vulnerability in the Telnet connectivity feature, allowing specially crafted IPv6 scope identifiers to execute arbitrary commands on managed Windows nodes.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-95643",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-95645",
+        "score": 9.1,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Zohocorp Manageengine DDI Central build below\u00a06500 are affected by\u00a0a authenticated command injection vulnerability in the Windows DDI Agent's clear_blocked_domains functionality, allowing specially crafted blocked-domain values to trigger arbitrary command execution on Windows systems.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-95645",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-18",
+        "id": "CVE-2026-114204",
+        "score": 9.0,
+        "severity": "CRITICAL",
+        "source": "nvd",
+        "title": "Use of Hard-coded Cryptographic Key in ASUS Control Center Express allows a remote user to bypass authentication by forging a session token for an account with a recent valid login, resulting in administrative control of the management console and of the clients it manages.\nRefer to the ' Security Update for ASUS Control Center Express Agent\u00a0\u00a0' section on the ASUS Security Advisory for more information.",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114204",
+        "watch": []
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114943",
+        "score": 6.5,
+        "severity": "MEDIUM",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: Hotspot).  Supported versions that are affected are Oracle Java SE: 8u511b33-perf, 11.0.33.0.3, 17.0.21.0.3, 21.0.13.0.3, 25.0.5.0.3, 27.0.1.0.3; Oracle GraalVM for JDK: 17.0.21.0.3 and  21.0.13.0.3; Oracle GraalVM Enterprise Edition: 21.3.20.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in unauthorized ability to cause a hang or frequently repeatable crash (complete DOS) of Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition as well as  unauthorized update, insert or delete access to some of Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data. Note: This vulnerability can be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. This vulnerability also applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. CVSS 3.1 Base Score 6.5 (Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:L/A:H).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114943",
+        "watch": [
+          "java"
+        ]
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114944",
+        "score": 5.9,
+        "severity": "MEDIUM",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: Core Java Libraries).  Supported versions that are affected are Oracle Java SE: 8u511b33, 8u511b33-perf, 11.0.33.0.3, 17.0.21.0.3, 21.0.13.0.3, 25.0.5.0.3, 27.0.1.0.3; Oracle GraalVM for JDK: 17.0.21.0.3 and  21.0.13.0.3; Oracle GraalVM Enterprise Edition: 21.3.20.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data. Note: This vulnerability can be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. This vulnerability also applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. CVSS 3.1 Base Score 5.9 (Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114944",
+        "watch": [
+          "java"
+        ]
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114945",
+        "score": 5.3,
+        "severity": "MEDIUM",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK product of Oracle Java SE (component: Libraries).  Supported versions that are affected are Oracle Java SE: 21.0.13.0.3, 25.0.5.0.3 and  27.0.1.0.3; Oracle GraalVM for JDK: 21.0.13.0.3. Easily exploitable vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK.  Successful attacks of this vulnerability can result in  unauthorized update, insert or delete access to some of Oracle Java SE, Oracle GraalVM for JDK accessible data. Note: This vulnerability can be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. This vulnerability also applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. CVSS 3.1 Base Score 5.3 (Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114945",
+        "watch": [
+          "java"
+        ]
+      },
+      {
+        "alert": false,
+        "date": "2026-11-17",
+        "id": "CVE-2026-114946",
+        "score": 4.8,
+        "severity": "MEDIUM",
+        "source": "nvd",
+        "title": "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: Compiler).  Supported versions that are affected are Oracle Java SE: 8u511b33, 8u511b33-perf, 11.0.33.0.3, 17.0.21.0.3, 21.0.13.0.3, 25.0.5.0.3, 27.0.1.0.3; Oracle GraalVM for JDK: 17.0.21.0.3 and  21.0.13.0.3; Oracle GraalVM Enterprise Edition: 21.3.20.0.3. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in  unauthorized update, insert or delete access to some of Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data as well as  unauthorized read access to a subset of Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data. Note: This vulnerability can be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. This vulnerability also applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. CVSS 3.1 Base Score 4.8 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:N).",
+        "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-114946",
+        "watch": [
+          "java"
+        ]
       }
     ],
     "php": []
   },
   "sources": [
     {
-      "count": 0,
+      "count": 1,
       "label": "CISA Known Exploited Vulnerabilities",
       "name": "kev",
-      "note": "catalog 2026.11.13",
+      "note": "catalog 2026.11.17",
       "ok": true
     },
     {
-      "count": 25,
+      "count": 131,
       "label": "NVD (new CVEs)",
       "name": "nvd",
-      "note": "396 CVEs published in window; showing CRITICAL (9.0+) and CVEs about a watched product itself; 40 more only mention one (apps, plugins, libraries) and are not listed",
+      "note": "1399 CVEs published in window; showing CRITICAL (9.0+) and CVEs about a watched product itself; 34 more only mention one (apps, plugins, libraries) and are not listed",
       "ok": true
     },
     {
-      "count": 18,
+      "count": 5,
       "label": "GitHub Advisory Database",
       "name": "ghsa",
       "note": "critical in all ecosystems; high only for composer, go, npm, pip",
       "ok": true
     },
     {
-      "count": 1,
+      "count": 0,
       "label": "nodejs.org release index",
       "name": "node",
       "note": "883 versions in index",
