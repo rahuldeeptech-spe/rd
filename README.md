@@ -1,6 +1,6 @@
-# Security report 2026-11-22
+# Security report 2026-11-23
 
-Generated 2026-11-22 13:23 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
+Generated 2026-11-23 16:01 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
 
 ## Needs attention (10)
 
@@ -21,19 +21,18 @@ No new entries in the window.
 
 ## Critical new CVEs and CVEs about watched products (NVD)
 
-- **CVE-2026-125294** CVSS 9.8 CRITICAL - The Nexter Blocks Pro plugin for WordPress is vulnerable to Privilege Escalation in all versions up to, and including, 5.0.10 via the \`tpgb\_ajax\_register\_user\(\)\` function. This is due to a byte-level denylist on the \`tp… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-125294)
-- **CVE-2026-74127** CVSS 9.4 CRITICAL - Improper verification of a cryptographic signature in the PSP Boot ROM of AMD Zeppelin \(Zen1/Zen+\) processors could allow an attacker with local access to the SPI flash to bypass secure boot authentication, potentially… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-74127)
-- **CVE-2026-133993** CVSS 9.3 CRITICAL - A security flaw has been discovered in D-Link DIR-600L 2.17b02. This affects the function FUN\_0040efb0 of the file gena.cgi of the component GENA Subscription Handler. Performing a manipulation of the argument service r… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-133993)
-- **CVE-2026-134258** CVSS 9.3 CRITICAL - Admidio 5.0.0 before 5.0.18 contains a path traversal vulnerability in the Documents &amp; Files renameFile\(\) action that allows authenticated users with folder upload rights to move files outside adm\_my\_files by supplying… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-134258)
-- **CVE-2026-134292** CVSS 9.3 CRITICAL - SurrealDB 1.0.0 before 4.0.0 contains a capability check bypass in its embedded JavaScript scripting engine, where the surrealdb.functions bridge calls the internal fnc::synchronous\(\) and fnc::asynchronous\(\) dispatchers… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-134292)
-- **CVE-2026-134262** CVSS 9.2 CRITICAL - Admidio 5.0.0 before 5.0.18 contains a stored cross-site scripting vulnerability that allows role administrators to inject JavaScript by placing quote-breaking payloads in role names rendered unencoded in the data-messa… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-134262)
-- **CVE-2026-134287** CVSS 9.2 CRITICAL - OpenRemote core before 1.34.0 contains an authentication bypass vulnerability in UserAssetProvisioningMQTTHandler that allows unauthenticated attackers to impersonate provisioned devices without proof of private key pos… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-134287)
-- **CVE-2026-134352** CVSS 9.2 CRITICAL - Rclone from 1.51.0 before 1.76.0 contains an authentication bypass vulnerability in serve sftp --auth-proxy because the generateCacheKey cache key omits the authentication method. Attackers knowing a victim's base64 pub… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-134352)
-- **CVE-2026-124626** CVSS 9.1 CRITICAL - @​fastify/express is a compatibility layer that lets Express middleware run inside the Fastify web framework. In versions 4.0.5 through 4.0.9, the plugin matches path-scoped Express middleware with a matcher that require… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-124626)
-- **CVE-2026-129504** CVSS 9.1 CRITICAL - @​fastify/express is a compatibility layer that lets Express middleware run inside the Fastify web framework. In versions 4.0.0 through 4.0.9, the plugin joins a path-scoped middleware's mount path to the Fastify plugin… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129504)
-- **CVE-2026-133120** CVSS 9.1 CRITICAL - @​fastify/express is a compatibility layer that lets Express middleware run inside the Fastify web framework. In versions before 4.0.10, the plugin passes Express a request URL that does not always match the path Fastify… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-133120)
-- **CVE-2026-133250** CVSS 9.1 CRITICAL - @​fastify/middie is the middleware engine for the Fastify web framework. In versions up to and including 9.3.7, middie matches path-scoped middleware against its own reading of the request path, which can differ from the… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-133250)
-- **CVE-2026-133867** CVSS 9.1 CRITICAL - @​fastify/express is a compatibility layer that lets Express middleware run inside the Fastify web framework. In versions 4.0.7 through 4.0.9, the plugin does not rewrite regular-expression mount paths to account for a p… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-133867)
+- **CVE-2026-134882** CVSS 10.0 CRITICAL - A weakness has been identified in TOTOLINK A7100RU 7.4cu.2313\_B20191024. This issue affects the function exportOvpn of the file /cgi-bin/cstecgi.cgi of the component CGI Handler. This manipulation of the argument Userna… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-134882)
+- **CVE-2026-120382** CVSS 9.8 CRITICAL - An improper neutralization of argument delimiters in a command vulnerability in the OAuth API in Synology DiskStation Manager \(DSM\) before 7.1.1-42962-10, 7.2.1-69057-14, 7.2.2-72806-11, 7.3.2-86009-6, and 7.4.1-90080-2… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-120382)
+- **CVE-2026-115899** CVSS 9.3 CRITICAL - An attacker must control pagination data returned by an upstream API or service queried by an existing REST Collector. The Collector must use affected response-based pagination and process the crafted data during a job… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-115899)
+- **CVE-2026-121613** CVSS 9.3 CRITICAL - Missing authentication and authorization on an exposed interface allows an unauthenticated remote attacker to send arbitrary commands to the affected component, which can force a device reboot or let the attacker upload… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-121613)
+- **CVE-2026-134624** CVSS 9.3 CRITICAL - N-able MailAssure \(SpamExperts\) before 20261121.1943 does not restrict the destination of the LDAP synchronisation connection check performed when a relay is configured. An authenticated API user can cause the server to… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-134624)
+- **CVE-2026-134814** CVSS 9.2 CRITICAL - binary-parser before 2.3.1 contains a code injection vulnerability that allows attackers controlling parser definitions to inject JavaScript through string-typed options passed unvalidated by Context.generateOption\(\). A… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-134814)
+- **CVE-2026-134815** CVSS 9.2 CRITICAL - simple-git before 4.1.0 contains an argument injection vulnerability that allows attackers to bypass the allowUnsafePack guard by supplying the --exec option to non-push git operations. Attackers who influence arguments… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-134815)
+- **CVE-2026-135161** CVSS 9.2 CRITICAL - Interstellar before 6.3.0 contains a server-side request forgery vulnerability that allows unauthenticated attackers to reach internal services by enabling allow\_loopback\_ips and allow\_private\_ips in wisp-js at startup.… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-135161)
+- **CVE-2026-135171** CVSS 9.2 CRITICAL - Wing FTP Server before 8.2.8 contains a predictable session identifier vulnerability that allows unauthenticated attackers to hijack administrator sessions by deriving identifiers from process, time, ServerID, and clien… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-135171)
+- **CVE-2026-135174** CVSS 9.2 CRITICAL - Softaculous Virtualizor before 3.2.9 contains an SQL injection vulnerability in enduser/auth\_callback.php that allows unauthenticated attackers to bypass authentication via OAuth-returned email addresses. Attackers can… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-135174)
+- **CVE-2026-134838** CVSS 9.1 CRITICAL - Weblate before 2026.11 contains an account takeover vulnerability in the reset\_password view that allows unauthenticated attackers to reset victim passwords by abusing case-insensitive Unicode e-mail matching. Attackers… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-134838)
+- **CVE-2026-135163** CVSS 9.1 CRITICAL - Okou API before 1.762.0 contains a missing authentication vulnerability in its Microsoft Teams, legacy Slack, and GitHub App integration OAuth flows that trusts caller-supplied userId and orgId values. Unauthenticated a… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-135163)
 
 ## GitHub reviewed advisories (critical, plus high in watched ecosystems)
 
@@ -62,8 +61,8 @@ No Node.js release in the window.
 
 | Source | Status | Items | Note |
 |---|---|---|---|
-| CISA Known Exploited Vulnerabilities | OK | 0 | catalog 2026.11.20 |
-| NVD \(new CVEs\) | OK | 13 | 301 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 5 more only mention one \(apps, plugins, libraries\) and are not l… |
+| CISA Known Exploited Vulnerabilities | OK | 0 | catalog 2026.11.23 |
+| NVD \(new CVEs\) | OK | 12 | 203 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 9 more only mention one \(apps, plugins, libraries\) and are not l… |
 | GitHub Advisory Database | OK | 0 | critical in all ecosystems; high only for composer, go, npm, pip |
 | nodejs.org release index | OK | 0 | 883 versions in index |
 | go.dev downloads | OK | 0 | branches: 1.26, 1.27 |
