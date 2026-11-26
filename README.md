@@ -1,10 +1,9 @@
-# Security report 2026-11-25
+# Security report 2026-11-26
 
-Generated 2026-11-25 15:38 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
+Generated 2026-11-26 15:21 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
 
-## Needs attention (11)
+## Needs attention (10)
 
-- **CVE-2026-136440** CVSS 7.3 HIGH - Python Packaging Authority pip Configuration File Incorrect Permission Assignment Local Privilege Escalation Vulnerability. This vulnerability allows local attackers to escalate privileges on affected installations of P… - **watching: python** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-136440)
 - **go 1.26** - REVIEW: upstream go 1.26 is 1.26.11, advisories.tsv is reviewed up to 1.26.10. Read the release notes for new security fixes and update the rules. - **watching: go**
 - **go 1.27** - REVIEW: upstream go 1.27 is 1.27.4, advisories.tsv is reviewed up to 1.27.3. Read the release notes for new security fixes and update the rules. - **watching: go**
 - **node 22** - REVIEW: upstream node 22 is 22.23.5, advisories.tsv is reviewed up to 22.23.4 and upstream marks it a security release. Read the release notes for new security fixes and update the rules. - **watching: node**
@@ -18,51 +17,57 @@ Generated 2026-11-25 15:38 UTC by an automated job. Window: last 24 hours. Not a
 
 ## Actively exploited (CISA KEV, added in window)
 
+- **CVE-2023-25914** - Danfoss AK-SM 800A Series - Danfoss AK-SM 800A Series Path Traversal Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2023-25914)
+- **CVE-2023-25915** - Danfoss AK-SM 800A Series - Danfoss AK-SM 800A Series Improper Input Validation Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2023-25915)
+- **CVE-2025-41450** - Danfoss AK-SM 800A Series - Danfoss AK-SM 800A Series Improper Authentication Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2025-41450)
 - **CVE-2026-103406** - Hewlett Packard Enterprise \(HPE\) Juniper Session Smart Conductor and Session Smart Router - Hewlett Packard Enterprise \(HPE\) Juniper Session Smart Conductor and Session Smart Router OS Command Injection Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-103406)
-- **CVE-2026-131914** - Idunno AntiCsrf - Idunno AntiCsrf Deserialization of Untrusted Data Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-131914)
-- **CVE-2026-132165** - Drupal Core - Drupal Core Remote Code Execution Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-132165)
-- **CVE-2026-132224** - Optimizely Web Experimentation - Optimizely Web Experimentation External Control of Critical State Data Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-132224)
+- **CVE-2026-133275** - Mitel MiCollab - Mitel MiCollab Unrestricted Upload of File with Dangerous Type Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-133275)
+- **CVE-2026-133303** - Mitel MiCollab - Mitel MiCollab XML Injection Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-133303)
+- **CVE-2026-133311** - Mitel MiCollab - Mitel MiCollab Weak Authentication Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-133311)
+- **CVE-2026-133323** - Mitel MiCollab - Mitel MiCollab OS Command Injection Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-133323)
+- **CVE-2026-133324** - Mitel MiCollab - Mitel MiCollab Not Failing Securely Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-133324)
+- **CVE-2026-133469** - Vates Xen Orchestra - Vates Xen Orchestra Improper Validation of Specified Type of Input Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-133469)
 
 ## Critical new CVEs and CVEs about watched products (NVD)
 
-- **CVE-2026-136440** CVSS 7.3 HIGH - Python Packaging Authority pip Configuration File Incorrect Permission Assignment Local Privilege Escalation Vulnerability. This vulnerability allows local attackers to escalate privileges on affected installations of P… - **watching: python** - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-136440)
-- **CVE-2026-109484** CVSS 10.0 CRITICAL - Failure to sanitize special elements into a different plane \(special element injection\) in Azure App Service allows an unauthorized attacker to elevate privileges over a network. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-109484)
-- **CVE-2026-78114** CVSS 10.0 CRITICAL - Session Fixation in the login flow of Apache JSPWiki versions 2.10 through 3.0.0 on all platforms. The session identifier was not replaced when a user authenticated, so an attacker who could set a known session identifi… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-78114)
-- **CVE-2026-86155** CVSS 10.0 CRITICAL - A vulnerability in Apache Jena Fuseki in the SHACL validation functionality cause server side request forgery \(SSRF\). This issue affects Apache Jena Fuseki: through 6.2.0. Users are recommended to upgrade to version 6.3… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-86155)
-- **CVE-2026-123266** CVSS 9.9 CRITICAL - Adobe Experience Manager is affected by an Improper Control of Generation of Code \('Code Injection'\) vulnerability that could result in arbitrary code execution in the context of the current user. A low-privileged attac… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123266)
-- **CVE-2026-123342** CVSS 9.9 CRITICAL - Adobe Campaign Classic \(ACC\) is affected by an Improper Control of Generation of Code \('Code Injection'\) vulnerability that could result in arbitrary code execution in the context of the current user. A low-privileged a… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123342)
-- **CVE-2026-123722** CVSS 9.9 CRITICAL - Adobe Campaign Classic \(ACC\) is affected by an Improper Control of Generation of Code \('Code Injection'\) vulnerability that could result in arbitrary code execution in the context of the current user. A low-privileged a… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123722)
-- **CVE-2026-123723** CVSS 9.9 CRITICAL - Adobe Campaign Classic \(ACC\) is affected by an Improper Control of Generation of Code \('Code Injection'\) vulnerability that could result in arbitrary code execution in the context of the current user. A low-privileged a… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123723)
-- **CVE-2026-123986** CVSS 9.9 CRITICAL - Adobe Campaign Classic \(ACC\) is affected by an Improper Control of Generation of Code \('Code Injection'\) vulnerability that could result in arbitrary code execution in the context of the current user. A low-privileged a… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123986)
-- **CVE-2026-123987** CVSS 9.9 CRITICAL - Adobe Campaign Classic \(ACC\) is affected by an Improper Control of Generation of Code \('Code Injection'\) vulnerability that could result in arbitrary code execution in the context of the current user. A low-privileged a… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123987)
-- **CVE-2026-125675** CVSS 9.9 CRITICAL - Adobe Campaign Classic \(ACC\) is affected by an Improper Control of Generation of Code \('Code Injection'\) vulnerability that could result in arbitrary code execution in the context of the current user. A low-privileged a… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-125675)
-- **CVE-2026-125676** CVSS 9.9 CRITICAL - Adobe Campaign Classic \(ACC\) is affected by an Improper Control of Generation of Code \('Code Injection'\) vulnerability that could result in arbitrary code execution in the context of the current user. A low-privileged a… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-125676)
-- **CVE-2026-132877** CVSS 9.9 CRITICAL - Adobe Experience Manager is affected by an Improper Control of Generation of Code \('Code Injection'\) vulnerability that could result in arbitrary code execution in the context of the current user. A low-privileged attac… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-132877)
-- **CVE-2026-112732** CVSS 9.8 CRITICAL - Double free in Microsoft Office Visio allows an unauthorized attacker to execute code over a network. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-112732)
-- **CVE-2026-124284** CVSS 9.8 CRITICAL - A critical security vulnerability affects certain authentication methods in Genetec Security Center, including external identity providers using OpenID Connect \(OIDC\) or SAML 2.0, and Active Directory Federation Service… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-124284)
-- **CVE-2026-125812** CVSS 9.8 CRITICAL - Improper Limitation of a Pathname to a Restricted Directory \('Path Traversal'\) vulnerability in WP Media WP Rocket wp-rocket allows Path Traversal.This issue affects WP Rocket: from n/a before 3.24.2. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-125812)
-- **CVE-2026-134019** CVSS 9.8 CRITICAL - PyTables is a Python package to manage extremely large amounts of data. In 3.11.1 and earlier, tables/attributeset.py treats a NumPy bytes scalar ending in a period as a pickled Python object and calls pickle.loads\(\) wh… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-134019)
-- **CVE-2026-136434** CVSS 9.8 CRITICAL - Super Magic PHPSandbox Command Injection Sandbox Escape Vulnerability. This vulnerability allows remote attackers to bypass the sandbox on affected installations of Super Magic. Authentication is not required to exploit… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-136434)
-- **CVE-2026-136441** CVSS 9.8 CRITICAL - Bytebase DBHub MCP Incorrect Authorization Authentication Bypass Vulnerability. This vulnerability allows remote attackers to bypass authentication on affected installations of Bytebase DBHub. Authentication is not requ… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-136441)
-- **CVE-2026-123721** CVSS 9.6 CRITICAL - Adobe Campaign Classic \(ACC\) is affected by an Incorrect Authorization vulnerability that could result in privilege escalation. A low-privileged attacker could exploit this vulnerability to gain elevated access to sensi… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123721)
-- **CVE-2026-125717** CVSS 9.6 CRITICAL - Adobe Campaign Classic \(ACC\) is affected by an Improper Neutralization of Special Elements used in an SQL Command \('SQL Injection'\) vulnerability that could result in privilege escalation. A low-privileged attacker coul… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-125717)
-- **CVE-2026-136410** CVSS 9.5 CRITICAL - Thymeleaf before 3.1.6.RELEASE contains a restricted expression mode bypass vulnerability that allows unauthenticated remote attackers to perform forbidden actions through improperly scoped expression objects. Attackers… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-136410)
-- **CVE-2026-129393** CVSS 9.4 CRITICAL - Joomla\! Core - \[20261156\] - Core - RCE through media custom field parameters in Joomla 4.0.0-5.4.10, 6.0.0-6.2.0 - Inadequate escaping of media field parameters in the generated form XML allowed manipulating the form de… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129393)
-- **CVE-2026-136184** CVSS 9.4 CRITICAL - compose-farm 0.19.0 before 1.22.0 contains a cross-site WebSocket hijacking and cross-site request forgery vulnerability because its unauthenticated web UI performs no Origin validation. Malicious websites visited by us… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-136184)
-- **CVE-2026-97180** CVSS 9.4 CRITICAL - ASSA ABLOY Seawing SC-1000 WebConfig is vulnerable to remote command injection via HTTP request. Due to the lack of input sanitization, a privileged attacker can inject shell metacharacters in the server parameter, resu… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-97180)
-- ...and 42 more (see the source).
+- **CVE-2026-136835** CVSS 9.9 CRITICAL - Jenkins Script Security Plugin 1436.v1082791135e4 and earlier does not reject @​Builder annotations whose builderStrategy member names an arbitrary class when the annotation is referred to using a partially qualified cla… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-136835)
+- **CVE-2026-104998** CVSS 9.8 CRITICAL - The Product Input Fields for WooCommerce plugin for WordPress is vulnerable to Arbitrary File Upload in all versions up to, and including, 2.1.0 via the process\_file\_input\_field function. This is due to missing file typ… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-104998)
+- **CVE-2026-123903** CVSS 9.8 CRITICAL - VMware vCenter contains an authentication bypass vulnerability in the VMware Directory Service. Broadcom has evaluated the severity of this issue to be in the Critical severity range with a maximum CVSSv3 base score of… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123903)
+- **CVE-2026-123910** CVSS 9.8 CRITICAL - ESX contains a heap out-of-bounds write vulnerability in the I/O filter service. Broadcom has evaluated the severity of this issue to be in the Critical severity range with a maximum CVSSv3 base score of 9.8. Affected v… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123910)
+- **CVE-2026-123911** CVSS 9.8 CRITICAL - ESX contains a use-after-free vulnerability in the I/O filter service. Broadcom has evaluated the severity of this issue to be in the Critical severity range with a maximum CVSSv3 base score of 9.8. Affected versions: V… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123911)
+- **CVE-2026-131767** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in Aman FunnelKit Automations wp-marketing-automations allows Object Injection.This issue affects FunnelKit Automations: from n/a through 3.9.0.1. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-131767)
+- **CVE-2026-133467** CVSS 9.8 CRITICAL - CodeSafe is an open-source Python library for code encryption, decryption, and safe evaluation using Python's AST module. From versions 0.0.1 through 0.0.4, the safe\_eval\(\) function can be bypassed with indirect subscri… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-133467)
+- **CVE-2026-133971** CVSS 9.8 CRITICAL - An authentication bypass vulnerability exists in the web management interface of HPE Networking Management Software \(Airwave\). Successful exploitation could allow an unauthenticated remote attacker to gain unauthorized… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-133971)
+- **CVE-2026-133972** CVSS 9.8 CRITICAL - A vulnerability in system functionality could allow an attacker with network access to bypass authentication. Successful exploitation could potentially allow an attacker to perform unauthorized actions, affecting system… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-133972)
+- **CVE-2026-133973** CVSS 9.8 CRITICAL - A command injection vulnerability exists in the web-based management interface of HPE Networking Management Software \(Airwave\). Successful exploitation could allow an unauthenticated remote attacker to execute arbitrary… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-133973)
+- **CVE-2026-134481** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in Ultimate Member Ultimate Member ultimate-member allows Object Injection.This issue affects Ultimate Member: from n/a through 2.14.1. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-134481)
+- **CVE-2026-135400** CVSS 9.8 CRITICAL - Ever Gauzy is an open source business management platform for ERP, CRM, HRM, ATS, and project management. Prior to 111.44.3, per-request JWT validation in packages/core/src/lib/auth/strategies/jwt.strategy.ts accepts th… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-135400)
+- **CVE-2026-133336** CVSS 9.5 CRITICAL - Joomla Extension - chronoengine.com - Unauthenticated arbitrary file upload in ChronoForms extension 8.0.0-8.0.53 - When the Filename Provider option of a file field is used, the file extension check is performed agains… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-133336)
+- **CVE-2026-135203** CVSS 9.4 CRITICAL - In Eclipse Ditto versions 0.3.0-M1 through 3.8.15 and 3.9.0 through 3.9.9, the JavaScript payload mapper of the connectivity service executes user-supplied mapping scripts in a Mozilla Rhino engine without a ClassShutte… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-135203)
+- **CVE-2026-123912** CVSS 9.3 CRITICAL - VMware ESXi, Workstation, and Fusion contain an out-of-bounds write vulnerability in the XHCI USB controller. Broadcom has evaluated the severity of this issue to be in the Critical severity range with a maximum CVSSv3… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-123912)
+- **CVE-2026-130637** CVSS 9.3 CRITICAL - SEPPMAIL Secure E-Mail Gateway versions before 15.1.2 are affected by a pre-authentication server-side template injection vulnerability that allows unauthenticated remote attackers to disclose sensitive account informat… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-130637)
+- **CVE-2026-135224** CVSS 9.3 CRITICAL - The MongoDB C Driver does not confirm that the party signing a supplied certificate revocation status response is authorized to answer for the certificate being checked. An unauthenticated party that operates the TLS en… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-135224)
+- **CVE-2026-136823** CVSS 9.3 CRITICAL - A vulnerability was found in D-Link R32 1.10B02. This affects an unknown function of the file /usr/bin/httpd of the component flupl self Endpoint. Performing a manipulation of the argument fpath results in os command in… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-136823)
+- **CVE-2026-137043** CVSS 9.3 CRITICAL - A security vulnerability has been detected in TOTOLINK N350RT 9.3.5u.6468\_B20250827/9.3.5u.6466\_B20250825. The affected element is the function setLanguageCfg of the file /cgi-bin/cstecgi.cgi. Such manipulation of the a… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-137043)
+- **CVE-2026-137090** CVSS 9.3 CRITICAL - build-git-clone before 1.0.4 contains an OS command injection vulnerability in the clone\(\) function that allows attackers to execute commands by supplying crafted repository URLs. Attackers can embed shell metacharacter… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-137090)
+- **CVE-2026-137567** CVSS 9.3 CRITICAL - llama.cpp b11450 before b12658 contains an out-of-bounds write vulnerability in the ggml RPC server that allows unauthenticated attackers to write to arbitrary heap addresses via zero-element destination tensors. Attack… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-137567)
+- **CVE-2026-124840** CVSS 9.2 CRITICAL - SEPPmail Secure Email Gateway before 15.1.2 reuses a broad legacy GINA session purpose across registration and recovery workflows. A remote attacker who knows an account security answer can use a recovery session in a d… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-124840)
+- **CVE-2026-124843** CVSS 9.2 CRITICAL - SEPPmail Secure Email Gateway before 15.1.2 uses a source-visible hard-coded fallback secret for legacy GINA token and Large File Transfer cryptographic operations when expected key material is unavailable or unusable.… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-124843)
+- **CVE-2026-137086** CVSS 9.2 CRITICAL - Teracom TCW122B-CM firmware before 4.07 contains a predictable session cookie vulnerability that allows unauthenticated remote attackers to hijack administrator sessions by guessing tick-counter-derived cookies. Attacke… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-137086)
+- **CVE-2026-77230** CVSS 9.2 CRITICAL - Camunda 8.8.0 before 8.8.47, 8.9.0 before 8.9.29, 8.10.0 before 8.10.10, and 8.11.0-alpha1 contain an insecure deserialization vulnerability in the persistent web session feature, which stores session attributes as Java… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-77230)
+- ...and 8 more (see the source).
 
 ## GitHub reviewed advisories (critical, plus high in watched ecosystems)
 
-- **GHSA-c4hm-4h84-2cf3** CRITICAL - ruflo MCP bridge allows unauthenticated remote code execution in default Docker Compose deployments (npm:ruflo \(fixed 3.16.3\)) - [source](https://github.com/advisories/GHSA-c4hm-4h84-2cf3)
+- **GHSA-743w-g9pf-8p94** CRITICAL - TastyIgniter mail template editor allows remote code execution via server-side template injection (composer:tastyigniter/tastyigniter \(fixed 4.3.1\)) - [source](https://github.com/advisories/GHSA-743w-g9pf-8p94)
+- **GHSA-7wwv-x6mc-pxqx** CRITICAL - TastyIgniter allows Remote Code Execution \(RCE\) via Unrestricted file upload in Media Manager (composer:tastyigniter/tastyigniter \(fixed 4.3.1\)) - [source](https://github.com/advisories/GHSA-7wwv-x6mc-pxqx)
 - **GHSA-crj3-q72p-ggqm** CRITICAL - @​waline/client vulnerable to stored XSS through unsanitized comment edit previews (npm:@​waline/client) - [source](https://github.com/advisories/GHSA-crj3-q72p-ggqm)
-- **GHSA-859w-52fx-hcm6** HIGH - soapbar: verify\_envelope\_bsp accepts an unauthenticated embedded certificate \(signature forgery / authentication bypass\) (pip:soapbar \(fixed 0.13.0\)) - [source](https://github.com/advisories/GHSA-859w-52fx-hcm6)
-- **GHSA-g9x9-q7qj-6mv5** HIGH - AVideo API FFmpeg process permits OS command injection via notifyCode/callback (composer:wwbn/avideo \(fixed 29.1.0\)) - [source](https://github.com/advisories/GHSA-g9x9-q7qj-6mv5)
-- **GHSA-jp3c-6v3g-mpxv** HIGH - github.com/insomniacslk/dhcp permits denial of service through a malformed IPv4 payload length (go:github.com/insomniacslk/dhcp \(fixed 0.0.0-20260719225207-c76316d4aa82\)) - [source](https://github.com/advisories/GHSA-jp3c-6v3g-mpxv)
+- **GHSA-7fgc-3h6c-698r** HIGH - livewire-powergrid: SQL injection via sortDirection in naturalSort queries (composer:power-components/livewire-powergrid \(fixed 6.10.4\)) - [source](https://github.com/advisories/GHSA-7fgc-3h6c-698r)
+- **GHSA-rj59-9f77-mvg5** HIGH - TastyIgniter permits Path Traversal in Media Upload (composer:tastyigniter/tastyigniter \(fixed 4.3.1\)) - [source](https://github.com/advisories/GHSA-rj59-9f77-mvg5)
 
 ## Node.js releases in window
 
-No Node.js release in the window.
+- **node 27.0.0-alpha.0.2.0** - Node.js 27.0.0-alpha.0.2.0 released - **watching: node.js** - [source](https://nodejs.org/en/blog/vulnerability)
 
 ## Tracked versions (upstream latest vs advisories.tsv)
 
@@ -73,7 +78,7 @@ No Node.js release in the window.
 | node | 22 | 22.23.5 | 22.23.4 | - |
 | node | 24 | 24.22.3 | 24.22.1 | - |
 | node | 26 | 26.13.1 | 26.12.1 | - |
-| node | 27 | 27.0.0-alpha.0.1.1 | - | - |
+| node | 27 | 27.0.0-alpha.0.2.0 | - | - |
 | php | 8.2 | 8.2.36 | 8.2.35 | - |
 | php | 8.3 | 8.3.37 | 8.3.36 | - |
 | php | 8.4 | 8.4.28 | 8.4.27 | - |
@@ -83,10 +88,10 @@ No Node.js release in the window.
 
 | Source | Status | Items | Note |
 |---|---|---|---|
-| CISA Known Exploited Vulnerabilities | OK | 4 | catalog 2026.11.25 |
-| NVD \(new CVEs\) | OK | 67 | 835 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 20 more only mention one \(apps, plugins, libraries\) and are not… |
+| CISA Known Exploited Vulnerabilities | OK | 10 | catalog 2026.11.25 |
+| NVD \(new CVEs\) | OK | 33 | 567 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 21 more only mention one \(apps, plugins, libraries\) and are not… |
 | GitHub Advisory Database | OK | 5 | critical in all ecosystems; high only for composer, go, npm, pip |
-| nodejs.org release index | OK | 0 | 883 versions in index |
+| nodejs.org release index | OK | 1 | 884 versions in index |
 | go.dev downloads | OK | 0 | branches: 1.26, 1.27 |
 | php.net releases | OK | 0 | branches: 8.2, 8.3, 8.4, 8.5 |
 
