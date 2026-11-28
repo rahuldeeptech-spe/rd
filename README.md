@@ -1,6 +1,6 @@
-# Security report 2026-11-27
+# Security report 2026-11-28
 
-Generated 2026-11-27 15:08 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
+Generated 2026-11-28 14:14 UTC by an automated job. Window: last 24 hours. Not a substitute for the official vendor advisories.
 
 ## Needs attention (10)
 
@@ -17,36 +17,24 @@ Generated 2026-11-27 15:08 UTC by an automated job. Window: last 24 hours. Not a
 
 ## Actively exploited (CISA KEV, added in window)
 
-No new entries in the window.
+- **CVE-2026-120705** - OSGeo GeoServer - OSGeo GeoServer XML Injection Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-120705)
+- **CVE-2026-129243** - OSGeo GeoServer - OSGeo GeoServer Incorrect Authorization Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-129243)
+- **CVE-2026-136716** - Drupal Core - Drupal Core Improper Check for Unusual or Exceptional Conditions Vulnerability - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-136716)
 
 ## Critical new CVEs and CVEs about watched products (NVD)
 
-- **CVE-2026-126984** CVSS 10.0 CRITICAL - A \*\*server-side request forgery\*\* flaw has been found in the get\_remote\_artifact\_url\(\) function in pulp\_python/app/models.py of the pull-through caching feature in the \*\*pulp\_python\*\* package. The function uses the redi… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-126984)
-- **CVE-2026-137721** CVSS 10.0 CRITICAL - A vulnerability in the Platform component of Mitel OpenScape 4000 and OpenScape 4000 Manager could allow an attacker to conduct a command injection attack due to insufficient parameter sanitization. A successful exploit… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-137721)
-- **CVE-2026-137724** CVSS 10.0 CRITICAL - A vulnerability in the Platform component of Mitel OpenScape 4000, and OpenScape 4000 Manager could allow an unauthenticated attacker to conduct an unauthorized access attack due to improper authentication mechanisms. A… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-137724)
-- **CVE-2026-134963** CVSS 9.9 CRITICAL - Improper Control of Generation of Code \('Code Injection'\) vulnerability in Webdeclic WPMasterToolKit wpmastertoolkit allows Code Injection.This issue affects WPMasterToolKit: from n/a through 2.26.1. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-134963)
-- **CVE-2026-137498** CVSS 9.9 CRITICAL - Budibase Server from 3.39.18 before 4.0.0 contains a prototype pollution vulnerability that allows unauthenticated attackers to erase MongoDB query filters by supplying \_\_proto\_\_ as a dynamic JSON key in PUBLIC queries.… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-137498)
-- **CVE-2026-104998** CVSS 9.8 CRITICAL - The Product Input Fields for WooCommerce plugin for WordPress is vulnerable to Arbitrary File Upload in all versions up to, and including, 2.1.0 via the process\_file\_input\_field function. This is due to missing file typ… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-104998)
-- **CVE-2026-106125** CVSS 9.8 CRITICAL - The Sneeit Framework plugin for WordPress is vulnerable to Remote Code Execution in versions up to, and including, 8.7 via the 'callback' parameter of the sneeit\_compact\_menu\_mega\_content AJAX action. The handler sneeit… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-106125)
-- **CVE-2026-115867** CVSS 9.8 CRITICAL - The Database for Contact Form 7, WPforms, Elementor forms plugin for WordPress is vulnerable to Arbitrary File Upload in all versions up to, and including, 1.5.5 via the copy\_files function. This is due to missing file… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-115867)
 - **CVE-2026-134994** CVSS 9.8 CRITICAL - Deserialization of Untrusted Data vulnerability in Nitramix Revertix &amp;#​8211; Backup, Migration, Staging &amp;amp; Clone revertix allows Object Injection.This issue affects Revertix &amp;#​8211; Backup, Migration, Staging &amp;amp; C… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-134994)
-- **CVE-2026-135933** CVSS 9.8 CRITICAL - Incorrect Privilege Assignment vulnerability in Tobias WebinarIgnition webinar-ignition allows Privilege Escalation.This issue affects WebinarIgnition: from n/a through 4.28.1. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-135933)
-- **CVE-2026-137738** CVSS 9.8 CRITICAL - In RealVNC Server before 7.19.1, UDP-based connections could potentially be exploited without authentication to execute code remotely or cause the software to crash. This could allow an attacker to remotely execute code… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-137738)
-- **CVE-2026-137723** CVSS 9.6 CRITICAL - A vulnerability in the Platform component of Mitel OpenScape 4000 and OpenScape 4000 Manager could allow an attacker to conduct a command injection attack due to insufficient parameter sanitization. A successful exploit… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-137723)
-- **CVE-2026-106169** CVSS 9.4 CRITICAL - A Deserialization of Untrusted Data vulnerability in the eventbus execution in Google Cloud Application Integration versions prior to 2026-09-22 on Google Cloud Platform allows an authenticated attacker to achieve remot… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-106169)
+- **CVE-2026-136115** CVSS 9.8 CRITICAL - Incorrect Privilege Assignment vulnerability in expresstechsoftware MemberPress Discord Addon expresstechsoftwares-memberpress-discord-add-on allows Privilege Escalation.This issue affects MemberPress Discord Addon: fro… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-136115)
 - **CVE-2026-124981** CVSS 9.4 CRITICAL - A vulnerability has been identified in Mendix OIDC Provider \(Mendix 10 compatible\) \(All versions &lt; V6.0.0\), Mendix OIDC Provider \(Mendix 11 compatible\) \(All versions &lt; V6.0.0\), Mendix OIDC Provider \(Mendix 9 compatible\)… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-124981)
-- **CVE-2026-137544** CVSS 9.4 CRITICAL - LaraDashboard before 1.5.0 contains a path traversal vulnerability in module.json providers and composer.json psr-4 namespace parsing that derives destination folder names without excluding traversal characters. Attacke… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-137544)
-- **CVE-2026-137706** CVSS 9.4 CRITICAL - Smart Portal developed by Direk Tech has a Missing Authorization vulnerability. Authenticated remote attackers can add a specified account to the Active Directory Domain Admins group, thereby obtaining domain administra… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-137706)
 - **CVE-2026-135009** CVSS 9.3 CRITICAL - Improper Neutralization of Special Elements used in an SQL Command \('SQL Injection'\) vulnerability in David Lingren Media LIbrary Assistant media-library-assistant allows Blind SQL Injection.This issue affects Media LIb… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-135009)
-- **CVE-2026-137499** CVSS 9.3 CRITICAL - Budibase from 3.41.0 before 4.0.0 contains an authentication bypass vulnerability that allows unauthenticated attackers to take over password-less global Builder accounts via unverified-email OIDC/SSO account linking. A… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-137499)
-- **CVE-2026-137536** CVSS 9.3 CRITICAL - ToolJet before 3.21.94-beta contains an authentication bypass in its server OAuth SSO sign-in module, which resolves Google and Git SSO logins solely by the provider-asserted email without checking email\_verified or bin… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-137536)
-- **CVE-2026-137550** CVSS 9.3 CRITICAL - Frappe Framework before 15.122.0 and 16.x before 16.50.0 contains a missing authorization vulnerability in Document.update\(\) that fails to validate whether the caller is permitted to submit or modify the target document… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-137550)
-- **CVE-2026-59103** CVSS 9.3 CRITICAL - MONEO ERP exposes the Ping method of its \_slave JSON-RPC service over WebSocket as @​rpc.openpublic, so it can be called without a valid session. The method's only guard compares the calling application name with "\_login… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-59103)
+- **CVE-2026-136113** CVSS 9.3 CRITICAL - Improper Neutralization of Special Elements used in an SQL Command \('SQL Injection'\) vulnerability in Hello Clever Pty Hello Clever Gateway for WooCommerce cleverpay-gateway allows SQL Injection.This issue affects Hello… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-136113)
+- **CVE-2026-137964** CVSS 9.3 CRITICAL - ToolJet before 3.21.96-LTS contains a command injection vulnerability in its GitHub Actions release workflow, which interpolates the pull request title directly into a shell run block. Attackers can submit a pull reques… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-137964)
+- **CVE-2026-138004** CVSS 9.3 CRITICAL - A security vulnerability has been detected in TRENDnet TEW-751DR and TEW-733GR 1.03B01. Affected is the function soapcgi\_main of the file /soap.cgi of the component UPnP Igd Control Endpoint. Such manipulation of the ar… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-138004)
+- **CVE-2026-138005** CVSS 9.3 CRITICAL - A vulnerability was detected in TRENDnet TEW-751DR 1.03B01. Affected by this vulnerability is the function gena.php::GENA\_notify\_init of the file htdocs/upnpinc/gena.php of the component UPnP Event Handler. Performing a… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-138005)
+- **CVE-2026-138154** CVSS 9.3 CRITICAL - POSTAL 2 before build 26810491 contains a sandbox escape vulnerability that allows malicious Steam Workshop mods to execute code by calling ConsoleCommand with a start file URI. Attackers can ship a batch file in a mod… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-138154)
 - **CVE-2026-85258** CVSS 9.3 CRITICAL - A Missing Authorization vulnerability in the private console API in Google Cloud Vertex AI \(Vertex AI Assistant\) versions prior to 2026-04-13 on Google Cloud Platform allows an unauthenticated remote attacker to list, r… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-85258)
-- **CVE-2026-135384** CVSS 9.2 CRITICAL - Improper authentication in OIDC bearer token verification in Canonical LXD before 5.0.12, 5.21.10, 6.10.2 allows a remote attacker holding a token signed by the configured identity provider to authenticate to the LXD AP… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-135384)
-- **CVE-2026-137547** CVSS 9.2 CRITICAL - Coder before 2.29.27, 2.30.0 before 2.34.19, 2.35.0 before 2.37.11, 2.38.0 before 2.38.7, and 2.39.0 before 2.39.1 returns database connection errors containing a temporary AWS IAM database password in API key middlewar… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-137547)
-- **CVE-2026-127163** CVSS 9.1 CRITICAL - Improper certificate validation in websocket connections in Canonical pylxd before 2.4.3 allows a network attacker to read command stdin and spoof command output via impersonating a remote LXD endpoint. - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-127163)
-- ...and 10 more (see the source).
+- **CVE-2026-110739** CVSS 9.0 CRITICAL - An Incomplete List of Disallowed Inputs in the namespace onboarding API in Google Cloud GKE Fleet versions prior to 2026-09-25 on Google Cloud Platform allows an authenticated attacker to escalate privileges to project… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-110739)
+- **CVE-2026-138003** CVSS 9.0 CRITICAL - A weakness has been identified in TRENDnet TEW-751DR 1.03B01. This impacts the function FUN\_0040ed90 of the file wfadev.cgi of the component UPnP/WFA. This manipulation of the argument SOAPAction causes stack-based buff… - [source](https://nvd.nist.gov/vuln/detail/CVE-2026-138003)
 
 ## GitHub reviewed advisories (critical, plus high in watched ecosystems)
 
@@ -75,8 +63,8 @@ No Node.js release in the window.
 
 | Source | Status | Items | Note |
 |---|---|---|---|
-| CISA Known Exploited Vulnerabilities | OK | 0 | catalog 2026.11.25 |
-| NVD \(new CVEs\) | OK | 35 | 476 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 22 more only mention one \(apps, plugins, libraries\) and are not… |
+| CISA Known Exploited Vulnerabilities | OK | 3 | catalog 2026.11.27 |
+| NVD \(new CVEs\) | OK | 12 | 187 CVEs published in window; showing CRITICAL \(9.0+\) and CVEs about a watched product itself; 4 more only mention one \(apps, plugins, libraries\) and are not l… |
 | GitHub Advisory Database | OK | 0 | critical in all ecosystems; high only for composer, go, npm, pip |
 | nodejs.org release index | OK | 0 | 884 versions in index |
 | go.dev downloads | OK | 0 | branches: 1.26, 1.27 |
